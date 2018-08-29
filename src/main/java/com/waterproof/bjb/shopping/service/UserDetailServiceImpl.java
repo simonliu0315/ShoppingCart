@@ -31,9 +31,9 @@ public class UserDetailServiceImpl implements UserDetailsService, UserService {
 //	private ProductRepository productRepository;
 //	
 	
-	public UserDetails loadUserByUsername(String email) {
+	public UserDetails loadUserByUsername(String id) {
 		log.info("****loadUserByUsername****");
-		com.waterproof.bjb.shopping.entity.UserDetails user = userDao.findUserById(email);
+		com.waterproof.bjb.shopping.entity.UserDetails user = userDao.findUserById(id);
 		if(user == null) {
 			throw new UsernameNotFoundException("Invalid username or password.");
 		}

@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class UserDao {
 
-	public UserDetails findUserById(String email) {
+	public UserDetails findUserById(String id) {
 		log.info("****findUserById****");
 		return new UserDetails();
 	}
