@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/SearchResultsPage"
+	lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta th:replace="fragments/meta_resources :: meta_resources"></meta>
+</head>
+
+<body>
+	<div th:replace="fragments/body_header :: body_header"></div>
+
+	<div th:replace="fragments/body_navigation :: body_navigation"></div>
+
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a th:href="@{/}">首頁</a></li>
+				<li class="active">購物車</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="order-summary clearfix">
+						<div class="section-title">
+							<h3 class="title">我的購物車</h3>
+						</div>
+						<table class="shopping-cart-table table">
+							<thead>
+								<tr>
+									<th>商品</th>
+									<th></th>
+									<th class="text-center">單價</th>
+									<th class="text-center">數量</th>
+									<th class="text-center">總計</th>
+									<th class="text-right">操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="thumb"><img src="./img/thumb-product01.jpg"
+										alt="" /></td>
+									<td class="details"><a href="#">Product Name Goes Here</a>
+										<ul>
+											<li><span>Size: XL</span></li>
+											<li><span>Color: Camelot</span></li>
+										</ul></td>
+									<td class="price text-center"><strong>$32.50</strong><br />
+										<del class="font-weak">
+											<small>$40.00</small>
+										</del></td>
+									<td class="qty text-center"><input class="input"
+										type="number" value="1" /></td>
+									<td class="total text-center"><strong
+										class="primary-color">$32.50</strong></td>
+									<td class="text-right"><button class="main-btn icon-btn">
+											<i class="fa fa-close"></i>
+										</button></td>
+								</tr>
+								<tr>
+									<td class="thumb"><img src="./img/thumb-product01.jpg"
+										alt="" /></td>
+									<td class="details"><a href="#">Product Name Goes Here</a>
+										<ul>
+											<li><span>Size: XL</span></li>
+											<li><span>Color: Camelot</span></li>
+										</ul></td>
+									<td class="price text-center"><strong>$32.50</strong></td>
+									<td class="qty text-center"><input class="input"
+										type="number" value="1" /></td>
+									<td class="total text-center"><strong
+										class="primary-color">$32.50</strong></td>
+									<td class="text-right"><button class="main-btn icon-btn">
+											<i class="fa fa-close"></i>
+										</button></td>
+								</tr>
+								<tr>
+									<td class="thumb"><img src="./img/thumb-product01.jpg"
+										alt="" /></td>
+									<td class="details"><a href="#">Product Name Goes Here</a>
+										<ul>
+											<li><span>Size: XL</span></li>
+											<li><span>Color: Camelot</span></li>
+										</ul></td>
+									<td class="price text-center"><strong>$32.50</strong></td>
+									<td class="qty text-center"><input class="input"
+										type="number" value="1" /></td>
+									<td class="total text-center"><strong
+										class="primary-color">$32.50</strong></td>
+									<td class="text-right"><button class="main-btn icon-btn">
+											<i class="fa fa-close"></i>
+										</button></td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th class="empty" colspan="3"></th>
+									<th>商品總金額</th>
+									<th colspan="2" class="sub-total">$97.50</th>
+								</tr>
+								<tr>
+									<th class="empty" colspan="3"></th>
+									<th>折扣金額</th>
+									<td colspan="2" class="sub-total">$-100</td>
+								</tr>
+								<tr>
+									<th class="empty" colspan="3"></th>
+									<th>TOTAL</th>
+									<th colspan="2" class="total">$97.50</th>
+								</tr>
+							</tfoot>
+						</table>
+						<div class="pull-right">
+							<a class="primary-btn" th:href="@{/checkout}"> 去買單 <i
+								class="fa fa-arrow-circle-right"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+	<div th:replace="fragments/body_footer :: body_footer"></div>
+
+	<!-- jQuery Plugins -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/slick.min.js"></script>
+	<script src="js/nouislider.min.js"></script>
+	<script src="js/jquery.zoom.min.js"></script>
+	<script src="js/main.js"></script>
+
+</body>
+
+</html>

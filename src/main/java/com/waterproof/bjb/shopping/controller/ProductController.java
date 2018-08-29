@@ -1,0 +1,149 @@
+package com.waterproof.bjb.shopping.controller;
+
+import javax.annotation.Resource;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.waterproof.bjb.shopping.entity.Product;
+import com.waterproof.bjb.shopping.service.ProductService;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Controller
+@RequestMapping(value = "/products")
+public class ProductController {
+
+	@Resource
+	private ProductService productService;
+	
+	@RequestMapping(value = "", method = {RequestMethod.GET})
+    public ModelAndView getPage() {
+        log.info("index getPage");
+        ModelAndView mav = new ModelAndView();
+        Pageable pageable = new PageRequest(0, 10);
+        log.info("page {}, pageSize {}", 0, 10);
+        Page<Product> products = productService.getFilterProduct("", 1, 0, 0, 0, 1, pageable);
+        log.info("products size {}", products.getContent().size());
+        mav.addObject("activate_product", products.getContent());
+        log.info("getTotalPages {}", products.getTotalPages());
+        log.info("pageSize {}", products.getSize());
+        mav.addObject("totalPages", products.getTotalPages());
+        mav.addObject("pageSize", products.getSize());
+        mav.addObject("pageNumber", pageable.getPageNumber());
+        mav.addObject("pageable", pageable);
+        log.info("pageNumber {}, Offset {}, pageSize {}", pageable.getPageNumber(), pageable.getOffset(), pageable.getPageSize());
+        String defaultUrl = "&";
+        defaultUrl += "page=1";
+        defaultUrl += "&pageSize=10";
+        mav.addObject("default_url", defaultUrl);
+        String defaultUrlPage = "?";
+        defaultUrlPage += "pageSize=10&page=";
+        mav.addObject("default_url_page", defaultUrlPage);
+        mav.setViewName("product/products");
+        return mav;
+    }
+	@RequestMapping(value = "/{id}", method = {RequestMethod.GET})
+    public ModelAndView getId(@PathVariable("id") long id) {
+        log.info("getId");
+        ModelAndView mav = new ModelAndView();
+      
+        Product product = productService.getProduct(id);
+        mav.addObject("product", product);
+       
+        mav.addObject("recommended_product", productService.getDiscountProductsOrderUpdatedTime()); 
+        mav.setViewName("product/product-page");
+        return mav;
+    }
+	
+	@RequestMapping(value = "/list/category/{id}", method = {RequestMethod.GET})
+    public ModelAndView getCategoryList(@PathVariable("id") long id) {
+        log.info("index getPage");
+        ModelAndView mav = new ModelAndView();
+      
+        mav.setViewName("product/products");
+        return mav;
+    }
+	
+	@RequestMapping(value = "/search/{id}", method = {RequestMethod.GET})
+    public ModelAndView getSearchList(@PathVariable("id") long id) {
+        log.info("index getPage");
+        ModelAndView mav = new ModelAndView();
+      
+        mav.setViewName("product/products");
+        return mav;
+    }
+	
+	@RequestMapping(value = "/search", method = {RequestMethod.GET})
+    public ModelAndView getSearchNameList(@RequestParam(value = "q", required=false, defaultValue = "") String q, 
+    		@RequestParam(value = "category", required=false, defaultValue = "0") int category, 
+    		@RequestParam(value = "productId", required=false, defaultValue = "0") long productId,
+    		@RequestParam(value = "price_low", required=false, defaultValue = "0") long price_low,
+    		@RequestParam(value = "price_high", required=false, defaultValue = "0") long price_high,
+    		@RequestParam(value = "orderby", required=false, defaultValue = "1") int orderby,
+    		@RequestParam(value = "page", required=false, defaultValue = "0") int page,
+    		@RequestParam(value = "pageSize", required=false, defaultValue = "10") int pageSize) {
+        log.info("index getPage");
+        ModelAndView mav = new ModelAndView();
+        if (page != 0) {
+        	page = page - 1;
+        }
+        
+        
+        log.info("page {}, pageSize {}", page, pageSize);
+        Pageable pageable = new PageRequest(page, pageSize);
+        Page<Product> products = productService.getFilterProduct(q, category, productId, price_low, price_high, orderby, pageable);
+        log.info("products size {}", products.getContent().size());
+        mav.addObject("activate_product", products.getContent());
+        log.info("getTotalPages {}", products.getTotalPages());
+        log.info("pageSize {}", products.getSize());
+        mav.addObject("totalPages", products.getTotalPages());
+        mav.addObject("pageSize", products.getSize());
+        mav.addObject("pageNumber", pageable.getPageNumber());
+        mav.addObject("pageable", pageable);
+        String defaultUrl = "&";
+        if (!StringUtils.isEmpty(q)) {
+        	defaultUrl += "q=" + q;
+        }
+        if (category != 0) {
+        	defaultUrl += "&category=" + category;
+        }
+        if (productId != 0) {
+        	defaultUrl += "&productId=" + productId;
+        }
+        if (price_low != 0) {
+        	defaultUrl += "&price_low=" + price_low;
+        }
+        if (price_high != 0) {	
+        	defaultUrl += "&price_high=" + price_high;
+        }
+        if (orderby != 1) {
+        	defaultUrl += "&orderby=" + orderby;
+        }
+        defaultUrl += "&page=" + page;
+        defaultUrl += "&pageSize=" + pageSize;
+        mav.addObject("default_url", defaultUrl);
+
+        log.info("pageNumber {}, Offset {}, pageSize {}", pageable.getPageNumber(), pageable.getOffset(), pageable.getPageSize());
+        
+        String defaultUrlPage = "&";
+        defaultUrlPage += "pageSize="+ pageSize + "&page=";
+        mav.addObject("default_url_page", defaultUrlPage);
+        mav.addObject("filter_price_low", price_low);
+        mav.addObject("filter_price_high", price_high);
+        
+        mav.setViewName("product/products");
+        return mav;
+    }
+	
+	
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/SearchResultsPage" lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="meta_resources" th:remove="tag">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta name="ctx" th:content="${#httpServletRequest.getContextPath()}" />
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="_csrf" th:if="${_csrf}" th:content="${_csrf.token}"/>
+	<meta name="_csrf_header" th:if="${_csrf}" th:content="${_csrf.headerName}"/>
+	<title>液態橡膠購物車 Template</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet"/>
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+
+	<!-- Slick -->
+	<link type="text/css" rel="stylesheet" th:href="@{/css/slick.css}" />
+	<link type="text/css" rel="stylesheet" th:href="@{/css/slick-theme.css}" />
+
+	<!-- nouislider -->
+	<link type="text/css" rel="stylesheet" th:href="@{/css/nouislider.min.css}" />
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}" />
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+</body>
+
+</html>
+  
