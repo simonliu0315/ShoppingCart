@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -55,7 +59,24 @@ public class IndexController {
         //抓最常購買的資料
         mav.addObject("suggest_product", productService.getDiscountProductsOrderUpdatedTime());
         //抓使用者建議的商品
-        mav.addObject("recommended_product", productService.getDiscountProductsOrderUpdatedTime()); 
+        mav.addObject("recommended_product", productService.getDiscountProductsOrderUpdatedTime());
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        log.info("auth: {}", auth);
+//        
+//        if (auth!= null) {
+//        	if (auth.getPrincipal() instanceof java.lang.String) {
+//        		mav.addObject("USER_OBJECT", auth);
+//        	} else {
+//        		UserDetails currentUser = (UserDetails) auth.getPrincipal();
+//            	log.info("user: {}", currentUser);
+//            	mav.addObject("USER_OBJECT", currentUser);
+//        	}
+//        	
+//        } else {
+//        	log.info("理論上不會進入這裡，有的話趕快通知管理者吧...");
+//        	log.info("auth: {}", auth);
+//        }
+
         mav.setViewName("index");
         return mav;
     }

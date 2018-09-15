@@ -16,17 +16,17 @@ import lombok.Data;
 @Entity
 @Table
 @Data
-public class UserDetails implements Serializable {
+public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String id;
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private String username;
 
-	@Column
-	private String name;
+	@Column(name="C_NAME")
+	private String cName;
 	@Column
 	private String email;
 	@Column
@@ -39,6 +39,7 @@ public class UserDetails implements Serializable {
 	
 	@Column
 	private String birthday;
+	
 	
 	@Transient
     public String getPasswordConfirm() {

@@ -4,14 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafView;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+
+import com.waterproof.bjb.shopping.interceptor.UserInterceptor;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,8 +22,11 @@ import lombok.extern.slf4j.Slf4j;
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Autowired
-	public SpringTemplateEngine templateEngine;
+	private SpringTemplateEngine templateEngine;
 
+	@Autowired 
+	private UserInterceptor userInterceptor;
+	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		log.info("addResourceHandlers.");
@@ -61,4 +65,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		resolver.setCharacterEncoding("UTF-8");
 		return resolver;
 	}
+	
+	 @Override
+	  public void addInterceptors(InterceptorRegistry registry) {
+	    registry.addInterceptor(userInterceptor);
+	  }
 }

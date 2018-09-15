@@ -9,6 +9,9 @@ Colors:
 	Dark 		  :	#30323A
 	Grey 		  : #DADADA #F6F7F8
 
+header-btns .dropdown-toggle:
+add width: 150px
+
 Fonts: Hind
 
 Table OF Contents
@@ -415,6 +418,7 @@ textarea.input {
 .header-btns .dropdown-toggle {
   display: block;
   cursor: pointer;
+  width: 170px;
 }
 
 .header-account.dropdown .custom-menu>li>a>i {

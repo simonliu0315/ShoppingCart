@@ -55,6 +55,16 @@ public class ProductRepositoryCustom {
 		    Predicate predicate = criteriaBuilder.equal(rootFrom.get("categoryId").as(Integer.class), category);
 		    predicates.add(predicate);
 		}
+		if (price_low != 0) {
+			log.info("price_low {}", price_low);
+		    Predicate predicate = criteriaBuilder.ge(rootFrom.get("price").as(Integer.class), price_low);
+		    predicates.add(predicate);
+		}
+		if (price_high != 0) {
+			log.info("price_high {}", price_high);
+		    Predicate predicate = criteriaBuilder.le(rootFrom.get("price").as(Integer.class), price_high);
+		    predicates.add(predicate);
+		}
 //		if (!StringUtils.isEmpty(q)) {
 //		    Predicate predicate = criteriaBuilder.like(rootFrom.get("name").as(String.class), "%" + q + "%");
 //		    predicates.add(predicate);

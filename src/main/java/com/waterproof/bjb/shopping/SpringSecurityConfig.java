@@ -21,6 +21,10 @@ import lombok.extern.slf4j.Slf4j;
 @EnableWebSecurity
 public class SpringSecurityConfig  extends WebSecurityConfigurerAdapter {
 
+	public static final String ADMIN = "ADMIN";
+	public static final String USER = "USER";
+	public static final String ANONYMOUS = "ANONYMOUS";
+	
 	@Resource(name="userDetailService")
 	private UserDetailsService userDetailsService;
 	
@@ -35,21 +39,27 @@ public class SpringSecurityConfig  extends WebSecurityConfigurerAdapter {
 		http
 		        .csrf()
 		        .requireCsrfProtectionMatcher(new AntPathRequestMatcher("**/login"))
-		        .and()
+		    .and()
 		        .authorizeRequests()
-				.antMatchers("/")
-				.hasRole("USER")
-				.and()
+				.antMatchers("/").hasRole(ANONYMOUS)
+				.antMatchers("/checkout/**").hasRole(USER)
+			.and()
 				.formLogin()
 				.defaultSuccessUrl("/")
 				.loginPage("/login")
-				.and()
+				.permitAll()
+			.and()
 				.logout()
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.logoutSuccessUrl("/")
+				.deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true)
 				.permitAll();
 	}
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		log.info("call configureGlobal.");
 		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
 	}
 
@@ -59,7 +69,9 @@ public class SpringSecurityConfig  extends WebSecurityConfigurerAdapter {
 	     web.ignoring().antMatchers("/js/**");
 	     web.ignoring().antMatchers("/fonts/**");
 	     web.ignoring().antMatchers("/img/**");
-	     web.ignoring().antMatchers("/");
+	     web.ignoring().antMatchers("/generateCaptcha/**");
+	     
+	     //web.ignoring().antMatchers("/");
 	}
 
 }

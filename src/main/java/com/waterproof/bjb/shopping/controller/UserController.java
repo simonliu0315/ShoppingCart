@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.waterproof.bjb.shopping.entity.UserDetails;
+import com.waterproof.bjb.shopping.entity.User;
 import com.waterproof.bjb.shopping.service.UserDetailServiceImpl;
 
 @Controller
 @RequestMapping(value = "/users")     // 通过这里配置使下面的映射都在 /users
 public class UserController {
 
-    @Autowired
+    //@Autowired
     private UserDetailServiceImpl userService;          // 用户服务层
 
     /**
@@ -35,7 +35,7 @@ public class UserController {
      */
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String createUserForm(ModelMap map) {
-        map.addAttribute("user", new UserDetails());
+        map.addAttribute("user", new User());
         map.addAttribute("action", "create");
         return "userForm";
     }
@@ -46,7 +46,7 @@ public class UserController {
      *    通过 @ModelAttribute 绑定参数，也通过 @RequestParam 从页面中传递参数
      */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String postUser(@ModelAttribute UserDetails user) {
+    public String postUser(@ModelAttribute User user) {
         userService.insertByUser(user);
         return "redirect:/users/";
     }
@@ -68,7 +68,7 @@ public class UserController {
      *
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String putUser(@ModelAttribute UserDetails user) {
+    public String putUser(@ModelAttribute User user) {
         userService.update(user);
         return "redirect:/users/";
     }

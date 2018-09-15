@@ -26,14 +26,14 @@
 								aria-expanded="true">繁體中文 <i class="fa fa-caret-down"></i></a>
 								<ul class="custom-menu">
 									<li><a href="#">繁體中文 (Tw)</a></li>
-									<li><a href="#">英文 (ENG)</a></li>
+									<!--li><a href="#">英文 (ENG)</a></li-->
 								</ul></li>
 							<li class="dropdown default-dropdown"><a
 								class="dropdown-toggle" data-toggle="dropdown"
 								aria-expanded="true">NTD <i class="fa fa-caret-down"></i></a>
 								<ul class="custom-menu">
 									<li><a href="#">台幣 (NTD)</a></li>
-									<li><a href="#">USD ($)</a></li>
+									<!-- li><a href="#">USD ($)</a></li-->
 								</ul></li>
 						</ul>
 					</div>
@@ -83,15 +83,20 @@
 									</div>
 									<strong class="text-uppercase">我的帳戶 <i
 										class="fa fa-caret-down"></i></strong>
-								</div> <a th:href="@{/login}" class="text-uppercase">登入</a> / <a
-								th:href="@{/createUser}" class="text-uppercase">加入</a>
+								</div>
+								<a th:if="${USER_OBJECT.username == 'anonymousUser'}" th:href="@{/login}" class="text-uppercase">登入</a>
+								<span th:if="${USER_OBJECT.username != 'anonymousUser'}" class="text-uppercase" th:text="${USER_OBJECT.username + '，您好'}"></span> 
+								/ 
+								<a th:if="${USER_OBJECT.username == 'anonymousUser'}" th:href="@{/createUser}" class="text-uppercase">加入</a>
 								<ul class="custom-menu">
-									<li><a href="#"><i class="fa fa-user-o"></i> 帳號</a></li>
-									<li><a href="#"><i class="fa fa-heart-o"></i> 購買清單</a></li>
-									<li><a href="#"><i class="fa fa-exchange"></i> Compare</a></li>
-									<li><a href="#"><i class="fa fa-check"></i> 結帳</a></li>
-									<li><a href="#"><i class="fa fa-unlock-alt"></i> 登入</a></li>
-									<li><a href="#"><i class="fa fa-user-plus"></i> 建立帳號</a></li>
+									<li><a  th:if="${USER_OBJECT.username != 'anonymousUser'}" th:href="@{/account}"><i class="fa fa-user-o"></i> 帳號</a></li>
+									<li><a th:href="@{/wishList}"><i class="fa fa-heart-o"></i> 最愛清單</a></li>
+									<li><a th:href="@{/compare}"><i class="fa fa-exchange"></i> 商品比較</a></li>
+									<li><a th:href="@{/cart}"><i class="fa fa-shopping-cart"></i> 我的購物車</a></li>
+									<li><a th:href="@{/checkout}"><i class="fa fa-check"></i> 結帳</a></li>
+									<li><a th:if="${USER_OBJECT.username == 'anonymousUser'}" th:href="@{/login}"><i class="fa fa-unlock-alt"></i> 登入</a></li>
+									<li><a th:if="${USER_OBJECT.username == 'anonymousUser'}" th:href="@{/createUser}"><i class="fa fa-user-plus"></i> 建立帳號</a></li>
+									<li><a th:if="${USER_OBJECT.username != 'anonymousUser'}" th:href="@{/logout}"><i class="fa fa-unlock-alt"></i> 登出</a></li>
 								</ul>
 							</li>
 							<!-- /Account -->

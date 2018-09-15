@@ -164,7 +164,7 @@
 									</div>
 									<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${product.name}">Product Name Goes Here</a></h2>
 									<div class="product-btns">
-										<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+										<button class="main-btn icon-btn" th:onclick="'index.addWish(\'' + ${product.id} + '\');'"><i class="fa fa-heart-o"></i></button>
 										<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
 										<button class="primary-btn add-to-cart" th:onclick="'index.addCart(\'' + ${product.id} + '\');'"><i class="fa fa-shopping-cart"></i>加入購物車</button>
 									</div>
@@ -221,7 +221,7 @@
 							</div>
 							<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${product.name}">Product Name Goes Here</a></h2>
 							<div class="product-btns">
-								<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+								<button class="main-btn icon-btn" th:onclick="'index.addWish(\'' + ${product.id} + '\');'"><i class="fa fa-heart-o"></i></button>
 								<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
 								<button class="primary-btn add-to-cart" th:onclick="'index.addCart(\'' + ${product.id} + '\');'"><i class="fa fa-shopping-cart"></i>加入購物車</button>
 							</div>
@@ -256,7 +256,7 @@
 									</div>
 									<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${product.name}">商品名稱</a></h2>
 									<div class="product-btns">
-										<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+										<button class="main-btn icon-btn" th:onclick="'index.addWish(\'' + ${product.id} + '\');'"><i class="fa fa-heart-o"></i></button>
 										<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
 										<button class="primary-btn add-to-cart" th:onclick="'index.addCart(\'' + ${product.id} + '\');'"><i class="fa fa-shopping-cart"></i>加入購物車</button>
 									</div>
@@ -359,7 +359,7 @@
 						    </div>
 						    <h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${product.name}">Product Name Goes Here</a></h2>
 						    <div class="product-btns">
-						        <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+						        <button class="main-btn icon-btn" th:onclick="'index.addWish(\'' + ${product.id} + '\');'"><i class="fa fa-heart-o"></i></button>
 							    <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
 							    <button class="primary-btn add-to-cart" th:onclick="'index.addCart(\'' + ${product.id} + '\');'"><i class="fa fa-shopping-cart"></i>加入購物車</button>
 						    </div>
@@ -407,7 +407,7 @@
 							</div>
 							<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${product.name}">Product Name Goes Here</a></h2>
 							<div class="product-btns">
-								<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+								<button class="main-btn icon-btn" th:onclick="'index.addWish(\'' + ${product.id} + '\');'"><i class="fa fa-heart-o"></i></button>
 								<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
 								<button class="primary-btn add-to-cart" th:onclick="'index.addCart(\'' + ${product.id} + '\');'"><i class="fa fa-shopping-cart"></i> 加入購物車</button>
 							</div>
@@ -450,7 +450,7 @@
 							</div>
 							<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${product.name}">商品名稱</a></h2>
 							<div class="product-btns">
-								<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+								<button class="main-btn icon-btn" th:onclick="'index.addWish(\'' + ${product.id} + '\');'"><i class="fa fa-heart-o"></i></button>
 								<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
 								<button class="primary-btn add-to-cart" th:onclick="'index.addCart(\'' + ${product.id} + '\');'"><i class="fa fa-shopping-cart"></i> 加入購物車</button>
 							</div>
@@ -464,7 +464,36 @@
 		<!-- /container -->
 	</div>
 	<!-- /section -->
+    <!-- Button trigger modal -->
+<!-- button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCartModalCenter">
+  Launch demo modal
+</button -->
 
+<!-- Modal -->
+<div class="modal fade" id="addCartModalCenter" tabindex="-1" role="dialog" aria-labelledby="addCartModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="banner-caption text-center">
+        <i class="icon-search icon-large icon-white"></i>
+          <span class="fa fa-cart-plus fa-lg" style="font-size:50px;">&#xf217;&#xf217;</span>
+        </div>
+        <div class="banner-caption text-center" style="font-size:20px;">
+　　　
+        </div>
+        <div class="banner-caption text-center" style="font-size:16px;">
+           成功加入購物車
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Modal -->
 	<div th:replace="fragments/body_footer :: body_footer"></div>
     <div th:replace="fragments/body_resources :: body_resources"></div>
 	

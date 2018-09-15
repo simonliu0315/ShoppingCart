@@ -17,6 +17,14 @@ var index = {
 	            		  "<li><span class='seconds'>" + event.strftime("%S") +"</span></li>");
 			});
 		});
+		
+		$('#addCartModalCenter').on('show.bs.modal', function(){
+	        var addCartModal = $(this);
+	        clearTimeout(addCartModal.data('hideInterval'));
+	        addCartModal.data('hideInterval', setTimeout(function(){
+	        	addCartModal.modal('hide');
+	        }, 1500));
+	    });
 	},
 	addCart : function(productId) {
 		$("#shopping-cart-list").empty();
@@ -62,6 +70,9 @@ var index = {
 				}
 				$("#qty").html(data.quantity);
 				$("#totalAmt").html("$" + data.subTotalAmt);
+				$("#addCartModalCenter").modal({
+					show: true
+				});
 			},
 			error : function(e) {
 				var obj = jQuery.parseJSON(e.responseText);

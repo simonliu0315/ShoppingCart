@@ -49,6 +49,10 @@ public class ProductController {
         String defaultUrlPage = "?";
         defaultUrlPage += "pageSize=10&page=";
         mav.addObject("default_url_page", defaultUrlPage);
+        mav.addObject("filter_price_low", 0);
+        mav.addObject("filter_price_high", 0);
+        //抓最常購買的資料
+        mav.addObject("suggest_product", productService.getDiscountProductsOrderUpdatedTime());
         mav.setViewName("product/products");
         return mav;
     }
@@ -92,7 +96,8 @@ public class ProductController {
     		@RequestParam(value = "orderby", required=false, defaultValue = "1") int orderby,
     		@RequestParam(value = "page", required=false, defaultValue = "0") int page,
     		@RequestParam(value = "pageSize", required=false, defaultValue = "10") int pageSize) {
-        log.info("index getPage");
+        log.info("search getPage");
+        
         ModelAndView mav = new ModelAndView();
         if (page != 0) {
         	page = page - 1;
@@ -140,7 +145,8 @@ public class ProductController {
         mav.addObject("default_url_page", defaultUrlPage);
         mav.addObject("filter_price_low", price_low);
         mav.addObject("filter_price_high", price_high);
-        
+        //抓最常購買的資料
+        mav.addObject("suggest_product", productService.getDiscountProductsOrderUpdatedTime());
         mav.setViewName("product/products");
         return mav;
     }

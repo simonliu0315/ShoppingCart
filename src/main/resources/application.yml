@@ -8,6 +8,7 @@ spring.security.user.password: user
 
 spring.session.store-type: none
 spring.h2.console.enabled: true
+spring.jpa.open-in-view: false
 
 spring:
   datasource:
@@ -33,3 +34,11 @@ spring:
         trace: false
         web-allow-others: false
 
+logging:
+  level:
+    org.springframework.security.web.context: ERROR
+    org.springframework.security: DEBUG
+    #org.springframework.security.web.context: ERROR
+    #org.springframework.web: DEBUG
+    #guru.springframework.controllers: DEBUG
+    #org.hibernate: DEBUG

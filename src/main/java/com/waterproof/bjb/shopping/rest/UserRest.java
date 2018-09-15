@@ -28,8 +28,8 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 public class UserRest {
 
-	@Autowired
-    private UserDetailServiceImpl userService;
+//	@Autowired
+//    private UserDetailServiceImpl userService;
 	
 	@Autowired
     private ProductService productService;

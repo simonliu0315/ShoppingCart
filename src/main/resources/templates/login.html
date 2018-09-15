@@ -24,13 +24,17 @@
 								<h3 class="title">登入</h3>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="id" placeholder="帳號"/>
+								<input class="input" type="text" name="username" value="simon" placeholder="帳號"/>
 							</div>
 							<div class="form-group">
-								<input class="input" type="password" name="password" placeholder="密碼"/>
+								<input class="input" type="password" name="password" value="123456" placeholder="密碼"/>
 							</div>
 							<div class="form-group">
-								<input class="input" type="email" name="email" placeholder="驗證碼"/>
+							    <input type="text" class="form-control" id="verifyCode" placeholder="驗證碼" name="verifyCode" style="width: 30%; display: inline;"/>
+                                <img id="captchaImg" />
+                                <button id="refreshCaptchaButton" type="button" form="form" class="btn btn-default ">
+                                    <i class="fa fa-refresh"></i>
+                                </button>
 							</div>
 							
 							<div class="form-group">
@@ -39,15 +43,23 @@
 									<label class="font-weak" for="register">建立新帳號?</label>
 									<div class="caption">
 										<p>請輸入密碼後按"送出"，系統會自動幫您建立帳號，登入後請記得更新個人資料</p>
-											<p></p>
-												<input class="input" type="password" name="repassword" placeholder="請重新輸入密碼"/>
+										<p></p>
+										<div class="form-group">
+										    <input class="input" type="password" name="repassword" placeholder="請重新輸入密碼"/>
+										</div>
+										<div class="form-group">
+									        <input class="input" type="email" name="email" value="cyliu0315@gmail.com" placeholder="電子郵件信箱"/>
+									    </div>
+									    <div class="form-group text-right">
+									        <button class="primary-btn" type="submit" value="Sign In" >註冊/登入</button>
+									    </div>
 									</div>
+									
 								</div>
 							</div>
 							<div class="form-group text-left">
-							    <button class="primary-btn">清除</button>
-							    <button class="primary-btn">登入</button>
-							    <input  class="primary-btn" type="submit" value="Sign In"/>
+							    <button class="primary-btn" type="reset">清除</button>
+							    <button class="primary-btn" type="submit" value="Sign In" >登入</button>
 							</div>
 						</div>
 					</div>
@@ -64,7 +76,8 @@
 
 	<div th:replace="fragments/body_footer :: body_footer"></div>
     <div th:replace="fragments/body_resources :: body_resources"></div>
-	
+    
+	<script th:src="@{/js/login.js}"></script>
 </body>
 
 </html>

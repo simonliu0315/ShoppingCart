@@ -49,9 +49,9 @@ create table ORDER_STATUS(
     description varchar(200),
     primary key(id)
 );
-create table USER_DETAIL(
-    id  varchar (30) not null,
-	name varchar(30),
+create table USER(
+    username  varchar (30) not null,
+	c_name varchar(30),
 	email  varchar(30),
 	password varchar(60),
 	address varchar(200),
@@ -60,5 +60,5 @@ create table USER_DETAIL(
     insert_by varchar(30),
     updated timestamp,
     update_by varchar(30),
-	primary key(id)
+	primary key(username)
 );
