@@ -35,7 +35,7 @@ create table Product(
 create table CUSTOMER_ORDER(
     id int not null,
 	amount int not null,
-	user_id int not null,
+	username varchar (30) not null,
 	status_id int not null,
 	inserted timestamp,
     insert_by varchar(30),

@@ -9,13 +9,12 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.waterproof.bjb.shopping.entity.User;
-import com.waterproof.bjb.shopping.service.UserDetailServiceImpl;
 
 @Component
 public class UserValidator implements Validator {
 	
 	@Resource
-    private UserDetailsService userService;
+    private UserDetailsService userDetailsService;
 
     @Override
     public boolean supports(Class<?> aClass) {
@@ -30,7 +29,7 @@ public class UserValidator implements Validator {
         if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
             errors.rejectValue("username", "Size.userForm.username");
         }
-        if (userService.loadUserByUsername(user.getUsername()) != null) {
+        if (userDetailsService.loadUserByUsername(user.getUsername()) != null) {
             errors.rejectValue("username", "Duplicate.userForm.username");
         }
 

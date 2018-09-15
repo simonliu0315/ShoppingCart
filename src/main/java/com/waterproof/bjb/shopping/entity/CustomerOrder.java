@@ -23,9 +23,9 @@ public class CustomerOrder implements Serializable {
 	
 	private BigDecimal amount;
 	
-	private Long userId;
+	private String username;
 	
-	private Long statusId;
+	private int statusId;
 	
 	private Timestamp inserted;
 

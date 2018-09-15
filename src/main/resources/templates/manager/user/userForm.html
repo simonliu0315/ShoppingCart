@@ -18,16 +18,14 @@
                 <strong>用户管理</strong>
             </legend>
 
-            <form th:action="@{/users/{action}(action=${action})}" method="post" class="form-horizontal">
-
-                <input type="hidden" name="id" th:value="${user.id}"/>
+            <form th:action="@{/manager/users/{action}(action=${action})}" method="post" class="form-horizontal">
 
                 <div class="form-group">
                     <label for="user_name" class="col-sm-2 control-label">名称:</label>
                     <div class="col-xs-4">
-                        <input type="text" class="form-control" id="user_name" name="name" th:value="${user.name}" th:field="*{user.name}" />
+                        <input type="text" class="form-control" id="user_name" name="name" th:value="${user.username}" th:field="*{user.username}" />
                     </div>
-                    <label class="col-sm-2 control-label text-danger" th:if="${#fields.hasErrors('user.name')}" th:errors="*{user.name}">姓名有误!</label>
+                    <label class="col-sm-2 control-label text-danger" th:if="${#fields.hasErrors('user.username')}" th:errors="*{user.username}">姓名有误!</label>
                 </div>
 
 

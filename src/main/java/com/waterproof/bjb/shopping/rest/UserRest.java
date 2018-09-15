@@ -19,7 +19,7 @@ import com.waterproof.bjb.shopping.dto.ProductInCartDto;
 import com.waterproof.bjb.shopping.dto.ProductTempOrder;
 import com.waterproof.bjb.shopping.entity.Product;
 import com.waterproof.bjb.shopping.service.ProductService;
-import com.waterproof.bjb.shopping.service.UserDetailServiceImpl;
+import com.waterproof.bjb.shopping.service.SimpleUserService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,12 +28,12 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 public class UserRest {
 
-//	@Autowired
-//    private UserDetailServiceImpl userService;
-	
+
 	@Autowired
     private ProductService productService;
 	
+	@Autowired
+	private SimpleUserService simpleUserService;
 	
 	@RequestMapping(value = "/numberOfProductInCart", 
 			method = RequestMethod.POST, 
@@ -54,6 +54,7 @@ public class UserRest {
 		Product product = productService.getProduct(Long.valueOf(productForm.getProductId()));
 		
 		ProductTempOrder productTempOrderDto = new ProductTempOrder();
+		
 		BeanUtils.copyProperties(product, productTempOrderDto);
 		productTempOrderDto.setProductId(product.getId().intValue());
 		productTempOrderDto.setProductName(product.getName());
@@ -91,6 +92,10 @@ public class UserRest {
 			}
 		}
 		productInCartDto.setQuantity(productInCartDto.getProductsTempOrder().size());
+		
+		//設定使用者
+		productInCartDto.setUserId(simpleUserService.getUser().getUsername());
+		
 		request.getSession().setAttribute(SessionParameter.PRODUCTS_IN_CART, productInCartDto);
 		
 		log.info("user cart is {}", productInCartDto);

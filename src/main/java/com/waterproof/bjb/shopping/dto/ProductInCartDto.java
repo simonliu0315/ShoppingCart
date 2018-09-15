@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class ProductInCartDto {
 
-	private int userId;
+	private String userId;
 	
 	private List<ProductTempOrder> productsTempOrder;
 	

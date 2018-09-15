@@ -1,6 +1,8 @@
-package com.waterproof.bjb.shopping.controller;
+package com.waterproof.bjb.shopping.manager.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,13 +12,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.waterproof.bjb.shopping.entity.User;
 import com.waterproof.bjb.shopping.service.UserDetailServiceImpl;
+import com.waterproof.bjb.shopping.service.UserService;
 
 @Controller
-@RequestMapping(value = "/users")     // 通过这里配置使下面的映射都在 /users
+@RequestMapping(value = "/manager/users")     // 通过这里配置使下面的映射都在 /users
 public class UserController {
 
-    //@Autowired
-    private UserDetailServiceImpl userService;          // 用户服务层
+    @Autowired
+    private UserService userService;          // 用户服务层
 
     /**
      *  获取用户列表
@@ -26,7 +29,7 @@ public class UserController {
     @RequestMapping(method = RequestMethod.GET)
     public String getUserList(ModelMap map) {
         map.addAttribute("userList", userService.findAll());
-        return "userList";
+        return "manager/userList";
     }
 
     /**
@@ -37,7 +40,7 @@ public class UserController {
     public String createUserForm(ModelMap map) {
         map.addAttribute("user", new User());
         map.addAttribute("action", "create");
-        return "userForm";
+        return "manager/userForm";
     }
 
     /**
@@ -48,7 +51,7 @@ public class UserController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String postUser(@ModelAttribute User user) {
         userService.insertByUser(user);
-        return "redirect:/users/";
+        return "redirect:/manager/users/";
     }
 
     /**
@@ -60,7 +63,7 @@ public class UserController {
     public String getUser(@PathVariable String id, ModelMap map) {
         map.addAttribute("user", userService.findById(id));
         map.addAttribute("action", "update");
-        return "userForm";
+        return "manager/userForm";
     }
 
     /**
@@ -70,7 +73,7 @@ public class UserController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String putUser(@ModelAttribute User user) {
         userService.update(user);
-        return "redirect:/users/";
+        return "redirect:/manager/users/";
     }
 
     /**
@@ -80,7 +83,7 @@ public class UserController {
     public String deleteUser(@PathVariable String id) {
 
         userService.delete(id);
-        return "redirect:/users/";
+        return "redirect:/manager/users/";
     }
 
 }

@@ -6,8 +6,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import com.waterproof.bjb.shopping.dao.UserRepository;
 import com.waterproof.bjb.shopping.entity.User;
+import com.waterproof.bjb.shopping.repository.UserRepository;
 
 @Service
 public class SimpleUserService {
