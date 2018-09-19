@@ -1,5 +1,6 @@
 package com.waterproof.bjb.shopping.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.waterproof.bjb.shopping.entity.UserRole;
 import com.waterproof.bjb.shopping.repository.UserRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -49,17 +51,25 @@ public class UserDetailServiceImpl implements UserDetailsService {
 		}
 		// 將使用者放入Authentication物件，代表已通過驗證
 		Authentication auth = new UsernamePasswordAuthenticationToken(user, user.getPassword(),
-				getAuthority());
+				getAuthority(user));
 		// 將Authentication物件放入SecurityContext存放
 		SecurityContextHolder.getContext().setAuthentication(auth);
 		log.info("auth: {}", SecurityContextHolder.getContext().getAuthentication());
 		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-				getAuthority());
+				getAuthority(user));
 
 	}
 
-	private List<SimpleGrantedAuthority> getAuthority() {
-		return Arrays.asList(new SimpleGrantedAuthority(ANONYMOUS), new SimpleGrantedAuthority(USER), new SimpleGrantedAuthority(ADMIN));
+	private List<SimpleGrantedAuthority> getAuthority(com.waterproof.bjb.shopping.entity.User user) {
+		List<SimpleGrantedAuthority> list = new ArrayList<SimpleGrantedAuthority>();
+		for(UserRole role: user.getUserRoles()) {
+			log.info("{}", role);
+			if (role.getStatus() == 1) {
+				list.add(new SimpleGrantedAuthority(role.getId().getRole()));
+			}
+		}
+		return list;
+		//return Arrays.asList(new SimpleGrantedAuthority(ANONYMOUS), new SimpleGrantedAuthority(USER), new SimpleGrantedAuthority(ADMIN));
 	}
 
 	// public List getUsers() {

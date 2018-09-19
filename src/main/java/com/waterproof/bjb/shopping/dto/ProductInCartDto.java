@@ -51,9 +51,9 @@ public class ProductInCartDto {
 			for(ProductTempOrder productTempOrder : productsTempOrder) {
 				subTotalAmt = subTotalAmt.add(productTempOrder.getPrice().multiply(new BigDecimal(productTempOrder.getQuantity())));
 			
-				System.out.println("#######");
-				System.out.println(subTotalAmt + "+" + productTempOrder.getPrice() + "X" + productTempOrder.getQuantity());
-				System.out.println("#######");
+				//System.out.println("#######");
+				//System.out.println(subTotalAmt + "+" + productTempOrder.getPrice() + "X" + productTempOrder.getQuantity());
+				//System.out.println("#######");
 			}
 			return subTotalAmt;
 		} else {

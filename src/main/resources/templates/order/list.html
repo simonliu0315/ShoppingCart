@@ -32,9 +32,9 @@
 					</div>
 				</div>
 				<!-- section title -->
-				<table class="shopping-cart-table table">
+				<table class="shopping-cart-table table" th:each="order, itrStat : ${orders}">
                 <legend>
-                    <strong th:text="${'訂單編號：' + orderNumber}"></strong>
+                    <strong th:text="${'訂單編號：' + order.orderNo}"></strong>
                 </legend>
                 <thead>
                     <tr>
@@ -66,6 +66,24 @@
 					<!-- td class="text-right"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></td-->
 					</tr>
 				</tbody>
+				<tfoot>
+					<tr>
+						<th class="empty" colspan="3"></th>
+						<th>商品總金額</th>
+						<th colspan="2" class="sub-total" th:text="${'$' + order.subTotalAmt}">$0</th>
+					</tr>
+					<tr>
+						<th class="empty" colspan="3"></th>
+						<th>運費總金額</th>
+						<td colspan="2" th:if="${order.shipment == 0}">Free Shipping</td>
+						<td colspan="2" th:if="${order.shipment != 0}" th:text="${'$' + order.shipment}"></td>
+					</tr>
+					<tr>
+						<th class="empty" colspan="3"></th>
+						<th>總付款金額</th>
+						<th colspan="2" class="total" th:text="${'$' + order.totalAmt}">$0</th>
+					</tr>
+				</tfoot>
             </table>
                 
 			</div>
@@ -78,6 +96,7 @@
 	<div th:replace="fragments/body_footer :: body_footer"></div>
     <div th:replace="fragments/body_resources :: body_resources"></div>
    
+    <script th:src="@{/js/index.js}"></script>
 </body>
 
 </html>

@@ -21,6 +21,9 @@ insert into product values(15,'防水漆15', 215, 90, 200, '強效15描述', '/i
 
 
 insert into USER values('simon', '王大明', 'cyliu0315@gmail.com', '$2a$10$NnlqpBH.dJZLqG//0IWoG.W8IowSknbv4yIoW0rHpvbQRrHg3LeFC', '地址',parsedatetime('01-08-1981 18:47:52.69', 'dd-MM-yyyy hh:mm:ss'),NULL, 'sys',NULL,'sys');
+insert into USER_ROLE values('simon', 'ROLE_ADMIN', 1);
+insert into USER_ROLE values('simon', 'ROLE_USER', 1);
+insert into USER_ROLE values('simon', 'ROLE_ANONYMOUS', 1);
 
 insert into ORDER_STATUS values(1, 1, '訂單成立');
 insert into ORDER_STATUS values(2, 2, '待付款');
@@ -28,7 +31,7 @@ insert into ORDER_STATUS values(3, 3, '待收穫');
 insert into ORDER_STATUS values(4, 4, '完成');
 insert into ORDER_STATUS values(5, 5, '取消');
 
-insert into CUSTOMER_ORDER VALUES(1, 20180916010101001, 201, 'simon', 1, SYSDATE, 'simon', SYSDATE, 'simon' );
+insert into CUSTOMER_ORDER VALUES(1, 20180916010101001, 201, 'simon', 1, SYSDATE, 'simon', SYSDATE, 'simon', 100 );
 
 insert into ORDER_DETAIL VALUES(20180916010101001, 1, 201, 100, '防水漆01', 2);
 commit;

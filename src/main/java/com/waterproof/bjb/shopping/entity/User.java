@@ -1,10 +1,15 @@
 package com.waterproof.bjb.shopping.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.Transient;
@@ -49,4 +54,9 @@ public class User implements Serializable {
     public void setPasswordConfirm(String passwordConfirm) {
         this.passwordConfirm = passwordConfirm;
     }
+    
+    @OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "USERNAME", referencedColumnName="USERNAME", insertable = false, updatable = false)
+	private List<UserRole> userRoles;
+
 }

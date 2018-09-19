@@ -1,6 +1,7 @@
 package com.waterproof.bjb.shopping.service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -14,10 +15,12 @@ import com.waterproof.bjb.shopping.dto.ProductTempOrder;
 import com.waterproof.bjb.shopping.entity.CustomerOrder;
 import com.waterproof.bjb.shopping.entity.OrderDetail;
 import com.waterproof.bjb.shopping.entity.OrderDetailPK;
+import com.waterproof.bjb.shopping.entity.Product;
 import com.waterproof.bjb.shopping.entity.UserContract;
 import com.waterproof.bjb.shopping.repository.CustomerOrderRepository;
 import com.waterproof.bjb.shopping.repository.OrderDetailRepository;
 import com.waterproof.bjb.shopping.repository.OrderStatusRepository;
+import com.waterproof.bjb.shopping.repository.ProductRepository;
 import com.waterproof.bjb.shopping.service.dto.UserContractDto;
 
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +37,9 @@ public class CustomerOrderService {
 	
 	@Autowired
 	private OrderDetailRepository orderDetailRepository;
+	
+	@Autowired
+	private ProductRepository pruductRepository;
 	
 	public String saveToOrder(UserContractDto userContractDto, ProductInCartDto productInCartDto, String username) {
 		CustomerOrder customerOrder = new CustomerOrder();
@@ -81,16 +87,31 @@ public class CustomerOrderService {
 		return String.valueOf(utilDate.getTime());
 	}
 	
-	public List<CustomerOrder> queryOrder(String username) {
-		List<CustomerOrder> list = customerOrderRepository.findByUsername(username);
+	public List<ProductInCartDto> queryOrder(String username) {
+		List<ProductInCartDto> retList = new ArrayList<ProductInCartDto>();
+		
+		List<CustomerOrder> list = customerOrderRepository.findByUsernameOrderByInsertedDesc(username);
 		for(CustomerOrder c : list) {
+			ProductInCartDto dto = new ProductInCartDto();
+			dto.setUserId(username);
 			log.info("OrderNo {}", c);
 			for(OrderDetail d : c.getOrderDetails()) {
+				ProductTempOrder tmp = new ProductTempOrder();
 				log.info("OrderDetail {}", d);	
+				BeanUtils.copyProperties(d, tmp);
+				Product p = pruductRepository.findOne(Long.parseLong(d.getId().getProductId().toString()));
+				tmp.setImg(p.getImg());
+				tmp.setDiscount(p.getDiscount());
+				tmp.setDescription(p.getDescription());
+				tmp.setOriginalPrice(p.getOriginalPrice());
+				dto.getProductsTempOrder().add(tmp);
 			}
-			
+			BeanUtils.copyProperties(c, dto);
+			log.info("dto: {}", dto);
+			retList.add(dto);
 		}
-		return list;
+		
+		return retList;
 		
 	}
 }

@@ -1,5 +1,7 @@
 package com.waterproof.bjb.shopping.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.BeanUtils;
@@ -13,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.waterproof.bjb.shopping.commons.SessionParameter;
 import com.waterproof.bjb.shopping.controller.dto.CheckoutForm;
 import com.waterproof.bjb.shopping.dto.ProductInCartDto;
+import com.waterproof.bjb.shopping.entity.CustomerOrder;
 import com.waterproof.bjb.shopping.service.CustomerOrderService;
 import com.waterproof.bjb.shopping.service.SimpleUserService;
 import com.waterproof.bjb.shopping.service.dto.UserContractDto;
@@ -61,9 +64,9 @@ public class CheckOutController {
         log.info("login user {}", uerService.getUser());
         String orderNumber = customerOrderService.saveToOrder(userContractDto, productInCartDto, username);
         
-        customerOrderService.queryOrder(username);
+        List<ProductInCartDto> productInCartDtos = customerOrderService.queryOrder(username);
         mav.addObject("orderNumber", orderNumber);
-		mav.addObject("order", productInCartDto);
+		mav.addObject("orders", productInCartDtos);
         mav.setViewName("order/list");
         return mav;
     }

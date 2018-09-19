@@ -42,6 +42,7 @@ create table CUSTOMER_ORDER(
     insert_by varchar(30),
     updated timestamp,
     update_by varchar(30),
+    shipping int default 0,
     primary key(id)
 );
 create table ORDER_DETAIL(
@@ -85,4 +86,12 @@ create table USER_CONTRACT(
     tel  varchar(30),
     primary key(id)
 );
-	
+create table USER_ROLE(
+    username  varchar (30) not null,
+	role varchar(30),
+	status int,
+	primary key(username, role)
+);
+
+
+

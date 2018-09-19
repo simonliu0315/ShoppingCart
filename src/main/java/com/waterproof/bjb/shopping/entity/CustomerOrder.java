@@ -61,6 +61,9 @@ public class CustomerOrder implements Serializable {
 	@Column(name = "UPDATE_BY")
 	private String update_by;
 
+	@Column(name = "SHIPPING")
+	private BigDecimal Shipping;
+	
 	@OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER) //移除, optional = false 就會正常
 	@JoinColumn(name="STATUS_ID", referencedColumnName="STATUS", insertable = false, updatable = false)
 	private OrderStatus orderStatus;
