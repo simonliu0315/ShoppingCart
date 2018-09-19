@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/SearchResultsPage"
+	lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div th:fragment="addCart" th:remove="tag">
+<!-- Modal -->
+<div class="modal fade" id="addCartModalCenter" tabindex="-1" role="dialog" aria-labelledby="addCartModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="banner-caption text-center">
+        <i class="icon-search icon-large icon-white"></i>
+          <span class="fa fa-cart-plus fa-lg" style="font-size:50px;">&#xf217;&#xf217;</span>
+        </div>
+        <div class="banner-caption text-center" style="font-size:20px;">
+　　　
+        </div>
+        <div class="banner-caption text-center" style="font-size:16px;">
+           商品已加入購物車
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Modal -->
+</div>
+<div th:fragment="removeCart" th:remove="tag">
+<!-- Modal -->
+<div class="modal fade" id="removeCartModalCenter" tabindex="-1" role="dialog" aria-labelledby="removeCartModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="banner-caption text-center">
+        <i class="icon-search icon-large icon-white"></i>
+          <span class="fa fa-cart-plus fa-lg" style="font-size:50px;">&#xf217;&#xf217;</span>
+        </div>
+        <div class="banner-caption text-center" style="font-size:20px;">
+　　　
+        </div>
+        <div class="banner-caption text-center" style="font-size:16px;">
+           商品已移除購物車
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Modal -->
+</div>
+</body>
+
+</html>

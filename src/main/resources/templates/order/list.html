@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/SearchResultsPage" lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta th:replace="fragments/meta_resources :: meta_resources"></meta>
+</head>
+<body>
+	<div th:replace="fragments/body_header :: body_header"></div>
+
+    <!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a th:href="@{/}">首頁</a></li>
+				<li class="active">我的訂單</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+	
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+		    <!-- row -->
+			<div class="row">
+				<!-- section title -->
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2 class="title">我的訂單</h2>
+					</div>
+				</div>
+				<!-- section title -->
+				<table class="shopping-cart-table table">
+                <legend>
+                    <strong th:text="${'訂單編號：' + orderNumber}"></strong>
+                </legend>
+                <thead>
+                    <tr>
+					    <th>訂單商品</th>
+						<th></th>
+						<th class="text-center">單價</th>
+						<th class="text-center">數量</th>
+						<th class="text-center">應付總額</th>
+					</tr>
+                </thead>
+                <tbody>
+				    <tr th:each="productTempOrder, itrStat : ${order.productsTempOrder}">
+					    <td class="thumb"><img th:src="@{${productTempOrder.img}}" alt=""/></td>
+					    <td class="details">
+						    <a th:href="@{'/products/' + ${productTempOrder.productId}}" th:text="${productTempOrder.productName}">商品名稱</a>
+						    <ul>
+							    <li><span>顏色: Camelot</span></li>
+						    </ul>
+					    </td>
+					    <td class="price text-center">
+					        <strong th:text="${'$' +productTempOrder.price}">$0</strong>
+					        <br/>
+					        <del class="font-weak"><small th:text="${'$' + productTempOrder.originalPrice}">$0</small></del>
+					    </td>
+					    <td class="qty text-center"><strong th:text="${productTempOrder.quantity}">$0</strong></td>
+					    <td class="total text-center">
+					        <strong class="primary-color" th:text="${'$' +productTempOrder.subTotalAmt}">$0</strong>
+					    </td>
+					<!-- td class="text-right"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></td-->
+					</tr>
+				</tbody>
+            </table>
+                
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+	<div th:replace="fragments/body_footer :: body_footer"></div>
+    <div th:replace="fragments/body_resources :: body_resources"></div>
+   
+</body>
+
+</html>
