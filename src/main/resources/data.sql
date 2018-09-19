@@ -27,4 +27,8 @@ insert into ORDER_STATUS values(2, 2, '待付款');
 insert into ORDER_STATUS values(3, 3, '待收穫');
 insert into ORDER_STATUS values(4, 4, '完成');
 insert into ORDER_STATUS values(5, 5, '取消');
+
+insert into CUSTOMER_ORDER VALUES(1, 20180916010101001, 201, 'simon', 1, SYSDATE, 'simon', SYSDATE, 'simon' );
+
+insert into ORDER_DETAIL VALUES(20180916010101001, 1, 201, 100, '防水漆01', 2);
 commit;

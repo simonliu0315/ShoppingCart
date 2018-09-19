@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,31 +11,33 @@ import org.springframework.data.annotation.Transient;
 
 import lombok.Data;
 
-@Entity
-@Table
+
 @Data
+@Entity
+@Table(name = "USER")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="USERNAME")
 	private String username;
 
 	@Column(name="C_NAME")
 	private String cName;
-	@Column
+	
+	@Column(name="EMAIL")
 	private String email;
-	@Column
+	
+	@Column(name="PASSWORD")
 	private String password;
 	
 	private String passwordConfirm;
 	
-	@Column
+	@Column(name="ADDRESS")
 	private String address;
 	
-	@Column
+	@Column(name="BIRTHDAY")
 	private String birthday;
 	
 	

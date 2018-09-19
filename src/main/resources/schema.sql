@@ -34,6 +34,7 @@ create table Product(
 );
 create table CUSTOMER_ORDER(
     id int not null,
+    order_no varchar(30) not null,
 	amount int not null,
 	username varchar (30) not null,
 	status_id int not null,
@@ -42,6 +43,15 @@ create table CUSTOMER_ORDER(
     updated timestamp,
     update_by varchar(30),
     primary key(id)
+);
+create table ORDER_DETAIL(
+    order_no varchar (20),
+    product_id int,
+	price int default 0,
+	discount int default 0,
+	product_name nvarchar (200),
+	quantity int default 0,
+    primary key(order_no, product_id)
 );
 create table ORDER_STATUS(
     id int not null,
@@ -62,3 +72,17 @@ create table USER(
     update_by varchar(30),
 	primary key(username)
 );
+
+create table USER_CONTRACT(
+    id int not null,
+    username varchar(30),
+    post_name  varchar(30),
+    email  varchar(30),
+    zip_code  varchar(30),
+    city  varchar(30),
+    district  varchar(30),
+    address  varchar(30),
+    tel  varchar(30),
+    primary key(id)
+);
+	

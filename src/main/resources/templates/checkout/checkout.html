@@ -27,45 +27,43 @@
 		<div class="container">
 			<!-- row -->
 			<div class="row">
-				<form id="checkout-form" class="clearfix">
+				<form id="checkout-form" class="clearfix" th:action="@{/checkout}" method="post" th:object="${CheckoutForm}" data-toggle="validator">
 					<div class="col-md-6">
 						<div class="billing-details">
-							<p>Already a customer ? <a href="#">Login</a></p>
+							<p th:if="${USER_OBJECT.username == 'anonymousUser'}">已經是會員 ? <a th:href="@{/login?f=checkout}">Login</a></p>
 							<div class="section-title">
 								<h3 class="title">帳單明細</h3>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="first-name" placeholder="First Name"/>
+								<input class="input" type="text" name="postName" th:field="*{postName}" placeholder="收件者姓名" th:required="required"/>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="last-name" placeholder="Last Name"/>
+								<input class="input" type="email" name="email" th:field="*{email}" placeholder="Email" th:required="required"/>
 							</div>
 							<div class="form-group">
-								<input class="input" type="email" name="email" placeholder="Email"/>
+								<input class="input" type="text" name="zipCode" th:field="*{zipCode}" placeholder="劉地區號" th:required="required"/>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="address" placeholder="Address"/>
+								<input class="input" type="text" name="city" th:field="*{city}" placeholder="縣市" th:required="required"/>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="city" placeholder="City"/>
+								<input class="input" type="text" name="district" th:field="*{district}" placeholder="區" th:required="required"/>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="country" placeholder="Country"/>
+								<input class="input" type="text" name="address" th:field="*{address}" placeholder="地址" th:required="required"/>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="zip-code" placeholder="ZIP Code"/>
-							</div>
-							<div class="form-group">
-								<input class="input" type="tel" name="tel" placeholder="Telephone"/>
+								<input class="input" type="tel" name="tel" th:field="*{tel}" placeholder="連絡電話" th:required="required"/>
 							</div>
 							<div class="form-group">
 								<div class="input-checkbox">
 									<input type="checkbox" id="register"/>
-									<label class="font-weak" for="register">Create Account?</label>
+									<label class="font-weak" for="register">建立新帳號?</label>
 									<div class="caption">
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-											<p></p>
-												<input class="input" type="password" name="password" placeholder="輸入您的密碼"/>
+										<p></p>
+										<div class="form-group">
+										    <input class="input" type="password" name="repassword" placeholder="請重新輸入密碼"/>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -78,7 +76,7 @@
 								<h4 class="title">貨運方式</h4>
 							</div>
 							<div class="input-checkbox">
-								<input type="radio" name="shipping" id="shipping-1" th:checked="checked"></input>
+								<input type="radio" name="shipping" id="shipping-1"  value="100" th:checked="checked" th:required="required"></input>
 								<label for="shipping-1">宅配免運 -  $100</label>
 								<div class="caption">
 									<p>黑貓宅急便寄送.</p>
@@ -86,7 +84,7 @@
 								</div>
 							</div>
 							<div class="input-checkbox">
-								<input type="radio" name="shipping" id="shipping-2"/>
+								<input type="radio" name="shipping" id="shipping-2" value="80" th:required="required"/>
 								<label for="shipping-2">快遞 - $80</label>
 								<div class="caption">
 									<p>郵局寄送.</p>
@@ -100,7 +98,7 @@
 								<h4 class="title">付款方式</h4>
 							</div>
 							<div class="input-checkbox">
-								<input type="radio" name="payments" id="payments-1" th:checked="checked"/>
+								<input type="radio" name="payments" id="payments-1" value="1" th:checked="checked"/>
 								<label for="payments-1">銀行轉帳</label>
 								<div class="caption">
 									<p>提供底下帳戶轉帳000-00000000000</p>
@@ -156,7 +154,9 @@
 										    <br/>
 										    <del class="font-weak"><small th:text="${'$' + productTempOrder.originalPrice}">$0</small></del>
 										</td>
-										<td class="qty text-center"><input id="sub_quantity" name="sub_quantity" class="input" type="number" th:value="${productTempOrder.quantity}"/></td>
+										<td class="qty text-center">
+										    <input id="sub_quantity" name="sub_quantity" class="input" type="number" th:value="${productTempOrder.quantity}" 
+										    th:onchange="'checkout.changeQty(\'' + ${productTempOrder.productId} + '\', this);'"/></td>
 										<td class="total text-center">
 										    <strong class="primary-color" th:text="${'$' +productTempOrder.subTotalAmt}">$0</strong>
 										</td>
@@ -184,7 +184,7 @@
 							</table>
 							<div class="pull-right">
 							    <a th:href="@{/cart}" class="primary-btn">回購物車</a>
-								<button class="primary-btn">下訂單</button>
+								<button class="primary-btn" onclick="checkout.goOrder();">下訂單</button>
 							</div>
 						</div>
 

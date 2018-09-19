@@ -52,7 +52,7 @@ public class UserRest {
             HttpServletRequest request) {
 		log.info("call addCart. productId: {}",  productForm);
 		Product product = productService.getProduct(Long.valueOf(productForm.getProductId()));
-		
+		log.info("queryBy id {}, result: {}", Long.valueOf(productForm.getProductId()), product);
 		ProductTempOrder productTempOrderDto = new ProductTempOrder();
 		
 		BeanUtils.copyProperties(product, productTempOrderDto);
@@ -65,6 +65,7 @@ public class UserRest {
 		
 		
 		int quantity = productForm.getQuantity();
+		log.info("quantity: {}", quantity);
 		log.info("After copy product info: {}", productTempOrderDto);
 		ProductInCartDto productInCartDto = (ProductInCartDto)request.getSession().getAttribute(SessionParameter.PRODUCTS_IN_CART);
 		log.info("session: {}", productInCartDto);
@@ -77,12 +78,15 @@ public class UserRest {
 				log.info("user products info {} in cart", productInCartDto.getProductsTempOrder().get(i));
 				if(productInCartDto.getProductsTempOrder().get(i).getProductId() == productForm.getProductId()) {
 					log.info("Same productId {} to break loop.", productInCartDto.getProductsTempOrder().get(i).getProductId());
-					productInCartDto.getProductsTempOrder().get(i).setQuantity(productInCartDto.getProductsTempOrder().get(i).getQuantity() + quantity);
+					if (productForm.isResetQuantity()) {
+						productInCartDto.getProductsTempOrder().get(i).setQuantity(quantity);						
+					} else {
+						productInCartDto.getProductsTempOrder().get(i).setQuantity(productInCartDto.getProductsTempOrder().get(i).getQuantity() + quantity);
+					}
 					if (product.getPromotion_on().compareTo(BigDecimal.ONE) == 0) {
 						productInCartDto.getProductsTempOrder().get(i).setPrice(productTempOrderDto.getPrice());
 						productInCartDto.getProductsTempOrder().get(i).setDiscount(productTempOrderDto.getDiscount());
-					}
-					
+					}					
 					hasNotInCart = false;
 					break;
 				}

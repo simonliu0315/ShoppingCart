@@ -12,6 +12,7 @@ import com.waterproof.bjb.shopping.entity.OrderStatus;
 import com.waterproof.bjb.shopping.manager.dto.OrderDto;
 import com.waterproof.bjb.shopping.repository.CustomerOrderRepository;
 import com.waterproof.bjb.shopping.repository.OrderStatusRepository;
+import com.waterproof.bjb.shopping.repository.impl.EhcacheOrderStatusRepositoryCustom;
 
 @Service
 public class OrderService {
@@ -21,6 +22,9 @@ public class OrderService {
 	
 	@Autowired
 	private OrderStatusRepository orderStatusRepository;
+	
+	@Autowired
+	private EhcacheOrderStatusRepositoryCustom ehcacheOrderStatusRepositoryCustom;
 	
 	public List<OrderDto> getAllOrder() {
 		List<OrderDto> list = new ArrayList<OrderDto>();
@@ -34,13 +38,6 @@ public class OrderService {
 	}
 	
 	public String getOrderStatusDesc(int status) {
-		for(OrderStatus orderStatus: orderStatusRepository.findAll()) {
-			if (orderStatus.getStatus() == status) {
-				return orderStatus.getDescription();
-			} else {
-				return "未知狀態";
-			}
-		}
-		return "未知狀態";
+		return ehcacheOrderStatusRepositoryCustom.selectByStatusId(status).getDescription();
 	}
 }
