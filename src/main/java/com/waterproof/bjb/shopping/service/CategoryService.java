@@ -8,10 +8,13 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.waterproof.bjb.shopping.dto.CategoryDto;
+import com.waterproof.bjb.shopping.entity.Category;
 import com.waterproof.bjb.shopping.repository.CategoryRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Sort;
 @Slf4j
 @Service
 public class CategoryService {
@@ -20,24 +23,14 @@ public class CategoryService {
 	private CategoryRepository categoryRepository;
 	
 	public List<CategoryDto> getAllCategory() {
-		CategoryDto dto = new CategoryDto();
-		List<CategoryDto> list = new ArrayList<CategoryDto>();
-		dto.setId(1L);
-		dto.setName("防水工具");
-		dto.setType(1);
-		list.add(dto);
-		
-		dto = new CategoryDto();
-		dto.setId(2L);
-		dto.setName("防水漆");
-		dto.setType(1);
-		list.add(dto);
-		
-		dto.setId(3L);
-		dto.setName("防水套件");
-		dto.setType(1);
-		list.add(dto);
-		log.info("size:{}", categoryRepository.findAll().size());
-		return list;
+		Sort sort = new Sort(Sort.Direction.ASC, new String[]{"id"});
+		List<Category> list = categoryRepository.findAll(sort);
+		List<CategoryDto> retList = new ArrayList<CategoryDto>();
+		for (Category c : list) {
+			CategoryDto dto = new CategoryDto();
+			BeanUtils.copyProperties(c, dto);
+		    retList.add(dto);
+		}
+		return retList;
 	}
 }

@@ -1,7 +1,7 @@
-insert into Category values(1,'防水漆', 1, SYSDATE, 'sys', sysdate, 'sys');
-insert into Category values(2,'防水工具', 1, SYSDATE, 'sys', sysdate, 'sys');
-insert into Category values(3,'防水套件', 1, SYSDATE, 'sys', sysdate, 'sys');
-
+insert into Category values(1,'防水漆', 1, '/img/category01.jpg', SYSDATE, 'sys', sysdate, 'sys');
+insert into Category values(2,'防水工具', 1, '/img/category02.jpg', SYSDATE, 'sys', sysdate, 'sys');
+insert into Category values(3,'防水套件', 1, '/img/category03.jpg', SYSDATE, 'sys', sysdate, 'sys');
+insert into Category values(4,'其他輔助工具', 1, '/img/category04.jpg', SYSDATE, 'sys', sysdate, 'sys');
 
 insert into product values(1,'防水漆01', 201, 100, 201, '強效01描述', '/img/product01.jpg', 1, 1, 1, 0, parsedatetime('01-08-2018 18:47:52.69', 'dd-MM-yyyy hh:mm:ss'), parsedatetime('31-09-2018 18:47:52.69', 'dd-MM-yyyy hh:mm:ss'), 60, 50, 0, SYSDATE, 'sys', SYSDATE, 'sys');
 insert into product values(2,'防水漆02', 202, 100, 202, '強效02描述', '/img/product02.jpg', 1, 1, 1, 1, parsedatetime('01-08-2018 18:47:52.69', 'dd-MM-yyyy hh:mm:ss'), parsedatetime('31-09-2018 18:47:52.69', 'dd-MM-yyyy hh:mm:ss'), 60, 50, 1, SYSDATE, 'sys', SYSDATE, 'sys');

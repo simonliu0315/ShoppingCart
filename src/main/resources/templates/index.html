@@ -63,45 +63,13 @@
 		<div class="container">
 			<!-- row -->
 			<div class="row">
-				<!-- banner -->
-				<div class="col-md-3 col-sm-6">
-					<a class="banner banner-1" href="#">
-						<img th:src="@{/img/category01.jpg}" alt=""/>
+			    <!-- banner -->
+			    <!-- col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 -->
+				<div class="col-md-3 col-sm-6" th:each="category: ${CATEGORY_OBJECTS}">
+					<a class="banner banner-1" th:href="@{'/products/search?category=' + ${category.id}}">
+						<img th:src="@{${category.img}}" alt=""/>
 						<div class="banner-caption text-center">
-							<h2 class="white-color">防水工具</h2>
-						</div>
-					</a>
-				</div>
-				<!-- /banner -->
-
-				<!-- banner -->
-				<div class="col-md-3 col-sm-6">
-					<a class="banner banner-1" href="#">
-						<img th:src="@{/img/category02.jpg}" alt=""/>
-						<div class="banner-caption text-center">
-							<h2 class="white-color">防水漆</h2>
-						</div>
-					</a>
-				</div>
-				<!-- /banner -->
-
-				<!-- banner -->
-				<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3">
-					<a class="banner banner-1" href="#">
-						<img th:src="@{/img/category03.jpg}" alt=""/>
-						<div class="banner-caption text-center">
-							<h2 class="white-color">防水套件</h2>
-						</div>
-					</a>
-				</div>
-				<!-- /banner -->
-				
-				<!-- banner -->
-				<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3">
-					<a class="banner banner-1" href="#">
-						<img th:src="@{/img/category03.jpg}" alt=""/>
-						<div class="banner-caption text-center">
-							<h2 class="white-color">XXXX</h2>
+							<h2 class="white-color" th:text="${category.name}">???</h2>
 						</div>
 					</a>
 				</div>

@@ -12,6 +12,7 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafView;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 
+import com.waterproof.bjb.shopping.interceptor.OtherInterceptor;
 import com.waterproof.bjb.shopping.interceptor.UserInterceptor;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +27,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Autowired 
 	private UserInterceptor userInterceptor;
+	
+	@Autowired
+	private OtherInterceptor otherInterceptor;
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -69,5 +73,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	 @Override
 	  public void addInterceptors(InterceptorRegistry registry) {
 	    registry.addInterceptor(userInterceptor);
+	    registry.addInterceptor(otherInterceptor);
 	  }
 }

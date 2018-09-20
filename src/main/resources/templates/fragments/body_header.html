@@ -58,12 +58,13 @@
 							<form id="searchForm" th:action="@{/products/search}" method="GET">
 								<input id="q" name="q" class="input search-input" type="text"
 									placeholder="搜尋商品" /> 
-								<select id="category" name="category"
-									class="input search-categories">
-									<option value="0">所有分類</option>
+								<select id="category" name="category" class="input search-categories">
+								    <option value="0">所有分類</option>
+								    <option th:each="category: ${CATEGORY_OBJECTS}" th:value="${category.id}" th:text="${category.name}"></option>
+									<!-- option value="0">所有分類</option>
 									<option value="1">防水漆</option>
 									<option value="2">防水工具</option>
-									<option value="3">防水套件</option>
+									<option value="3">防水套件</option-->
 								</select>
 								<button class="search-btn" onClick="index.searchByCategory();">
 									<i class="fa fa-search"></i>

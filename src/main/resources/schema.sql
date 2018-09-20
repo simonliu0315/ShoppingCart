@@ -2,6 +2,7 @@ create table Category(
     id int not null,
     name varchar(60),
     type int,
+    img varchar(200),
     inserted timestamp,
     insert_by varchar(30),
     updated timestamp,
