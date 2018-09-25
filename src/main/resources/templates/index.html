@@ -122,7 +122,7 @@
 						                <span th:if="${product.promotion_on == 1}" class="sale" th:text="${(100 - product.promotion_discount) + '%'}">0%</span>
 						                <span th:if="${product.promotion_on == 0}" class="sale" th:text="${(100 - product.discount) + '%'}">0%</span>
 						            </div>
-						            <ul class="product-countdown" th:attr="data-countdown=${#dates.format(new java.util.Date()), 'yyyy/MM/dd')}">
+						            <ul class="product-countdown" th:attr="data-countdown=${#dates.format(new java.util.Date(), 'yyyy/MM/dd')}">
                                         <li><span class="days">00 天</span></li>
 								        <li><span class="hours">00 H</span></li>
 								        <li><span class="minutes">00 M</span></li>
