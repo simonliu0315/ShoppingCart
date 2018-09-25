@@ -49,6 +49,9 @@ public class IndexController {
         mav.addObject("newest_product", productService.getProductsOrderInsertTime());
         //抓有特價的商品資料
         mav.addObject("promotion_product", productService.getPromotionProduct());
+        for(Product product : productService.getPromotionProduct()) {
+        	log.info("product {}", product);
+        }
         if (productService.getPromotionProduct() != null && productService.getPromotionProduct().size() > 0) {
             mav.addObject("promotion_product_one", productService.getPromotionProduct().get(0));
         } else {
