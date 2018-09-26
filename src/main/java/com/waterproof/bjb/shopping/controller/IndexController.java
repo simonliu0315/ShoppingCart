@@ -37,8 +37,7 @@ public class IndexController {
 	@RequestMapping(value = "", method = {RequestMethod.GET})
     public ModelAndView getPage(@RequestParam(value = "page", defaultValue = "0", required = false) String page,
     		HttpServletRequest request) {
-        log.info("index getPage.......");
-        log.info("index getPage.......");
+        log.info("start index getPage.......");
         ModelAndView mav = new ModelAndView();
         if (request.getSession().getAttribute(SessionParameter.PRODUCTS_IN_CART) == null) {
         	ProductInCartDto productInCart = new ProductInCartDto();

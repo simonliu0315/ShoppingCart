@@ -41,12 +41,12 @@ public class GenerateImageCaptchaService {
 class ECSImageCaptchaEngine extends ListImageCaptchaEngine {
     protected void buildInitialFactories() {
         WordGenerator wgen = new RandomWordGenerator(
-                "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+                "0123456789");
         RandomRangeColorGenerator cgen = new RandomRangeColorGenerator(
                 new int[] { 0, 100 }, new int[] { 0, 100 },
                 new int[] { 0, 100 });
-        TextPaster textPaster = new RandomTextPaster(new Integer(6),
-                new Integer(6), cgen, true);
+        TextPaster textPaster = new RandomTextPaster(new Integer(4),
+                new Integer(4), cgen, true);
 
         // 原本是35，配合eBao的程式，所以第二個參數調成50
         BackgroundGenerator backgroundGenerator = new UniColorBackgroundGenerator(

@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +28,9 @@ public class SpringSecurityConfig  extends WebSecurityConfigurerAdapter {
 	
 	@Resource(name="userDetailService")
 	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	private CustomAuthenticationFilter customAuthenticationFilter;
 	
 	@Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -56,6 +60,7 @@ public class SpringSecurityConfig  extends WebSecurityConfigurerAdapter {
 				.deleteCookies("JSESSIONID")
                 .invalidateHttpSession(true)
 				.permitAll();
+		http.addFilterBefore(customAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 
 	@Autowired
