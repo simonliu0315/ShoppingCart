@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -61,4 +63,12 @@ public class Product implements Serializable {
 	private Timestamp updated;
 
 	private String update_by;
+	
+	private String promotion_end_str;
+	
+	public String getPromotion_end_str() {
+		DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+		String text = df.format(promotion_end);
+		return text;
+	}
 }
