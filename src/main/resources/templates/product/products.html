@@ -130,7 +130,7 @@
 								<img th:src="@{${product.img}}" alt=""/>
 							</div>
 							<div class="product-body">
-								<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${product.name}">商品名稱</a></h2>
+								<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${#strings.abbreviate(product.name, 12)}">商品名稱</a></h2>
 								<h3 class="product-price" th:text="${'$' + (product.price)}">$0 </h3>
 						            <del class="product-old-price" style="font-size:16px" th:text="${product.price}">$0</del>
 								<div class="product-rating">
@@ -219,7 +219,7 @@
 										    <i class="fa fa-star"></i>
 										    <i class="fa fa-star-o empty"></i>
 									    </div>
-									    <h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${product.name}">Product Name Goes Here</a></h2>
+									    <h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${#strings.abbreviate(product.name, 18)}">Product Name Goes Here</a></h2>
 									    <div class="product-btns">
 										    <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
 										    <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>

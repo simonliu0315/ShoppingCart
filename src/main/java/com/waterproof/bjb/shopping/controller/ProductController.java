@@ -1,5 +1,7 @@
 package com.waterproof.bjb.shopping.controller;
 
+import java.util.stream.Collectors;
+
 import javax.annotation.Resource;
 
 import org.springframework.data.domain.Page;
@@ -52,7 +54,7 @@ public class ProductController {
         mav.addObject("filter_price_low", 0);
         mav.addObject("filter_price_high", 0);
         //抓最常購買的資料
-        mav.addObject("suggest_product", productService.getDiscountProductsOrderUpdatedTime());
+        mav.addObject("suggest_product", productService.getDiscountProductsOrderUpdatedTime().subList(0, 5));
         mav.setViewName("product/products");
         return mav;
     }
@@ -64,7 +66,7 @@ public class ProductController {
         Product product = productService.getProduct(id);
         mav.addObject("product", product);
        
-        mav.addObject("recommended_product", productService.getDiscountProductsOrderUpdatedTime()); 
+        mav.addObject("recommended_product", productService.getDiscountProductsOrderUpdatedTime().subList(0, 5)); 
         mav.setViewName("product/product-page");
         return mav;
     }
@@ -146,7 +148,7 @@ public class ProductController {
         mav.addObject("filter_price_low", price_low);
         mav.addObject("filter_price_high", price_high);
         //抓最常購買的資料
-        mav.addObject("suggest_product", productService.getDiscountProductsOrderUpdatedTime());
+        mav.addObject("suggest_product", productService.getDiscountProductsOrderUpdatedTime().subList(0, 5));
         mav.setViewName("product/products");
         return mav;
     }

@@ -141,7 +141,7 @@
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star-o empty"></i>
 									</div>
-									<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${product.name}">Product Name Goes Here</a></h2>
+									<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${#strings.abbreviate(product.name, 20)}">Product Name Goes Here</a></h2>
 									<div class="product-btns">
 										<button class="main-btn icon-btn" th:onclick="'index.addWish(\'' + ${product.id} + '\');'"><i class="fa fa-heart-o"></i></button>
 										<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
@@ -198,7 +198,7 @@
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star-o empty"></i>
 							</div>
-							<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${product.name}">Product Name Goes Here</a></h2>
+							<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${#strings.abbreviate(product.name, 20)}">Product Name Goes Here</a></h2>
 							<div class="product-btns">
 								<button class="main-btn icon-btn" th:onclick="'index.addWish(\'' + ${product.id} + '\');'"><i class="fa fa-heart-o"></i></button>
 								<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
@@ -233,7 +233,7 @@
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star-o empty"></i>
 									</div>
-									<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${product.name}">商品名稱</a></h2>
+									<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${#strings.abbreviate(product.name, 20)}">商品名稱</a></h2>
 									<div class="product-btns">
 										<button class="main-btn icon-btn" th:onclick="'index.addWish(\'' + ${product.id} + '\');'"><i class="fa fa-heart-o"></i></button>
 										<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
@@ -336,7 +336,7 @@
 							    <i class="fa fa-star"></i>
 							    <i class="fa fa-star-o empty"></i>
 						    </div>
-						    <h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${product.name}">Product Name Goes Here</a></h2>
+						    <h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${#strings.abbreviate(product.name, 20)}">Product Name Goes Here</a></h2>
 						    <div class="product-btns">
 						        <button class="main-btn icon-btn" th:onclick="'index.addWish(\'' + ${product.id} + '\');'"><i class="fa fa-heart-o"></i></button>
 							    <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
@@ -384,7 +384,7 @@
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star-o empty"></i>
 							</div>
-							<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${product.name}">Product Name Goes Here</a></h2>
+							<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${#strings.abbreviate(product.name, 20)}">Product Name Goes Here</a></h2>
 							<div class="product-btns">
 								<button class="main-btn icon-btn" th:onclick="'index.addWish(\'' + ${product.id} + '\');'"><i class="fa fa-heart-o"></i></button>
 								<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
@@ -427,7 +427,7 @@
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star-o empty"></i>
 							</div>
-							<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${product.name}">商品名稱</a></h2>
+							<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${#strings.abbreviate(product.name, 18)}">商品名稱</a></h2>
 							<div class="product-btns">
 								<button class="main-btn icon-btn" th:onclick="'index.addWish(\'' + ${product.id} + '\');'"><i class="fa fa-heart-o"></i></button>
 								<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
