@@ -59,7 +59,9 @@ public class SpringSecurityConfig  extends WebSecurityConfigurerAdapter {
 				.logoutSuccessUrl("/")
 				.deleteCookies("JSESSIONID")
                 .invalidateHttpSession(true)
-				.permitAll();
+				.permitAll()
+			.and()
+			    .exceptionHandling().accessDeniedPage("/403");
 		http.addFilterBefore(customAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 

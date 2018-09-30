@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title></title>
+  <meta th:substituteby="fragments/head_meta :: meta"></meta>
+
+  <meta th:substituteby="fragments/resources :: head_resources"></meta>
+</head>
+
+<body style="display: none;">
+  <div class="container">
+    <section class="col-sm-8 col-sm-offset-2" style="margin-top: 80px;">
+
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <span th:if="${#strings.isEmpty(message)}">
+              <span class="text-muted">系統出錯了</span>
+            </span>
+            <span th:unless="${#strings.isEmpty(message)}">
+              <span class="text-muted" th:text="${message}"></span>
+            </span>
+            <span class="pull-right" style="font-size: 12px;" th:text="${timestamp}"></span>
+          </h3>
+        </div>
+        <div class="panel-body">
+          <div class="text-center">
+            <span class="text-danger glyphicon glyphicon-remove-sign" style="font-size: 1200%"></span>
+          </div>
+          <section th:if="${stackTrace}">
+            <span class="text-warning">詳細錯誤原因:</span>
+            <pre style="overflow: auto; white-space: pre; word-wrap: normal; word-break: normal; font-size: 12px;">
+<span th:remove="tag" th:text="${stackTrace}"></span>
+            </pre>
+          </section>
+          <section>
+            請先排除可能的錯誤，如果問題還是無法解決，請洽系統管理人員，造成您的不便，深感抱歉。
+          </section>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div th:substituteby="fragments/body_footer :: footer"></div>
+  <div th:substituteby="fragments/resources :: body_resources"></div>
+</body>
+<script th:inline="javascript">
+/*<![CDATA[*/
+    var message = /*[[${message}]]*/;
+
+    // can not use variable "opener" in IE and Firefox.
+    var _opener = window.opener || window.parent;
+    try {
+      if (_opener && _opener != window && $('#showAlert', _opener.document).length > 0) {
+          // 這是別的作業功能開的窗或是 iframe，把訊息顯示回去
+          var showAlert = $('#showAlert', _opener.document);
+          showAlert.val(message);
+          showAlert.trigger("click");
+          window.close();
+
+      } else {
+          document.title = "系統發生錯誤"; 
+          // 如果找不到上游來顯示錯誤訊息，就直接顯示本頁內容
+          document.body.style.display = "";
+      }
+
+    } catch(e) {
+        // _opener.document 可能會出錯，例如 https 頁面的 opener 是 http 時
+        // 就會出現 SecurityError
+        document.title = "系統發生錯誤"; 
+        // 如果找不到上游來顯示錯誤訊息，就直接顯示本頁內容
+        document.body.style.display = "";
+    }
+
+/*]]>*/
+</script>
+</html>

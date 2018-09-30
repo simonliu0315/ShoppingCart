@@ -1,10 +1,12 @@
 package com.waterproof.bjb.shopping.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -47,9 +49,15 @@ public class IndexController {
         //抓最新的商品資料
         mav.addObject("newest_product", productService.getProductsOrderInsertTime());
         //抓有特價的商品資料
-        mav.addObject("promotion_product", productService.getPromotionProduct());
-        for(Product product : productService.getPromotionProduct()) {
-        	log.info("product {}", product);
+        List<Product> promotionProducts = productService.getPromotionProduct();
+        if (CollectionUtils.isNotEmpty(promotionProducts)) {
+        	mav.addObject("promotion_product", promotionProducts);
+        } else {
+        	mav.addObject("promotion_product", new ArrayList<Product>());
+        }
+        
+        for(Product product : promotionProducts) {
+        	log.info("promotion_product {}", product);
         }
         if (productService.getPromotionProduct() != null && productService.getPromotionProduct().size() > 0) {
             mav.addObject("promotion_product_one", productService.getPromotionProduct().get(0));

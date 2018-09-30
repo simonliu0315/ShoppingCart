@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>喔喔...頁面不存在</title>
+  <meta th:substituteby="fragments/head_meta :: meta"></meta>
+
+  <meta th:substituteby="fragments/resources :: head_resources"></meta>
+</head>
+
+<body>
+  <div class="container">
+    <section class="col-sm-8 col-sm-offset-2" style="margin-top: 80px;">
+
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <span class="text-muted">找不到您指定的頁面:
+              <span class="text-warning" th:text="${#httpServletRequest.getAttribute('javax.servlet.error.request_uri')}"></span>
+            </span>
+          </h3>
+        </div>
+        <div class="panel-body text-center">
+          <p>您該不會不小心打錯網址了吧?</p>
+          <span class="text-muted glyphicon glyphicon-question-sign" style="font-size: 1200%"></span>
+          <p>如果問題無法解決，請洽系統管理人員，<br>造成您的不便，深感抱歉。</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div th:substituteby="fragments/body_footer :: footer"></div>
+  <div th:substituteby="fragments/resources :: body_resources"></div>
+</body>
+</html>

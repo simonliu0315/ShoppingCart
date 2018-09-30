@@ -67,7 +67,7 @@ public class Product implements Serializable {
 	private String promotion_end_str;
 	
 	public String getPromotion_end_str() {
-		DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+		DateFormat df = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 		String text = df.format(promotion_end);
 		return text;
 	}
