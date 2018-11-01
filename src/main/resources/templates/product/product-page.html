@@ -36,7 +36,7 @@
 							<div class="product-view">
 								<img th:src="@{${product.img}}" alt=""/>
 							</div>
-							<div class="product-view">
+							<!-- div class="product-view">
 								<img th:src="@{/img/main-product02.jpg}" alt=""/>
 							</div>
 							<div class="product-view">
@@ -44,9 +44,9 @@
 							</div>
 							<div class="product-view">
 								<img th:src="@{/img/main-product04.jpg}" alt=""/>
-							</div>
+							</div-->
 						</div>
-						<div id="product-view">
+						<!--  >div id="product-view">
 							<div class="product-view">
 								<img th:src="@{/img/thumb-product01.jpg}" alt=""/>
 							</div>
@@ -59,7 +59,7 @@
 							<div class="product-view">
 								<img th:src="@{/img/thumb-product04.jpg}" alt=""/>
 							</div>
-						</div>
+						</div-->
 					</div>
 					<div class="col-md-6">
 						<div class="product-body">
@@ -84,7 +84,7 @@
 							</div>
 							<p><strong>貨品狀態:</strong> 有現貨</p>
 							<p><strong>品牌:</strong> 加拿大液態橡膠 </p>
-							<p th:text="${product.description}">測試商品描述.</p>
+							<p th:utext="${product.shortDescription}">測試商品描述.</p>
 							<div class="product-options">
 								<!--ul class="size-option">
 									<li><span class="text-uppercase">Size:</span></li>
@@ -119,13 +119,17 @@
 						<div class="product-tab">
 							<ul class="tab-nav">
 								<li class="active"><a data-toggle="tab" href="#tab1">商品描述</a></li>
-								<li><a data-toggle="tab" href="#tab2">商品評論 (3)</a></li>
+								<!-- li><a data-toggle="tab" href="#tab2">商品評論 (3)</a></li-->
 							</ul>
 							<div class="tab-content">
 								<div id="tab1" class="tab-pane fade in active">
+								<div class="row">
+										<div>
 									<p th:utext="${product.description}">測試商品描述.</p>
+									</div></div>
 								</div>
-								<div id="tab2" class="tab-pane fade in">
+								<!-- tab2 -->
+								<!-- div id="tab2" class="tab-pane fade in">
 
 									<div class="row">
 										<div class="col-md-6">
@@ -221,10 +225,8 @@
 											</form>
 										</div>
 									</div>
-
-
-
-								</div>
+								</div-->
+								<!-- /tab2 -->
 							</div>
 						</div>
 					</div>
