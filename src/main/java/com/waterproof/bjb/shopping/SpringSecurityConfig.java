@@ -45,7 +45,7 @@ public class SpringSecurityConfig  extends WebSecurityConfigurerAdapter {
 		        .requireCsrfProtectionMatcher(new AntPathRequestMatcher("**/login"))
 		    .and()
 		        .authorizeRequests()
-				.antMatchers("/").hasAnyRole(ANONYMOUS)
+				.antMatchers("/").hasAnyRole(ANONYMOUS)				
 				.antMatchers("/checkout/**").hasAnyRole(USER)
 				.antMatchers("/manager/**").hasAnyRole(ADMIN)
 			.and()

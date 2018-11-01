@@ -88,7 +88,7 @@
 								<a th:if="${USER_OBJECT.username == 'anonymousUser'}" th:href="@{/login}" class="text-uppercase">登入</a>
 								<span th:if="${USER_OBJECT.username != 'anonymousUser'}" class="text-uppercase" th:text="${USER_OBJECT.username + '，您好'}"></span> 
 								/ 
-								<a th:if="${USER_OBJECT.username == 'anonymousUser'}" th:href="@{/createUser}" class="text-uppercase">加入</a>
+								<a th:if="${USER_OBJECT.username == 'anonymousUser'}" th:href="@{/member/createUser}" class="text-uppercase">加入</a>
 								<ul class="custom-menu">
 									<li><a  th:if="${USER_OBJECT.username != 'anonymousUser'}" th:href="@{/account}"><i class="fa fa-user-o"></i> 帳號</a></li>
 									<li><a th:href="@{/wishList}"><i class="fa fa-heart-o"></i> 最愛清單</a></li>

@@ -210,7 +210,42 @@
 				<!-- /Product Single -->
 
 				<!-- Product Slick -->
-				<div class="col-md-9 col-sm-6 col-xs-6">
+				<div class="col-md-9 col-sm-6 col-xs-6" th:if="${#lists.size(promotion_product_one) != 0}">				
+					<div class="row">
+						<div id="product-slick-2" class="product-slick">
+							<!-- Product Single -->
+							<div class="product product-single" th:each="product, itrStat: ${suggest_product}">
+								<div class="product-thumb">
+								    <div class="product-label">
+										<span th:if="${product.newest == 1}">新上市</span>
+										<span th:text="${(100 - product.discount) + '%'}" th:if="${product.discount != 100}" class="sale">0%</span>
+									</div>
+									<a class="main-btn quick-view" th:href="@{'/products/' + ${product.id}}"><i class="fa fa-search-plus"></i> 瀏覽商品</a>
+									<img th:src="@{${product.img}}" alt=""/>
+								</div>
+								<div class="product-body">
+									<h3 class="product-price" th:text="${'$' + (product.price)}">$0 </h3>
+						            <del class="product-old-price" style="font-size:16px" th:text="${product.price}">$0</del>
+						            <div class="product-rating">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-o empty"></i>
+									</div>
+									<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${#strings.abbreviate(product.name, 20)}">商品名稱</a></h2>
+									<div class="product-btns">
+										<button class="main-btn icon-btn" th:onclick="'index.addWish(\'' + ${product.id} + '\');'"><i class="fa fa-heart-o"></i></button>
+										<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
+										<button class="primary-btn add-to-cart" th:onclick="'index.addCart(\'' + ${product.id} + '\');'"><i class="fa fa-shopping-cart"></i>加入購物車</button>
+									</div>
+								</div>
+							</div>
+							<!-- /Product Single -->
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 col-sm-6 col-xs-6" th:unless="${#lists.size(promotion_product_one) != 0}">
 					<div class="row">
 						<div id="product-slick-2" class="product-slick">
 							<!-- Product Single -->
@@ -318,7 +353,7 @@
 				    <div class="product product-single" th:if="${itrStat.index == 0 or itrStat.index == 1 or itrStat.index == 2 or itrStat.index == 3}">
 				        <div class="product-thumb">
 						    <div class="product-label">
-						        <span th:if="${product.newest == 1}">新上市</span>
+						        <span th:if="${product.newest == 1}" th:text="${#lists.size(promotion_product_one)}">新上市</span>
 						        <span class="sale" th:text="${(100 - product.promotion_discount) + '%'}" th:if="${product.discount != 100}">0%</span>
 						    </div>
 						            
