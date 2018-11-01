@@ -15,6 +15,7 @@ create table Product(
     original_price int default 0,
     discount int default 0,
     price int default 0,
+    short_description varchar(200),
     description varchar(200),
     img varchar(200),
     category_id int,

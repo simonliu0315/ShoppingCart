@@ -34,6 +34,8 @@ public class Product implements Serializable {
 	
 	private BigDecimal price;
 
+	private String shortDescription;
+	
 	private String description;
 
 	private String img;
