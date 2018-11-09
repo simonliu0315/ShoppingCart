@@ -25,6 +25,8 @@ public class ProductInCartDto {
 	
 	private BigDecimal totalAmt;
 	
+	private String orderStatus;
+	
 	
 	public List<ProductTempOrder> getProductsTempOrder() {
 		if (productsTempOrder == null) {

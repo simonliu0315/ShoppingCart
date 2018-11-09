@@ -29,7 +29,7 @@ public class UserController {
     @RequestMapping(method = RequestMethod.GET)
     public String getUserList(ModelMap map) {
         map.addAttribute("userList", userService.findAll());
-        return "manager/userList";
+        return "manager/user/userList";
     }
 
     /**
@@ -40,7 +40,7 @@ public class UserController {
     public String createUserForm(ModelMap map) {
         map.addAttribute("user", new User());
         map.addAttribute("action", "create");
-        return "manager/userForm";
+        return "manager/user/userForm";
     }
 
     /**

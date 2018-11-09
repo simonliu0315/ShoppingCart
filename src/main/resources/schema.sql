@@ -66,13 +66,16 @@ create table USER(
     username  varchar (30) not null,
 	c_name varchar(30),
 	email  varchar(30),
-	password varchar(60),
+	password varchar(256),
 	address varchar(200),
 	birthday date,
 	inserted timestamp,
     insert_by varchar(30),
     updated timestamp,
     update_by varchar(30),
+    verify_code varchar(256),
+    verfiy_date timestamp,
+    status int default 0,
 	primary key(username)
 );
 

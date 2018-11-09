@@ -7,6 +7,9 @@ var login = {
 	    });
 	    
 	},
+	gogo : function() {
+		
+	},
 	refreshCaptcha: function() {
 		$("#captchaImg").attr("src", contextRoot+"/generateCaptcha" + "?" + new Date().getTime());
 	}

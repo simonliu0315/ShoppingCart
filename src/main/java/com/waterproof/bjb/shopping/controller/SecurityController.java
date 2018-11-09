@@ -27,4 +27,18 @@ public class SecurityController {
 		mav.setViewName("security/401");
 		return mav;
 	}
+	
+	@RequestMapping(value = "404", method = { RequestMethod.GET })
+	public ModelAndView getPage404(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("security/404");
+		return mav;
+	}
+	
+	@RequestMapping(value = "500", method = { RequestMethod.GET })
+	public ModelAndView getPage500(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("security/404");
+		return mav;
+	}
 }

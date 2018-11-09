@@ -34,8 +34,9 @@
 				<!-- section title -->
 				<table class="shopping-cart-table table" th:each="order, itrStat : ${orders}">
                 <legend>
-                    <strong th:text="${'訂單編號：' + order.orderNo}"></strong>
+                    <strong th:text="${'訂單編號：' + order.orderNo}"></strong>　　　　　<strong th:text="${'處理狀態：' + order.orderStatus}"></strong>
                 </legend>
+               
                 <thead>
                     <tr>
 					    <th>訂單商品</th>

@@ -60,10 +60,11 @@ public class ProductController {
     }
 	@RequestMapping(value = "/{id}", method = {RequestMethod.GET})
     public ModelAndView getId(@PathVariable("id") long id) {
-        log.info("getId");
+        log.info("getId:{}", id);
         ModelAndView mav = new ModelAndView();
       
         Product product = productService.getProduct(id);
+        log.info("product: {}", product);
         mav.addObject("product", product);
        
         mav.addObject("recommended_product", productService.getDiscountProductsOrderUpdatedTime().subList(0, 5)); 

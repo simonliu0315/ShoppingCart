@@ -16,6 +16,7 @@
 	<div class="section">
 		<!-- container -->
 		<div class="container">
+		<div th:replace="fragments/body_header :: body_info"></div>
 		    <form th:action="@{/login}" method="post">
 			<!-- row -->
 			<div class="row">
@@ -25,13 +26,13 @@
 								<h3 class="title">登入</h3>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="username" value="simon" placeholder="帳號"/>
+								<input class="input" type="text" name="username" value="simon" placeholder="帳號" th:required="required"/>
 							</div>
 							<div class="form-group">
-								<input class="input" type="password" name="password" value="123456" placeholder="密碼"/>
+								<input class="input" type="password" name="password" value="123456" placeholder="密碼" th:required="required"/>
 							</div>
 							<div class="form-group">
-							    <input type="text" class="form-control" id="verifyCode" placeholder="驗證碼" name="verifyCode" style="width: 30%; display: inline;"/>
+							    <input type="text" class="form-control" id="verifyCode" placeholder="驗證碼" name="verifyCode" style="width: 30%; display: inline;" th:required="required"/>
                                 <img id="captchaImg" />
                                 <button id="refreshCaptchaButton" type="button" form="form" class="btn btn-default ">
                                     <i class="fa fa-refresh"></i>
@@ -52,7 +53,7 @@
 									        <input class="input" type="email" name="email" value="cyliu0315@gmail.com" placeholder="電子郵件信箱"/>
 									    </div>
 									    <div class="form-group text-right">
-									        <button class="primary-btn" type="submit" value="Sign In" >註冊/登入</button>
+									        <button class="primary-btn" type="input" value="Sign In" onclick="gogo();">註冊/登入</button>
 									    </div>
 									</div>
 									

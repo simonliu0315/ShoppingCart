@@ -161,7 +161,7 @@
 				<!-- section title -->
 				<div class="col-md-12">
 					<div class="section-title">
-						<h2 class="title">熱門商品</h2>
+						<h2 class="title">今日推薦</h2>
 						<div class="pull-right">
 							<div class="product-slick-dots-2 custom-dots">
 							</div>
@@ -338,9 +338,66 @@
 	<div class="section">
 		<!-- container -->
 		<div class="container">
-			
 			<!-- row -->
 			<div class="row">
+				<!-- section title -->
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2 class="title">最新產品</h2>
+					</div>
+				</div>
+				<!-- section title -->
+
+				<!-- Product Single -->
+				<div class="col-md-3 col-sm-6 col-xs-6" th:each="product, itrStat: ${newest_product}">
+				    <div class="product product-single" th:if="${itrStat.index == 0 or itrStat.index == 1 or itrStat.index == 2 or itrStat.index == 3}">
+				        <div class="product-thumb">
+						    <div class="product-label">
+						        <span th:if="${product.newest == 1}" th:text="${#lists.size(promotion_product_one)}">新上市</span>
+						        <span class="sale" th:text="${(100 - product.promotion_discount) + '%'}" th:if="${product.discount != 100}">0%</span>
+						    </div>
+						            
+						    <a class="main-btn quick-view" th:href="@{'/products/' + ${product.id}}"><i class="fa fa-search-plus"></i> 瀏覽商品</a>
+							<img th:src="@{${product.img}}" alt=""/>
+						</div>
+						<div class="product-body">
+						    <h3 class="product-price" th:text="${'$' + (product.promotion_price)}">$0 
+						       <del class="product-old-price" style="font-size:16px" th:text="${product.price}">$0</del>
+						    </h3>
+						    <div class="product-rating">
+						        <i class="fa fa-star"></i>
+							    <i class="fa fa-star"></i>
+							    <i class="fa fa-star"></i>
+							    <i class="fa fa-star"></i>
+							    <i class="fa fa-star-o empty"></i>
+						    </div>
+						    <h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${#strings.abbreviate(product.name, 20)}">Product Name Goes Here</a></h2>
+						    <div class="product-btns">
+						        <button class="main-btn icon-btn" th:onclick="'index.addWish(\'' + ${product.id} + '\');'"><i class="fa fa-heart-o"></i></button>
+							    <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
+							    <button class="primary-btn add-to-cart" th:onclick="'index.addCart(\'' + ${product.id} + '\');'"><i class="fa fa-shopping-cart"></i>加入購物車</button>
+						    </div>
+					    </div>
+			        </div>
+			    </div>
+				<!-- /Product Single -->
+			</div>
+			<!-- /row -->
+
+			<!-- row -->
+			<div class="row">
+				<!-- banner -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="banner banner-2">
+						<img th:src="@{/img/banner15.jpg}" alt=""/>
+						<div class="banner-caption">
+							<h2 class="white-color">NEW<br/>COLLECTION</h2>
+							<button class="primary-btn">購物去</button>
+						</div>
+					</div>
+				</div>
+				<!-- /banner -->
+
 				<!-- Product Single -->
 				<div class="col-md-3 col-sm-6 col-xs-6" th:each="product, itrStat: ${newest_product}">
 				    <div class="product product-single" th:if="${itrStat.index == 4 or itrStat.index == 5 or itrStat.index == 6}">

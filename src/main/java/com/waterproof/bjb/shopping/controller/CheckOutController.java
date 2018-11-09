@@ -1,5 +1,6 @@
 package com.waterproof.bjb.shopping.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +32,7 @@ public class CheckOutController {
 	private CustomerOrderService customerOrderService;
 	
 	@Autowired
-	private SimpleUserService uerService;
+	private SimpleUserService userService;
 	
 	@RequestMapping(value = "", method = {RequestMethod.GET})
     public ModelAndView getPage(HttpServletRequest request) {
@@ -56,17 +57,19 @@ public class CheckOutController {
         if (productInCartDto == null) {
         	productInCartDto = new ProductInCartDto();
         }
-        String username = uerService.getUser().getUsername();
+        String username = userService.getUser().getUsername();
         productInCartDto.setUserId(username);
         log.info("session: {}", productInCartDto);
         UserContractDto userContractDto = new UserContractDto();
         BeanUtils.copyProperties(formBean, userContractDto);
-        log.info("login user {}", uerService.getUser());
+        log.info("login user {}", userService.getUser());
         String orderNumber = customerOrderService.saveToOrder(userContractDto, productInCartDto, username);
-        
-        List<ProductInCartDto> productInCartDtos = customerOrderService.queryOrder(username);
+        request.getSession().setAttribute(SessionParameter.PRODUCTS_IN_CART, null);
+        ProductInCartDto dto = customerOrderService.queryOrderByNo(orderNumber);
+        List<ProductInCartDto> list = new ArrayList<ProductInCartDto>();
+        list.add(dto);
         mav.addObject("orderNumber", orderNumber);
-		mav.addObject("orders", productInCartDtos);
+		mav.addObject("orders", list);
         mav.setViewName("order/list");
         return mav;
     }

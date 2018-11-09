@@ -35,15 +35,14 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
 	@Transactional
 	public UserDetails loadUserByUsername(String username) {
-		String strong_salt = "$2a$10$NnlqpBH.dJZLqG//0IWoG.";
-		log.info("strong_salt {}, pw: {}", strong_salt, BCrypt.hashpw("123456", strong_salt));
 		for (com.waterproof.bjb.shopping.entity.User u : userRepository.findAll()) {
 			log.info("{}", u);
 		}
 		log.info("size {}", userRepository.findAll().size());
 		log.info("****loadUserByUsername**** param1:{}", username);
 		com.waterproof.bjb.shopping.entity.User user = userRepository.findOne(username);
-		if (user == null) {
+		if (user == null || user.getStatus() != 1) {
+			
 			throw new UsernameNotFoundException("Invalid username or password.");
 		} else {
 			log.info("cName: {}, password: {}", user.getCName(), user.getPassword());
