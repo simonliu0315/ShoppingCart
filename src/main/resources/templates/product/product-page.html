@@ -69,6 +69,7 @@
 						        <span th:if="${product.promotion_on == 0}" class="sale" th:text="${(100 - product.discount) + '%'}">0%</span>
 							</div>
 							<h2 class="product-name" th:text="${product.name}">防水商品名稱</h2>
+							<h2 class="product-name" th:text="${product.engName}">防水商品名稱</h2>
 							<h3 th:if="${product.promotion_on == 1}" class="product-price" th:text="${'$' + (product.promotion_price * product.promotion_discount / 100)}">$0 </h3>
 						    <h3 th:if="${product.promotion_on == 0}" class="product-price" th:text="${'$' + (product.price * product.discount / 100)}">$0 </h3>					    
 						    <del class="product-old-price" style="font-size:16px" th:text="${product.price}">$0</del>

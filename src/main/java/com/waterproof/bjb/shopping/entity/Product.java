@@ -27,6 +27,8 @@ public class Product implements Serializable {
 	private Long id;
 
 	private String name;
+	
+	private String engName;
 
 	private BigDecimal originalPrice;
 

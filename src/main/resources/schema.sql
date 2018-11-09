@@ -12,6 +12,7 @@ create table Category(
 create table Product(
     id int not null,
     name varchar2(60),
+    eng_name varchar2(120),
     original_price int default 0,
     discount int default 0,
     price int default 0,

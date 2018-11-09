@@ -85,10 +85,10 @@
 									<strong class="text-uppercase">我的帳戶 <i
 										class="fa fa-caret-down"></i></strong>
 								</div>
-								<a th:if="${USER_OBJECT.username == 'anonymousUser'}" th:href="@{/login}" class="text-uppercase">登入</a>
-								<span th:if="${USER_OBJECT.username != 'anonymousUser'}" class="text-uppercase" th:text="${USER_OBJECT.username + '，您好'}"></span> 
+								<a th:if="${USER_OBJECT.username == 'anonymousUser' or USER_OBJECT.username == null}" th:href="@{/login}" class="text-uppercase">登入</a>
+								<span th:if="${USER_OBJECT.username != 'anonymousUser' and USER_OBJECT.username !=null}" class="text-uppercase" th:text="${USER_OBJECT.username + '，您好'}"></span> 
 								/ 
-								<a th:if="${USER_OBJECT.username == 'anonymousUser'}" th:href="@{/member/createUser}" class="text-uppercase">加入</a>
+								<a th:if="${USER_OBJECT.username == 'anonymousUser' or USER_OBJECT.username == null}" th:href="@{/member/createUser}" class="text-uppercase">加入</a>
 								<ul class="custom-menu">
 									<li><a  th:if="${USER_OBJECT.username != 'anonymousUser'}" th:href="@{/member/myAccount}"><i class="fa fa-user-o"></i> 帳號</a></li>
 									<li><a th:href="@{/wishList}"><i class="fa fa-heart-o"></i> 最愛清單</a></li>
@@ -97,7 +97,7 @@
 									<li><a th:href="@{/checkout}"><i class="fa fa-check"></i> 結帳</a></li>
 									<li><a th:href="@{/member/order/list}"><i class="fa fa-align-left"></i> 訂單查詢</a></li>
 									<li><a th:if="${USER_OBJECT.username == 'anonymousUser'}" th:href="@{/login}"><i class="fa fa-unlock-alt"></i> 登入</a></li>
-									<li><a th:if="${USER_OBJECT.username == 'anonymousUser'}" th:href="@{/createUser}"><i class="fa fa-user-plus"></i> 建立帳號</a></li>
+									<li><a th:if="${USER_OBJECT.username == 'anonymousUser'}" th:href="@{/member/createUser}"><i class="fa fa-user-plus"></i> 建立帳號</a></li>
 									<li><a th:if="${USER_OBJECT.username != 'anonymousUser'}" th:href="@{/logout}"><i class="fa fa-unlock-alt"></i> 登出</a></li>
 								</ul>
 							</li>

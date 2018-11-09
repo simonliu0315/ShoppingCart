@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -53,6 +54,8 @@ public class ProductService {
 		List<Product> products = pproduct.getContent();
 		log.info("size: {}" , products.size());
 		for(Product product : products) {
+			
+			//product.setName(StringUtils.rightPad(product.getName(), 30, ""));
 			log.info("product {}", product);
 		}
 		return pproduct;
