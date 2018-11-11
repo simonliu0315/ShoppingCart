@@ -136,6 +136,7 @@ public class CustomerOrderService {
 			dto.getProductsTempOrder().add(tmp);
 		}
 		BeanUtils.copyProperties(customerOrder, dto);
+		dto.setOrderStatus(customerOrder.getOrderStatus().getDescription());
 		log.info("dto: {}", dto);
 
 		return dto;

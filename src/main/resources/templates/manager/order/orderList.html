@@ -25,15 +25,20 @@
                         <th>名称</th>
                         <th>出生时间</th>
                         <th>管理</th>
+                        <th>管理</th>
+                        <th>管理</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="user : ${userList}">
-                        <th scope="row" th:text="${user.username}"></th>
-                        <td><a th:href="@{/manager/users/update/{userId}(userId=${user.username})}" th:text="${user.username}"></a></td>
-                        <td th:text="${user.birthday}"></td>
-                        <td><a class="btn btn-danger" th:href="@{/users/delete/{userId}(userId=${user.username})}">删除</a></td>
-                    </tr>
+                    <tr th:each="order : ${orderList}">
+                        <th scope="row" th:text="${order.id}"></th>
+                        <th scope="row" th:text="${order.orderNo}"></th>
+                        <th scope="row" th:text="${order.username}"></th>
+                        <th scope="row" th:text="${order.statusId}"></th>
+                        <th scope="row" th:text="${order.updated}"></th>
+                        <th scope="row" th:text="${order.update_by}"></th>
+                        <th scope="row" th:text="${order.statusDescription}"></th>
+                        </tr>
                 </tbody>
             </table>
 

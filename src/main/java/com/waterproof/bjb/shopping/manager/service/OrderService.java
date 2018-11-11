@@ -32,6 +32,7 @@ public class OrderService {
 			OrderDto dto = new OrderDto();
 			BeanUtils.copyProperties(customerOrder, dto);
 			dto.setStatusDescription(getOrderStatusDesc(customerOrder.getStatusId()));
+			dto.setId(customerOrder.getId());
 			list.add(dto);
 		}
 		return list;
