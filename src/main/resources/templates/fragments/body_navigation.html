@@ -159,7 +159,10 @@
 												<li>
 													<h3 class="list-links-title">分類</h3>
 												</li>
-												<li><a th:href="@{'/products/search?category=' + ${category.id}}" th:text="${category.name}"></a></li>
+												<li>
+												    <a th:if="${category.url == ''}" th:href="@{'/products/search?category=' + ${category.id}}" th:text="${category.name}"></a>
+												    <a th:if="${category.url != ''}" th:href="@{${category.url}}" th:text="${category.name}"></a>
+												</li>
 		
 											</ul>
 										</div>
@@ -171,6 +174,21 @@
 								<ul class="custom-menu">
 									<li><a th:href="@{/products}">全商品</a></li>									
 									<li><a th:href="@{/cart}">購物車</a></li>
+								</ul></li>
+							<li class="dropdown default-dropdown"><a
+								class="dropdown-toggle" data-toggle="dropdown"
+								aria-expanded="true">代工資訊<i class="fa fa-caret-down"></i></a>
+								<ul class="custom-menu" style="width:350px">
+									<li>
+									我們知道液態橡膠的商品可能需要一些技術性，<br/>
+									所以如果您有任何疑問，可參考"FAQ"或"應用"<br/>
+									裡面的解說。<br/>
+									如果看完還是覺得很困惑或是有代工需求，請直接聯絡客服或來信諮詢。<br/>
+									客服專線：02-8282-0213<br/>
+									客服信箱：liqidrubbertqiwan@gmail.com<br/>
+									即時信箱：@liqidrubbertqiwan
+									</li>									
+									
 								</ul></li>
 						</ul>
 					</div>

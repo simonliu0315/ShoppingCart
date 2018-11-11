@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.waterproof.bjb.shopping.entity.Product;
+import com.waterproof.bjb.shopping.service.CategoryService;
 import com.waterproof.bjb.shopping.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +28,9 @@ public class ProductController {
 
 	@Resource
 	private ProductService productService;
+	
+	@Resource
+	private CategoryService categorySerivce;
 	
 	@RequestMapping(value = "", method = {RequestMethod.GET})
     public ModelAndView getPage() {
@@ -67,7 +71,8 @@ public class ProductController {
         log.info("product: {}", product);
         mav.addObject("product", product);
        
-        mav.addObject("recommended_product", productService.getDiscountProductsOrderUpdatedTime().subList(0, 5)); 
+        mav.addObject("recommended_product", productService.getDiscountProductsOrderUpdatedTime().subList(0, 5));
+        
         mav.setViewName("product/product-page");
         return mav;
     }
@@ -105,7 +110,11 @@ public class ProductController {
         if (page != 0) {
         	page = page - 1;
         }
-        
+        if (category != 0) {
+        	
+        }
+        //categorySerivce.categorySerivce()
+        //if 
         
         log.info("page {}, pageSize {}", page, pageSize);
         Pageable pageable = new PageRequest(page, pageSize);

@@ -1,7 +1,7 @@
-insert into Category values(1,'防水漆', 1, '/img/category/category01.jpg', SYSDATE, 'sys', sysdate, 'sys');
-insert into Category values(2,'防水工具', 1, '/img/category/category02.jpg', SYSDATE, 'sys', sysdate, 'sys');
-insert into Category values(3,'防水套件', 1, '/img/category/category03.jpg', SYSDATE, 'sys', sysdate, 'sys');
-insert into Category values(4,'其他輔助工具', 1, '/img/category/category04.jpg', SYSDATE, 'sys', sysdate, 'sys');
+insert into Category values(1,'防水塗料', 1, '/img/category/category01.jpg', '', SYSDATE, 'sys', sysdate, 'sys');
+insert into Category values(2,'防水工具', 1, '/img/category/category02.jpg', '', SYSDATE, 'sys', sysdate, 'sys');
+insert into Category values(3,'防水套件', 1, '/img/category/category03.jpg', '', SYSDATE, 'sys', sysdate, 'sys');
+insert into Category values(4,'應用', 1, '/img/category/category04.jpg', '/products/search?category=application', SYSDATE, 'sys', sysdate, 'sys');
 
 insert into product values(1 ,'防水密封膠塗料3.78L-1加侖','Liquid_Rubber_Waterproof_Sealant', 201, 100, 201, '防水密封膠塗料Liquid_Rubber_Waterproof_Sealant_3.78L-1加侖-簡單描述', '防水密封膠塗料Liquid_Rubber_Waterproof_Sealant_3.78L-1加侖-描述', '/img/product/1.防水密封膠塗料Liquid_Rubber_Waterproof_Sealant_3.78L-1加侖1000.jpg', 1, 1, 1, 0, parsedatetime('01-08-2018 18:47:52.69', 'dd-MM-yyyy hh:mm:ss'), parsedatetime('31-09-2018 18:47:52.69', 'dd-MM-yyyy hh:mm:ss'), 60, 50, 0, SYSDATE, 'sys', SYSDATE, 'sys');
 insert into product values(2 ,'防水密封膠塗料-_18.9L-5加侖','Waterproof Sealant-Coating', 202, 100, 202, '強效02描述', '強效02描述', '/img/product/1.防水密封膠塗料Waterproof Sealant-Coating-_18.9L-5加侖1000.jpg', 1, 1, 1, 1, parsedatetime('01-08-2018 18:47:52.69', 'dd-MM-yyyy hh:mm:ss'), parsedatetime('31-09-2018 18:47:52.69', 'dd-MM-yyyy hh:mm:ss'), 60, 50, 1, SYSDATE, 'sys', SYSDATE, 'sys');

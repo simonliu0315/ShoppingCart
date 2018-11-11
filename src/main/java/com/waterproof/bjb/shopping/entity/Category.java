@@ -32,6 +32,8 @@ public class Category implements Serializable {
 	
 	private String img;
 	
+	private String url;
+	
 	private Timestamp inserted;
 	
 	private String insert_by;

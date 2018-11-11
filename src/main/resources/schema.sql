@@ -3,6 +3,7 @@ create table Category(
     name varchar(60),
     type int,
     img varchar(200),
+    url varchar(200),
     inserted timestamp,
     insert_by varchar(30),
     updated timestamp,

@@ -15,5 +15,7 @@ public class CategoryDto {
 	
 	private String img;
 	
+	private String url;
+	
 	private List<ProductDto> products;
 }

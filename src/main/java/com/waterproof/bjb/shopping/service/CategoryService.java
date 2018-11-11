@@ -33,4 +33,8 @@ public class CategoryService {
 		}
 		return retList;
 	}
+	
+	public Category findCategoryById(Long id) {
+		return categoryRepository.findOne(id);
+	}
 }
