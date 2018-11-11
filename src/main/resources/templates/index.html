@@ -5,7 +5,7 @@
 <meta th:replace="fragments/meta_resources :: meta_resources"></meta>
 </head>
 
-<body>
+<body style="display: none;">
 	<div th:replace="fragments/body_header :: body_header"></div>
 
 	<div th:replace="fragments/body_navigation :: body_navigation"></div>
@@ -432,6 +432,7 @@
     <div th:replace="fragments/body_resources :: body_resources"></div>
 	
 	<script th:src="@{/js/index.js}"></script>
+	<script>$("body").show();</script>
 
 </body>
 
