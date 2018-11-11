@@ -6,11 +6,16 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -75,4 +80,8 @@ public class Product implements Serializable {
 		String text = df.format(promotion_end);
 		return text;
 	}
+	
+	@OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "ID", referencedColumnName="ID", insertable = false, updatable = false)
+	private List<ProductColor> productColors;
 }

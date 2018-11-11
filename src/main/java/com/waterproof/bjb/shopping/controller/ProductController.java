@@ -4,6 +4,7 @@ import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.waterproof.bjb.shopping.entity.Category;
 import com.waterproof.bjb.shopping.entity.Product;
 import com.waterproof.bjb.shopping.service.CategoryService;
 import com.waterproof.bjb.shopping.service.ProductService;
@@ -110,9 +112,13 @@ public class ProductController {
         if (page != 0) {
         	page = page - 1;
         }
-        if (category != 0) {
-        	
-        }
+        Category categoryEntity = categorySerivce.findCategoryById(new Long(category));
+        if (categoryEntity != null && !StringUtils.isEmpty(categoryEntity.getUrlView())) {
+        	mav.addObject("APPLICATION_LIST", categorySerivce.findApplicationList());
+        	mav.setViewName(categoryEntity.getUrlView());
+        	return mav;
+        } 
+        
         //categorySerivce.categorySerivce()
         //if 
         

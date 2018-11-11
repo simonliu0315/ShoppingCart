@@ -66,13 +66,7 @@
 			    <!-- banner -->
 			    <!-- col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 -->
 				<div class="col-md-3 col-sm-6" th:each="category: ${CATEGORY_OBJECTS}">
-					<a class="banner banner-1" th:if="${category.url == ''}" th:href="@{'/products/search?category=' + ${category.id}}">
-						<img th:src="@{${category.img}}" alt=""/>
-						<div class="banner-caption text-center">
-							<h2 class="white-color" th:text="${category.name}">???</h2>
-						</div>
-					</a>
-					<a class="banner banner-1" th:if="${category.url != ''}" th:href="@{${category.url}}">
+					<a class="banner banner-1" th:href="@{'/products/search?category=' + ${category.id}}">
 						<img th:src="@{${category.img}}" alt=""/>
 						<div class="banner-caption text-center">
 							<h2 class="white-color" th:text="${category.name}">???</h2>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/SearchResultsPage"
+	lang="zh-Hant-TW" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta th:replace="fragments/meta_resources :: meta_resources"></meta>
+</head>
+
+<body>
+	<div th:replace="fragments/body_header :: body_header"></div>
+
+	<div th:replace="fragments/body_navigation :: body_navigation"></div>
+
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a th:href="@{/}">首頁</a></li>
+				<li><a th:href="@{/products/search?category=4}">用途</a></li>
+				<li class="active">清單</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div id="main" class="col-md-12">
+					<div id="store">
+						<div class="row">
+							<!-- Product Single -->
+							<div class="col-md-4 col-sm-6 col-xs-6"
+								style="min-height: 500px; padding-bottom: 10px;"
+								th:each="application, itrStat: ${APPLICATION_LIST}">
+								<div class="product product-single">
+								<div class="product-thumb">
+									<a class="main-btn quick-view"
+										th:href="@{'/category/application_list/' + ${application.id}}"><i
+										class="fa fa-search-plus"></i>瀏覽</a> <img
+										th:src="@{${application.img}}" alt="" />
+									<div class="product-body">
+										<h2 class="product-name">
+											<a
+												th:href="@{'/category/application_list/' + ${application.id}}"
+												th:utext="${#strings.abbreviate(application.name, 22)}">Product
+												Name Goes Here</a>
+										</h2>
+									</div>
+								</div>
+							</div></div>
+							<!-- /Product Single -->
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+
+
+	<div th:replace="fragments/modal :: addCart"></div>
+	<div th:replace="fragments/modal :: removeCart"></div>
+	<div th:replace="fragments/body_footer :: body_footer"></div>
+	<div th:replace="fragments/body_resources :: body_resources"></div>
+
+	<script th:src="@{/js/index.js}"></script>
+
+</body>
+
+</html>

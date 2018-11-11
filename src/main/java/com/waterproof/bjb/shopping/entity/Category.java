@@ -32,7 +32,7 @@ public class Category implements Serializable {
 	
 	private String img;
 	
-	private String url;
+	private String urlView;
 	
 	private Timestamp inserted;
 	
@@ -41,4 +41,6 @@ public class Category implements Serializable {
 	private Timestamp updated;
 	
 	private String update_by;
+	
+	private String status;
 }

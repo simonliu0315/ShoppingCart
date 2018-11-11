@@ -58,7 +58,8 @@
 										    <br/>
 										    <del class="font-weak"><small th:text="${'$' + productTempOrder.originalPrice}">$0</small></del>
 										</td>
-										<td class="qty text-center"><input id="sub_quantity" name="sub_quantity" class="input" type="number" th:value="${productTempOrder.quantity}"/></td>
+										<td class="qty text-center"><input id="sub_quantity" name="sub_quantity" class="input" type="number" th:value="${productTempOrder.quantity}"
+										th:onchange="'cart.changeQty(\'' + ${productTempOrder.productId} + '\', this);'"/></td>
 										<td class="total text-center">
 										    <strong class="primary-color" th:text="${'$' +productTempOrder.subTotalAmt}">$0</strong>
 										</td>
@@ -109,6 +110,7 @@
 	<div th:replace="fragments/body_footer :: body_footer"></div>
     <div th:replace="fragments/body_resources :: body_resources"></div>
 	<script th:src="@{/js/index.js}"></script>
+	<script th:src="@{/js/cart.js}"></script>
 
 </body>
 

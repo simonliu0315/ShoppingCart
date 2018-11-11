@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/SearchResultsPage" lang="zh-Hant-TW" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta th:replace="fragments/meta_resources :: meta_resources"></meta>
+</head>
+
+<body>
+	<div th:replace="fragments/body_header :: body_header"></div>
+
+	<div th:replace="fragments/body_navigation :: body_navigation"></div>
+
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a th:href="@{/}">首頁</a></li>
+				<li><a href="#">種類名稱</a></li>
+				<li class="active">商品名稱</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!--  Product Details -->
+				<div class="product product-details clearfix">
+					<div class="col-md-6">
+						<div id="product-main-view">
+							<div class="product-view" th:each="applicationListImage, itrStat: ${APPLICATION.applicationListImages}">
+								<img th:src="@{${applicationListImage.img}}" alt=""/>
+							</div>
+						</div>
+						<div id="product-view">
+						    <div class="product-view" th:each="applicationListImage, itrStat: ${APPLICATION.applicationListImages}">
+								<img th:src="@{${applicationListImage.img}}" alt=""/>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="product-body">
+							<h2 class="product-name" th:text="${APPLICATION.name}">用途名稱</h2>
+							<p th:utext="${APPLICATION.content}">測試商品描述.</p>
+							
+						</div>
+					</div>
+
+				</div>
+				<!-- /Product Details -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- section title -->
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2 class="title">建議購買清單</h2>
+					</div>
+				</div>
+				<!-- section title -->
+
+				<!-- Product Single -->
+				<div class="col-md-3 col-sm-6 col-xs-6" th:each="product, itrStat: ${recommended_product}">
+					<div class="product product-single" >
+						<div class="product-thumb">
+							<div class="product-label">
+								<span th:if="${product.newest == 1}">新上市</span>
+								<span th:text="${(100 - product.discount) + '%'}" th:if="${product.discount == 1}" class="sale">-20%</span>
+							</div>
+							<a class="main-btn quick-view" th:href="@{'/products/' + ${product.id}}"><i class="fa fa-search-plus"></i> 瀏覽商品</a>
+							<img th:src="@{${product.img}}" alt=""/>
+						</div>
+						<div class="product-body">
+							<h3 class="product-price"  th:text="${'$' + (product.promotion_price * product.promotion_discount / 100)}">$32.50</h3>
+							<del class="product-old-price" style="font-size:16px" th:text="${product.price}">$45.00</del>
+							<div class="product-rating">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star-o empty"></i>
+							</div>
+							<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${product.name}">Product Name Goes Here</a></h2>
+							<div class="product-btns">
+								<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+								<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
+								<button class="primary-btn add-to-cart" th:onclick="'index.addCart(\'' + ${product.id} + '\');'"><i class="fa fa-shopping-cart"></i> 加入購物車</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Product Single -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+    <div th:replace="fragments/modal :: addCart"></div>
+    <div th:replace="fragments/modal :: removeCart"></div>
+	<div th:replace="fragments/body_footer :: body_footer"></div>
+    <div th:replace="fragments/body_resources :: body_resources"></div>
+	
+	<script th:src="@{/js/index.js}"></script>
+	<script th:src="@{/js/product.js}"></script>
+
+</body>
+
+</html>

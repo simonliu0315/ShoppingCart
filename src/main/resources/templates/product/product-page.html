@@ -93,6 +93,15 @@
 									<li><a href="#">XL</a></li>
 									<li><a href="#">SL</a></li>
 								</ul-->
+								<ul class="color-option" >
+									<li><span class="text-uppercase">顏色:</span></li>
+									<th:block th:each="productColor, itrStat: ${product.productColors}">
+									    <li th:id="${'color_' + productColor.eName}">
+									        <a href="#" th:style="${'background-color:' + productColor.id.color}" th:onclick="'product.changeColor(\'' +  ${productColor.eName} + '\');'"></a>
+									    </li>
+									</th:block>
+									
+								</ul>
 								<!-- >ul class="color-option">
 									<li><span class="text-uppercase">顏色:</span></li>
 									<li class="active"><a href="#" style="background-color:#475984;"></a></li>

@@ -208,10 +208,8 @@
 					<div id="store">
 						<!-- row -->
 						<div class="row">
-							<!-- Product Single -->
-							
-							<div class="col-md-4 col-sm-6 col-xs-6" style="min-height: 500px; padding-bottom: 10px;" th:each="product, itrStat: ${activate_product}">
-							<div >
+							<!-- Product Single -->							
+							<div class="col-md-4 col-sm-6 col-xs-6" style="min-height: 500px; padding-bottom: 10px;" th:each="product, itrStat: ${activate_product}">			
 								<div class="product product-single">
 									<div class="product-thumb">
 										<div class="product-label">
@@ -239,8 +237,7 @@
 										    <button class="primary-btn add-to-cart" th:onclick="'index.addCart(\'' + ${product.id} + '\');'"><i class="fa fa-shopping-cart"></i>加入購物車</button>
 									    </div>
 								    </div>
-								</div>
-							</div>
+								</div>	
 							</div>
 							<!-- /Product Single -->
 

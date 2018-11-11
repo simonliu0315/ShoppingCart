@@ -160,8 +160,7 @@
 													<h3 class="list-links-title">分類</h3>
 												</li>
 												<li>
-												    <a th:if="${category.url == ''}" th:href="@{'/products/search?category=' + ${category.id}}" th:text="${category.name}"></a>
-												    <a th:if="${category.url != ''}" th:href="@{${category.url}}" th:text="${category.name}"></a>
+												    <a th:href="@{'/products/search?category=' + ${category.id}}" th:text="${category.name}"></a>
 												</li>
 		
 											</ul>
