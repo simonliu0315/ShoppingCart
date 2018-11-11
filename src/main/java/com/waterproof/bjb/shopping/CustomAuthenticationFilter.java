@@ -19,9 +19,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Component;
 
 import com.octo.captcha.CaptchaException;
+import com.waterproof.bjb.shopping.authentication.BadCaptchaException;
 import com.waterproof.bjb.shopping.captcha.CaptchaVerifyService;
 import com.waterproof.bjb.shopping.controller.IndexController;
 
@@ -31,50 +33,53 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-	@Resource(name="userDetailService")
+	@Resource(name = "userDetailService")
 	private UserDetailsService userDetailsService;
-	
+
 	@Autowired
 	private CaptchaVerifyService captchaVerifyService;
-	
+
 	@Resource
 	private AuthenticationFailureHandler authenticationFailureHandler;
+
+	public CustomAuthenticationFilter() {
+		AntPathRequestMatcher requestMatcher = new AntPathRequestMatcher("/login", "POST");
+		this.setRequiresAuthenticationRequestMatcher(requestMatcher);
+		this.setAuthenticationManager(getAuthenticationManager());
+	}
+
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
-	      throws AuthenticationException {
+			throws AuthenticationException {
 		setAuthenticationFailureHandler(authenticationFailureHandler);
-		
-		log.info("=====attemptAuthentication====");
-	    // 只接受POST方式傳遞的數據
-	    if (!"POST".equals(request.getMethod())) {
-	      throw new AuthenticationServiceException("不支持非POST方式的請求!");
-	    }
-	    // 驗證碼驗證
-	    String requestCaptcha = request.getParameter("verifyCode");
-	    log.info("requestCaptcha: {}", requestCaptcha);
-	   if (StringUtils.isEmpty(requestCaptcha)) {
-		   
-	   }
-	      //throw new CaptchaException("驗證碼不能為空!");
-	    if (!captchaVerifyService.isVerify(request.getSession().getId(), requestCaptcha)) {
-	    	
-	    	
-			throw new CaptchaException("驗證碼錯誤!");
-			
-	    	//throw new CaptchaException("驗證碼錯誤!");
-	    }
 
-	    // 判斷登陸次數及上限時間
-	    String username = obtainUsername(request);
-	    UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-	    
-	    return super.attemptAuthentication(request, response);
-	  }
-	
+		log.info("=====attemptAuthentication====");
+		// 只接受POST方式傳遞的數據
+		if (!"POST".equals(request.getMethod())) {
+			throw new AuthenticationServiceException("不支持非POST方式的請求!");
+		}
+		// 驗證碼驗證
+		String requestCaptcha = request.getParameter("verifyCode");
+		log.info("requestCaptcha: {}", requestCaptcha);
+		if (StringUtils.isEmpty(requestCaptcha)) {
+			throw new BadCaptchaException("驗證碼不能為空!");
+		}
+		if (!captchaVerifyService.isVerify(request.getSession().getId(), requestCaptcha)) {
+
+			throw new BadCaptchaException("驗證碼錯誤!");
+		}
+
+		// 判斷登陸次數及上限時間
+		String username = obtainUsername(request);
+		UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+
+		return super.attemptAuthentication(request, response);
+	}
+
 	@Override
 	@Autowired
 	public void setAuthenticationManager(AuthenticationManager authenticationManager) {
 		super.setAuthenticationManager(authenticationManager);
 	}
-	
+
 }

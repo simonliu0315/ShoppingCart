@@ -86,18 +86,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		registry.addInterceptor(otherInterceptor);
 	}
 
-	@Bean
-	public AuthenticationFailureHandler authenticationFailureHandler() {
-		ExceptionMappingAuthenticationFailureHandler failureHandler = new ExceptionMappingAuthenticationFailureHandler();
-		Map<String, String> failureUrlMap = new HashMap<>();
-		failureUrlMap.put(BadCredentialsException.class.getName(), "/401");
-		failureUrlMap.put(CaptchaException.class.getName(), "/401");
-		failureUrlMap.put(AccountExpiredException.class.getName(), "/401");
-		failureUrlMap.put(LockedException.class.getName(), "/401");
-		failureUrlMap.put(DisabledException.class.getName(), "/401");
-		failureHandler.setExceptionMappings(failureUrlMap);
-		return failureHandler;
-	}
+	
 	
 	@Bean
 	public EmbeddedServletContainerCustomizer containerCustomizer() {

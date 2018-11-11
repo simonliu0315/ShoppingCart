@@ -1,6 +1,8 @@
 package com.waterproof.bjb.shopping;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AccountExpiredException;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -17,11 +23,15 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.ExceptionMappingAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.waterproof.bjb.shopping.authentication.BadCaptchaException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -50,7 +60,8 @@ public class SpringSecurityConfig  extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		log.info("****configure****");
-		
+		customAuthenticationFilter.setAuthenticationManager(authenticationManager());
+		customAuthenticationFilter.setAuthenticationFailureHandler(authenticationFailureHandler());
 		http
 		        .csrf()
 		        .requireCsrfProtectionMatcher(new AntPathRequestMatcher("**/login"))
@@ -105,5 +116,17 @@ public class SpringSecurityConfig  extends WebSecurityConfigurerAdapter {
 	        objectMapper.writeValue(response.getWriter(), "Nopity nop!");
 	    }
 
-
+	@Bean
+	public AuthenticationFailureHandler authenticationFailureHandler() {
+		ExceptionMappingAuthenticationFailureHandler failureHandler = new ExceptionMappingAuthenticationFailureHandler();
+		Map<String, String> failureUrlMap = new HashMap<>();
+		failureUrlMap.put(UsernameNotFoundException.class.getName(), "/401?badCredentials");
+		failureUrlMap.put(BadCredentialsException.class.getName(), "/401?badCredentials");
+		failureUrlMap.put(BadCaptchaException.class.getName(), "/401?badCaptcha");
+		failureUrlMap.put(AccountExpiredException.class.getName(), "/401?accountExpired");
+		failureUrlMap.put(LockedException.class.getName(), "/401?locked");
+		failureUrlMap.put(DisabledException.class.getName(), "/401?dosabled");
+		failureHandler.setExceptionMappings(failureUrlMap);
+		return failureHandler;
+	}
 }
