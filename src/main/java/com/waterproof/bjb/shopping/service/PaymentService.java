@@ -59,6 +59,7 @@ public class PaymentService {
 	
 	public B2CPayUpdate creditcardPayUpdate(String key, String mac, String cipher) {
 		B2CPayUpdate update= new B2CPayUpdate();
+		update.setStoreId(properties.getStoreId());
 		update.setKey(key);
 		update.setMac(mac);
 		update.setCipher(cipher);
