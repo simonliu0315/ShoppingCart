@@ -180,23 +180,23 @@
 			<artifactId>toolkit</artifactId>    <!--自定義 -->
 			<version>1.0</version> <!--自定義 -->
 			<scope>system</scope> <!--system，类似provided，需要显式提供依赖的jar以后，Maven就不会在Repository中查找它 -->
-			<systemPath>${basedir}/lib/com/hitrust/1.0/toolkit-1.0.jar</systemPath> <!--项目根目录下的lib文件夹下 -->
+			<systemPath>${basedir}/lib/toolkit-1.0.jar</systemPath> <!--项目根目录下的lib文件夹下 -->
 		</dependency>
 		<dependency>
 			<groupId>org.bouncycastle</groupId>  <!--自定義 -->
 			<artifactId>BC_14_122</artifactId>    <!--自定義 -->
 			<version>1.0</version> <!--自定義 -->
 			<scope>system</scope> <!--system，类似provided，需要显式提供依赖的jar以后，Maven就不会在Repository中查找它 -->
-			<systemPath>${basedir}/lib/org/bouncycastle/1.0/BC_14_122-1.0.jar</systemPath> <!--项目根目录下的lib文件夹下 -->
+			<systemPath>${basedir}/lib/BC_14_122-1.0.jar</systemPath> <!--项目根目录下的lib文件夹下 -->
 		</dependency>
 		<dependency>
 			<groupId>commons-httpclient</groupId>  <!--自定義 -->
 			<artifactId>commons-httpclient</artifactId>    <!--自定義 -->
 			<version>1.0</version> <!--自定義 -->
 			<scope>system</scope> <!--system，类似provided，需要显式提供依赖的jar以后，Maven就不会在Repository中查找它 -->
-			<systemPath>${basedir}/lib/commons-httpclient/commons-httpclient/1.0/commons-httpclient-1.0.jar</systemPath> <!--项目根目录下的lib文件夹下 -->
+			<systemPath>${basedir}/lib/commons-httpclient-1.0.jar</systemPath> <!--项目根目录下的lib文件夹下 -->
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>
@@ -207,6 +207,15 @@
 				<version>2.6</version>
 				<configuration>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<webResources>
+						<resource>
+							<directory>${project.basedir}/lib</directory>
+							<targetPath>WEB-INF/lib</targetPath>
+							<includes>
+								<include>**/*.jar</include>
+							</includes>
+						</resource>
+					</webResources>
 				</configuration>
 			</plugin>
 			<plugin>
