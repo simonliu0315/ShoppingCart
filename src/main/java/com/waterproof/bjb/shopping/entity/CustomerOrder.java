@@ -64,6 +64,9 @@ public class CustomerOrder implements Serializable {
 	@Column(name = "SHIPPING")
 	private BigDecimal Shipping;
 	
+	@Column(name = "PAYMENT_METHOD")
+	private int method;
+	
 	@OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER) //移除, optional = false 就會正常
 	@JoinColumn(name="STATUS_ID", referencedColumnName="STATUS", insertable = false, updatable = false)
 	private OrderStatus orderStatus;
@@ -72,6 +75,9 @@ public class CustomerOrder implements Serializable {
 	@JoinColumn(name = "ORDER_NO", referencedColumnName="ORDER_NO", insertable = false, updatable = false)
 	private List<OrderDetail> orderDetails;
 
+	@OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER) //移除, optional = false 就會正常
+	@JoinColumn(name="PAYMENT_METHOD", referencedColumnName="METHOD", insertable = false, updatable = false)
+	private PaymentMethod paymentMethod;
 	@Override
 	public String toString() {
 		return "CustomerOrder [id=" + id + ", orderNo=" + orderNo + ", amount=" + amount + ", username=" + username

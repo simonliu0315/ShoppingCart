@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.waterproof.bjb.shopping.commons.SessionParameter;
 import com.waterproof.bjb.shopping.controller.dto.CheckoutForm;
 import com.waterproof.bjb.shopping.dto.ProductInCartDto;
-import com.waterproof.bjb.shopping.entity.CustomerOrder;
 import com.waterproof.bjb.shopping.service.CustomerOrderService;
 import com.waterproof.bjb.shopping.service.SimpleUserService;
 import com.waterproof.bjb.shopping.service.dto.UserContractDto;
@@ -57,7 +57,12 @@ public class CheckOutController {
         if (productInCartDto == null) {
         	productInCartDto = new ProductInCartDto();
         }
+        productInCartDto.setPaymentMethod(formBean.getPaymentMethod());
         String username = userService.getUser().getUsername();
+        if (StringUtils.isBlank(username)) {
+        	mav.setViewName("/");
+        	return mav;
+        }
         productInCartDto.setUserId(username);
         log.info("session: {}", productInCartDto);
         UserContractDto userContractDto = new UserContractDto();
@@ -66,6 +71,7 @@ public class CheckOutController {
         String orderNumber = customerOrderService.saveToOrder(userContractDto, productInCartDto, username);
         request.getSession().setAttribute(SessionParameter.PRODUCTS_IN_CART, null);
         ProductInCartDto dto = customerOrderService.queryOrderByNo(orderNumber);
+        log.info("dto :{}", dto);
         List<ProductInCartDto> list = new ArrayList<ProductInCartDto>();
         list.add(dto);
         mav.addObject("orderNumber", orderNumber);

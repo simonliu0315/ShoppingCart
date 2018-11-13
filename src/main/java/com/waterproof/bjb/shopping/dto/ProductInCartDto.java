@@ -27,6 +27,10 @@ public class ProductInCartDto {
 	
 	private String orderStatus;
 	
+	private int paymentMethod;
+	
+	private String paymentMethodStr;
+
 	
 	public List<ProductTempOrder> getProductsTempOrder() {
 		if (productsTempOrder == null) {

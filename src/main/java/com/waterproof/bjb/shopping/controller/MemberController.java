@@ -1,5 +1,7 @@
 package com.waterproof.bjb.shopping.controller;
 
+import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +22,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hitrust.b2ctoolkit.b2cpay.B2CPayAuth;
+import com.hitrust.b2ctoolkit.util.HiMerchant;
+import com.hitrust.b2ctoolkit.util.HiServer3;
+import com.hitrust.b2ctoolkit.util.ToolkitException;
 import com.waterproof.bjb.shopping.authentication.BadCaptchaException;
 import com.waterproof.bjb.shopping.captcha.CaptchaVerifyService;
 import com.waterproof.bjb.shopping.controller.dto.UserForm;
@@ -64,6 +70,8 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("UserForm", new UserForm());
 		mav.setViewName("member/create_user");
+
+		
 		return mav;
 	}
 

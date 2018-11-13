@@ -98,21 +98,22 @@
 								<h4 class="title">付款方式</h4>
 							</div>
 							<div class="input-checkbox">
-								<input type="radio" name="payments" id="payments-1" value="1" th:checked="checked"/>
-								<label for="payments-1">銀行轉帳</label>
-								<div class="caption">
-									<p>提供底下帳戶轉帳000-00000000000</p>
-										<p></p>
-								</div>
-							</div>
-							<div class="input-checkbox">
-								<input type="radio" name="payments" id="payments-2"/>
-								<label for="payments-2">信用卡一次付清</label>
+								<input type="radio" name="paymentMethod" id="creditcard" value="1" />
+								<label for="creditcard">信用卡一次付清</label>
 								<div class="caption">
 									<p></p>
 										<p></p>
 								</div>
 							</div>
+							<div class="input-checkbox">
+								<input type="radio" name="paymentMethod" id="ATM" value="2" th:checked="checked"/>
+								<label for="ATM">銀行轉帳</label>
+								<div class="caption">
+									<p>提供底下帳戶轉帳000-00000000000</p>
+										<p></p>
+								</div>
+							</div>
+							
 							<!-- div class="input-checkbox">
 								<input type="radio" name="payments" id="payments-3"/>
 								<label for="payments-3">Paypal System</label>

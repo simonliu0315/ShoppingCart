@@ -62,11 +62,8 @@
 		<!-- dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-web-services</artifactId> 
 			</dependency> <dependency> <groupId>org.springframework.session</groupId> 
 			<artifactId>spring-session-jdbc</artifactId> </dependency -->
-		<!-- dependency>
-			<groupId>org.springframework.shell</groupId>
-			<artifactId>spring-shell-starter</artifactId>
-			<version>2.0.0.RELEASE</version>
-		</dependency-->
+		<!-- dependency> <groupId>org.springframework.shell</groupId> <artifactId>spring-shell-starter</artifactId> 
+			<version>2.0.0.RELEASE</version> </dependency -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -178,6 +175,28 @@
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.hitrust</groupId>  <!--自定義 -->
+			<artifactId>toolkit</artifactId>    <!--自定義 -->
+			<version>1.0</version> <!--自定義 -->
+			<scope>system</scope> <!--system，类似provided，需要显式提供依赖的jar以后，Maven就不会在Repository中查找它 -->
+			<systemPath>${basedir}/lib/com/hitrust/1.0/toolkit-1.0.jar</systemPath> <!--项目根目录下的lib文件夹下 -->
+		</dependency>
+		<dependency>
+			<groupId>org.bouncycastle</groupId>  <!--自定義 -->
+			<artifactId>BC_14_122</artifactId>    <!--自定義 -->
+			<version>1.0</version> <!--自定義 -->
+			<scope>system</scope> <!--system，类似provided，需要显式提供依赖的jar以后，Maven就不会在Repository中查找它 -->
+			<systemPath>${basedir}/lib/org/bouncycastle/1.0/BC_14_122-1.0.jar</systemPath> <!--项目根目录下的lib文件夹下 -->
+		</dependency>
+		<dependency>
+			<groupId>commons-httpclient</groupId>  <!--自定義 -->
+			<artifactId>commons-httpclient</artifactId>    <!--自定義 -->
+			<version>1.0</version> <!--自定義 -->
+			<scope>system</scope> <!--system，类似provided，需要显式提供依赖的jar以后，Maven就不会在Repository中查找它 -->
+			<systemPath>${basedir}/lib/commons-httpclient/commons-httpclient/1.0/commons-httpclient-1.0.jar</systemPath> <!--项目根目录下的lib文件夹下 -->
+		</dependency>
+		
 	</dependencies>
 
 	<build>

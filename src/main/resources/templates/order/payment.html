@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/SearchResultsPage" lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta th:replace="fragments/meta_resources :: meta_resources"></meta>
+</head>
+<body>
+	<div th:replace="fragments/body_header :: body_header"></div>
+
+    <!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a th:href="@{/}">首頁</a></li>
+				<li class="active">信用卡交易處理...</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+	
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+		<div th:replace="fragments/body_header :: body_info"></div>
+		<form id="payment-form" name="payment-form" class="clearfix" th:action="${url}" method="post">
+		    
+	    </form>
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+	<div th:replace="fragments/body_footer :: body_footer"></div>
+    <div th:replace="fragments/body_resources :: body_resources"></div>
+   
+    <script th:src="@{/js/index.js}"></script>
+    <script th:src="@{/js/order.js}"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $("#payment-form").submit();
+   });
+    </script>
+</body>
+
+</html>

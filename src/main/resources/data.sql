@@ -50,13 +50,15 @@ insert into USER_ROLE values('simon', 'ROLE_ADMIN', 1);
 insert into USER_ROLE values('simon', 'ROLE_USER', 1);
 insert into USER_ROLE values('simon', 'ROLE_ANONYMOUS', 1);
 
-insert into ORDER_STATUS values(1, 1, '訂單成立');
+insert into ORDER_STATUS values(1, 1, '訂單成立，待付款');
 insert into ORDER_STATUS values(2, 2, '待付款');
-insert into ORDER_STATUS values(3, 3, '待收穫');
-insert into ORDER_STATUS values(4, 4, '完成');
-insert into ORDER_STATUS values(5, 5, '取消');
+insert into ORDER_STATUS values(3, 3, '已付款，待出貨');
+insert into ORDER_STATUS values(4, 4, '已出貨');
+insert into ORDER_STATUS values(5, 5, '待收穫');
+insert into ORDER_STATUS values(6, 6, '完成');
+insert into ORDER_STATUS values(7, 7, '取消');
 
-insert into CUSTOMER_ORDER VALUES(1, 20180916010101001, 201, 'simon', 1, SYSDATE, 'simon', SYSDATE, 'simon', 100 );
+insert into CUSTOMER_ORDER VALUES(1, 20180916010101001, 201, 'simon', 1, SYSDATE, 'simon', SYSDATE, 'simon', 100, 2 );
 
 insert into ORDER_DETAIL VALUES(20180916010101001, 1, 201, 100, '防水漆01', 2);
 
@@ -72,4 +74,8 @@ insert into APPLICATION_LIST_IMAGE VALUES (1, '甲板3', '/img/application/1/Liq
 insert into PRODUCT_COLOR VALUES(1, '#8A2454;', '黑色', 'black', 'HR-11001', 1, SYSDATE, 'sys', SYSDATE, 'sys');
 insert into PRODUCT_COLOR VALUES(1, '#BF6989;', 'A色', 'a_color', 'HR-11001', 1, SYSDATE, 'sys', SYSDATE, 'sys');
 insert into PRODUCT_COLOR VALUES(1, '#9A54D8;', 'B色', 'b_color', 'HR-11001', 1, SYSDATE, 'sys', SYSDATE, 'sys');
+
+insert into PAYMENT_METHOD values(1, 1, '信用卡一次付清', 'credit card');
+insert into PAYMENT_METHOD values(2, 2, 'ATM轉帳', 'ATM');
+
 commit;

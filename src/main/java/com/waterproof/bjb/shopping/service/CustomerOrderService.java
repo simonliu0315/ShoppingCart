@@ -52,6 +52,7 @@ public class CustomerOrderService {
 		customerOrder.setUsername(username);
 		customerOrder.setAmount(productInCartDto.getTotalAmt());
 		customerOrder.setStatusId(1);
+		customerOrder.setMethod(productInCartDto.getPaymentMethod());
 		Date utilDate = new Date();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(utilDate);
@@ -109,6 +110,7 @@ public class CustomerOrderService {
 			}
 			BeanUtils.copyProperties(c, dto);
 			dto.setOrderStatus(c.getOrderStatus().getDescription());
+			dto.setPaymentMethodStr(c.getPaymentMethod().getDescription());
 			log.info("dto: {}", dto);
 			retList.add(dto);
 		}
@@ -137,6 +139,7 @@ public class CustomerOrderService {
 		}
 		BeanUtils.copyProperties(customerOrder, dto);
 		dto.setOrderStatus(customerOrder.getOrderStatus().getDescription());
+		dto.setPaymentMethodStr(customerOrder.getPaymentMethod().getDescription());
 		log.info("dto: {}", dto);
 
 		return dto;

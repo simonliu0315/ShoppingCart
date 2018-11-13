@@ -48,6 +48,7 @@ create table CUSTOMER_ORDER(
     updated timestamp,
     update_by varchar(30),
     shipping int default 0,
+    payment_method int,
     primary key(id)
 );
 create table ORDER_DETAIL(
@@ -63,6 +64,14 @@ create table ORDER_STATUS(
     id int not null,
     status int not null,
     description nvarchar(200),
+    primary key(id)
+);
+
+create table PAYMENT_METHOD(
+    id int not null,
+    method int not null,
+    description nvarchar(200),
+    eng_description nvarchar(200),
     primary key(id)
 );
 create table USER(

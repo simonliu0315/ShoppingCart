@@ -41,4 +41,14 @@ public class OrderService {
 	public String getOrderStatusDesc(int status) {
 		return ehcacheOrderStatusRepositoryCustom.selectByStatusId(status).getDescription();
 	}
+	
+	public CustomerOrder getCustomerOrder(String orderNo) {
+		return customerOrderRepository.findByOrderNoOrderByInsertedDesc(orderNo);
+	}
+	
+	public CustomerOrder updateCustomerOrderStatus(Integer id, int status) {
+		CustomerOrder order = customerOrderRepository.findOne(id);
+		order.setStatusId(status);
+		return customerOrderRepository.save(order);
+	}
 }

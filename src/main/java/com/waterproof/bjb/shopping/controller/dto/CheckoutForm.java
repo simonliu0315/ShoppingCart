@@ -18,4 +18,6 @@ public class CheckoutForm {
 	private String address;
 	
 	private String tel;
+	
+	private int paymentMethod;
 }

@@ -55,3 +55,13 @@ logging:
     #guru.springframework.controllers: DEBUG
     #org.hibernate: DEBUG
 spring.batch.job.enabled: false
+
+payment.creditcard.storeId: 62253
+#自動請款標記 1: 自動請款 0: 一般交易
+payment.creditcard.depositFlag: 0
+#查詢標記 1: 交易post回UpdateUrl
+payment.creditcard.queryFlag: 1
+#get回傳頁
+payment.creditcard.returnURL: ${spring.web.host}/payment/payment_receive/creditcard
+#post回傳頁
+payment.creditcard.updateURL: ${spring.web.host}/payment/payment_receive/creditcard
