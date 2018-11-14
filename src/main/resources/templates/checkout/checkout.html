@@ -35,25 +35,25 @@
 								<h3 class="title">帳單明細</h3>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="postName" th:field="*{postName}" placeholder="收件者姓名" th:required="required" th:value="A"/>
+								<input class="input" type="text" name="postName" th:field="*{postName}" placeholder="收件者姓名" th:required="required" th:value="${CheckoutForm.postName}"/>
 							</div>
 							<div class="form-group">
-								<input class="input" type="email" name="email" th:field="*{email}" placeholder="Email" th:required="required" value="b\\@c.com.tw"/>
+								<input class="input" type="email" name="email" th:field="*{email}" placeholder="Email" th:required="required" value="${CheckoutForm.email}"/>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="zipCode" th:field="*{zipCode}" placeholder="郵地區號" th:required="required" th:value="C"/>
+								<input class="input" type="text" name="zipCode" th:field="*{zipCode}" placeholder="郵地區號" th:required="required" th:value="${CheckoutForm.zipCode}"/>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="city" th:field="*{city}" placeholder="縣市" th:required="required" th:value="D"/>
+								<input class="input" type="text" name="city" th:field="*{city}" placeholder="縣市" th:required="required" th:value="${CheckoutForm.city}"/>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="district" th:field="*{district}" placeholder="區" th:required="required" th:value="E"/>
+								<input class="input" type="text" name="district" th:field="*{district}" placeholder="區" th:required="required" th:value="${CheckoutForm.district}"/>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="address" th:field="*{address}" placeholder="地址" th:required="required" th:value="F"/>
+								<input class="input" type="text" name="address" th:field="*{address}" placeholder="地址" th:required="required" th:value="${CheckoutForm.address}"/>
 							</div>
 							<div class="form-group">
-								<input class="input" type="tel" name="tel" th:field="*{tel}" placeholder="連絡電話" th:required="required" th:value="G"/>
+								<input class="input" type="tel" name="tel" th:field="*{tel}" placeholder="連絡電話" th:required="required" th:value="${CheckoutForm.tel}"/>
 							</div>
 							<div class="form-group">
 								<div class="input-checkbox">
@@ -98,7 +98,7 @@
 								<h4 class="title">付款方式</h4>
 							</div>
 							<div class="input-checkbox">
-								<input type="radio" name="paymentMethod" id="creditcard" value="1" />
+								<input type="radio" name="paymentMethod" id="creditcard" value="1" th:checked="checked"/>
 								<label for="creditcard">信用卡一次付清</label>
 								<div class="caption">
 									<p></p>
@@ -106,7 +106,7 @@
 								</div>
 							</div>
 							<div class="input-checkbox">
-								<input type="radio" name="paymentMethod" id="ATM" value="2" th:checked="checked"/>
+								<input type="radio" name="paymentMethod" id="ATM" value="2"/>
 								<label for="ATM">銀行轉帳</label>
 								<div class="caption">
 									<p>提供底下帳戶轉帳000-00000000000</p>
@@ -185,7 +185,7 @@
 							</table>
 							<div class="pull-right">
 							    <a th:href="@{/cart}" class="primary-btn">回購物車</a>
-								<button class="primary-btn" onclick="checkout.goOrder();">下訂單</button>
+								<button th:if="${order.totalAmt != 0}" class="primary-btn" onclick="checkout.goOrder();">下訂單</button>
 							</div>
 						</div>
 

@@ -1,9 +1,11 @@
 package com.waterproof.bjb.shopping.controller.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Data
-public class CheckoutForm {
+
+public @AllArgsConstructor @NoArgsConstructor @Data class CheckoutForm {
 
 	private String postName;
 	

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/SearchResultsPage" lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta th:replace="fragments/meta_resources :: meta_resources"></meta>
+</head>
+<body>
+	<div th:replace="fragments/body_header :: body_header"></div>
+
+    <!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a th:href="@{/}">首頁</a></li>
+				<li class="active">ATM繳款資料</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+	
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+		<div th:replace="fragments/body_header :: body_info"></div>
+			<!-- row -->
+			<div class="row">
+				<form id="checkout-form" class="clearfix" th:action="@{/checkout}" method="post" th:object="${CheckoutForm}" data-toggle="validator">
+					<div class="col-md-12">
+						<div class="order-summary clearfix">
+							<div class="section-title">
+								<h3 class="title">訂單內容</h3>
+							</div>
+							<table class="shopping-cart-table table">
+								<thead>
+									<tr>
+										<th>訂單商品</th>
+										<th></th>
+										<th class="text-center">單價</th>
+										<th class="text-center">數量</th>
+										<th class="text-center">總價</th>
+										<!-- th class="text-right"></th-->
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="thumb"><img th:src="@{${productTempOrder.img}}" alt=""/></td>
+										<td class="details">
+											<a th:href="@{'/products/' + ${productTempOrder.productId}}" th:text="${productTempOrder.productName}">商品名稱</a>
+											<ul>
+												<li><span>顏色: Camelot</span></li>
+											</ul>
+										</td>
+										<td class="price text-center">
+										    <strong th:text="${'$' +productTempOrder.price}">$0</strong>
+										    <br/>
+										    <del class="font-weak"><small th:text="${'$' + productTempOrder.originalPrice}">$0</small></del>
+										</td>
+										<td class="qty text-center">
+										    <input id="sub_quantity" name="sub_quantity" class="input" type="number" th:value="${productTempOrder.quantity}" 
+										    th:onchange="'checkout.changeQty(\'' + ${productTempOrder.productId} + '\', this);'"/></td>
+										<td class="total text-center">
+										    <strong class="primary-color" th:text="${'$' +productTempOrder.subTotalAmt}">$0</strong>
+										</td>
+										<!-- td class="text-right"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></td-->
+									</tr>
+								</tbody>
+							</table>
+							<div class="pull-right">
+							    <a th:href="@{/member/order/list}" class="primary-btn">回我的訂單</a>
+								<button class="primary-btn" onclick="checkout.goOrder();">繳款通報</button>
+							</div>
+						</div>
+
+					</div>
+				</form>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+	<div th:replace="fragments/body_footer :: body_footer"></div>
+    <div th:replace="fragments/body_resources :: body_resources"></div>
+   
+    <script th:src="@{/js/index.js}"></script>
+    <script th:src="@{/js/order.js}"></script>
+</body>
+
+</html>

@@ -51,16 +51,16 @@ insert into USER_ROLE values('simon', 'ROLE_USER', 1);
 insert into USER_ROLE values('simon', 'ROLE_ANONYMOUS', 1);
 
 insert into ORDER_STATUS values(1, 1, '訂單成立，待付款');
-insert into ORDER_STATUS values(2, 2, '待付款');
+insert into ORDER_STATUS values(2, 2, '付款確認中');
 insert into ORDER_STATUS values(3, 3, '已付款，待出貨');
 insert into ORDER_STATUS values(4, 4, '已出貨');
 insert into ORDER_STATUS values(5, 5, '待收穫');
 insert into ORDER_STATUS values(6, 6, '完成');
 insert into ORDER_STATUS values(7, 7, '取消');
 
-insert into CUSTOMER_ORDER VALUES(1, 20180916010101001, 201, 'simon', 1, SYSDATE, 'simon', SYSDATE, 'simon', 100, 2 );
+insert into CUSTOMER_ORDER VALUES(1, '20180916010101001', 201, 'simon', 1, SYSDATE, 'simon', SYSDATE, 'simon', 100, 2);
 
-insert into ORDER_DETAIL VALUES(20180916010101001, 1, 201, 100, '防水漆01', 2);
+insert into ORDER_DETAIL VALUES('20180916010101001', 1, 201, 100, '防水漆01', 2);
 
 insert into APPLICATION_LIST VALUES (1, 'Foundation sealing', '這是敘述1', 1, '/img/application/1/Waterproofing-coating-basement.jpg', SYSDATE, 'sys', SYSDATE, 'sys');
 insert into APPLICATION_LIST VALUES (2, 'Forum Groningen', '這是敘述2', 1, '/img/application/2/Facade-sealant.jpg', SYSDATE, 'sys', SYSDATE, 'sys');

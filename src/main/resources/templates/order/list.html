@@ -39,9 +39,14 @@
                 <legend>
                     <strong th:text="${'訂單編號：' + order.orderNo}"></strong>　　　　　
                     <strong class="pull-center" th:text="${'處理狀態：' + order.orderStatus}"></strong>
-                    <strong class="pull-right" th:if="${#strings.contains(order.orderStatus,'訂單成立，待付款') or #strings.contains(order.orderStatus,'待付款')}">
+                    <strong class="pull-right" th:if="${(#strings.contains(order.orderStatus,'訂單成立，待付款') or #strings.contains(order.orderStatus,'付款確認中')) and order.paymentMethod == 1}">
   
                                                             下一步：<button class="primary-btn" th:onclick="'order.goPayment(\'' + ${order.orderNo} + '\');return false;'">付款去</button>
+
+                    </strong>
+                    <strong class="pull-right" th:if="${(#strings.contains(order.orderStatus,'訂單成立，待付款') or #strings.contains(order.orderStatus,'付款確認中')) and order.paymentMethod == 2}">
+  
+                                                            下一步：<button id="informAtmPayment" class="primary-btn" th:onclick="'order.informAtmPayment(\'' + ${order.orderNo} + '\');return false;'">通知轉帳</button>
 
                     </strong>
                 </legend>

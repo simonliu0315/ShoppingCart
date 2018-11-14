@@ -48,9 +48,9 @@ public class UserRest {
 			method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ProductInCartDto addCart(@RequestBody ProductTempOrder productForm, 
+    public @ResponseBody ProductInCartDto addCart(@RequestBody ProductTempOrder productForm,
             HttpServletRequest request) {
-		log.info("call addCart. productId: {}",  productForm);
+		log.info("call addCart. ProductTempOrder: {}",  productForm);
 		Product product = productService.getProduct(Long.valueOf(productForm.getProductId()));
 		log.info("queryBy id {}, result: {}", Long.valueOf(productForm.getProductId()), product);
 		ProductTempOrder productTempOrderDto = new ProductTempOrder();

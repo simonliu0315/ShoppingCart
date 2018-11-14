@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.waterproof.bjb.shopping.controller.PaymentController;
 import com.waterproof.bjb.shopping.entity.CustomerOrder;
 import com.waterproof.bjb.shopping.entity.OrderStatus;
 import com.waterproof.bjb.shopping.manager.dto.OrderDto;
@@ -14,6 +15,9 @@ import com.waterproof.bjb.shopping.repository.CustomerOrderRepository;
 import com.waterproof.bjb.shopping.repository.OrderStatusRepository;
 import com.waterproof.bjb.shopping.repository.impl.EhcacheOrderStatusRepositoryCustom;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class OrderService {
 
@@ -43,12 +47,14 @@ public class OrderService {
 	}
 	
 	public CustomerOrder getCustomerOrder(String orderNo) {
+		log.info("getCustomerOrder {}", orderNo);
 		return customerOrderRepository.findByOrderNoOrderByInsertedDesc(orderNo);
 	}
 	
 	public CustomerOrder updateCustomerOrderStatus(Integer id, int status) {
 		CustomerOrder order = customerOrderRepository.findOne(id);
 		order.setStatusId(status);
+		log.info("call customer Order update: {}", order);
 		return customerOrderRepository.save(order);
 	}
 }

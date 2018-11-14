@@ -94,8 +94,11 @@
 							</tfoot>
 						</table>
 						<div class="pull-right">
-							<a class="primary-btn" th:href="@{/checkout}"> 去買單 <i
-								class="fa fa-arrow-circle-right"></i>
+						    <a th:if="${PRODUCTS_IN_CART.totalAmt == 0}" class="primary-btn" th:href="@{/products}"> 
+							購物去 <i class="fa fa-arrow-circle-right"></i>
+							</a>
+							<a th:if="${PRODUCTS_IN_CART.totalAmt != 0}" class="primary-btn" th:href="@{/checkout}"> 
+							去買單 <i class="fa fa-arrow-circle-right"></i>
 							</a>
 						</div>
 					</div>

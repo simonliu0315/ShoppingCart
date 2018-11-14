@@ -24,8 +24,16 @@ var checkout = {
 				data : JSON.stringify(formData),
 				async : false,
 				success : function(data) {
-					var url = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "" +contextRoot + "/checkout/";
-					window.location.href = url;
+					var url = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "" +contextRoot + "/checkout";
+					window.location.href = url + "?postName=" + $("#postName").val() +
+					"&email=" + $("#email").val() + 
+					"&zipCode=" + $("#zipCode").val() + 
+					"&city=" + $("#city").val() + 
+					"&district=" + $("#district").val() + 
+					"&address=" + $("#address").val() + 
+					"&tel=" + $("#tel").val() + 
+					"&paymentMethod=" + $('input:radio:checked[name="paymentMethod"]').val();
+					;
 				},
 				error : function(e) {
 					var obj = jQuery.parseJSON(e.responseText);

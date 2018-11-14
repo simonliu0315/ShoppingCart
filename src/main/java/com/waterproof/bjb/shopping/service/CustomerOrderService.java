@@ -109,6 +109,8 @@ public class CustomerOrderService {
 				dto.getProductsTempOrder().add(tmp);
 			}
 			BeanUtils.copyProperties(c, dto);
+			log.info("paymentMethod: {}", c.getPaymentMethod());
+			dto.setPaymentMethod(c.getPaymentMethod().getMethod());
 			dto.setOrderStatus(c.getOrderStatus().getDescription());
 			dto.setPaymentMethodStr(c.getPaymentMethod().getDescription());
 			log.info("dto: {}", dto);
@@ -138,6 +140,8 @@ public class CustomerOrderService {
 			dto.getProductsTempOrder().add(tmp);
 		}
 		BeanUtils.copyProperties(customerOrder, dto);
+		log.info("paymentMethod: {}", customerOrder.getPaymentMethod());
+		dto.setPaymentMethod(customerOrder.getPaymentMethod().getMethod());
 		dto.setOrderStatus(customerOrder.getOrderStatus().getDescription());
 		dto.setPaymentMethodStr(customerOrder.getPaymentMethod().getDescription());
 		log.info("dto: {}", dto);
