@@ -128,7 +128,7 @@ public class PaymentController {
 			CustomerOrder order = orderService.getCustomerOrder(update.getOrderNo());
 			order = orderService.updateCustomerOrderStatus(order.getId(), 1);
 		}
-		return "";
+		return "index";
 	}
 	
 	@RequestMapping(value = "/infoPayment", 
