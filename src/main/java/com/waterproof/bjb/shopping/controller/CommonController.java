@@ -34,7 +34,7 @@ public class CommonController {
 		log.info("requestURI: {}, imageName: {}", restOfTheUrl);
 	    
 	    File serverFile = new File(environment.getProperty("server.image.path") + restOfTheUrl );
-        log.info("load image path: {}", serverFile.getPath() + serverFile.getName());
+        log.info("load image path: {}", serverFile.getPath());
 	    return Files.readAllBytes(serverFile.toPath());
 	}
 }
