@@ -65,3 +65,6 @@ payment.creditcard.queryFlag: 1
 payment.creditcard.returnURL: ${spring.web.host}/payment/payment_receive/creditcard
 #post回傳頁
 payment.creditcard.updateURL: ${spring.web.host}/payment/payment_receive/creditcard
+
+shopping.currency: NTD
+server.image.path: /home/ubuntu/ShoppingCart/files

@@ -65,3 +65,7 @@ payment.creditcard.queryFlag: 1
 payment.creditcard.returnURL: ${spring.web.host}/payment/payment_receive/creditcard
 #post回傳頁
 payment.creditcard.updateURL: http://www.liquidrubber-diy.com.tw/payment/payment_receive/creditcard
+
+shopping.currency: NTD
+server.image.path: D:/Private/Shopping/ShoppingCart/files
+

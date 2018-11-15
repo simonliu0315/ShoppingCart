@@ -15,39 +15,39 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="USER_CONTRACT")
+@Table(name = "USER_CONTRACT")
 public class UserContract implements Serializable {
 
-		private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-		@Id
-		@GenericGenerator(name="g2", strategy="increment")
-		@GeneratedValue(generator="g2")
-		@Column(name="ID")
-		private Long id;
+	@Id
+	@GenericGenerator(name = "g2", strategy = "increment")
+	@GeneratedValue(generator = "g2")
+	@Column(name = "ID")
+	private Long id;
 
-		@Column
-		private String username;
-		
-		@Column
-		private String postName;
-		
-		@Column
-		private String email;
-		
-		@Column
-		private String zipCode;
-		
-		@Column
-		private String city;
-		
-		@Column
-		private String district;
-		
-		@Column
-		private String address;
-		
-		@Column
-		private String tel;
-		
+	@Column
+	private String username;
+
+	@Column
+	private String postName;
+
+	@Column
+	private String email;
+
+	@Column
+	private String zipCode;
+
+	@Column
+	private String city;
+
+	@Column
+	private String district;
+
+	@Column
+	private String address;
+
+	@Column
+	private String tel;
+
 }

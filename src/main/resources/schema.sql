@@ -72,6 +72,7 @@ create table PAYMENT_METHOD(
     method int not null,
     description nvarchar(200),
     eng_description nvarchar(200),
+    status int not null,
     primary key(id)
 );
 create table USER(
@@ -146,4 +147,19 @@ create table Product_Color(
     updated timestamp,
     update_by varchar(30),
     primary key(id, color)
+);
+create table Product_TAG(
+    id int not null,
+    tag_name varchar2(20),
+    status int default 1,
+    primary key(id)
+);
+create table Product_TAG_RELATION(
+    product_id int not null,
+    tag_id int not null,
+    inserted timestamp,
+    insert_by varchar(30),
+    updated timestamp,
+    update_by varchar(30),
+    primary key(product_id, tag_id)
 );
