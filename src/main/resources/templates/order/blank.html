@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/SearchResultsPage" lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta th:replace="fragments/meta_resources :: meta_resources"></meta>
+</head>
+
+<body>
+	<div th:replace="fragments/body_header :: body_header"></div>
+
+	
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+		    <div th:replace="fragments/body_header :: body_info"></div>
+			<!-- row -->
+			<div class="row">
+			    <div class="col-md-6 col-xs-8 col-md-offset-3 col-xs-offset-2" >
+					<div class="billing-details">
+						<a th:href="@{/}">點我回首頁</a><br/><a th:href="@{/login}">點我重新登入</a>
+					</div>
+			
+			    </div>
+			</div>
+			<!-- /row -->
+		    
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+	<div th:replace="fragments/body_footer :: body_footer"></div>
+    <div th:replace="fragments/body_resources :: body_resources"></div>
+    
+    <script th:src="@{/js/index.js}"></script>
+</body>
+
+</html>
+
