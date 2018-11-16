@@ -42,6 +42,20 @@
     speed: 300,
     arrows: true,
   });
+  //HOME SLICK 1
+  $('#home-slick-1').slick({
+    autoplay: true,
+    infinite: true,
+    speed: 300,
+    arrows: true,
+  });
+  //HOME SLICK 2
+  $('#home-slick-2').slick({
+    autoplay: true,
+    infinite: true,
+    speed: 300,
+    arrows: true,
+  });
 
   // PRODUCTS SLICK
   $('#product-slick-1').slick({

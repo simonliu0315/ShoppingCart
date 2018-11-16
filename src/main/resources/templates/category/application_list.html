@@ -31,6 +31,48 @@
 			<!-- row -->
 			<div class="row">
 				<div id="main" class="col-md-12">
+				    <input id="page" name="page" type="hidden" th:value="${pageNumber + 1}"/>
+				    <input id="pageSize" name="pageSize" type="hidden" th:value="${pageSize}"/>
+					<input id="price_low" name="price_low" type="hidden" th:value="${price_low}"/>
+					<input id="price_high" name="price_high" type="hidden" th:value="${price_high}"/>
+					<!-- store top filter -->
+					<div class="store-filter clearfix">
+						<div class="pull-left">
+							<div class="row-filter">
+								<a href="#"><i class="fa fa-th-large"></i></a>
+								<a href="#" class="active"><i class="fa fa-bars"></i></a>
+							</div>
+							<div class="sort-filter">
+								<span class="text-uppercase">排序:</span>
+								<select id="orderby" name="orderby" class="input" onChange="product_list.reload();">
+										<option value="1">依時間</option>
+										<option value="2">依價格</option>
+										<option value="3">依評比</option>
+									</select>
+								<a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>
+							</div>
+						</div>
+						<div class="pull-right">
+							<div class="page-filter">
+								<span class="text-uppercase">每頁筆數:</span>
+								<select id="pageSize_1" name="pageSize_1" class="input" onChange="product_list.reload();">
+										<option value="10" th:if="${pageSize != 10}">10</option>
+										<option value="10" th:if="${pageSize == 10}" selected="true">10</option>
+										<option value="20" th:if="${pageSize != 20}">20</option>
+										<option value="20" th:if="${pageSize == 20}" selected="true">20</option>
+										<option value="30" th:if="${pageSize != 30}">30</option>
+										<option value="30" th:if="${pageSize == 30}" selected="true">30</option>
+								</select>
+							</div>
+							<ul class="store-pages" th:each="i, itrStat: ${#numbers.sequence(1, totalPages)}">
+								<li th:if="${i == 1}"><span class="text-uppercase">頁次:</span></li>
+								<li th:if="${i == pageNumber + 1}" class="active" th:text="${i}">1</li>
+								<li th:if="${i != pageNumber + 1}"><a th:href="@{/products/search(removed=)} + ${default_url_page} + '' + ${i}" th:text="${i}">1</a></li>
+								<li th:if="${i == totalPages}"><a href="#"><i class="fa fa-caret-right"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- /store top filter -->
 					<div id="store">
 						<div class="row">
 							<!-- Product Single -->

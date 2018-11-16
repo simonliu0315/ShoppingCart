@@ -112,18 +112,16 @@ public class ProductController {
         if (page != 0) {
         	page = page - 1;
         }
+        log.info("page {}, pageSize {}", page, pageSize);
+        Pageable pageable = new PageRequest(page, pageSize);
+        
         Category categoryEntity = categorySerivce.findCategoryById(new Long(category));
         if (categoryEntity != null && !StringUtils.isEmpty(categoryEntity.getUrlView())) {
         	mav.addObject("APPLICATION_LIST", categorySerivce.findApplicationList());
         	mav.setViewName(categoryEntity.getUrlView());
         	return mav;
         } 
-        
-        //categorySerivce.categorySerivce()
-        //if 
-        
-        log.info("page {}, pageSize {}", page, pageSize);
-        Pageable pageable = new PageRequest(page, pageSize);
+
         Page<Product> products = productService.getFilterProduct(q, category, productId, price_low, price_high, orderby, pageable);
         log.info("products size {}", products.getContent().size());
         mav.addObject("activate_product", products.getContent());
