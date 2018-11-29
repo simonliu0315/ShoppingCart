@@ -13,7 +13,7 @@ spring.jpa.open-in-view: false
 
 spring:
   datasource:
-    url: jdbc:postgresql://127.0.0.1:5433/SHOPPING_CART
+    url: jdbc:postgresql://127.0.0.1:5432/SHOPPING_CART
     username: liquidrubber
     password: liquidrubber123
     driverClassName: org.postgresql.Driver
