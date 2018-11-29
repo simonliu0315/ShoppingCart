@@ -1,49 +1,132 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
-    <head>
-        <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>
-        <link th:href="@{https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet"/>
-        <link th:href="@{/css/default.css}" rel="stylesheet"/>
-        <link rel="icon" th:href="@{/images/favicon.ico}" type="image/x-icon"/>
-        <meta charset="UTF-8"/>
-        <title>用户管理</title>
-    </head>
+<html itemscope="" itemtype="http://schema.org/SearchResultsPage" lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
 
-    <body>
-        <div class="contentDiv">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta th:replace="fragments/meta_resources :: meta_resources"></meta>
+</head>
+<body>
+	<div th:replace="fragments/body_header :: body_header"></div>
 
-            <h5> 《 Spring Boot 2.x 核心技术实战》第二章快速入门案例</h5>
+    <!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a th:href="@{/manager}">管理系統</a></li>
+				<li class="active">使用者管理</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+        <!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+		    <div th:replace="fragments/body_header :: body_info"></div>
+			<!-- row -->
+			<div class="row">
+
+            <h3>--使用者管理--</h3>
 
             <legend>
-                <strong>用户管理</strong>
+                <strong th:if="${action == 'create'}">建立使用者</strong>
+                <strong th:if="${action == 'update'}">修改使用者</strong>
             </legend>
 
             <form th:action="@{/manager/users/{action}(action=${action})}" method="post" class="form-horizontal">
 
                 <div class="form-group">
-                    <label for="user_name" class="col-sm-2 control-label">名称:</label>
+                    <label for="user_name" class="col-sm-2 control-label">使用者名稱:</label>
                     <div class="col-xs-4">
-                        <input type="text" class="form-control" id="user_name" name="name" th:value="${user.username}" th:field="*{user.username}" />
+                        <input type="text" class="form-control" id="user_name" name="name" th:value="${user.username}" th:field="*{user.username}" th:readonly="${action == 'update'}"/>
                     </div>
-                    <label class="col-sm-2 control-label text-danger" th:if="${#fields.hasErrors('user.username')}" th:errors="*{user.username}">姓名有误!</label>
+                    <label class="col-sm-2 control-label text-danger" th:if="${#fields.hasErrors('user.username')}" th:errors="*{user.username}">姓名有誤!</label>
                 </div>
-
+                
+                <div class="form-group">
+                    <label for="user_cName" class="col-sm-2 control-label">中文姓名:</label>
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control" id="cName" name="cName" th:value="${user.cName}" th:field="*{user.cName}" />
+                    </div>
+                    <label class="col-sm-2 control-label text-danger" th:if="${#fields.hasErrors('user.cName')}" th:errors="*{user.cName}">中文姓名!</label>
+                </div>
+                
+                <div class="form-group">
+                    <label for="user_email" class="col-sm-2 control-label">電子郵件:</label>
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control" id="email" name="email" th:value="${user.email}" th:field="*{user.email}" />
+                    </div>
+                    <label class="col-sm-2 control-label text-danger" th:if="${#fields.hasErrors('user.email')}" th:errors="*{user.email}">電子郵件!</label>
+                </div>
+                
+                <div class="form-group">
+                    <label for="user_password" class="col-sm-2 control-label">密碼:</label>
+                    <div class="col-xs-4">
+                        <input type="password" class="form-control" id="password" name="password" th:value="${user.password}" th:field="*{user.password}" />
+                    </div>
+                    <label class="col-sm-2 control-label text-danger" th:if="${#fields.hasErrors('user.password')}" th:errors="*{user.password}">密碼!</label>
+                </div>
+                
+                <div class="form-group">
+                    <label for="user_address" class="col-sm-2 control-label">地址:</label>
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control" id="address" name="address" th:value="${user.address}" th:field="*{user.address}" />
+                    </div>
+                    <label class="col-sm-2 control-label text-danger" th:if="${#fields.hasErrors('user.address')}" th:errors="*{user.address}">地址有誤!</label>
+                </div>
+                
+                <div class="form-group">
+                    <label for="user_mobile" class="col-sm-2 control-label">連絡電話:</label>
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control" id="mobile" name="mobile" th:value="${user.mobile}" th:field="*{user.mobile}" />
+                    </div>
+                    <label class="col-sm-2 control-label text-danger" th:if="${#fields.hasErrors('user.mobile')}" th:errors="*{user.mobile}">連絡電話!</label>
+                </div>
 
                 <div class="form-group">
-                    <label for="user_birthday" class="col-sm-2 control-label">出生日期:</label>
+                    <label for="user_birthday" class="col-sm-2 control-label" >出生日期:</label>
                     <div class="col-xs-4">
-                        <input type="date" class="form-control" id="user_birthday" name="birthday" th:value="${user.birthday}" th:field="*{user.birthday}"/>
+                        <input type="date" class="form-control" id="birthday" name="birthday" th:value="${user.birthdayStr}" th:field="*{user.birthdayStr}"/>
                     </div>
-                    <label class="col-sm-2 control-label text-danger" th:if="${#fields.hasErrors('user.birthday')}" th:errors="*{user.birthday}">生日有误!</label>
+                    <label class="col-sm-2 control-label text-danger" th:if="${#fields.hasErrors('user.birthdayStr')}" th:errors="*{user.birthdayStr}">生日有誤!</label>
                 </div>
 
+                <div class="form-group">
+                    <label for="user_status" class="col-sm-2 control-label">狀態:</label>
+                    <div class="col-xs-4">
+                        <select id="status" name="status" class="input">
+							<option value="0" th:selected="${user.status == 0}">停用</option>
+							<option value="1" th:selected="${user.status == 1}">啟用</option>
+							
+						</select>
+                    </div>
+                    
+                </div>
+                
+                <div class="form-group">
+                    <label for="user_isAdmin" class="col-sm-2 control-label">是否為管理者:</label>
+                    <div class="col-xs-4">
+                        <input type="checkbox" id="isAdmin" name="isAdmin" value="1" th:checked="${isAdmin == true}"/>
+                    </div>
+                    
+                </div>
+                
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <input class="btn btn-primary" type="submit" value="提交"/>&nbsp;&nbsp;
+                        <input class="btn btn-primary" type="submit" value="送出"/>&nbsp;&nbsp;
                         <input class="btn" type="button" value="返回" onclick="history.back()"/>
                     </div>
                 </div>
             </form>
         </div>
-    </body>
+      </div>
+    </div>
+        
+    <div th:replace="fragments/body_footer :: body_footer"></div>
+    <div th:replace="fragments/body_resources :: body_resources"></div>
+   
+    <script th:src="@{/js/index.js}"></script>
+ </body>
+
 </html>

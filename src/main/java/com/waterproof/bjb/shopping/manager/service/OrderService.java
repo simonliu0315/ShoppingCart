@@ -35,6 +35,7 @@ public class OrderService {
 		for(CustomerOrder customerOrder:customerOrderRepository.findAll()) {
 			OrderDto dto = new OrderDto();
 			BeanUtils.copyProperties(customerOrder, dto);
+			log.info("statusId: {}", customerOrder.getStatusId());
 			dto.setStatusDescription(getOrderStatusDesc(customerOrder.getStatusId()));
 			dto.setId(customerOrder.getId());
 			list.add(dto);
@@ -56,5 +57,10 @@ public class OrderService {
 		order.setStatusId(status);
 		log.info("call customer Order update: {}", order);
 		return customerOrderRepository.save(order);
+	}
+	
+	public CustomerOrder getCustomerOrder(int id) {
+		log.info("getCustomerOrder {}", id);
+		return customerOrderRepository.findOne(id);
 	}
 }

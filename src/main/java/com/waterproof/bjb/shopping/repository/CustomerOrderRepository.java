@@ -13,4 +13,6 @@ public interface CustomerOrderRepository extends JpaRepository<CustomerOrder, In
 	public List<CustomerOrder> findByUsernameOrderByInsertedDesc(String username);
 	
 	public CustomerOrder findByOrderNoOrderByInsertedDesc(String orderNo);
+	
+	public CustomerOrder findByIdOrderByInsertedDesc(int id);
 }

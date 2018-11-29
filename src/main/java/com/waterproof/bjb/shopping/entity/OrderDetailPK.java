@@ -19,5 +19,8 @@ public class OrderDetailPK implements Serializable {
 	
 	@Column(name="PRODUCT_ID")
 	private Integer productId;
+	
+	@Column(name="COLOR")
+	private String color;
 
 }

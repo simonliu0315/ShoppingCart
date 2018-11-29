@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,30 +15,34 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "PAYMENT_METHOD")
-public class PaymentMethod implements Serializable {
+@Table(name = "ORDER_CONTRACT")
+public class OrderContract implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GenericGenerator(name="g3", strategy="increment")
-	@GeneratedValue(generator="g3")
-	@Column(name="ID")
-    private Integer id;
-	
-	@Column
-	private int method;
-	
-	@Column
-	private String description;
+	@Column(name="ORDER_NO")
+	private String orderNo;
 
 	@Column
-	private String engDescription;
-	
-	@Column
-	private String content;
-	
+	private String postName;
 
-	
-	
+	@Column
+	private String email;
+
+	@Column
+	private String zipCode;
+
+	@Column
+	private String city;
+
+	@Column
+	private String district;
+
+	@Column
+	private String address;
+
+	@Column
+	private String tel;
+
 }

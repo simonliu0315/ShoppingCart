@@ -1,9 +1,12 @@
 package com.waterproof.bjb.shopping.rest;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -58,6 +61,7 @@ public class UserRest {
 		BeanUtils.copyProperties(product, productTempOrderDto);
 		productTempOrderDto.setProductId(product.getId().intValue());
 		productTempOrderDto.setProductName(product.getName());
+		productTempOrderDto.setColor(productForm.getColor());
         if (product.getPromotion_on().compareTo(BigDecimal.ONE) == 0) {
         	productTempOrderDto.setPrice(product.getPromotion_price());
         	productTempOrderDto.setDiscount(product.getPromotion_discount());
@@ -69,14 +73,28 @@ public class UserRest {
 		log.info("After copy product info: {}", productTempOrderDto);
 		ProductInCartDto productInCartDto = (ProductInCartDto)request.getSession().getAttribute(SessionParameter.PRODUCTS_IN_CART);
 		log.info("session: {}", productInCartDto);
+		if (productInCartDto == null) {
+			productInCartDto = new ProductInCartDto();
+		}
+		if (productInCartDto.getProductsTempOrder() == null) {
+			productInCartDto.setProductsTempOrder(new ArrayList<ProductTempOrder>());
+		}
+		//這裡先取得預設的顏色
+		if (StringUtils.isBlank(productForm.getColor())) {
+			if (!CollectionUtils.isEmpty(product.getProductColors())) {
+				productForm.setColor(product.getProductColors().get(0).getId().getColor());
+				productTempOrderDto.setColor(productForm.getColor());
+			}
+		}
 		boolean hasNotInCart = true;
 		if (productInCartDto.getProductsTempOrder().size() == 0) {		
 			productInCartDto.getProductsTempOrder().add(productTempOrderDto);
 			productTempOrderDto.setQuantity(quantity);
 		} else {
+			
 			for(int i = 0 ; i < productInCartDto.getProductsTempOrder().size() ; i++) {
 				log.info("user products info {} in cart", productInCartDto.getProductsTempOrder().get(i));
-				if(productInCartDto.getProductsTempOrder().get(i).getProductId() == productForm.getProductId()) {
+				if(productInCartDto.getProductsTempOrder().get(i).getProductId() == productForm.getProductId() && StringUtils.equals(productInCartDto.getProductsTempOrder().get(i).getColor(), productForm.getColor() )) {
 					log.info("Same productId {} to break loop.", productInCartDto.getProductsTempOrder().get(i).getProductId());
 					if (productForm.isResetQuantity()) {
 						productInCartDto.getProductsTempOrder().get(i).setQuantity(quantity);						

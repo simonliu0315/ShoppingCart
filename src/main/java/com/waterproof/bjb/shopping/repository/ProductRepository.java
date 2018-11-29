@@ -1,5 +1,6 @@
 package com.waterproof.bjb.shopping.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,8 +19,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	@Query(value = "SELECT A FROM Product A where discount <> 100 and activate = 1 and promotion_on = 0 ORDER BY updated DESC")
     public List<Product> getDiscountProduct();
 	
-	@Query(value = "SELECT A FROM Product A where promotion_start <= sysdate and promotion_end >= sysdate and promotion_on = 1 and activate = 1 ORDER BY updated DESC")
-    public List<Product> getPromotionProduct();
+	@Query(value = "SELECT A FROM Product A where promotion_start <= :nowDate and promotion_end >= :nowDate and promotion_on = 1 and activate = 1 ORDER BY updated DESC")
+    public List<Product> getPromotionProduct(@Param("nowDate") Date nowDate);
 	
 	@Query(value = "SELECT A FROM Product A where activate = 1 ORDER BY inserted DESC")
     public List<Product> getAllActivateProduct();

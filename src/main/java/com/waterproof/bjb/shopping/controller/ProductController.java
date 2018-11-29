@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.waterproof.bjb.shopping.entity.ApplicationList;
 import com.waterproof.bjb.shopping.entity.Category;
 import com.waterproof.bjb.shopping.entity.Product;
 import com.waterproof.bjb.shopping.service.CategoryService;
@@ -117,7 +118,17 @@ public class ProductController {
         
         Category categoryEntity = categorySerivce.findCategoryById(new Long(category));
         if (categoryEntity != null && !StringUtils.isEmpty(categoryEntity.getUrlView())) {
-        	mav.addObject("APPLICATION_LIST", categorySerivce.findApplicationList());
+        	
+        	pageable = new PageRequest(page, pageSize);
+        	Page<ApplicationList> pApplicationList = categorySerivce.getFilterApplication(q, orderby, pageable);
+        	mav.addObject("APPLICATION_LIST", pApplicationList.getContent());
+        	String defaultUrlPage = "&";
+            defaultUrlPage += "pageSize="+ pageSize + "&page=";
+            mav.addObject("default_url_page", defaultUrlPage);
+            mav.addObject("totalPages", pApplicationList.getTotalPages());
+            mav.addObject("pageSize", pApplicationList.getSize());
+            mav.addObject("pageNumber", pageable.getPageNumber());
+            mav.addObject("pageable", pageable);
         	mav.setViewName(categoryEntity.getUrlView());
         	return mav;
         } 

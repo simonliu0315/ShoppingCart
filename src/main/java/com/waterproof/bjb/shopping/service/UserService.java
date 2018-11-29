@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.waterproof.bjb.shopping.entity.User;
 import com.waterproof.bjb.shopping.entity.UserRole;
+import com.waterproof.bjb.shopping.entity.UserRolePK;
 import com.waterproof.bjb.shopping.repository.UserRepository;
 import com.waterproof.bjb.shopping.repository.UserRoleRepository;
 import com.waterproof.bjb.shopping.utils.PasswordUtil;
@@ -47,7 +48,7 @@ public class UserService {
 	}
 
 	public com.waterproof.bjb.shopping.entity.User findById(String id) {
-		log.info("獲取使用者 ID ：" + id);
+		log.info("取得使用者 ID ：" + id);
 		return userRepository.findOne(id);
 	}
 	
@@ -67,5 +68,29 @@ public class UserService {
 			userRoleRepository.saveAndFlush(userRole);
 		}
 		return u;
+	}
+	
+	public void deleteUserRole(String userName, String role) {
+		UserRolePK id = new UserRolePK();
+		id.setUsername(userName);
+		id.setRole(role);
+		userRoleRepository.delete(id);
+	}
+	
+	public void createUserRole(String userName, String role) {
+		UserRole userRole = new UserRole();
+		UserRolePK id = new UserRolePK();
+		id.setUsername(userName);
+		id.setRole(role);
+		userRole.setId(id);
+		userRole.setStatus(1);
+		userRoleRepository.save(userRole);
+	}
+	
+	public UserRole getUserRole(String userName, String role) {
+		UserRolePK id = new UserRolePK();
+		id.setUsername(userName);
+		id.setRole(role);
+		return userRoleRepository.findOne(id);
 	}
 }

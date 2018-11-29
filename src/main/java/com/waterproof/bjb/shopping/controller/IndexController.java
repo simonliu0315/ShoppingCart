@@ -1,5 +1,7 @@
 package com.waterproof.bjb.shopping.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +9,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringEscapeUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -22,6 +26,7 @@ import com.waterproof.bjb.shopping.dto.ProductInCartDto;
 import com.waterproof.bjb.shopping.entity.Product;
 import com.waterproof.bjb.shopping.service.CategoryService;
 import com.waterproof.bjb.shopping.service.ProductService;
+import com.waterproof.bjb.shopping.utils.MailUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,10 +41,17 @@ public class IndexController {
 	@Resource
 	private ProductService productService;
 	
+	@Autowired
+	private MailUtil mailUtil;
+	
 	@RequestMapping(value = "", method = {RequestMethod.GET})
     public ModelAndView getPage(@RequestParam(value = "page", defaultValue = "0", required = false) String page,
     		HttpServletRequest request) {
-        log.info("start index getPage.......");
+        
+		log.info("start index getPage.......");
+        
+        
+        
         ModelAndView mav = new ModelAndView();
         if (request.getSession().getAttribute(SessionParameter.PRODUCTS_IN_CART) == null) {
         	ProductInCartDto productInCart = new ProductInCartDto();

@@ -142,7 +142,7 @@
 		<!-- /HEADER -->
 	</div>
 	<div th:fragment="body_info" th:remove="tag">
-	    <div th:if="${msg != null}" th:class="${msgType}">
+	    <div th:if="${msg != null}" th:class="${msgType}" role="alert">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <strong>注意:</strong><p th:text="${msg}"></p>
         </div>

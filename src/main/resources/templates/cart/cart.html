@@ -49,8 +49,9 @@
 										<td class="thumb"><img th:src="@{${productTempOrder.img}}" alt=""/></td>
 										<td class="details">
 											<a th:href="@{'/products/' + ${productTempOrder.productId}}" th:text="${productTempOrder.productName}">商品名稱</a>
-											<ul>
-												<li><span>顏色: Camelot</span></li>
+											<ul class="color-option">
+											    <li><a href="#" th:style="${'background-color:' + productTempOrder.color}"></a></li>
+												<li><span th:text="${'顏色: ' + productTempOrder.color}">顏色: ??</span></li>
 											</ul>
 										</td>
 										<td class="price text-center">
@@ -59,7 +60,7 @@
 										    <del class="font-weak"><small th:text="${'$' + productTempOrder.originalPrice}">$0</small></del>
 										</td>
 										<td class="qty text-center"><input id="sub_quantity" name="sub_quantity" class="input" type="number" th:value="${productTempOrder.quantity}"
-										th:onchange="'cart.changeQty(\'' + ${productTempOrder.productId} + '\', this);'"/></td>
+										th:onchange="'cart.changeQty(\'' + ${productTempOrder.productId} + '\', this, \'' + ${productTempOrder.color} + '\');'"/></td>
 										<td class="total text-center">
 										    <strong class="primary-color" th:text="${'$' +productTempOrder.subTotalAmt}">$0</strong>
 										</td>

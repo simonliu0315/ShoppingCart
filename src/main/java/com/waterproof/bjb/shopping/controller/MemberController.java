@@ -37,6 +37,7 @@ import com.waterproof.bjb.shopping.service.CustomerOrderService;
 import com.waterproof.bjb.shopping.service.SimpleUserService;
 import com.waterproof.bjb.shopping.service.UserService;
 import com.waterproof.bjb.shopping.utils.MailUtil;
+import com.waterproof.bjb.shopping.utils.NotifyUtil;
 import com.waterproof.bjb.shopping.utils.PasswordUtil;
 
 import lombok.extern.slf4j.Slf4j;
@@ -63,6 +64,9 @@ public class MemberController {
 
 	@Autowired
 	private CaptchaVerifyService captchaVerifyService;
+	
+	@Autowired
+	private NotifyUtil util;
 
 	@RequestMapping(value = "/createUser", method = { RequestMethod.GET })
 	public ModelAndView getPage(HttpServletRequest request) {
@@ -163,6 +167,8 @@ public class MemberController {
 		String username = simpleUserService.getUser().getUsername();
 		List<ProductInCartDto> productInCartDtos = customerOrderService.queryOrder(username);
 		mav.addObject("orders", productInCartDtos);
+		mav.addObject("tip", util.getBankTransferInfo());
+		mav.addObject("fromPage", "member");
 		mav.setViewName("order/list");
 		return mav;
 	}

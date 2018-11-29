@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,14 +14,18 @@ import org.springframework.stereotype.Service;
 import com.waterproof.bjb.shopping.dto.ProductInCartDto;
 import com.waterproof.bjb.shopping.dto.ProductTempOrder;
 import com.waterproof.bjb.shopping.entity.CustomerOrder;
+import com.waterproof.bjb.shopping.entity.OrderContract;
 import com.waterproof.bjb.shopping.entity.OrderDetail;
 import com.waterproof.bjb.shopping.entity.OrderDetailPK;
 import com.waterproof.bjb.shopping.entity.Product;
+import com.waterproof.bjb.shopping.entity.ShippingMethod;
 import com.waterproof.bjb.shopping.entity.UserContract;
 import com.waterproof.bjb.shopping.repository.CustomerOrderRepository;
+import com.waterproof.bjb.shopping.repository.OrderContractRepository;
 import com.waterproof.bjb.shopping.repository.OrderDetailRepository;
 import com.waterproof.bjb.shopping.repository.OrderStatusRepository;
 import com.waterproof.bjb.shopping.repository.ProductRepository;
+import com.waterproof.bjb.shopping.repository.ShippingMethodRepository;
 import com.waterproof.bjb.shopping.service.dto.UserContractDto;
 
 import lombok.extern.slf4j.Slf4j;
@@ -40,13 +45,20 @@ public class CustomerOrderService {
 
 	@Autowired
 	private ProductRepository pruductRepository;
+	
+	@Autowired
+	private ShippingMethodRepository shippingMethodRepository;
+	
+	@Autowired
+	private OrderContractRepository orderContractRepository;
 
 	public String saveToOrder(UserContractDto userContractDto, ProductInCartDto productInCartDto, String username) {
 		CustomerOrder customerOrder = new CustomerOrder();
 
 		UserContract contract = new UserContract();
-
+		OrderContract orderContract = new OrderContract();
 		BeanUtils.copyProperties(userContractDto, contract);
+		BeanUtils.copyProperties(userContractDto, orderContract);
 		contract.setUsername(username);
 		log.info("UserContract {}", contract);
 		customerOrder.setUsername(username);
@@ -73,6 +85,7 @@ public class CustomerOrderService {
 
 			pk.setOrderNo(String.valueOf(utilDate.getTime()));
 			pk.setProductId(order.getProductId());
+			pk.setColor(StringUtils.defaultString(order.getColor()));
 			orderDetail.setId(pk);
 			orderDetail.setDiscount(order.getDiscount());
 			// orderDetail.setOrderId(String.valueOf(C));
@@ -80,10 +93,12 @@ public class CustomerOrderService {
 			// orderDetail.setProductId(order.getProductId());
 			orderDetail.setProductName(order.getProductName());
 			orderDetail.setQuantity(order.getQuantity());
-
+			
 			log.info("ProductTempOrder {}", orderDetail);
 			orderDetailRepository.save(orderDetail);
 		}
+		orderContract.setOrderNo(customerOrder.getOrderNo());
+		orderContractRepository.save(orderContract);
 		return String.valueOf(utilDate.getTime());
 	}
 
@@ -105,6 +120,7 @@ public class CustomerOrderService {
 				tmp.setDescription(p.getDescription());
 				tmp.setOriginalPrice(p.getOriginalPrice());
 				tmp.setProductId(p.getId().intValue());
+				tmp.setColor(d.getId().getColor());
 				
 				dto.getProductsTempOrder().add(tmp);
 			}
@@ -137,6 +153,7 @@ public class CustomerOrderService {
 			tmp.setDiscount(p.getDiscount());
 			tmp.setDescription(p.getDescription());
 			tmp.setOriginalPrice(p.getOriginalPrice());
+			tmp.setColor(d.getId().getColor());
 			dto.getProductsTempOrder().add(tmp);
 		}
 		BeanUtils.copyProperties(customerOrder, dto);
@@ -148,5 +165,9 @@ public class CustomerOrderService {
 
 		return dto;
 
+	}
+	
+	public List<ShippingMethod> getShipping() {
+		return shippingMethodRepository.getActive();
 	}
 }

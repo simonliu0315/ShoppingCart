@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.Data;
 
@@ -29,6 +31,7 @@ public class Product implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID")
 	private Long id;
 
 	private String name;
@@ -73,6 +76,7 @@ public class Product implements Serializable {
 
 	private String update_by;
 	
+	@Transient
 	private String promotion_end_str;
 	
 	public String getPromotion_end_str() {
@@ -81,7 +85,8 @@ public class Product implements Serializable {
 		return text;
 	}
 	
-	@OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER, orphanRemoval = true)
-	@JoinColumn(name = "ID", referencedColumnName="ID", insertable = false, updatable = false)
+//	@OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER, orphanRemoval = false)
+//	@JoinColumn(name = "ID", referencedColumnName="PRODUCT_ID", insertable = false, updatable = false)
+	@Transient
 	private List<ProductColor> productColors;
 }

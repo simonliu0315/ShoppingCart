@@ -1,17 +1,17 @@
 package com.waterproof.bjb.shopping.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.waterproof.bjb.shopping.controller.IndexController;
 import com.waterproof.bjb.shopping.entity.Product;
+import com.waterproof.bjb.shopping.repository.ProductColorRepository;
 import com.waterproof.bjb.shopping.repository.ProductRepository;
 import com.waterproof.bjb.shopping.repository.impl.ProductRepositoryCustom;
 
@@ -27,8 +27,15 @@ public class ProductService {
 	@Resource
 	private ProductRepository productRepository;
 	
+	@Autowired
+	private ProductColorRepository productColorRepository;
+	
 	public Product getProduct(Long id) {
-		return productRepository.findOne(id);
+		Product product = productRepository.findOne(id);
+		if (product != null) {
+			product.setProductColors(productColorRepository.getProductColor(id.intValue()));	
+		}
+		return product;
 	}
 	
 	public List<Product> getProductsOrderInsertTime() {
@@ -40,7 +47,7 @@ public class ProductService {
 	}
 	
 	public List<Product> getPromotionProduct() {
-		return productRepository.getPromotionProduct();
+		return productRepository.getPromotionProduct(new Date());
 	}
 	
 	public List<Product> getActivateProduct() {
@@ -60,4 +67,5 @@ public class ProductService {
 		}
 		return pproduct;
 	}
+
 }

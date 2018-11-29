@@ -3,6 +3,22 @@
 
 <head>
 <meta th:replace="fragments/meta_resources :: meta_resources"></meta>
+<style>
+  .zip-selector select {
+    display: block;
+    width: 33%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    text-transform: none;
+  }
+</style>
 </head>
 
 <body>
@@ -40,21 +56,24 @@
 							<div class="form-group">
 								<input class="input" type="email" name="email" th:field="*{email}" placeholder="Email" th:required="required" value="${CheckoutForm.email}"/>
 							</div>
-							<div class="form-group">
-								<input class="input" type="text" name="zipCode" th:field="*{zipCode}" placeholder="郵地區號" th:required="required" th:value="${CheckoutForm.zipCode}"/>
-							</div>
-							<div class="form-group">
-								<input class="input" type="text" name="city" th:field="*{city}" placeholder="縣市" th:required="required" th:value="${CheckoutForm.city}"/>
-							</div>
-							<div class="form-group">
-								<input class="input" type="text" name="district" th:field="*{district}" placeholder="區" th:required="required" th:value="${CheckoutForm.district}"/>
-							</div>
+							<div class="zip-selector">
+                                <div class="form-group">
+                                    <select class="county"></select> 
+                                </div>
+                                <div class="form-group">
+                                    <select class="district"></select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="zipcode input" placeholder="郵遞區號"/>
+                                </div>
+                            </div>
 							<div class="form-group">
 								<input class="input" type="text" name="address" th:field="*{address}" placeholder="地址" th:required="required" th:value="${CheckoutForm.address}"/>
 							</div>
 							<div class="form-group">
-								<input class="input" type="tel" name="tel" th:field="*{tel}" placeholder="連絡電話" th:required="required" th:value="${CheckoutForm.tel}"/>
+								<input class="input" type="tel" name="tel" th:field="*{tel}" placeholder="連絡電話(手機、市話)" th:required="required" th:value="${CheckoutForm.tel}"/>
 							</div>
+
 							<div class="form-group">
 								<div class="input-checkbox">
 									<input type="checkbox" id="register"/>
@@ -75,22 +94,16 @@
 							<div class="section-title">
 								<h4 class="title">貨運方式</h4>
 							</div>
-							<div class="input-checkbox">
-								<input type="radio" name="shipping" id="shipping-1"  value="100" th:checked="checked" th:required="required"></input>
-								<label for="shipping-1">宅配免運 -  $100</label>
+							<div class="input-checkbox" th:each="shippingMethod, itrStat : ${ShippingMethods}">
+							    <input th:if="${itrStat.index == 0}" type="radio" name="shipping" th:id="${'shipping-' + itrStat.index}"  value="100" th:checked="checked" th:required="required"></input>
+								<input th:if="${itrStat.index != 0}" type="radio" name="shipping" th:id="${'shipping-' + itrStat.index}"  value="100" th:required="required"></input>
+								<label th:for="${'shipping-' + itrStat.index}" th:text="${shippingMethod.description}">宅配免運</label>
 								<div class="caption">
-									<p>黑貓宅急便寄送.</p>
+									<p th:text="${shippingMethod.content}">寄送.</p>
 										<p></p>
 								</div>
 							</div>
-							<div class="input-checkbox">
-								<input type="radio" name="shipping" id="shipping-2" value="80" th:required="required"/>
-								<label for="shipping-2">快遞 - $80</label>
-								<div class="caption">
-									<p>郵局寄送.</p>
-										<p></p>
-								</div>
-							</div>
+							
 						</div>
 
 						<div class="payments-methods">
@@ -146,8 +159,9 @@
 										<td class="thumb"><img th:src="@{${productTempOrder.img}}" alt=""/></td>
 										<td class="details">
 											<a th:href="@{'/products/' + ${productTempOrder.productId}}" th:text="${productTempOrder.productName}">商品名稱</a>
-											<ul>
-												<li><span>顏色: Camelot</span></li>
+											<ul class="color-option">
+											    <li><a href="#" th:style="${'background-color:' + productTempOrder.color}"></a></li>
+												<li><span th:text="${'顏色: ' + productTempOrder.color}">顏色: ??</span></li>
 											</ul>
 										</td>
 										<td class="price text-center">
@@ -156,8 +170,8 @@
 										    <del class="font-weak"><small th:text="${'$' + productTempOrder.originalPrice}">$0</small></del>
 										</td>
 										<td class="qty text-center">
-										    <input id="sub_quantity" name="sub_quantity" class="input" type="number" th:value="${productTempOrder.quantity}" 
-										    th:onchange="'checkout.changeQty(\'' + ${productTempOrder.productId} + '\', this);'"/></td>
+										    <input th:id="${'sub_quantity_' + itrStat.index}" name="sub_quantity" class="input" type="number" th:value="${productTempOrder.quantity}" 
+										    th:onchange="'checkout.changeQty(\'' + ${productTempOrder.productId} + '\', this, \'' + ${productTempOrder.color} + '\');'"/></td>
 										<td class="total text-center">
 										    <strong class="primary-color" th:text="${'$' +productTempOrder.subTotalAmt}">$0</strong>
 										</td>
@@ -201,8 +215,17 @@
 	<div th:replace="fragments/body_footer :: body_footer"></div>
     <div th:replace="fragments/body_resources :: body_resources"></div>
 
+    <script th:src="@{/js/tw-city-selector.js}"></script>
     <script th:src="@{/js/index.js}"></script>
     <script th:src="@{/js/checkout.js}"></script>
+    <script>
+  new TwCitySelector({
+    el: ".zip-selector",
+    elCounty: ".county", // 在 el 裡查找 dom
+    elDistrict: ".district", // 在 el 裡查找 dom
+    elZipcode: ".zipcode" // 在 el 裡查找 dom
+  });
+</script>
 </body>
 
 </html>

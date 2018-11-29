@@ -15,6 +15,8 @@ public class ProductTempOrder extends ProductDto {
 	
 	private boolean resetQuantity = false;
 	
+	private String color;
+	
 	public BigDecimal getSubTotalAmt() {
 		return super.getPrice().multiply(new BigDecimal(this.quantity));
 	}
@@ -25,7 +27,8 @@ public class ProductTempOrder extends ProductDto {
 				+ resetQuantity + ", getProductId()=" + getProductId() + ", getProductName()=" + getProductName()
 				+ ", getOriginalPrice()=" + getOriginalPrice() + ", getPrice()=" + getPrice() + ", getDiscount()="
 				+ getDiscount() + ", getDescription()=" + getDescription() + ", getImg()=" + getImg()
-				+ ", getCategoryId()=" + getCategoryId() + ", toString()=" + super.toString() + ", getClass()="
+				+ ", getCategoryId()=" + getCategoryId()
+				+ ", getcolor()=" + getColor() + ", toString()=" + super.toString() + ", getClass()="
 				+ getClass() + "]";
 	}
 	

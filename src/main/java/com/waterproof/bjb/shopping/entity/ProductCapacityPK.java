@@ -9,13 +9,15 @@ import lombok.Data;
 
 @Data
 @Embeddable
-public class ProductColorPK implements Serializable {
+public class ProductCapacityPK implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "PRODUCT_ID")
 	private int productId;
 
-	private String color;
+	private Number capacity;
+	
+	private String unit;
 
 }

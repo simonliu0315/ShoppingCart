@@ -14,8 +14,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "PAYMENT_METHOD")
-public class PaymentMethod implements Serializable {
+@Table(name = "SHIPPING_METHOD")
+public class ShippingMethod implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

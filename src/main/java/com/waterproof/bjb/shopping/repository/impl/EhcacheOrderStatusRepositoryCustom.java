@@ -47,13 +47,13 @@ public class EhcacheOrderStatusRepositoryCustom {
         return "删除成功";
     }
     
-    @Cacheable(key = "#p0")
+    //@Cacheable(key = "#p0")
     public OrderStatus selectByStatusId(int status) {
     	for(OrderStatus orderStatus: orderStatusRepository.findAll()) {
+    		log.info("orderStatus: {}", orderStatus);
 			if (orderStatus.getStatus() == status) {
+				log.info("return {}" ,orderStatus);
 				return orderStatus;
-			} else {
-				return new OrderStatus();
 			}
 		}
     	return new OrderStatus();

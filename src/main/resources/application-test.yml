@@ -1,9 +1,9 @@
 spring.profiles.active: production
 
 spring.thymeleaf.cache: false
-spring.web.host: http://www.liquidrubber-diy.com.tw
+spring.web.host: http://localhost:8090
 spring.web.name: 液態橡膠
-server.port: 80
+server.port: 8090
 spring.security.user.name: user
 spring.security.user.password: user
 
@@ -13,12 +13,12 @@ spring.jpa.open-in-view: false
 
 spring:
   datasource:
-    url: postgresql://127.0.0.1:5433/SHOPPING_CART
+    url: jdbc:postgresql://127.0.0.1:5433/SHOPPING_CART
     username: liquidrubber
     password: liquidrubber123
     driverClassName: org.postgresql.Driver
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
     properties:
@@ -26,7 +26,7 @@ spring:
         show_sql: true
         use_sql_comments: true
         format_sql: true
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+        dialect: org.hibernate.dialect.H2Dialect
   cache:
     ehcache:
       config: classpath:ehcache.xml
@@ -60,4 +60,8 @@ payment.creditcard.returnURL: ${spring.web.host}/payment/payment_receive/creditc
 payment.creditcard.updateURL: ${spring.web.host}/payment/payment_receive/creditcard
 
 shopping.currency: NTD
-server.image.path: /home/ubuntu/ShoppingCart/files
+shopping.currency.tw: 新台幣
+server.image.path: D:/Private/Shopping/ShoppingCart/files
+shopping.bankcode: 822(中國信託銀行代碼)
+shopping.accountNo: 1235675432355
+shopping.accountName: 築城國際事業有限公司

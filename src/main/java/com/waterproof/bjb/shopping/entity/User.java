@@ -12,14 +12,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
-import org.springframework.data.annotation.Transient;
+//import org.springframework.data.annotation.Transient;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "USER")
+@Table(name = "APP_USER")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -36,14 +37,15 @@ public class User implements Serializable {
 
 	@Column(name = "PASSWORD")
 	private String password;
-
+	
+	@Transient
 	private String passwordConfirm;
 
 	@Column(name = "ADDRESS")
 	private String address;
 
 	@Column(name = "BIRTHDAY")
-	private String birthday;
+	private Date birthday;
 
 	@Column(name = "VERIFY_CODE")
 	private String verifyCode;
@@ -53,7 +55,16 @@ public class User implements Serializable {
 
 	@Column(name = "STATUS")
 	private int status;
+	
+	@Column(name = "MOBILE")
+	private String mobile;
 
+	@Transient
+	private int isAdmin;
+	
+	@Transient
+	private String birthdayStr;
+	
 	@Transient
 	public String getPasswordConfirm() {
 		return passwordConfirm;
@@ -63,7 +74,7 @@ public class User implements Serializable {
 		this.passwordConfirm = passwordConfirm;
 	}
 
-	@OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER, orphanRemoval = false)
 	@JoinColumn(name = "USERNAME", referencedColumnName = "USERNAME", insertable = false, updatable = false)
 	private List<UserRole> userRoles;
 

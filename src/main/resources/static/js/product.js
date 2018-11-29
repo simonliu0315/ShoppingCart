@@ -8,9 +8,10 @@ var product = {
 	init : function() {
 		var formData = {};
 	},
-	changeColor : function(id) {
+	changeColor : function(id, color) {
 		$("li[id^='color_']" ).removeAttr("class");
-		$('#color_'+ id).attr("class", "active");
+		$("#color_"+ id).attr("class", "active");
+		$("#color").val(color);
 	}
 }
 $(function() {

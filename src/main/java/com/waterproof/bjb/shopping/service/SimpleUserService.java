@@ -26,7 +26,9 @@ public class SimpleUserService {
 				return user;
 	    	} else {
 	    		UserDetails currentUser = (UserDetails) auth.getPrincipal();
-	    		return userRepository.findOne(currentUser.getUsername());
+	    		User u = userRepository.findOne(currentUser.getUsername());
+	    		
+	    		return u;
 	    	}
 		} else {
 			return new User();

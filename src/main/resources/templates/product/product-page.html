@@ -83,7 +83,8 @@
 								</div>
 								<a href="#">3 Review(s) / Add Review</a>
 							</div>
-							<p><strong>貨品狀態:</strong> 有現貨</p>
+							<p th:if="${product.activate == 1}"><strong>貨品狀態:</strong> 有現貨</p>
+							<p th:unless="${product.activate == 1}"><strong>貨品狀態:</strong><font color="red" size="3"> 缺貨中</font></p>
 							<p><strong>品牌:</strong> 加拿大液態橡膠 </p>
 							<p th:utext="${product.shortDescription}">測試商品描述.</p>
 							<div class="product-options">
@@ -93,11 +94,12 @@
 									<li><a href="#">XL</a></li>
 									<li><a href="#">SL</a></li>
 								</ul-->
-								<ul class="color-option" >
+								<ul class="color-option" th:if="${not #lists.isEmpty(product.productColors)}" >
+								    <input type="hidden" id="color" name="color" value=""/>
 									<li><span class="text-uppercase">顏色:</span></li>
 									<th:block th:each="productColor, itrStat: ${product.productColors}">
 									    <li th:id="${'color_' + productColor.eName}">
-									        <a href="#" th:style="${'background-color:' + productColor.id.color}" th:onclick="'product.changeColor(\'' +  ${productColor.eName} + '\');'"></a>
+									        <a href="#" th:style="${'background-color:' + productColor.id.color}" th:onclick="'product.changeColor(\'' +  ${productColor.eName} + '\', \''+${productColor.id.color}+'\');'" th:title="${productColor.name}"></a>
 									    </li>
 									</th:block>
 									
@@ -114,9 +116,11 @@
 							<div class="product-btns">
 								<div class="qty-input">
 									<span class="text-uppercase">數量: </span>
-									<input id="input_quantity" name="input_quantity" class="input" type="number"/>
+									<input id="input_quantity" name="input_quantity" class="input" type="number" value="1"/>
 								</div>
-								<button class="primary-btn add-to-cart" th:onclick="'index.addCart(\'' + ${product.id} + '\');'"><i class="fa fa-shopping-cart"></i>加入購物車</button>
+								<button th:if="${product.activate == 1}" class="primary-btn add-to-cart" th:onclick="'index.addCart(\'' + ${product.id} + '\');'"><i class="fa fa-shopping-cart"></i>加入購物車</button>
+								<button th:unless="${product.activate == 1}" class="primary-btn add-to-cart" th:disabled="${product.activate == 0}"><i class="fa fa-shopping-cart"></i>加入購物車</button>
+								
 								<div class="pull-right">
 									<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
 									<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>

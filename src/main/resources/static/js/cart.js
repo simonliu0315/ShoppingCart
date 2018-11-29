@@ -11,9 +11,9 @@ var cart = {
 	goOrder: function() {
 		
 	},
-	changeQty: function(productId, qty) {
+	changeQty: function(productId, qty, color) {
 		var formData = {
-				"productId" : productId, "quantity" : qty.value , "resetQuantity": true
+				"productId" : productId, "quantity" : qty.value , "resetQuantity": true, "color": color
 			};
 			$.ajax({
 				type : "POST",

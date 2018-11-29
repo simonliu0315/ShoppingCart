@@ -34,13 +34,21 @@ var index = {
 	    });
 	},
 	addCart : function(productId) {
+		
+//		$("#addCartModalCenter").modal({
+//			show: true
+//		});
+//		return ;
 		$("#shopping-cart-list").empty();
 		var loading = "<div class='product product-widget text-center'>" +
                 "<img src='/img/loading.gif' alt='' />" +
             "</div>";
         $("#shopping-cart-list").html(loading);
+        if ($("#input_quantity").val() == null ) {
+        	$("#input_quantity").val(1);
+        }
 		var formData = {
-			"productId" : productId, "quantity" : $("#input_quantity").val()
+			"productId" : productId, "quantity" : $("#input_quantity").val(), "color": $("#color").val()
 		};
 		$.ajax({
 			type : "POST",
@@ -65,8 +73,15 @@ var index = {
 									"$" + (value.price) + "<span class='qty'>x" + value.quantity + "</span>" +
 								"</h3>" +
 								"<h2 class='product-name'>" +
-									"<a href='#'>"+ value.productName +"</a>" +
-								"</h2>" +
+									"<a href='#'>"+ value.productName +"</a>";
+									if (value.color != null) {
+										html +="<ul class='color-option'>"+
+								        "<li><a href='#' style='background-color:" + value.color +"'></a></li>"+
+									    "<li><span>" + value.color + "</span></li>"+
+								    "</ul>";
+									}
+									
+						html += "</h2>" +
 							"</div>" +
 							"<button class='cancel-btn' onClick='index.deleteCart(" + value.productId + ");'>" +
 								"<i class='fa fa-trash'></i>" +
@@ -118,8 +133,14 @@ var index = {
 									"$" + (value.price) + "<span class='qty'>x" + value.quantity + "</span>" +
 								"</h3>" +
 								"<h2 class='product-name'>" +
-									"<a href='#'>"+ value.productName +"</a>" +
-								"</h2>" +
+								"<a href='#'>"+ value.productName +"</a>";
+								if (value.color != null) {
+									html +="<ul class='color-option'>"+
+							        "<li><a href='#' style='background-color:" + value.color +"'></a></li>"+
+								    "<li><span>" + value.color + "</span></li>"+
+							    "</ul>";
+								}		
+					html += "</h2>" +
 							"</div>" +
 							"<button class='cancel-btn' onClick='index.deleteCart(" + value.productId + ");'>" +
 								"<i class='fa fa-trash'></i>" +
@@ -170,8 +191,14 @@ var index = {
 									"$" + (value.price) + "<span class='qty'>x" + value.quantity + "</span>" +
 								"</h3>" +
 								"<h2 class='product-name'>" +
-									"<a href='#'>"+ value.productName +"</a>" +
-								"</h2>" +
+								"<a href='#'>"+ value.productName +"</a>";
+								if (value.color != null) {
+									html +="<ul class='color-option'>"+
+							        "<li><a href='#' style='background-color:" + value.color +"'></a></li>"+
+								    "<li><span>" + value.color + "</span></li>"+
+							    "</ul>";
+								}
+					html += "</h2>" +
 							"</div>" +
 							"<button class='cancel-btn' onClick='index.deleteCart(" + value.productId + ");'>" +
 								"<i class='fa fa-trash'></i>" +
