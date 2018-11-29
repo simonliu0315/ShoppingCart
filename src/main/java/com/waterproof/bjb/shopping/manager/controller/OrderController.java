@@ -56,7 +56,7 @@ public class OrderController {
         return "manager/order/orderForm";
     }
 	
-	@Controller
+	
 	@RequestMapping("/report")
 	public class ReportController {
 	       @RequestMapping(method=RequestMethod.GET)
