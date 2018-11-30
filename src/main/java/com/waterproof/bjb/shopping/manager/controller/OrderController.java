@@ -26,45 +26,41 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping(value = "/manager/order") 
+@RequestMapping(value = "/manager/order")
 public class OrderController {
 
 	@Autowired
-    private UserService userService; 
-	
+	private UserService userService;
+
 	@Autowired
-    private OrderService orderService; 
-	
-	
+	private OrderService orderService;
+
 	@RequestMapping(method = RequestMethod.GET)
-    public String getOrderList(ModelMap map) {
-        map.addAttribute("orderList", orderService.getAllOrder());
-        return "manager/order/orderList";
-    }
-	
-	
+	public String getOrderList(ModelMap map) {
+		log.info("getOrderList...");
+		map.addAttribute("orderList", orderService.getAllOrder());
+		return "manager/order/orderList";
+	}
+
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-    public String getUser(@PathVariable int id, ModelMap map) {
+	public String getUser(@PathVariable int id, ModelMap map) {
 		log.info("orderlist");
 		CustomerOrder customerOrder = orderService.getCustomerOrder(id);
 		log.info("customerOrder {}", customerOrder);
-		for(OrderDetail detail : customerOrder.getOrderDetails()) {
+		for (OrderDetail detail : customerOrder.getOrderDetails()) {
 			log.info("detail {}", detail);
 		}
 		map.addAttribute("order", customerOrder);
 		map.addAttribute("action", "update");
-        return "manager/order/orderForm";
-    }
-	
-	
-	@RequestMapping("/report")
-	public class ReportController {
-	       @RequestMapping(method=RequestMethod.GET)
-	       public ModelAndView getExcel(){
-	              List<OrderDto> studentList = new ArrayList<OrderDto>(); 
-	              studentList.add(new OrderDto());
-	              studentList.add(new OrderDto());
-	              return new ModelAndView(new ExcelReportView(), "studentList", studentList);
-	       }
+		return "manager/order/orderForm";
 	}
+
+	@RequestMapping(value = "/report", method = RequestMethod.GET)
+	public ModelAndView getExcel() {
+		List<OrderDto> studentList = new ArrayList<OrderDto>();
+		studentList.add(new OrderDto());
+		studentList.add(new OrderDto());
+		return new ModelAndView(new ExcelReportView(), "studentList", studentList);
+	}
+
 }

@@ -170,8 +170,8 @@ insert into PRODUCT_CAPACITY values(38, '3.78', 'L', '1加侖(3.78L)', '1加侖(
 --insert into PRODUCT_COLOR VALUES(38, '#000000;', '黑色', 'black', 'HR-11001', 1, now(), 'sys', now(), 'sys');
 
 
-insert into APP_USER values('simon', '王大明', 'cyliu0315@gmail.com', '$2a$10$NnlqpBH.dJZLqG//0IWoG.W8IowSknbv4yIoW0rHpvbQRrHg3LeFC', '地址',to_timestamp('01-08-1981 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'),NULL, 'sys',NULL,'sys', '1', to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 1, '09123456789');
-insert into APP_USER values('simon1', '王大明', 'cyliu0315@gmail.com', '$2a$10$NnlqpBH.dJZLqG//0IWoG.W8IowSknbv4yIoW0rHpvbQRrHg3LeFC', '地址',to_timestamp('01-08-1981 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'),NULL, 'sys',NULL,'sys', '1', to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 1, '09123456789');
+insert into APP_USER values('simon', '王大明', 'cyliu0315@gmail.com', '$2a$10$NnlqpBH.dJZLqG//0IWoG.W8IowSknbv4yIoW0rHpvbQRrHg3LeFC', '116', '台北市','文山區','地址',to_timestamp('01-08-1981 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'),NULL, 'sys',NULL,'sys', '1', to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 1, '09123456789');
+insert into APP_USER values('simon1', '王大明', 'cyliu0315@gmail.com', '$2a$10$NnlqpBH.dJZLqG//0IWoG.W8IowSknbv4yIoW0rHpvbQRrHg3LeFC', '116', '台北市','文山區','地址',to_timestamp('01-08-1981 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'),NULL, 'sys',NULL,'sys', '1', to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 1, '09123456789');
 
 insert into USER_ROLE values('simon', 'ROLE_ADMIN', 1);
 insert into USER_ROLE values('simon', 'ROLE_USER', 1);
@@ -192,7 +192,7 @@ insert into ORDER_STATUS values(7, 7, '取消');
 insert into CUSTOMER_ORDER VALUES(1, '20180916010101001', 201, 'simon', 1, now(), 'simon', now(), 'simon', 100, 2);
 
 insert into ORDER_DETAIL VALUES('20180916010101001', 1, 201, 100, '防水漆01', 2, '#000000;');
-
+insert into ORDER_CONTRACT VALUES('20180916010101001', '王郵寄', 'aaa@gmail.com', '116', '台北市', '文山區', '羅斯福路五萬218號', '0931886655');
 insert into APPLICATION_LIST VALUES (1, '基礎密封', '工程：地基密封<br/>
 說明：解決任何可能滲漏的地下水問題是地基的重點。<br/>
 <br/>

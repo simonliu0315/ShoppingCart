@@ -17,7 +17,7 @@
 		<!-- container -->
 		<div class="container">
 		<div th:replace="fragments/body_header :: body_info"></div>
-		    <form th:action="@{/login}" method="post">
+		    <form id="userForm" th:action="@{/login}" method="post">
 			<!-- row -->
 			<div class="row">
 			    <div class="col-md-6 col-xs-8 col-md-offset-3 col-xs-offset-2" >
@@ -29,7 +29,7 @@
 								<input class="input" type="text" name="username" value="simon" placeholder="帳號" th:required="required"/>
 							</div>
 							<div class="form-group">
-								<input class="input" type="password" name="password" value="123456" placeholder="密碼" th:required="required"/>
+								<input id="password" class="input" type="password" name="password" value="123456" placeholder="密碼" th:required="required"/>
 							</div>
 							<div class="form-group">
 							    <input type="text" class="form-control" id="verifyCode" placeholder="驗證碼" name="verifyCode" style="width: 30%; display: inline;" th:required="required"/>
@@ -47,13 +47,13 @@
 										<p>請輸入密碼後按"送出"，系統會自動幫您建立帳號，登入後請記得更新個人資料</p>
 										<p></p>
 										<div class="form-group">
-										    <input class="input" type="password" name="repassword" placeholder="請重新輸入密碼"/>
+										    <input class="input" type="password" name="repassword" id="repassword" placeholder="請重新輸入密碼"/>
 										</div>
 										<div class="form-group">
-									        <input class="input" type="email" name="email" value="cyliu0315@gmail.com" placeholder="電子郵件信箱"/>
+									        <input class="input" type="email" name="email" id="email" value="cyliu0315@gmail.com" placeholder="電子郵件信箱"/>
 									    </div>
 									    <div class="form-group text-right">
-									        <button class="primary-btn" type="input" value="Sign In" onclick="gogo();">註冊/登入</button>
+									        <button id="registerBtn" class="primary-btn" type="button" value="Register">註冊/登入</button>
 									    </div>
 									</div>
 									

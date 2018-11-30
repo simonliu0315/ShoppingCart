@@ -26,17 +26,17 @@ public class CommonController {
 	private Environment environment;
 	
 	
-	@RequestMapping(value = "/image/**", produces = MediaType.IMAGE_JPEG_VALUE)
+	@RequestMapping(value = "/image/**", produces = {MediaType.IMAGE_JPEG_VALUE,MediaType.IMAGE_PNG_VALUE})
 	@ResponseBody
 	public byte[] getImage(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String restOfTheUrl = (String) request.getAttribute(
 		        HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
 		restOfTheUrl = restOfTheUrl.replaceAll("/common", "");
-		
-		log.info("requestURI: {}, imageName: {}", restOfTheUrl);
+		File serverFile = new File(environment.getProperty("server.image.path") + restOfTheUrl );
+		log.info("requestURI: {}, imageName: {}", restOfTheUrl, serverFile.getName());
 		response.setContentType(MediaType.IMAGE_JPEG_VALUE);
-	    File serverFile = new File(environment.getProperty("server.image.path") + restOfTheUrl );
-        log.info("load image path: {}", serverFile.getPath());
+	    
+        log.info("load image path: {}, isExist? {}", serverFile.getPath(), serverFile.exists());
 	    return Files.readAllBytes(serverFile.toPath());
 	}
 }

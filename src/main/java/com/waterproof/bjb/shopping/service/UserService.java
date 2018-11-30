@@ -2,6 +2,7 @@ package com.waterproof.bjb.shopping.service;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +36,10 @@ public class UserService {
 	}
 
 	public com.waterproof.bjb.shopping.entity.User update(com.waterproof.bjb.shopping.entity.User user) {
+		com.waterproof.bjb.shopping.entity.User u = userRepository.findOne(user.getUsername());
+		if (StringUtils.isNotBlank(user.getPassword()) && !StringUtils.equals(PasswordUtil.getPassword(user.getPassword()), u.getPassword())) {
+			user.setPassword(PasswordUtil.getPassword(user.getPassword()));
+		}
 		log.info("更新使用者：" + user.toString());
 		return userRepository.save(user);
 	}

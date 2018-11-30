@@ -15,7 +15,9 @@ public class UserForm {
 	
 	private String password;
 	
-	private String city;
+	private String zipCode;
+	
+	private String county;
 	
 	private String district;
 	
@@ -24,6 +26,8 @@ public class UserForm {
 	private String tel;
 	
 	private String birthday;
+	
+	private String mobile;
 	
 	
 	

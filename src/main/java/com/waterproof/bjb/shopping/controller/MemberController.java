@@ -39,6 +39,7 @@ import com.waterproof.bjb.shopping.service.UserService;
 import com.waterproof.bjb.shopping.utils.MailUtil;
 import com.waterproof.bjb.shopping.utils.NotifyUtil;
 import com.waterproof.bjb.shopping.utils.PasswordUtil;
+import com.waterproof.bjb.shopping.utils.ShoppingDateUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -64,7 +65,7 @@ public class MemberController {
 
 	@Autowired
 	private CaptchaVerifyService captchaVerifyService;
-	
+
 	@Autowired
 	private NotifyUtil util;
 
@@ -75,7 +76,6 @@ public class MemberController {
 		mav.addObject("UserForm", new UserForm());
 		mav.setViewName("member/create_user");
 
-		
 		return mav;
 	}
 
@@ -105,6 +105,7 @@ public class MemberController {
 					.get_SHA_512_SecurePassword(DateUtils.formatDate(new Date(), "yyyyMMddHHmmss"), "1234567");
 			User user = new User();
 			BeanUtils.copyProperties(formBean, user);
+			user.setBirthday(ShoppingDateUtil.parseDateTime(formBean.getBirthday(), "yyyy/MM/dd"));
 			user.setVerifyCode(verifyCode);
 			List<UserRole> userRoles = new ArrayList<UserRole>();
 			UserRole role = new UserRole();
@@ -176,6 +177,42 @@ public class MemberController {
 	@RequestMapping(value = "/myAccount", method = { RequestMethod.GET })
 	public ModelAndView myAccount() {
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("user", simpleUserService.getUser());
+		mav.setViewName("member/user");
+		return mav;
+	}
+
+	@RequestMapping(value = "/modifyUser", method = { RequestMethod.POST })
+	public ModelAndView getModifyPagePost(@ModelAttribute UserForm formBean, HttpServletRequest request) {
+		log.info("getPagePost page form {}", formBean);
+		
+		ModelAndView mav = new ModelAndView();
+		// 驗證碼驗證
+		String requestCaptcha = request.getParameter("verifyCode");
+		log.info("requestCaptcha: {}", requestCaptcha);
+		if (StringUtils.isEmpty(requestCaptcha)) {
+			mav.addObject("msgType", "alert alert-danger alert-dismissible");
+			mav.addObject("msg", "驗證碼不能為空!");
+			mav.addObject("user", simpleUserService.getUser());
+			mav.setViewName("member/user");
+			return mav;
+		}
+		if (!captchaVerifyService.isVerify(request.getSession().getId(), requestCaptcha)) {
+			mav.addObject("msgType", "alert alert-danger alert-dismissible");
+			mav.addObject("msg", "驗證碼錯誤!");
+			mav.addObject("user", simpleUserService.getUser());
+			mav.setViewName("member/user");
+			return mav;
+		}
+		User user = new User();
+		BeanUtils.copyProperties(formBean, user);
+		User u = userservice.findById(simpleUserService.getUser().getUsername());
+		if (u != null) {
+			user.setBirthday(ShoppingDateUtil.parseDateTime(formBean.getBirthday(), "yyyy/MM/dd"));
+			userservice.update(user);
+		}
+		mav.addObject("msgType", "alert alert-info alert-dismissible");
+		mav.addObject("msg", "修改完成!");
 		mav.addObject("user", simpleUserService.getUser());
 		mav.setViewName("member/user");
 		return mav;

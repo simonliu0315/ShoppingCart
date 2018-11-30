@@ -1699,7 +1699,10 @@ textarea.input {
   position: static;
   margin: 15px 0px;
 }
-
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
 /*=========================================================
 	12 -> RESPONSIVE
 ===========================================================*/

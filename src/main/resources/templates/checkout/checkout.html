@@ -57,14 +57,20 @@
 								<input class="input" type="email" name="email" th:field="*{email}" placeholder="Email" th:required="required" value="${CheckoutForm.email}"/>
 							</div>
 							<div class="zip-selector">
+							    <div class="col-lg-3 col-md-4 col-sm-4 nopadding">
                                 <div class="form-group">
-                                    <select class="county"></select> 
+                                    <select class="county form-control"></select> 
                                 </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-4">
                                 <div class="form-group">
-                                    <select class="district"></select>
+                                    <select class="district form-control"></select>
                                 </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-4">
                                 <div class="form-group">
                                     <input type="text" class="zipcode input" placeholder="郵遞區號"/>
+                                </div>
                                 </div>
                             </div>
 							<div class="form-group">
@@ -218,13 +224,15 @@
     <script th:src="@{/js/tw-city-selector.js}"></script>
     <script th:src="@{/js/index.js}"></script>
     <script th:src="@{/js/checkout.js}"></script>
-    <script>
+	<script>
   new TwCitySelector({
     el: ".zip-selector",
     elCounty: ".county", // 在 el 裡查找 dom
     elDistrict: ".district", // 在 el 裡查找 dom
     elZipcode: ".zipcode" // 在 el 裡查找 dom
   });
+  $(".county").attr("class", "county form-control");
+  $(".district").attr("class", "district form-control");
 </script>
 </body>
 

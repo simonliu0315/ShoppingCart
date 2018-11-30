@@ -68,14 +68,29 @@
                     <label class="col-sm-2 control-label text-danger" th:if="${#fields.hasErrors('user.password')}" th:errors="*{user.password}">密碼!</label>
                 </div>
                 
+				
                 <div class="form-group">
                     <label for="user_address" class="col-sm-2 control-label">地址:</label>
-                    <div class="col-xs-4">
+                    <div class="zip-selector">
+				    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <select class="county form-control"></select> 
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <select class="district form-control"></select>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <input id="zipcode" type="text" class="zipcode input" placeholder="郵遞區號" th:value="${user.zipCode}"/>
+                    </div>			    
+                    </div>
+                    
+                </div>
+                <div class="form-group">
+                    <label for="user_address" class="col-sm-2 control-label"></label>
+                    <div class="col-lg-8 col-md-8 col-xs-4">
                         <input type="text" class="form-control" id="address" name="address" th:value="${user.address}" th:field="*{user.address}" />
                     </div>
                     <label class="col-sm-2 control-label text-danger" th:if="${#fields.hasErrors('user.address')}" th:errors="*{user.address}">地址有誤!</label>
                 </div>
-                
                 <div class="form-group">
                     <label for="user_mobile" class="col-sm-2 control-label">連絡電話:</label>
                     <div class="col-xs-4">
@@ -125,8 +140,18 @@
         
     <div th:replace="fragments/body_footer :: body_footer"></div>
     <div th:replace="fragments/body_resources :: body_resources"></div>
-   
+    <script th:src="@{/js/tw-city-selector.js}"></script>
     <script th:src="@{/js/index.js}"></script>
+    <script>
+  new TwCitySelector({
+    el: ".zip-selector",
+    elCounty: ".county", // 在 el 裡查找 dom
+    elDistrict: ".district", // 在 el 裡查找 dom
+    elZipcode: ".zipcode" // 在 el 裡查找 dom
+  });
+  $(".county").attr("class", "county form-control");
+  $(".district").attr("class", "district form-control");
+</script>
  </body>
 
 </html>

@@ -28,10 +28,58 @@
 			<div class="row">
 
             <h3>--訂單管理--</h3>
-
+            
+            <div class="form-group">
+            <div class="row">
+                <label for="startDate" class="col-sm-2 control-label">時間區間:</label>
+                <div class="input-group date" data-provide="datepicker">
+                    <input type="text" id="startDate" name="startDate"/>
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-th"></span>
+                    </div>
+                </div>
+                <div class="input-group date" data-provide="datepicker">
+                    <input type="text" id="endDate" name="endDate"/>
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-th"></span>
+                    </div>
+                </div>
+                    
+                    
+                    
+                
+                
+            </div>
+            </div>
+           
+            <div class="form-group">
+             <div class="row">
+                <label for="orderNo" class="col-sm-2 control-label">訂單編號:</label>
+                <div class="col-md-8 col-xs-8 ">
+                    <input type="text" id="orderNo" name="orderNo" />
+                </div>
+            </div>
+            </div>
+            
+            <div class="form-group">
+            <div class="row">
+                <label for="statusId" class="col-sm-2 control-label">訂單狀態:</label>
+                <div class="col-md-8 col-xs-8 ">
+                    <input type="text" id="statusId" name="statusId"/>
+                </div>
+            </div>
+            </div>
+            <div class="form-group">
+            <div class="row text-center">
+               <input class="btn btn-primary" type="submit" value="查詢"/>&nbsp;&nbsp;
+               <input class="btn btn-default" type="button" value="返回" onclick="history.back()"/>
+               
+            </div>
+            </div>
             <table class="table table-hover table-condensed">
                 <legend>
                     <strong>訂單列表</strong>
+                    <strong class="text-right"><a class="btn btn-info"  th:href="@{'/manager/order/report'}">匯出</a></strong>
                 </legend>
                 <thead>
                     <tr>
@@ -66,10 +114,17 @@
         </div>
         </div>
         
- <div th:replace="fragments/body_footer :: body_footer"></div>
+    <div th:replace="fragments/body_footer :: body_footer"></div>
     <div th:replace="fragments/body_resources :: body_resources"></div>
    
     <script th:src="@{/js/index.js}"></script>
+    <script type="text/javascript">
+    $('.datepicker').datepicker({
+        format: 'mm/dd/yyyy',
+        startDate: '-3d'
+    });
+
+    </script>
  </body>
 
 </html>

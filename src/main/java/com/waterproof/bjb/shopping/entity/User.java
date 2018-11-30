@@ -40,7 +40,16 @@ public class User implements Serializable {
 	
 	@Transient
 	private String passwordConfirm;
-
+	
+	@Column(name = "ZIP_CODE")
+    private String zipCode;
+	
+	@Column(name = "COUNTY")
+	private String county;
+	
+	@Column(name = "DISTRICT")
+	private String district;
+	
 	@Column(name = "ADDRESS")
 	private String address;
 

@@ -102,6 +102,7 @@ public class SpringSecurityConfig  extends WebSecurityConfigurerAdapter {
 	     web.ignoring().antMatchers("/js/**");
 	     web.ignoring().antMatchers("/fonts/**");
 	     web.ignoring().antMatchers("/img/**");
+	     web.ignoring().antMatchers("/locales/**");
 	     web.ignoring().antMatchers("/generateCaptcha/**");
 	     
 	     //web.ignoring().antMatchers("/");

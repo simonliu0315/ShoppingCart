@@ -17,7 +17,7 @@
 		<!-- container -->
 		<div class="container">
 		    <div th:replace="fragments/body_header :: body_info"></div>
-		    <form th:action="@{/member/createUser}" method="post">
+		    <form id="userForm" th:action="@{/member/modifyUser}" method="post">
 			<!-- row -->
 			<div class="row">
 			    <div class="col-md-6 col-xs-8 col-md-offset-3 col-xs-offset-2" >
@@ -26,31 +26,47 @@
 								<h3 class="title">我的帳戶</h3>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="username" value="simon" placeholder="帳號"/>
+								<input class="input" type="text" name="username" th:value="${user.username}" placeholder="帳號" th:readonly="${1==1}"/>
 							</div>
 							<div class="form-group">
-								<input class="input" type="password" name="password" value="123456" placeholder="密碼"/>
+								<input class="input" type="password" name="password" value="" placeholder="密碼"/>
 							</div>
 							<div class="form-group">
-								<input class="input" type="password" name="repassword" value="123456" placeholder="確認密碼"/>
+								<input class="input" type="password" name="repassword" value="" placeholder="確認密碼"/>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="cName"  placeholder="姓名" th:required="required" th:value="A"/>
+								<input class="input" type="text" name="cName"  placeholder="姓名" th:required="required" th:value="${user.cName}"/>
 							</div>
 							<div class="form-group">
-								<input class="input" type="email" name="email" placeholder="Email" th:required="required" value="cyliu0315@gmail.com"/>
+								<input class="input" type="email" name="email" placeholder="Email" th:required="required" th:value="${user.email}"/>
+							</div>
+							<div class="zip-selector">
+							    <div class="col-lg-3 col-md-4 col-sm-4 nopadding">
+                                <div class="form-group">
+                                    <select class="county form-control"></select> 
+                                </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-4">
+                                <div class="form-group">
+                                    <select class="district form-control"></select>
+                                </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-4">
+                                <div class="form-group">
+                                    <input id="zipcode" type="text" class="zipcode input" placeholder="郵遞區號"/>
+                                </div>
+                                </div>
+                            </div>
+							<div class="form-group">
+								<input id="address" class="input" type="text" name="address" placeholder="地址" th:required="required" th:value="${user.address}"/>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="city" placeholder="縣市" th:required="required" th:value="D"/>
+								<div class="input-group date">
+                                    <input class="input" type="text" name="birthday" placeholder="生日" th:required="required" th:value="${user.birthday}"/><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                </div>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="district" placeholder="區" th:required="required" th:value="E"/>
-							</div>
-							<div class="form-group">
-								<input class="input" type="text" name="address" placeholder="地址" th:required="required" th:value="F"/>
-							</div>
-							<div class="form-group">
-								<input class="input" type="tel" name="tel" placeholder="連絡電話" th:required="required" th:value="G"/>
+								<input class="input" type="tel" name="mobile" placeholder="連絡電話" th:required="required" th:value="${user.mobile}"/>
 							</div>
 							<div class="form-group">
 							    <input type="text" class="form-control" id="verifyCode" placeholder="驗證碼" name="verifyCode" style="width: 30%; display: inline;" th:required="required"/>
@@ -62,7 +78,7 @@
 	
 							<div class="form-group text-left">
 							    <button class="primary-btn" type="reset">清除</button>
-							    <button class="primary-btn" type="submit" value="Sign In" >修改</button>
+							    <button id="modifyBtn" class="primary-btn" type="button" value="Sign In">修改</button>
 							</div>
 						</div>
 					</div>
@@ -79,9 +95,19 @@
 
 	<div th:replace="fragments/body_footer :: body_footer"></div>
     <div th:replace="fragments/body_resources :: body_resources"></div>
-    
+    <script th:src="@{/js/tw-city-selector.js}"></script>
     <script th:src="@{/js/index.js}"></script>
-	<script th:src="@{/js/login.js}"></script>
+	<script th:src="@{/js/user.js}"></script>
+	<script>
+  new TwCitySelector({
+    el: ".zip-selector",
+    elCounty: ".county", // 在 el 裡查找 dom
+    elDistrict: ".district", // 在 el 裡查找 dom
+    elZipcode: ".zipcode" // 在 el 裡查找 dom
+  });
+  $(".county").attr("class", "county form-control");
+  $(".district").attr("class", "district form-control");
+</script>
 </body>
 
 </html>
