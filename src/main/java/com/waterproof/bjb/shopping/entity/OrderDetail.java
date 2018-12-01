@@ -37,11 +37,11 @@ public class OrderDetail implements Serializable {
 	@Column(name="QUANTITY")
 	private Integer quantity;
 
-	@OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER) //移除, optional = false 就會正常
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) //移除, optional = false 就會正常
 	@JoinColumns(		
 	{
-		@JoinColumn(updatable=false,insertable=false, name="PRODUCT_ID", referencedColumnName="PRODUCT_ID"),
-		@JoinColumn(updatable=false,insertable=false, name="COLOR", referencedColumnName="COLOR")
+		@JoinColumn(updatable=false, insertable=false, name="PRODUCT_ID", referencedColumnName="PRODUCT_ID"),
+		@JoinColumn(updatable=false, insertable=false, name="COLOR", referencedColumnName="COLOR")
 	}
 	)
 	private ProductColor productColor;

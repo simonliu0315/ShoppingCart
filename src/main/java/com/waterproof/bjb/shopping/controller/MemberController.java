@@ -126,7 +126,7 @@ public class MemberController {
 			// user.setUserRoles(userRoles);
 			userservice.insertByUser(user, userRoles);
 			mav.addObject("msgType", "alert alert-info alert-dismissible");
-			mav.addObject("msg", "帳戶" + user.getUsername() + "新增成功, 請確認認證信並啟用帳號");
+			mav.addObject("msg", "帳戶" + user.getUsername() + "新增成功, 我們已經發送認證信至您的email信箱，請確認認證信並啟用帳號。");
 			String siteHost = environment.getProperty("spring.web.host");
 			mailUtil.sendByGmail(
 					"會員認證信", "親愛的用戶您好：<br/>請點選底下連結請用您的帳戶，謝謝。<a href='" + siteHost + "/member/verify/user?code="
@@ -177,7 +177,11 @@ public class MemberController {
 	@RequestMapping(value = "/myAccount", method = { RequestMethod.GET })
 	public ModelAndView myAccount() {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("user", simpleUserService.getUser());
+		User u = simpleUserService.getUser();
+		if(u.getBirthday() != null) {
+		    u.setBirthdayStr(ShoppingDateUtil.formatDate(u.getBirthday(), "yyyy/MM/dd"));
+		}
+		mav.addObject("user", u);
 		mav.setViewName("member/user");
 		return mav;
 	}

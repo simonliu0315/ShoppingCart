@@ -87,7 +87,7 @@ public class UserController {
     	log.info("user:{}", u);
     	//u.setBirthday(DateUtils.(u.getBirthday(), "yyyy/MM/dd"));
     	if (u.getBirthday() != null) {
-    		u.setBirthdayStr(ShoppingDateUtil.date2String(u.getBirthday(), "yyyy-MM-dd"));
+    		u.setBirthdayStr(ShoppingDateUtil.date2String(u.getBirthday(), "yyyy/MM/dd"));
     	}
     	
         map.addAttribute("user", u);
@@ -111,11 +111,9 @@ public class UserController {
     public String putUser(@ModelAttribute User user) throws ParseException {
     	User u = userService.findById(user.getUsername());
     	BeanUtils.copyProperties(user, u, "password", "verifyCode", "verifyDate", "birthday");
-    	if(StringUtils.isNotBlank(user.getPassword())) {
-    		u.setPassword(PasswordUtil.getPassword(user.getPassword()));
-    	}
+    
     	
-    	u.setBirthday(DateUtils.parseDate(user.getBirthdayStr(), "yyyy-MM-dd"));
+    	u.setBirthday(DateUtils.parseDate(user.getBirthdayStr(), "yyyy/MM/dd"));
     	
     	log.info("update User:{}", u);
         userService.update(u);

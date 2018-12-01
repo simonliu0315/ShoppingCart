@@ -34,8 +34,9 @@
                 <strong th:if="${action == 'update'}">修改使用者</strong>
             </legend>
 
-            <form th:action="@{/manager/users/{action}(action=${action})}" method="post" class="form-horizontal">
-
+            <form id="userForm" th:action="@{/manager/users/{action}(action=${action})}" method="post" class="form-horizontal">
+            <input id="tmpCounty" name="tmpCounty" type="hidden" th:value="${user.county}"/>
+		    <input id="tmpDistrict" name="tmpDistrict" type="hidden" th:value="${user.district}"/>
                 <div class="form-group">
                     <label for="user_name" class="col-sm-2 control-label">使用者名稱:</label>
                     <div class="col-xs-4">
@@ -100,10 +101,11 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="user_birthday" class="col-sm-2 control-label" >出生日期:</label>
-                    <div class="col-xs-4">
-                        <input type="date" class="form-control" id="birthday" name="birthday" th:value="${user.birthdayStr}" th:field="*{user.birthdayStr}"/>
-                    </div>
+                    <label for="user_birthday" class="col-sm-2 control-label">出生日期:</label>
+                    <div class="input-group col-xs-4 date" style="padding-left: 15px;">
+                         <input id="birthday" class="input" type="text" name="birthday" placeholder="生日" th:required="required" th:value="${user.birthdayStr}" th:field="*{user.birthdayStr}"/>
+                             <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                     </div>
                     <label class="col-sm-2 control-label text-danger" th:if="${#fields.hasErrors('user.birthdayStr')}" th:errors="*{user.birthdayStr}">生日有誤!</label>
                 </div>
 
@@ -142,12 +144,15 @@
     <div th:replace="fragments/body_resources :: body_resources"></div>
     <script th:src="@{/js/tw-city-selector.js}"></script>
     <script th:src="@{/js/index.js}"></script>
+    <script th:src="@{/js/userForm.js}"></script>
     <script>
   new TwCitySelector({
     el: ".zip-selector",
     elCounty: ".county", // 在 el 裡查找 dom
     elDistrict: ".district", // 在 el 裡查找 dom
-    elZipcode: ".zipcode" // 在 el 裡查找 dom
+    elZipcode: ".zipcode", // 在 el 裡查找 dom
+    selectedCounty: $("#tmpCounty").val(),
+    selectedDistrict: $("#tmpDistrict").val()
   });
   $(".county").attr("class", "county form-control");
   $(".district").attr("class", "district form-control");

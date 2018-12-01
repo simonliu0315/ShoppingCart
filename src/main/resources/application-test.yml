@@ -42,7 +42,7 @@ spring:
 logging:
   level:
     org.springframework.security.web.context: ERROR
-    #org.springframework.security: DEBUG
+    org.springframework.security: DEBUG
     #org.springframework.security.web.context: ERROR
     #org.springframework.web: DEBUG
     #guru.springframework.controllers: DEBUG

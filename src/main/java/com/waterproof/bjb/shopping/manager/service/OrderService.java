@@ -1,18 +1,21 @@
 package com.waterproof.bjb.shopping.manager.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.waterproof.bjb.shopping.controller.PaymentController;
 import com.waterproof.bjb.shopping.entity.CustomerOrder;
-import com.waterproof.bjb.shopping.entity.OrderStatus;
+import com.waterproof.bjb.shopping.entity.Product;
 import com.waterproof.bjb.shopping.manager.dto.OrderDto;
 import com.waterproof.bjb.shopping.repository.CustomerOrderRepository;
 import com.waterproof.bjb.shopping.repository.OrderStatusRepository;
+import com.waterproof.bjb.shopping.repository.impl.CustomerOrderRepositoryCustom;
 import com.waterproof.bjb.shopping.repository.impl.EhcacheOrderStatusRepositoryCustom;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +32,9 @@ public class OrderService {
 	
 	@Autowired
 	private EhcacheOrderStatusRepositoryCustom ehcacheOrderStatusRepositoryCustom;
+	
+	@Autowired
+	private CustomerOrderRepositoryCustom customerOrderRepositoryCustom;
 	
 	public List<OrderDto> getAllOrder() {
 		List<OrderDto> list = new ArrayList<OrderDto>();
@@ -62,5 +68,19 @@ public class OrderService {
 	public CustomerOrder getCustomerOrder(int id) {
 		log.info("getCustomerOrder {}", id);
 		return customerOrderRepository.findOne(id);
+	}
+	
+	public Page<CustomerOrder> getFilterProduct(Date startDate, Date endDate, String orderNo, int statusId, int orderby, Pageable pageable) {
+		
+		Page<CustomerOrder> pcustomerOrder = customerOrderRepositoryCustom.filter(startDate, endDate, orderNo, statusId, orderby, pageable);
+		List<CustomerOrder> customerOrders = pcustomerOrder.getContent();
+		log.info("size: {}" , customerOrders.size());
+		for(CustomerOrder customerOrder : customerOrders) {
+			
+			//product.setName(StringUtils.rightPad(product.getName(), 30, ""));
+			log.info("CustomerOrder {}", customerOrder);
+			customerOrder.setOrderStatus(ehcacheOrderStatusRepositoryCustom.selectByStatusId(customerOrder.getStatusId()));
+		}
+		return pcustomerOrder;
 	}
 }

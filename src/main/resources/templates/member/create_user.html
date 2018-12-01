@@ -26,19 +26,19 @@
 							<div class="section-title">
 								<h3 class="title">註冊新會員</h3>
 							</div>
-							<div class="form-group">
+							<div class="form-group required">
 								<input id="username" class="input" type="text" name="username" value="" placeholder="帳號/手機/email"/>
 							</div>
-							<div class="form-group">
+							<div class="form-group required">
 								<input id="password" class="input" type="password" name="password" value="" placeholder="密碼"/>
 							</div>
-							<div class="form-group">
+							<div class="form-group required">
 								<input id="repassword" class="input" type="password" name="repassword" value="" placeholder="確認密碼"/>
 							</div>
-							<div class="form-group">
+							<div class="form-group required">
 								<input id="cName" class="input" type="text" name="cName"  placeholder="姓名" th:required="required" value=""/>
 							</div>
-							<div class="form-group">
+							<div class="form-group required">
 								<input id="email" class="input" type="email" name="email" placeholder="Email" th:required="required" value=""/>
 							</div>
 							<div class="zip-selector">
@@ -66,10 +66,10 @@
                                     <input class="input" type="text" name="birthday" placeholder="生日" th:required="required"/><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                                 </div>
 							</div>
-							<div class="form-group">
+							<div class="form-group required">
 								<input id="mobile" class="input" type="text" name="mobile" placeholder="連絡電話/手機" th:required="required" value=""/>
 							</div>
-							<div class="form-group">
+							<div class="form-group required">
 							    <input type="text" class="form-control" id="verifyCode" placeholder="驗證碼" name="verifyCode" style="width: 30%; display: inline;" th:required="required"/>
                                 <img id="captchaImg" />
                                 <button id="refreshCaptchaButton" type="button" form="form" class="btn btn-default">

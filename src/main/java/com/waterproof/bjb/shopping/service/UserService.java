@@ -37,7 +37,7 @@ public class UserService {
 
 	public com.waterproof.bjb.shopping.entity.User update(com.waterproof.bjb.shopping.entity.User user) {
 		com.waterproof.bjb.shopping.entity.User u = userRepository.findOne(user.getUsername());
-		if (StringUtils.isNotBlank(user.getPassword()) && !StringUtils.equals(PasswordUtil.getPassword(user.getPassword()), u.getPassword())) {
+		if (StringUtils.isNotBlank(user.getPassword()) && !StringUtils.equals(user.getPassword(), u.getPassword())) {
 			user.setPassword(PasswordUtil.getPassword(user.getPassword()));
 		}
 		log.info("更新使用者：" + user.toString());

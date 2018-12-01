@@ -26,7 +26,7 @@ public class CommonController {
 	private Environment environment;
 	
 	
-	@RequestMapping(value = "/image/**", produces = {MediaType.IMAGE_JPEG_VALUE,MediaType.IMAGE_PNG_VALUE})
+	@RequestMapping(value = "/image/**", produces = {MediaType.IMAGE_JPEG_VALUE,MediaType.IMAGE_PNG_VALUE,MediaType.IMAGE_GIF_VALUE})
 	@ResponseBody
 	public byte[] getImage(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String restOfTheUrl = (String) request.getAttribute(

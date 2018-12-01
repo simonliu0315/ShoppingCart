@@ -28,27 +28,16 @@
 			<div class="row">
 
             <h3>--訂單管理--</h3>
-            
+          <form th:action="@{/manager/order/search}" method="post" class="form-horizontal">  
             <div class="form-group">
             <div class="row">
                 <label for="startDate" class="col-sm-2 control-label">時間區間:</label>
-                <div class="input-group date" data-provide="datepicker">
-                    <input type="text" id="startDate" name="startDate"/>
-                    <div class="input-group-addon">
-                        <span class="glyphicon glyphicon-th"></span>
-                    </div>
+                <div class="input-daterange input-group" id="datepicker" style="padding-left: 15px;">
+                    <input type="text" class="input-sm form-control" name="startDate" />
+                    <span class="input-group-addon">to</span>
+                    <input type="text" class="input-sm form-control" name="endDate" />
                 </div>
-                <div class="input-group date" data-provide="datepicker">
-                    <input type="text" id="endDate" name="endDate"/>
-                    <div class="input-group-addon">
-                        <span class="glyphicon glyphicon-th"></span>
-                    </div>
-                </div>
-                    
-                    
-                    
-                
-                
+
             </div>
             </div>
            
@@ -64,8 +53,17 @@
             <div class="form-group">
             <div class="row">
                 <label for="statusId" class="col-sm-2 control-label">訂單狀態:</label>
-                <div class="col-md-8 col-xs-8 ">
-                    <input type="text" id="statusId" name="statusId"/>
+                <div class="col-md-8 col-xs-8">
+                    <select id="statusId" name="statusId" class="input">
+                        <option value="0"></option>
+                        <option value="1">訂單成立，待付款</option>
+                        <option value="2">付款確認中</option>
+                        <option value="3">已付款，待出貨</option>
+                        <option value="4">已出貨</option>
+                        <option value="5">待收貨</option>
+                        <option value="6">完成</option>
+                        <option value="7">取消</option>
+                    </select>
                 </div>
             </div>
             </div>
@@ -76,6 +74,29 @@
                
             </div>
             </div>
+            <!-- store top filter -->
+					<div class="store-filter clearfix">
+						<div class="pull-right">
+							<div class="page-filter">
+								<span class="text-uppercase">每頁筆數:</span>
+								<select id="pageSize_1" name="pageSize_1" class="input" onChange="application_list.reload();">
+										<option value="10" th:if="${pageSize != 10}">10</option>
+										<option value="10" th:if="${pageSize == 10}" selected="true">10</option>
+										<option value="50" th:if="${pageSize != 50}">50</option>
+										<option value="50" th:if="${pageSize == 50}" selected="true">50</option>
+										<option value="100" th:if="${pageSize != 100}">100</option>
+										<option value="100" th:if="${pageSize == 100}" selected="true">100</option>
+								</select>
+							</div>
+							<ul class="store-pages" th:each="i, itrStat: ${#numbers.sequence(1, totalPages)}">
+								<li th:if="${i == 1}"><span class="text-uppercase">頁次:</span></li>
+								<li th:if="${i == pageNumber + 1}" class="active" th:text="${i}">1</li>
+								<li th:if="${i != pageNumber + 1}"><a th:href="@{/manager/order/search(removed=)} + ${default_url_page} + '' + ${i}" th:text="${i}">1</a></li>
+								<li th:if="${i == totalPages}"><a href="#"><i class="fa fa-caret-right"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- /store top filter -->
             <table class="table table-hover table-condensed">
                 <legend>
                     <strong>訂單列表</strong>
@@ -101,15 +122,15 @@
                         <td class="text-right" scope="row" th:text="${order.amount}"></td>
                         <td class="text-left" scope="row" th:text="${order.inserted}"></td>
                         <td class="text-left" scope="row" th:text="${order.update_by}"></td>
-                        <td class="text-left" scope="row" th:text="${order.statusDescription}"></td>
+                        <td class="text-left" scope="row" th:text="${order.orderStatus.description}"></td>
                         <td>
                         <a class="btn btn-info" th:href="@{'/manager/order/update/' + ${order.id}}">修改</a>
-                        <a class="btn btn-danger" th:href="@{'/manager/order/delete/' + ${order.id}}">删除</a>
+                        <a class="btn btn-danger" th:href="@{'/manager/order/delete/' + ${order.id}}">取消</a>
                         </td>
                         </tr>
                 </tbody>
             </table>
-
+</form>
         </div>
         </div>
         </div>
@@ -119,9 +140,11 @@
    
     <script th:src="@{/js/index.js}"></script>
     <script type="text/javascript">
-    $('.datepicker').datepicker({
-        format: 'mm/dd/yyyy',
-        startDate: '-3d'
+    $('.input-daterange').datepicker({
+    	format: "yyyy/mm/dd",
+        language: "zh-TW",
+        clearBtn: true,
+        autoclose: true
     });
 
     </script>

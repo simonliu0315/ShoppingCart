@@ -170,8 +170,8 @@ insert into PRODUCT_CAPACITY values(38, '3.78', 'L', '1加侖(3.78L)', '1加侖(
 --insert into PRODUCT_COLOR VALUES(38, '#000000;', '黑色', 'black', 'HR-11001', 1, now(), 'sys', now(), 'sys');
 
 
-insert into APP_USER values('simon', '王大明', 'cyliu0315@gmail.com', '$2a$10$NnlqpBH.dJZLqG//0IWoG.W8IowSknbv4yIoW0rHpvbQRrHg3LeFC', '116', '台北市','文山區','地址',to_timestamp('01-08-1981 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'),NULL, 'sys',NULL,'sys', '1', to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 1, '09123456789');
-insert into APP_USER values('simon1', '王大明', 'cyliu0315@gmail.com', '$2a$10$NnlqpBH.dJZLqG//0IWoG.W8IowSknbv4yIoW0rHpvbQRrHg3LeFC', '116', '台北市','文山區','地址',to_timestamp('01-08-1981 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'),NULL, 'sys',NULL,'sys', '1', to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 1, '09123456789');
+insert into APP_USER values('simon', '王大明', 'cyliu0315@gmail.com', '$2a$10$NnlqpBH.dJZLqG//0IWoG.W8IowSknbv4yIoW0rHpvbQRrHg3LeFC', '116', '臺北市','文山區','地址',to_timestamp('01-08-1981 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'),NULL, 'sys',NULL,'sys', '1', to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 1, '09123456789');
+insert into APP_USER values('simon1', '王大明', 'cyliu0315@gmail.com', '$2a$10$NnlqpBH.dJZLqG//0IWoG.W8IowSknbv4yIoW0rHpvbQRrHg3LeFC', '116', '臺北市','文山區','地址',to_timestamp('01-08-1981 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'),NULL, 'sys',NULL,'sys', '1', to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 1, '09123456789');
 
 insert into USER_ROLE values('simon', 'ROLE_ADMIN', 1);
 insert into USER_ROLE values('simon', 'ROLE_USER', 1);
@@ -185,7 +185,7 @@ insert into ORDER_STATUS values(1, 1, '訂單成立，待付款');
 insert into ORDER_STATUS values(2, 2, '付款確認中');
 insert into ORDER_STATUS values(3, 3, '已付款，待出貨');
 insert into ORDER_STATUS values(4, 4, '已出貨');
-insert into ORDER_STATUS values(5, 5, '待收穫');
+insert into ORDER_STATUS values(5, 5, '待收貨');
 insert into ORDER_STATUS values(6, 6, '完成');
 insert into ORDER_STATUS values(7, 7, '取消');
 

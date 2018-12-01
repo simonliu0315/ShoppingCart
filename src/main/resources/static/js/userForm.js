@@ -1,14 +1,10 @@
-var user = {
+var userForm = {
 	init : function() {
-        $("#captchaImg").attr("src",  contextRoot+ "/generateCaptcha");
-	    
-	    $("#refreshCaptchaButton").on("click", function() {
-	    	create_user.refreshCaptcha();
-	    });
+      
 	    $("#modifyBtn").on("click", function() {
-	    	user.gogo();
+	    	userForm.gogo();
 	    });
-	    $(".input-group.date").datepicker({
+	    $('.input-group.date').datepicker({
 	    	format: "yyyy/mm/dd",
 	    	startView: 2,
 	        language: "zh-TW",
@@ -38,14 +34,9 @@ var user = {
 			alert("請輸入連絡電話.");
 			return ;
 		}
-		if($("#repassword").val() != $("#password").val()) {
-			alert("第一次輸入密碼與第二次不同，請重新輸入");
-			$("#password").val("");
-			$("#repassword").val("");
-			return ;
-		}
 		
-		$("#userForm").attr("action",contextRoot + "/member/modifyUser");
+		
+		//$("#userForm").attr("action",contextRoot + "/member/modifyUser");
 		
 		$("#userForm").submit();
 	},
@@ -57,5 +48,5 @@ var user = {
 
 
 $(function() {
-	user.init();
+	userForm.init();
 });
