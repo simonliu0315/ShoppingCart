@@ -172,6 +172,7 @@ insert into PRODUCT_CAPACITY values(38, '3.78', 'L', '1加侖(3.78L)', '1加侖(
 
 insert into APP_USER values('simon', '王大明', 'cyliu0315@gmail.com', '$2a$10$NnlqpBH.dJZLqG//0IWoG.W8IowSknbv4yIoW0rHpvbQRrHg3LeFC', '116', '臺北市','文山區','地址',to_timestamp('01-08-1981 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'),NULL, 'sys',NULL,'sys', '1', to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 1, '09123456789');
 insert into APP_USER values('simon1', '王大明', 'cyliu0315@gmail.com', '$2a$10$NnlqpBH.dJZLqG//0IWoG.W8IowSknbv4yIoW0rHpvbQRrHg3LeFC', '116', '臺北市','文山區','地址',to_timestamp('01-08-1981 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'),NULL, 'sys',NULL,'sys', '1', to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 1, '09123456789');
+insert into APP_USER values('liquidrubbertaiwan', 'liquidrubbertaiwan', 'liquidrubbertaiwan@gmail.com', '$2a$10$NnlqpBH.dJZLqG//0IWoG.W8IowSknbv4yIoW0rHpvbQRrHg3LeFC', '247', '新北市','蘆洲區','復興路410巷11-15號',to_timestamp('01-08-1981 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'),NULL, 'sys',NULL,'sys', '1', to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 1, '09123456789');
 
 insert into USER_ROLE values('simon', 'ROLE_ADMIN', 1);
 insert into USER_ROLE values('simon', 'ROLE_USER', 1);
@@ -180,6 +181,10 @@ insert into USER_ROLE values('simon', 'ROLE_ANONYMOUS', 1);
 insert into USER_ROLE values('simon1', 'ROLE_ADMIN', 1);
 insert into USER_ROLE values('simon1', 'ROLE_USER', 1);
 insert into USER_ROLE values('simon1', 'ROLE_ANONYMOUS', 1);
+
+insert into USER_ROLE values('liquidrubbertaiwan', 'ROLE_ADMIN', 1);
+insert into USER_ROLE values('liquidrubbertaiwan', 'ROLE_USER', 1);
+insert into USER_ROLE values('liquidrubbertaiwan', 'ROLE_ANONYMOUS', 1);
 
 insert into ORDER_STATUS values(1, 1, '訂單成立，待付款');
 insert into ORDER_STATUS values(2, 2, '付款確認中');
