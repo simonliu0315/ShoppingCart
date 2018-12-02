@@ -104,6 +104,7 @@ public class OrderController {
 		log.info("customerOrder {}", customerOrder);
 		for (OrderDetail detail : customerOrder.getOrderDetails()) {
 			log.info("detail {}", detail);
+			log.info("detail product {}", detail.getProduct());
 		}
 		map.addAttribute("order", customerOrder);
 		map.addAttribute("action", "update");

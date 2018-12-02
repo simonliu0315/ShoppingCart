@@ -46,6 +46,14 @@ public class OrderDetail implements Serializable {
 	)
 	private ProductColor productColor;
 	
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumns(		
+	{
+		@JoinColumn(updatable=false, insertable=false, name="PRODUCT_ID", referencedColumnName="ID"),
+	}
+	)
+	private Product product;
+	
 	@Override
 	public String toString() {
 		return "OrderDetail [id=" + id + ", price=" + price + ", discount=" + discount + ", productName=" + productName
