@@ -170,7 +170,7 @@ public class CheckOutController {
         mailMessage.append("</tr>");
         mailMessage.append("<tr>");
         mailMessage.append("<td style=\"font-family:Helvetica,arial,sans-serif;font-size:13px;color:#747474;text-align:left;line-height:18px\">");
-        mailMessage.append("感謝您訂購相關商品訂單編號"+ orderNumber + "<wbr>若你收到商品無誤，請確認收貨，<wbr>如有問題，請洽客服。");
+        mailMessage.append("感謝您訂購相關商品訂單編號"+ orderNumber + "<wbr>請完成相關付款作業。<wbr>若您付款完成且收到商品無誤，請確認商品，<wbr>如有問題，請洽客服。");
         mailMessage.append(" 提醒您，若你在七天內沒有任何回應，<wbr>系統將自動進行訂單完成流程。");
         mailMessage.append("</td>");
         mailMessage.append("</tr>");
@@ -340,7 +340,7 @@ public class CheckOutController {
             mailMessage.append("<table width=\"100%\" align=\"left\">");
             mailMessage.append("<tbody><tr>");
             mailMessage.append("<td style=\"text-align:left;padding-left:10px;font-family:Helvetica,arial,sans-serif;color:#747474;font-size:13px;white-space:nowrap;width:80px\">Variation: </td>");
-            mailMessage.append("<td style=\"text-align:left;font-family:Helvetica,arial,sans-serif;color:#747474;font-size:13px\">"+productTempOrder.getColor()+"</td>");
+            mailMessage.append("<td style=\"text-align:left;font-family:Helvetica,arial,sans-serif;color:#747474;font-size:13px\">"+productTempOrder.getColorName()+"</td>");
             mailMessage.append("</tr>");
             mailMessage.append("<tr>");
             mailMessage.append("<td style=\"text-align:left;padding-left:10px;font-family:Helvetica,arial,sans-serif;color:#747474;font-size:13px;white-space:nowrap;width:80px\">Quantity: </td>");

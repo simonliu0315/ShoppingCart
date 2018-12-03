@@ -39,7 +39,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 			log.info("{}", u);
 		}
 		log.info("size {}", userRepository.findAll().size());
-		log.info("****loadUserByUsername**** param:{}", username);
+		log.info("****loadUserByUsername**** param username:{}", username);
 		com.waterproof.bjb.shopping.entity.User user = userRepository.findOne(username);
 		if (user == null || user.getStatus() != 1) {
 			

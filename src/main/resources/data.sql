@@ -339,7 +339,7 @@ insert into APPLICATION_LIST_IMAGE VALUES (9, '甲板5', '/common/image/應用�
 insert into PAYMENT_METHOD values(1, 1, '信用卡一次付清', 'credit card', null,  1);
 insert into PAYMENT_METHOD values(2, 2, 'ATM轉帳', 'ATM','提供底下帳戶轉帳000-00000000000', 1);
 
-insert into SHIPPING_METHOD values(1, 1, '宅配免運 ', 'balck cat', '黑貓宅急便寄送.',  1, 0);
-insert into SHIPPING_METHOD values(2, 2, '快遞 ', 'FEDX','TEST', 1, 0);
+insert into SHIPPING_METHOD values(1, 1, '宅配 ', 'black cat', '黑貓宅急便寄送.',  1, 0);
+insert into SHIPPING_METHOD values(2, 2, '快遞 ', 'FEDX','TEST', 0, 0);
 
 commit;

@@ -13,6 +13,9 @@ import javax.persistence.JoinColumns;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import lombok.Data;
 
 @Data
@@ -37,13 +40,14 @@ public class OrderDetail implements Serializable {
 	@Column(name="QUANTITY")
 	private Integer quantity;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) //移除, optional = false 就會正常
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) //移除, optional = false 就會正常
 	@JoinColumns(		
 	{
 		@JoinColumn(updatable=false, insertable=false, name="PRODUCT_ID", referencedColumnName="PRODUCT_ID"),
 		@JoinColumn(updatable=false, insertable=false, name="COLOR", referencedColumnName="COLOR")
 	}
 	)
+	@NotFound(action = NotFoundAction.IGNORE)
 	private ProductColor productColor;
 	
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

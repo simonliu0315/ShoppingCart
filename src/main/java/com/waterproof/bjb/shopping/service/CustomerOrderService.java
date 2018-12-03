@@ -18,12 +18,15 @@ import com.waterproof.bjb.shopping.entity.OrderContract;
 import com.waterproof.bjb.shopping.entity.OrderDetail;
 import com.waterproof.bjb.shopping.entity.OrderDetailPK;
 import com.waterproof.bjb.shopping.entity.Product;
+import com.waterproof.bjb.shopping.entity.ProductColor;
+import com.waterproof.bjb.shopping.entity.ProductColorPK;
 import com.waterproof.bjb.shopping.entity.ShippingMethod;
 import com.waterproof.bjb.shopping.entity.UserContract;
 import com.waterproof.bjb.shopping.repository.CustomerOrderRepository;
 import com.waterproof.bjb.shopping.repository.OrderContractRepository;
 import com.waterproof.bjb.shopping.repository.OrderDetailRepository;
 import com.waterproof.bjb.shopping.repository.OrderStatusRepository;
+import com.waterproof.bjb.shopping.repository.ProductColorRepository;
 import com.waterproof.bjb.shopping.repository.ProductRepository;
 import com.waterproof.bjb.shopping.repository.ShippingMethodRepository;
 import com.waterproof.bjb.shopping.service.dto.UserContractDto;
@@ -51,6 +54,10 @@ public class CustomerOrderService {
 	
 	@Autowired
 	private OrderContractRepository orderContractRepository;
+	
+	@Autowired
+	private ProductColorRepository productColorRepository;
+	
 
 	public String saveToOrder(UserContractDto userContractDto, ProductInCartDto productInCartDto, String username) {
 		CustomerOrder customerOrder = new CustomerOrder();
@@ -121,6 +128,7 @@ public class CustomerOrderService {
 				tmp.setOriginalPrice(p.getOriginalPrice());
 				tmp.setProductId(p.getId().intValue());
 				tmp.setColor(d.getId().getColor());
+				tmp.setColorName(getColorName(d.getId().getProductId(), d.getId().getColor()));
 				
 				dto.getProductsTempOrder().add(tmp);
 			}
@@ -154,6 +162,7 @@ public class CustomerOrderService {
 			tmp.setDescription(p.getDescription());
 			tmp.setOriginalPrice(p.getOriginalPrice());
 			tmp.setColor(d.getId().getColor());
+			tmp.setColorName(getColorName(d.getId().getProductId(), d.getId().getColor()));
 			dto.getProductsTempOrder().add(tmp);
 		}
 		BeanUtils.copyProperties(customerOrder, dto);
@@ -169,5 +178,18 @@ public class CustomerOrderService {
 	
 	public List<ShippingMethod> getShipping() {
 		return shippingMethodRepository.getActive();
+	}
+	
+	public String getColorName(int productId, String color) {
+		ProductColorPK id = new ProductColorPK();
+		id.setProductId(productId);
+		id.setColor(color);
+		ProductColor productColor = productColorRepository.findOne(id);
+		if (productColor != null) {
+			return productColor.getName();
+		} else {
+			return null;
+		}
+		
 	}
 }

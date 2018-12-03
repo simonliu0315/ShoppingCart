@@ -50,6 +50,10 @@ var index = {
 		var formData = {
 			"productId" : productId, "quantity" : $("#input_quantity").val(), "color": $("#color").val()
 		};
+		if ($("#isColor").val() == "1" && $("#color").val() == "") {
+			alert("請選擇顏色");
+			return ;
+		}
 		$.ajax({
 			type : "POST",
 			url : contextRoot + "/user/addCart",
@@ -77,7 +81,7 @@ var index = {
 									if (value.color != null) {
 										html +="<ul class='color-option'>"+
 								        "<li><a href='#' style='background-color:" + value.color +"'></a></li>"+
-									    "<li><span>" + value.color + "</span></li>"+
+									    "<li><span>" + value.colorName + "</span></li>"+
 								    "</ul>";
 									}
 									
@@ -137,7 +141,7 @@ var index = {
 								if (value.color != null) {
 									html +="<ul class='color-option'>"+
 							        "<li><a href='#' style='background-color:" + value.color +"'></a></li>"+
-								    "<li><span>" + value.color + "</span></li>"+
+								    "<li><span>" + value.colorName + "</span></li>"+
 							    "</ul>";
 								}		
 					html += "</h2>" +
@@ -195,7 +199,7 @@ var index = {
 								if (value.color != null) {
 									html +="<ul class='color-option'>"+
 							        "<li><a href='#' style='background-color:" + value.color +"'></a></li>"+
-								    "<li><span>" + value.color + "</span></li>"+
+								    "<li><span>" + value.colorName + "</span></li>"+
 							    "</ul>";
 								}
 					html += "</h2>" +

@@ -213,6 +213,7 @@ public class MemberController {
 		User u = userservice.findById(simpleUserService.getUser().getUsername());
 		if (u != null) {
 			user.setBirthday(ShoppingDateUtil.parseDateTime(formBean.getBirthday(), "yyyy/MM/dd"));
+			user.setStatus(1);
 			userservice.update(user);
 		}
 		mav.addObject("msgType", "alert alert-info alert-dismissible");

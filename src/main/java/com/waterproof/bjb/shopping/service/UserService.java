@@ -41,7 +41,8 @@ public class UserService {
 			user.setPassword(PasswordUtil.getPassword(user.getPassword()));
 		}
 		log.info("更新使用者：" + user.toString());
-		return userRepository.save(user);
+		User userSave = userRepository.saveAndFlush(user);
+		return userSave;
 	}
 
 	public com.waterproof.bjb.shopping.entity.User delete(String id) {

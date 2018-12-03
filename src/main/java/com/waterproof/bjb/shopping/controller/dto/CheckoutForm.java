@@ -13,7 +13,7 @@ public @AllArgsConstructor @NoArgsConstructor @Data class CheckoutForm {
 	
 	private String zipCode;
 	
-	private String city;
+	private String county;
 	
 	private String district;
 	

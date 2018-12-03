@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import com.waterproof.bjb.shopping.entity.User;
 import com.waterproof.bjb.shopping.repository.UserRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class SimpleUserService {
 
@@ -20,11 +23,13 @@ public class SimpleUserService {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth!= null) {
 			if (auth.getPrincipal() instanceof java.lang.String) {
+				log.info("get user from String {}", auth.getPrincipal().toString());
 				User user = new User();
 				user.setUsername(auth.getPrincipal().toString());
 				user.setCName("");
 				return user;
 	    	} else {
+	    		log.info("get user 'not' from String {}", auth.getPrincipal());
 	    		UserDetails currentUser = (UserDetails) auth.getPrincipal();
 	    		User u = userRepository.findOne(currentUser.getUsername());
 	    		

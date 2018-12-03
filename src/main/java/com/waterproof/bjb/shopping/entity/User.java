@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.waterproof.bjb.shopping.utils.ShoppingDateUtil;
+
 //import org.springframework.data.annotation.Transient;
 
 import lombok.Data;
@@ -83,6 +85,13 @@ public class User implements Serializable {
 		this.passwordConfirm = passwordConfirm;
 	}
 
+	public String getBirthdayStr() {
+		if (birthday != null) {
+			return ShoppingDateUtil.formatDate(birthday, "yyyy/MM/dd");
+		} else {
+			return "";
+		}
+	}
 	@OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER, orphanRemoval = false)
 	@JoinColumn(name = "USERNAME", referencedColumnName = "USERNAME", insertable = false, updatable = false)
 	private List<UserRole> userRoles;

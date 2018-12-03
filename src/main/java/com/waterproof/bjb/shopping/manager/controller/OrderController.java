@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,15 +18,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.WebUtils;
 
 import com.waterproof.bjb.shopping.dto.ProductInCartDto;
 import com.waterproof.bjb.shopping.entity.CustomerOrder;
 import com.waterproof.bjb.shopping.entity.OrderDetail;
 import com.waterproof.bjb.shopping.entity.User;
 import com.waterproof.bjb.shopping.entity.UserRole;
+import com.waterproof.bjb.shopping.manager.dto.ExportCustomDto;
 import com.waterproof.bjb.shopping.manager.dto.OrderDto;
 import com.waterproof.bjb.shopping.manager.service.OrderService;
 import com.waterproof.bjb.shopping.service.UserService;
+import com.waterproof.bjb.shopping.utils.PasswordUtil;
 import com.waterproof.bjb.shopping.utils.ShoppingDateUtil;
 
 import lombok.extern.slf4j.Slf4j;
@@ -54,7 +59,8 @@ public class OrderController {
     		@RequestParam(value = "endDate", required=false, defaultValue = "") String endDate,
     		@RequestParam(value = "orderby", required=false, defaultValue = "1") int orderby,
     		@RequestParam(value = "page", required=false, defaultValue = "0") int page,
-    		@RequestParam(value = "pageSize", required=false, defaultValue = "10") int pageSize) {
+    		@RequestParam(value = "pageSize", required=false, defaultValue = "10") int pageSize,
+    		HttpServletRequest request) {
         log.info("search getPage");
         
         ModelAndView mav = new ModelAndView();
@@ -93,6 +99,8 @@ public class OrderController {
         mav.addObject("pageable", pageable);
         log.info("size {}", pCustomerOrder.getContent().size());
         mav.addObject("orderList", pCustomerOrder.getContent());
+        log.info("SET session ExportOrder");
+        WebUtils.setSessionAttribute(request, "ExportOrder", pCustomerOrder.getContent());
         mav.setViewName("manager/order/orderList");
         return mav;
 	}
@@ -111,12 +119,26 @@ public class OrderController {
 		return "manager/order/orderForm";
 	}
 
-	@RequestMapping(value = "/report", method = RequestMethod.GET)
-	public ModelAndView getExcel() {
-		List<OrderDto> studentList = new ArrayList<OrderDto>();
-		studentList.add(new OrderDto());
-		studentList.add(new OrderDto());
-		return new ModelAndView(new ExcelReportView(), "studentList", studentList);
+	@RequestMapping(value = "/reportCustom", method = RequestMethod.GET)
+	public ModelAndView getCustomExcel(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		List<CustomerOrder> customerOrderList = (List)WebUtils.getSessionAttribute(request, "ExportOrder");
+		mav.addObject("CustomerOrderList", customerOrderList);
+		log.info("reportCustom size:{}", customerOrderList.size());
+		mav.setView(new ExcelReportCustomView());
+		mav.addObject("UserService", userService);
+		return mav;
+		//return new ModelAndView(new ExcelReportCustomView(), );
+	}
+	@RequestMapping(value = "/reportOrder", method = RequestMethod.GET)
+	public ModelAndView getOrderExcel(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		List<CustomerOrder> customerOrderList = (List)WebUtils.getSessionAttribute(request, "ExportOrder");
+		mav.addObject("CustomerOrderList", customerOrderList);
+		log.info("reportCustom size:{}", customerOrderList.size());
+		mav.setView(new ExcelReportOrderView());
+		mav.addObject("UserService", userService);
+		return mav;
 	}
 
 }

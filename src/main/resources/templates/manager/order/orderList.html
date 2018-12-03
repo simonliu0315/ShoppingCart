@@ -33,9 +33,9 @@
             <div class="row">
                 <label for="startDate" class="col-sm-2 control-label">時間區間:</label>
                 <div class="input-daterange input-group" id="datepicker" style="padding-left: 15px;">
-                    <input type="text" class="input-sm form-control" name="startDate" />
-                    <span class="input-group-addon">to</span>
-                    <input type="text" class="input-sm form-control" name="endDate" />
+                    <input type="text" class="input form-control" style="width:100%;" name="startDate" />
+                    <span class="input-group-addon" style="width:8%;">to</span>
+                    <input type="text" class="input form-control" style="width:100%;" name="endDate" />
                 </div>
 
             </div>
@@ -44,8 +44,8 @@
             <div class="form-group">
              <div class="row">
                 <label for="orderNo" class="col-sm-2 control-label">訂單編號:</label>
-                <div class="col-md-8 col-xs-8 ">
-                    <input type="text" id="orderNo" name="orderNo" />
+                <div class="col-md-8 col-xs-8">
+                    <input class="input" style="width:50%;" type="text" id="orderNo" name="orderNo" />
                 </div>
             </div>
             </div>
@@ -54,7 +54,7 @@
             <div class="row">
                 <label for="statusId" class="col-sm-2 control-label">訂單狀態:</label>
                 <div class="col-md-8 col-xs-8">
-                    <select id="statusId" name="statusId" class="input">
+                    <select id="statusId" name="statusId" class="input" style="width:50%;">
                         <option value="0"></option>
                         <option value="1">訂單成立，待付款</option>
                         <option value="2">付款確認中</option>
@@ -100,7 +100,8 @@
             <table class="table table-hover table-condensed">
                 <legend>
                     <strong>訂單列表</strong>
-                    <strong class="text-right"><a class="btn btn-info"  th:href="@{'/manager/order/report'}">匯出</a></strong>
+                    <strong class="text-right"><a class="btn btn-info"  th:href="@{'/manager/order/reportCustom'}">客戶匯出</a></strong>
+                    <strong class="text-right"><a class="btn btn-info"  th:href="@{'/manager/order/reportOrder'}">報價匯出</a></strong>
                 </legend>
                 <thead>
                     <tr>

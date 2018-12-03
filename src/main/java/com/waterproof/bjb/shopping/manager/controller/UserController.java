@@ -1,6 +1,8 @@
 package com.waterproof.bjb.shopping.manager.controller;
 
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
@@ -14,9 +16,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.waterproof.bjb.shopping.entity.User;
 import com.waterproof.bjb.shopping.entity.UserRole;
+import com.waterproof.bjb.shopping.manager.dto.ExportCustomDto;
+import com.waterproof.bjb.shopping.manager.dto.OrderDto;
 import com.waterproof.bjb.shopping.manager.service.OrderService;
 import com.waterproof.bjb.shopping.service.UserDetailServiceImpl;
 import com.waterproof.bjb.shopping.service.UserService;
@@ -63,7 +68,7 @@ public class UserController {
      */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String postUser(@ModelAttribute User user) throws ParseException {
-    	user.setBirthday(DateUtils.parseDate(user.getBirthdayStr(), "yyyy-MM-dd"));
+    	user.setBirthday(DateUtils.parseDate(user.getBirthdayStr(), "yyyy/MM/dd"));
         userService.insertByUser(user);
         userService.createUserRole(user.getUsername(), "ROLE_USER");
         userService.createUserRole(user.getUsername(), "ROLE_ANONYMOUS");
@@ -110,7 +115,7 @@ public class UserController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String putUser(@ModelAttribute User user) throws ParseException {
     	User u = userService.findById(user.getUsername());
-    	BeanUtils.copyProperties(user, u, "password", "verifyCode", "verifyDate", "birthday");
+    	BeanUtils.copyProperties(user, u, "verifyDate", "birthday");
     
     	
     	u.setBirthday(DateUtils.parseDate(user.getBirthdayStr(), "yyyy/MM/dd"));
@@ -143,4 +148,8 @@ public class UserController {
         return "redirect:/manager/users/";
     }
 
+    @RequestMapping(value = "/report", method = RequestMethod.GET)
+	public ModelAndView getExcel() {
+		return new ModelAndView(new ExcelReportUserView(), "userList", userService.findAll());
+	}
 }

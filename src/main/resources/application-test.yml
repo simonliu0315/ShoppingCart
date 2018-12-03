@@ -27,6 +27,7 @@ spring:
         use_sql_comments: true
         format_sql: true
         dialect: org.hibernate.dialect.H2Dialect
+        enable_lazy_load_no_trans: true
   cache:
     ehcache:
       config: classpath:ehcache.xml

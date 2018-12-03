@@ -62,6 +62,7 @@ public class UserRest {
 		productTempOrderDto.setProductId(product.getId().intValue());
 		productTempOrderDto.setProductName(product.getName());
 		productTempOrderDto.setColor(productForm.getColor());
+		productTempOrderDto.setColorName(productService.getColorName(product.getId().intValue(), productForm.getColor()));
         if (product.getPromotion_on().compareTo(BigDecimal.ONE) == 0) {
         	productTempOrderDto.setPrice(product.getPromotion_price());
         	productTempOrderDto.setDiscount(product.getPromotion_discount());

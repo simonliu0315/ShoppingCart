@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.waterproof.bjb.shopping.entity.Product;
+import com.waterproof.bjb.shopping.entity.ProductColor;
+import com.waterproof.bjb.shopping.entity.ProductColorPK;
 import com.waterproof.bjb.shopping.repository.ProductColorRepository;
 import com.waterproof.bjb.shopping.repository.ProductRepository;
 import com.waterproof.bjb.shopping.repository.impl.ProductRepositoryCustom;
@@ -68,4 +70,16 @@ public class ProductService {
 		return pproduct;
 	}
 
+	public String getColorName(int productId, String color) {
+		ProductColorPK id = new ProductColorPK();
+		id.setProductId(productId);
+		id.setColor(color);
+		ProductColor productColor = productColorRepository.findOne(id);
+		if (productColor != null) {
+			return productColor.getName();
+		} else {
+			return null;
+		}
+		
+	}
 }

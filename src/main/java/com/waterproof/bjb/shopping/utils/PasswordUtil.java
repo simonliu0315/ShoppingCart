@@ -29,7 +29,7 @@ public class PasswordUtil {
 	}
 	public static String getPassword(String password) {
 		String strong_salt = "$2a$10$NnlqpBH.dJZLqG//0IWoG.";
-		log.info("strong_salt {}, pw: {}", strong_salt, BCrypt.hashpw(password, BCrypt.hashpw(password, strong_salt)));
+		log.info("strong_salt {}, password: {}, pw: {}", strong_salt, password, BCrypt.hashpw(password, BCrypt.hashpw(password, strong_salt)));
 		return BCrypt.hashpw(password, BCrypt.hashpw(password, strong_salt));
 	}
 	

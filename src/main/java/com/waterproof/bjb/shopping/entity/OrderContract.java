@@ -34,7 +34,7 @@ public class OrderContract implements Serializable {
 	private String zipCode;
 
 	@Column
-	private String city;
+	private String county;
 
 	@Column
 	private String district;

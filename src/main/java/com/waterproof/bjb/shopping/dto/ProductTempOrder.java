@@ -17,6 +17,8 @@ public class ProductTempOrder extends ProductDto {
 	
 	private String color;
 	
+	private String colorName;
+	
 	public BigDecimal getSubTotalAmt() {
 		return super.getPrice().multiply(new BigDecimal(this.quantity));
 	}

@@ -66,8 +66,8 @@
 					<div class="banner banner-1">
 						<img th:src="@{/img/banner01.jpg}" alt=""/>
 						<div class="banner-caption text-center">
-							<h1>大折扣</h1>
-							<h3 class="white-color font-weak">最高折扣50%</h3>
+							<!-- >h1>大折扣</h1>
+							<h3 class="white-color font-weak">最高折扣50%</h3 -->
 							<a class="primary-btn" th:href="@{/products}">購物去</a>
 						</div>
 					</div>
@@ -77,7 +77,8 @@
 					<div class="banner banner-1">
 						<img th:src="@{/img/banner02.jpg}" alt=""/>
 						<div class="banner-caption">
-							<h1 class="primary-color">最熱門<br/><span class="white-color font-weak">最高折扣30%</span></h1>
+							<!-- >h1 class="primary-color">最熱門<br/><span class="white-color font-weak">最高折扣30%</span>
+							</h1 -->
 							<a class="primary-btn" th:href="@{/products}">購物去</a>
 						</div>
 					</div>
@@ -87,7 +88,7 @@
 					<div class="banner banner-1">
 						<img th:src="@{/img/banner03.jpg}" alt=""/>
 						<div class="banner-caption">
-							<h1 class="white-color">新產品 <span>上市</span></h1>
+							<!-- >h1 class="white-color">新產品 <span>上市</span></h1 -->
 							<a class="primary-btn" th:href="@{/products}">購物去</a>
 						</div>
 					</div>
@@ -183,14 +184,15 @@
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o empty"></i>
+										<i class="fa fa-star"></i>
+										<!-- i class="fa fa-star-o empty"></i-->
 									</div>
 									<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${#strings.abbreviate(product.name, 20)}">Product Name Goes Here</a></h2>
-									<div class="product-btns">
+									<!-- div class="product-btns">
 										<button class="main-btn icon-btn" th:onclick="'index.addWish(\'' + ${product.id} + '\');'"><i class="fa fa-heart-o"></i></button>
 										<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
 										<button class="primary-btn add-to-cart" th:onclick="'index.addCart(\'' + ${product.id} + '\');'"><i class="fa fa-shopping-cart"></i>加入購物車</button>
-									</div>
+									</div -->
 						        </div>
 						    </div>
 						</div>
@@ -243,11 +245,11 @@
 								<i class="fa fa-star-o empty"></i>
 							</div>
 							<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${#strings.abbreviate(product.name, 20)}">Product Name Goes Here</a></h2>
-							<div class="product-btns">
+							<!-- div class="product-btns">
 								<button class="main-btn icon-btn" th:onclick="'index.addWish(\'' + ${product.id} + '\');'"><i class="fa fa-heart-o"></i></button>
 								<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
 								<button class="primary-btn add-to-cart" th:onclick="'index.addCart(\'' + ${product.id} + '\');'"><i class="fa fa-shopping-cart"></i>加入購物車</button>
-							</div>
+							</div-->
 						</div>
 					</div>
 				</div>
@@ -278,11 +280,11 @@
 										<i class="fa fa-star-o empty"></i>
 									</div>
 									<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${#strings.abbreviate(product.name, 20)}">商品名稱</a></h2>
-									<div class="product-btns">
+									<!-- >div class="product-btns">
 										<button class="main-btn icon-btn" th:onclick="'index.addWish(\'' + ${product.id} + '\');'"><i class="fa fa-heart-o"></i></button>
 										<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
 										<button class="primary-btn add-to-cart" th:onclick="'index.addCart(\'' + ${product.id} + '\');'"><i class="fa fa-shopping-cart"></i>加入購物車</button>
-									</div>
+									</div -->
 								</div>
 							</div>
 							<!-- /Product Single -->
@@ -313,11 +315,11 @@
 										<i class="fa fa-star-o empty"></i>
 									</div>
 									<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${#strings.abbreviate(product.name, 20)}">商品名稱</a></h2>
-									<div class="product-btns">
+									<!-- >div class="product-btns">
 										<button class="main-btn icon-btn" th:onclick="'index.addWish(\'' + ${product.id} + '\');'"><i class="fa fa-heart-o"></i></button>
 										<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
 										<button class="primary-btn add-to-cart" th:onclick="'index.addCart(\'' + ${product.id} + '\');'"><i class="fa fa-shopping-cart"></i>加入購物車</button>
-									</div>
+									</div -->
 								</div>
 							</div>
 							<!-- /Product Single -->
@@ -397,11 +399,11 @@
 								<i class="fa fa-star-o empty"></i>
 							</div>
 							<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${#strings.abbreviate(product.name, 20)}">Product Name Goes Here</a></h2>
-							<div class="product-btns">
+							<!-- >div class="product-btns">
 								<button class="main-btn icon-btn" th:onclick="'index.addWish(\'' + ${product.id} + '\');'"><i class="fa fa-heart-o"></i></button>
 								<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
 								<button class="primary-btn add-to-cart" th:onclick="'index.addCart(\'' + ${product.id} + '\');'"><i class="fa fa-shopping-cart"></i> 加入購物車</button>
-							</div>
+							</div -->
 						</div>
 					</div>
 				</div>
@@ -440,11 +442,11 @@
 								<i class="fa fa-star-o empty"></i>
 							</div>
 							<h2 class="product-name"><a th:href="@{'/products/' + ${product.id}}" th:text="${#strings.abbreviate(product.name, 18)}">商品名稱</a></h2>
-							<div class="product-btns">
+							<!-- >div class="product-btns">
 								<button class="main-btn icon-btn" th:onclick="'index.addWish(\'' + ${product.id} + '\');'"><i class="fa fa-heart-o"></i></button>
 								<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
 								<button class="primary-btn add-to-cart" th:onclick="'index.addCart(\'' + ${product.id} + '\');'"><i class="fa fa-shopping-cart"></i> 加入購物車</button>
-							</div>
+							</div -->
 						</div>
 					</div>
 				</div>

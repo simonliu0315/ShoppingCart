@@ -75,9 +75,9 @@
 					    <td class="thumb"><img th:src="@{${productTempOrder.img}}" alt=""/></td>
 					    <td class="details">
 						    <a th:href="@{'/products/' + ${productTempOrder.productId}}" th:text="${productTempOrder.productName}">商品名稱</a>
-						    <ul class="color-option">
-							    <li><a href="#" th:style="${'background-color:' + productTempOrder.color}"></a></li>
-								<li><span th:text="${'顏色: ' + productTempOrder.color}">顏色: ??</span></li>
+						    <ul class="color-option" th:if="${productTempOrder.colorName != null}">
+							    <li><a href="#" th:style="${'background-color:' + productTempOrder.color}" th:title="${productTempOrder.colorName}"></a></li>
+								<li><span th:text="${'顏色: ' + productTempOrder.colorName}">顏色: ??</span></li>
 							</ul>
 					    </td>
 					    <td class="price text-center">
@@ -101,7 +101,7 @@
 					<tr>
 						<th class="empty" colspan="3"></th>
 						<th>運費總金額</th>
-						<td colspan="2" th:if="${order.shipment == 0}">Free Shipping</td>
+						<td colspan="2" th:if="${order.shipment == 0}">免運</td>
 						<td colspan="2" th:if="${order.shipment != 0}" th:text="${'$' + order.shipment}"></td>
 					</tr>
 					<tr>

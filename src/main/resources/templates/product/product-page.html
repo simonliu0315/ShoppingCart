@@ -95,6 +95,7 @@
 									<li><a href="#">SL</a></li>
 								</ul-->
 								<ul class="color-option" th:if="${not #lists.isEmpty(product.productColors)}" >
+								    <input type="hidden" id="isColor" name="isColor" value="1"/>
 								    <input type="hidden" id="color" name="color" value=""/>
 									<li><span class="text-uppercase">顏色:</span></li>
 									<th:block th:each="productColor, itrStat: ${product.productColors}">

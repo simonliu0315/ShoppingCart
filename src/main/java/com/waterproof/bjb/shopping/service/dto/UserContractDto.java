@@ -13,7 +13,7 @@ public class UserContractDto {
 	
 	private String zipCode;
 	
-	private String city;
+	private String county;
 	
 	private String district;
 	

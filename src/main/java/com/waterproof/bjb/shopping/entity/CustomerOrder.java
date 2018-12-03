@@ -61,7 +61,7 @@ public class CustomerOrder implements Serializable {
 	private String update_by;
 
 	@Column(name = "SHIPPING")
-	private BigDecimal Shipping;
+	private BigDecimal shipping;
 	
 	@Column(name = "PAYMENT_METHOD")
 	private int method;
