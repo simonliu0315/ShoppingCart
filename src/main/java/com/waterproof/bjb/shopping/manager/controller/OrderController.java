@@ -121,8 +121,9 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updateOrder(@RequestParam("orderNo") String orderNo, ModelMap map) {
-		log.info("updateOrder " + orderNo);
+	public String updateOrder(@RequestParam("orderNo") String orderNo, 
+			@RequestParam("statusId") int statusId, ModelMap map) {
+		log.info("updateOrder orderNo {}, statusId {}", orderNo, statusId);
 		
 		
 
