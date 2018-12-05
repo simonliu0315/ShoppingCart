@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.waterproof.bjb.shopping.entity.CustomerOrder;
@@ -19,6 +20,6 @@ public interface CustomerOrderRepository extends JpaRepository<CustomerOrder, In
 	public CustomerOrder findByIdOrderByInsertedDesc(int id);
 	
 	@Modifying
-	@Query("update CUSTOMER_ORDER co set co.status_id = ?1 where co.order_no = ?2")
-	public void setCustomerOrderByOrderNo(int statusId, String orderNo);
+	@Query("update CustomerOrder co set co.statusId =:statusId  where co.orderNo = :orderNo")
+	public void setCustomerOrderByOrderNo(@Param("statusId") int statusId, @Param("orderNo") String orderNo);
 }
