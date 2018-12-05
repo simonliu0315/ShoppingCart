@@ -83,4 +83,9 @@ public class OrderService {
 		}
 		return pcustomerOrder;
 	}
+	
+	public void updateCustomerOrder(int statusId, String orderNo) {
+		log.info("getCustomerOrder {}", statusId);
+	    customerOrderRepository.setCustomerOrderByOrderNo(statusId, orderNo);
+	}
 }

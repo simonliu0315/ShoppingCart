@@ -127,6 +127,7 @@ public class OrderController {
 		
 		
 
+		orderService.updateCustomerOrder(statusId, orderNo);
 		CustomerOrder customerOrder = orderService.getCustomerOrder(orderNo);
 		log.info("customerOrder {}", customerOrder);
 		for (OrderDetail detail : customerOrder.getOrderDetails()) {
