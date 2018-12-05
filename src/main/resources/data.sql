@@ -194,7 +194,7 @@ insert into ORDER_STATUS values(5, 5, '待收貨');
 insert into ORDER_STATUS values(6, 6, '完成');
 insert into ORDER_STATUS values(7, 7, '取消');
 
-insert into CUSTOMER_ORDER VALUES(1, '20180916010101001', 201, 'simon', 1, now(), 'simon', now(), 'simon', 100, 2);
+insert into CUSTOMER_ORDER VALUES(1, '20180916010101001', 502, 'simon', 1, now(), 'simon', now(), 'simon', 100, 2);
 
 insert into ORDER_DETAIL VALUES('20180916010101001', 1, 201, 100, '防水漆01', 2, '#000000;');
 insert into ORDER_CONTRACT VALUES('20180916010101001', '王郵寄', 'aaa@gmail.com', '116', '台北市', '文山區', '羅斯福路五萬218號', '0931886655');

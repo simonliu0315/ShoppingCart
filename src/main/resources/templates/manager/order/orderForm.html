@@ -34,14 +34,25 @@
                 <strong th:if="${action == 'update'}">修改訂單</strong>
             </legend>
 
-            <form th:action="@{/manager/users/{action}(action=${action})}" method="post" class="form-horizontal">
-
+            <form th:action="@{/manager/order/{action}(action=${action})}" method="post" class="form-horizontal">
+                <input id="statusIdTmp" name="statusIdTmp" type="hidden" th:value="${order.statusId}"/>
+                <input id="orderNo" name="orderNo" type="hidden" th:value="${order.orderNo}"/>
                 <div class="form-group">
-                    <label for="user_name" class="col-sm-2 control-label">訂單編號:</label>
-                    <div class="col-xs-4" th:text="${order.orderNo}">
-                        
+                    <h4 class="col-md-12">
+                    <strong th:text="${'訂單編號：' + order.orderNo}"></strong>
+                    </h4>
+                    <div class="col-md-4"><h4>狀態：
+                    <select class="form-control" id="statusId" name="statusId">
+                    <option value="0">------</option>
+                    <option value="1">訂單成立，待付款</option>
+                    <option value="2">付款確認中</option>
+                    <option value="3">已付款，待出貨</option>
+                    <option value="4">已出貨</option>
+                    <option value="5">待收貨</option>
+                    <option value="6">完成</option>
+                    <option value="7">取消</option>
+                    </select> </h4>
                     </div>
-                   
                 </div>
                 <div class="col-md-12">
 						<div class="order-summary clearfix">
@@ -61,7 +72,7 @@
 								</thead>
 								<tbody>
 									<tr th:each="orderDetail, itrStat : ${order.orderDetails}">
-									    <td class="thumb"></td>
+									    <td class="thumb"><img th:src="@{${orderDetail.product.img}}" alt=""/></td>
 										<td class="details">
 											<a th:href="@{'/products/' + ${orderDetail.id.productId}}" th:text="${orderDetail.productName}">商品名稱</a>
 										</td>
@@ -83,7 +94,7 @@
 									<tr>
 										<th class="empty" colspan="3"></th>
 										<th>商品總金額</th>
-										
+										<th colspan="2" class="sub-total" th:text="${'$' + (order.amount - order.shipping)}">$0</th>
 									</tr>
 									<tr>
 										<th class="empty" colspan="3"></th>
@@ -94,7 +105,7 @@
 									<tr>
 										<th class="empty" colspan="3"></th>
 										<th>總付款金額</th>
-										
+										<th colspan="2" class="total" th:text="${'$' + order.amount}">$0</th>
 									</tr>
 								</tfoot>
 							</table>
@@ -106,7 +117,7 @@
                 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <input class="btn btn-primary" type="submit" value="送出"/>&nbsp;&nbsp;
+                        <input class="btn btn-primary" type="submit" value="修改"/>&nbsp;&nbsp;
                         <input class="btn" type="button" value="返回" onclick="history.back()"/>
                     </div>
                 </div>
@@ -119,6 +130,7 @@
     <div th:replace="fragments/body_resources :: body_resources"></div>
    
     <script th:src="@{/js/index.js}"></script>
+    <script th:src="@{/js/orderForm.js}"></script>
  </body>
 
 </html>

@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -106,9 +107,26 @@ public class OrderController {
 	}
         
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-	public String getUser(@PathVariable int id, ModelMap map) {
+	public String getOrder(@PathVariable int id, ModelMap map) {
 		log.info("orderlist");
 		CustomerOrder customerOrder = orderService.getCustomerOrder(id);
+		log.info("customerOrder {}", customerOrder);
+		for (OrderDetail detail : customerOrder.getOrderDetails()) {
+			log.info("detail {}", detail);
+			log.info("detail product {}", detail.getProduct());
+		}
+		map.addAttribute("order", customerOrder);
+		map.addAttribute("action", "update");
+		return "manager/order/orderForm";
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String updateOrder(@RequestParam("orderNo") String orderNo, ModelMap map) {
+		log.info("updateOrder " + orderNo);
+		
+		
+
+		CustomerOrder customerOrder = orderService.getCustomerOrder(orderNo);
 		log.info("customerOrder {}", customerOrder);
 		for (OrderDetail detail : customerOrder.getOrderDetails()) {
 			log.info("detail {}", detail);
