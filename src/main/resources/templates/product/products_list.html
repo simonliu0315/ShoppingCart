@@ -65,12 +65,12 @@
 					<div class="aside">
 						<h3 class="aside-title">依據途徑篩選:</h3>
 						<ul class="list-links">
-							<li><input type="checkbox" id="tagId" name="tagId[]" value="1" th:checked="${active1}"/>防水密封塗料</li>
-							<li><input type="checkbox" id="tagId" name="tagId[]" value="2" th:checked="${active2}"/>甲板密封塗料</li>
-							<li><input type="checkbox" id="tagId" name="tagId[]" value="3" th:checked="${active3}"/>RV車頂密封塗料</li>
-							<li><input type="checkbox" id="tagId" name="tagId[]" value="4" th:checked="${active4}"/>金屬安全密封塗料</li>
-							<li><input type="checkbox" id="tagId" name="tagId[]" value="5" th:checked="${active5}"/>彩色防水密封塗料</li>
-							<li><input type="checkbox" id="tagId" name="tagId[]" value="6" th:checked="${active6}"/>基礎密封塗料</li>
+							<li><input type="checkbox" id="tagId" name="tagId[]" value="1"/>防水密封塗料</li>
+							<li><input type="checkbox" id="tagId" name="tagId[]" value="2"/>甲板密封塗料</li>
+							<li><input type="checkbox" id="tagId" name="tagId[]" value="3"/>RV車頂密封塗料</li>
+							<li><input type="checkbox" id="tagId" name="tagId[]" value="4"/>金屬安全密封塗料</li>
+							<li><input type="checkbox" id="tagId" name="tagId[]" value="5"/>彩色防水密封塗料</li>
+							<li><input type="checkbox" id="tagId" name="tagId[]" value="6"/>基礎密封塗料</li>
 						</ul>
 					</div>
 					<!-- /aside widget -->
@@ -167,14 +167,12 @@
 				    <input id="pageSize" name="pageSize" type="hidden" th:value="${pageSize}"/>
 					<input id="price_low" name="price_low" type="hidden" th:value="${price_low}"/>
 					<input id="price_high" name="price_high" type="hidden" th:value="${price_high}"/>
-					<input id="filter_tagId" name="filter_tagId" type="hidden" th:value="${filter_tagId}"/>
-					
 					<!-- store top filter -->
 					<div class="store-filter clearfix">
 						<div class="pull-left">
 							<div class="row-filter">
-								<a th:href="@{/products}" class="active"><i class="fa fa-th-large"></i></a>
-								<a th:href="@{/products?disp=list}"><i class="fa fa-bars"></i></a>
+								<a th:href="@{/products}"><i class="fa fa-th-large"></i></a>
+								<a th:href="@{/products?disp=list}" class="active"><i class="fa fa-bars"></i></a>
 							</div>
 							<div class="sort-filter">
 								<span class="text-uppercase">排序:</span>
@@ -213,17 +211,19 @@
 						<!-- row -->
 						<div class="row">
 							<!-- Product Single -->							
-							<div class="col-md-4 col-sm-6 col-xs-6" style="min-height: 500px; padding-bottom: 10px;" th:each="product, itrStat: ${activate_product}">			
-								<div class="product product-single">
-									<div class="product-thumb">
-										<div class="product-label">
-										<span th:if="${product.newest == 1}">新上市</span>
-										<span th:if="${product.promotion_on == 1 and product.promotion_discount != 100}" class="sale" th:text="${(100 - product.promotion_discount) + '%'}">0%</span>
-						                <span th:if="${product.promotion_on == 0 and product.discount != 100}" class="sale" th:text="${(100 - product.discount) + '%'}">0%</span>
+							<div class="col-md-12 col-sm-12 col-xs-12" style="min-height: 100px; padding-bottom: 12%;" th:each="product, itrStat: ${activate_product}">			
+								<div class="product product-widget-two">
+								    <div class="product-label">
+										    <span th:if="${product.newest == 1}">新上市</span>
+										    <span th:if="${product.promotion_on == 1 and product.promotion_discount != 100}" class="sale" th:text="${(100 - product.promotion_discount) + '%'}">0%</span>
+						                    <span th:if="${product.promotion_on == 0 and product.discount != 100}" class="sale" th:text="${(100 - product.discount) + '%'}">0%</span>
 									</div>
+									<div class="product-thumb">
+										
 									<a class="main-btn quick-view" th:href="@{'/products/' + ${product.id}}"><i class="fa fa-search-plus"></i> 瀏覽商品</a>
 									<img th:src="@{${product.img}}" alt=""/>
 									</div>
+									
 									<div class="product-body">
 									    <h3 class="product-price" th:text="${'$' + (product.price * product.discount / 100)}">$0 </h3>
 						                <del class="product-old-price" style="font-size:16px" th:text="${product.price}">$0</del>
@@ -256,8 +256,8 @@
 					<div class="store-filter clearfix">
 						<div class="pull-left">
 							<div class="row-filter">
-								<a th:href="@{/products}" class="active"><i class="fa fa-th-large"></i></a>
-								<a th:href="@{/products?disp=list}"><i class="fa fa-bars"></i></a>
+								<a th:href="@{/products}"><i class="fa fa-th-large"></i></a>
+								<a th:href="@{/products?disp=list}" class="active"><i class="fa fa-bars"></i></a>
 							</div>
 							<div class="sort-filter">
 								<span class="text-uppercase">排序:</span>

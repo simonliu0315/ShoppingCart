@@ -7,6 +7,7 @@ headers[csrf_header] = $("[name='_csrf']").attr("content");
 var product_list = {
 	init : function() {
 		var formData = {};
+
 	},
 	reload : function() {
 		var tagId = $.map($(':checkbox[name=tagId\\[\\]]:checked'), function(n, i){

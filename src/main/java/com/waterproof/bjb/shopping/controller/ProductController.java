@@ -3,6 +3,7 @@ package com.waterproof.bjb.shopping.controller;
 import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.data.domain.Page;
@@ -36,11 +37,11 @@ public class ProductController {
 	private CategoryService categorySerivce;
 	
 	@RequestMapping(value = "", method = {RequestMethod.GET})
-    public ModelAndView getPage() {
+    public ModelAndView getPage(HttpServletRequest request) {
         log.info("index getPage");
         ModelAndView mav = new ModelAndView();
-        Pageable pageable = new PageRequest(0, 10);
-        log.info("page {}, pageSize {}", 0, 10);
+        Pageable pageable = new PageRequest(0, 12);
+        log.info("page {}, pageSize {}", 0, 12);
         Page<Product> products = productService.getFilterProduct("", 1, 0, 0, 0, 1, pageable, null);
         log.info("products size {}", products.getContent().size());
         mav.addObject("activate_product", products.getContent());
@@ -53,16 +54,22 @@ public class ProductController {
         log.info("pageNumber {}, Offset {}, pageSize {}", pageable.getPageNumber(), pageable.getOffset(), pageable.getPageSize());
         String defaultUrl = "&";
         defaultUrl += "page=1";
-        defaultUrl += "&pageSize=10";
+        defaultUrl += "&pageSize=12";
         mav.addObject("default_url", defaultUrl);
         String defaultUrlPage = "?";
-        defaultUrlPage += "pageSize=10&page=";
+        defaultUrlPage += "pageSize=12&page=";
         mav.addObject("default_url_page", defaultUrlPage);
         mav.addObject("filter_price_low", 0);
         mav.addObject("filter_price_high", 0);
         //抓最常購買的資料
         mav.addObject("suggest_product", productService.getDiscountProductsOrderUpdatedTime().subList(0, 5));
-        mav.setViewName("product/products");
+        String disp = (request.getParameter("disp") == null ? "" : request.getParameter("disp")).toString();
+        if ("list".equals(disp)) {
+        	mav.setViewName("product/products_list");
+        } else {
+        	mav.setViewName("product/products");
+        }
+        
         return mav;
     }
 	@RequestMapping(value = "/{id}", method = {RequestMethod.GET})
@@ -106,7 +113,7 @@ public class ProductController {
     		@RequestParam(value = "price_high", required=false, defaultValue = "0") long price_high,
     		@RequestParam(value = "orderby", required=false, defaultValue = "1") int orderby,
     		@RequestParam(value = "page", required=false, defaultValue = "0") int page,
-    		@RequestParam(value = "pageSize", required=false, defaultValue = "10") int pageSize,
+    		@RequestParam(value = "pageSize", required=false, defaultValue = "12") int pageSize,
     		@RequestParam(value = "tagId", required=false) int[] tagId) {
         log.info("search getPage");
         
@@ -167,13 +174,29 @@ public class ProductController {
         mav.addObject("default_url", defaultUrl);
 
         log.info("pageNumber {}, Offset {}, pageSize {}", pageable.getPageNumber(), pageable.getOffset(), pageable.getPageSize());
+        StringBuilder sb = new StringBuilder("");
         
         String defaultUrlPage = "&";
-        defaultUrlPage += "pageSize="+ pageSize + "&page=";
+        if (tagId != null && tagId.length > 0) {
+            for(int t: tagId) {
+            	mav.addObject("active" + t, true);
+            	sb.append("" + t +",");
+            }
+            defaultUrlPage += "tagId=" + sb.substring(0, sb.length()  - 1);
+            defaultUrlPage += "&pageSize="+ pageSize + "&page=";
+        } else {
+        	defaultUrlPage += "pageSize="+ pageSize + "&page=";
+        }
+        
+        
+        
+        log.info("defaultUrlPage {}", defaultUrlPage);
         mav.addObject("default_url_page", defaultUrlPage);
         mav.addObject("filter_price_low", price_low);
         mav.addObject("filter_price_high", price_high);
         mav.addObject("filter_tagId", tagId);
+        
+
         
         //抓最常購買的資料
         mav.addObject("suggest_product", productService.getDiscountProductsOrderUpdatedTime().subList(0, 5));

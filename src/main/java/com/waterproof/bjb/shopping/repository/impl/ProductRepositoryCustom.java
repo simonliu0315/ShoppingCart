@@ -42,7 +42,7 @@ public class ProductRepositoryCustom {
 	public Page<Product> filter(String q, int category, long productId,
     		long price_low, long price_high, int orderby, Pageable pageable, int[] tagId) {
 		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-		CriteriaQuery<Product> criteriaQuery = criteriaBuilder.createQuery(Product.class);
+		CriteriaQuery<Product> criteriaQuery = criteriaBuilder.createQuery(Product.class).distinct(true);;
 		Root<Product> rootFrom = criteriaQuery.from(Product.class);
 
 		
