@@ -13,8 +13,10 @@ import org.springframework.stereotype.Service;
 import com.waterproof.bjb.shopping.entity.Product;
 import com.waterproof.bjb.shopping.entity.ProductColor;
 import com.waterproof.bjb.shopping.entity.ProductColorPK;
+import com.waterproof.bjb.shopping.entity.ProductTag;
 import com.waterproof.bjb.shopping.repository.ProductColorRepository;
 import com.waterproof.bjb.shopping.repository.ProductRepository;
+import com.waterproof.bjb.shopping.repository.ProductTagRepository;
 import com.waterproof.bjb.shopping.repository.impl.ProductRepositoryCustom;
 
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +33,10 @@ public class ProductService {
 	
 	@Autowired
 	private ProductColorRepository productColorRepository;
+	
+	@Autowired
+	private ProductTagRepository productTagRepository;
+	
 	
 	public Product getProduct(Long id) {
 		Product product = productRepository.findOne(id);
@@ -57,9 +63,9 @@ public class ProductService {
 	}
 	
 	public Page<Product> getFilterProduct(String q, int category, long productId,
-    		long price_low, long price_high, int orderby, Pageable pageable) {
+    		long price_low, long price_high, int orderby, Pageable pageable, int[] tagId) {
 		
-		Page<Product> pproduct = productRepositoryCustom.filter(q, category, productId, price_low, price_high, orderby, pageable);
+		Page<Product> pproduct = productRepositoryCustom.filter(q, category, productId, price_low, price_high, orderby, pageable, tagId);
 		List<Product> products = pproduct.getContent();
 		log.info("size: {}" , products.size());
 		for(Product product : products) {

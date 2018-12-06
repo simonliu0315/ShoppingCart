@@ -349,12 +349,12 @@
 							<button class="primary-btn">Shop Now</button>
 						</div-->
 						<map name="logos" id="logos">
-                            <area data-product="1"  shape="rect" coords="430,400,700,700" th:href="@{/products/search(q=防水密封塗料,category=0)}" title="防水密封塗料" alt="防水密封塗料" />
-                            <area data-product="11" shape="rect" coords="340,970,600,1280" th:href="@{/products/search(q=甲板,category=0)}" title="甲板密封塗料" alt="甲板密封塗料" />
-                            <area data-product="7" shape="rect" coords="430,1550,695,1860" th:href="@{/products/search(q=RV,category=0)}" title="RV車頂密封塗料" alt="RV車頂密封塗料" />
-                            <area data-product="14" shape="rect" coords="2310,410,2580,710" th:href="@{/products/search(q=金屬,category=0)}" title="金屬安全密封塗料" alt="金屬安全密封塗料" />
-                            <area data-product="4" shape="rect" coords="2360,950,2635,1260" th:href="@{/products/search(q=彩色,category=0)}" title="彩色防水密封塗料" alt="彩色防水密封塗料" />
-                            <area data-product="12" shape="rect" coords="2280,1630,2540,1940" th:href="@{/products/search(q=基礎,category=0)}" title="基礎密封塗料" alt="基礎密封塗料" />
+                            <area data-product="1"  shape="rect" coords="430,400,700,700" th:href="@{/products/search(tagId=1)}" title="防水密封塗料" alt="防水密封塗料" />
+                            <area data-product="11" shape="rect" coords="340,970,600,1280" th:href="@{/products/search(tagId=2)}" title="甲板密封塗料" alt="甲板密封塗料" />
+                            <area data-product="7" shape="rect" coords="430,1550,695,1860" th:href="@{/products/search(tagId=3)}" title="RV車頂密封塗料" alt="RV車頂密封塗料" />
+                            <area data-product="14" shape="rect" coords="2310,410,2580,710" th:href="@{/products/search(tagId=4)}" title="金屬安全密封塗料" alt="金屬安全密封塗料" />
+                            <area data-product="4" shape="rect" coords="2360,950,2635,1260" th:href="@{/products/search(tagId=5)}" title="彩色防水密封塗料" alt="彩色防水密封塗料" />
+                            <area data-product="12" shape="rect" coords="2280,1630,2540,1940" th:href="@{/products/search(tagId=6)}" title="基礎密封塗料" alt="基礎密封塗料" />
                             
                             <!-- area shape="default" nohref="nohref" title="Default" alt="Default"/-->
                         </map>
@@ -502,7 +502,7 @@ $(function(){
 			},
 			delay: 0.7,
 			margin: "15px",
-			height: "130px",
+			height: "260px",
 			width: "260px"
 		},
 		onAreaHighlight: function(){

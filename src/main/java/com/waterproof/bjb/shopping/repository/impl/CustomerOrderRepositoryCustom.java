@@ -37,6 +37,29 @@ public class CustomerOrderRepositoryCustom {
 	private EntityManager em;
 
 	public Page<CustomerOrder> filter(Date startDate, Date endDate, String orderNo, int statusId, int orderby, Pageable pageable) {
+		CriteriaQuery<CustomerOrder> criteriaQuery = getCriteriaQuery(startDate, endDate, orderNo, statusId, orderby);
+		// SQL查询对象
+		TypedQuery<CustomerOrder> createQuery = em.createQuery(criteriaQuery);
+
+		// 分页参数
+		Integer pageSize = pageable.getPageSize();
+		Integer pageNo = pageable.getPageNumber();
+
+		log.info("pageSize {}, pageNo {}", pageSize, pageNo);
+		// 计数查询结果条数
+		TypedQuery<CustomerOrder> createCountQuery = em.createQuery(criteriaQuery);
+
+		// 实际查询返回分页对象
+		int startIndex = pageSize * pageNo;
+		createQuery.setFirstResult(startIndex);
+		createQuery.setMaxResults(pageable.getPageSize());
+		Page<CustomerOrder> pageRst = new PageImpl<CustomerOrder>(createQuery.getResultList(), pageable,
+				createCountQuery.getResultList().size());
+		return pageRst;
+
+	}
+
+	private CriteriaQuery<CustomerOrder> getCriteriaQuery(Date startDate, Date endDate, String orderNo, int statusId, int orderby) {
 		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
 		CriteriaQuery<CustomerOrder> criteriaQuery = criteriaBuilder.createQuery(CustomerOrder.class);
 		Root<CustomerOrder> rootFrom = criteriaQuery.from(CustomerOrder.class);
@@ -68,26 +91,12 @@ public class CustomerOrderRepositoryCustom {
 		if (orderby == 1) {
 			criteriaQuery.orderBy(criteriaBuilder.desc(rootFrom.get("updated")));
 		}
-		
-		// SQL查询对象
-		TypedQuery<CustomerOrder> createQuery = em.createQuery(criteriaQuery);
-
-		// 分页参数
-		Integer pageSize = pageable.getPageSize();
-		Integer pageNo = pageable.getPageNumber();
-
-		log.info("pageSize {}, pageNo {}", pageSize, pageNo);
-		// 计数查询结果条数
-		TypedQuery<CustomerOrder> createCountQuery = em.createQuery(criteriaQuery);
-
-		// 实际查询返回分页对象
-		int startIndex = pageSize * pageNo;
-		createQuery.setFirstResult(startIndex);
-		createQuery.setMaxResults(pageable.getPageSize());
-		Page<CustomerOrder> pageRst = new PageImpl<CustomerOrder>(createQuery.getResultList(), pageable,
-				createCountQuery.getResultList().size());
-		return pageRst;
-
+		return criteriaQuery;
 	}
-
+	
+	public List<CustomerOrder> getList(Date startDate, Date endDate, String orderNo, int statusId, int orderby) {
+		CriteriaQuery<CustomerOrder> criteriaQuery = getCriteriaQuery(startDate, endDate, orderNo, statusId, orderby);
+		TypedQuery<CustomerOrder> createQuery = em.createQuery(criteriaQuery);
+		return createQuery.getResultList();
+	}
 }

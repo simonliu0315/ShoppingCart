@@ -88,4 +88,8 @@ public class OrderService {
 		log.info("getCustomerOrder {}", statusId);
 	    customerOrderRepository.setCustomerOrderByOrderNo(statusId, orderNo);
 	}
+	public List<CustomerOrder> getFilterProduct(Date startDate, Date endDate, String orderNo, int statusId, int orderby) {
+		return customerOrderRepositoryCustom.getList(startDate, endDate, orderNo, statusId, orderby);	
+	}
+		
 }

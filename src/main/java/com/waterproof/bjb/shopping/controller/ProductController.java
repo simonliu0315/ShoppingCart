@@ -41,7 +41,7 @@ public class ProductController {
         ModelAndView mav = new ModelAndView();
         Pageable pageable = new PageRequest(0, 10);
         log.info("page {}, pageSize {}", 0, 10);
-        Page<Product> products = productService.getFilterProduct("", 1, 0, 0, 0, 1, pageable);
+        Page<Product> products = productService.getFilterProduct("", 1, 0, 0, 0, 1, pageable, null);
         log.info("products size {}", products.getContent().size());
         mav.addObject("activate_product", products.getContent());
         log.info("getTotalPages {}", products.getTotalPages());
@@ -106,7 +106,8 @@ public class ProductController {
     		@RequestParam(value = "price_high", required=false, defaultValue = "0") long price_high,
     		@RequestParam(value = "orderby", required=false, defaultValue = "1") int orderby,
     		@RequestParam(value = "page", required=false, defaultValue = "0") int page,
-    		@RequestParam(value = "pageSize", required=false, defaultValue = "10") int pageSize) {
+    		@RequestParam(value = "pageSize", required=false, defaultValue = "10") int pageSize,
+    		@RequestParam(value = "tagId", required=false) int[] tagId) {
         log.info("search getPage");
         
         ModelAndView mav = new ModelAndView();
@@ -133,7 +134,7 @@ public class ProductController {
         	return mav;
         } 
 
-        Page<Product> products = productService.getFilterProduct(q, category, productId, price_low, price_high, orderby, pageable);
+        Page<Product> products = productService.getFilterProduct(q, category, productId, price_low, price_high, orderby, pageable, tagId);
         log.info("products size {}", products.getContent().size());
         mav.addObject("activate_product", products.getContent());
         log.info("getTotalPages {}", products.getTotalPages());
@@ -172,6 +173,8 @@ public class ProductController {
         mav.addObject("default_url_page", defaultUrlPage);
         mav.addObject("filter_price_low", price_low);
         mav.addObject("filter_price_high", price_high);
+        mav.addObject("filter_tagId", tagId);
+        
         //抓最常購買的資料
         mav.addObject("suggest_product", productService.getDiscountProductsOrderUpdatedTime().subList(0, 5));
         mav.setViewName("product/products");

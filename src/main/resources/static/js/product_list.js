@@ -9,6 +9,9 @@ var product_list = {
 		var formData = {};
 	},
 	reload : function() {
+		var tagId = $.map($(':checkbox[name=tagId\\[\\]]:checked'), function(n, i){
+		      return n.value;
+		}).join(',');
 		var formData = {};
 		var url = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "" +contextRoot + "/products/search?";
 		if ($("#orderby").val() != null) {
@@ -42,8 +45,14 @@ var product_list = {
 		} else {
 			url += "&page="+$("#page").val();
 		}
+		if (tagId != "") {
+			url += "&tagId="+ tagId;
+		}
 		window.location.href = url;
 	}, filter : function () {
+		var tagId = $.map($(':checkbox[name=tagId\\[\\]]:checked'), function(n, i){
+		      return n.value;
+		}).join(',');
 		var formData = {};
 		var url = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "" +contextRoot + "/products/search?";
 		if ($("#orderby").val() != null) {
@@ -75,6 +84,9 @@ var product_list = {
 			url += "&page=1";
 		} else {
 			url += "&page="+$("#page").val();
+		}
+		if (tagId != "") {
+			url += "&tagId="+ tagId;
 		}
 		window.location.href = url;
 	}

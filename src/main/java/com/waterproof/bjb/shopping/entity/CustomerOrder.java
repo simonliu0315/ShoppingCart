@@ -17,6 +17,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import lombok.Data;
 
@@ -81,6 +83,11 @@ public class CustomerOrder implements Serializable {
 	@OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER) //移除, optional = false 就會正常
 	@JoinColumn(name="ORDER_NO", referencedColumnName="ORDER_NO", insertable = false, updatable = false)
 	private OrderContract orderContract;
+	
+	@NotFound(action = NotFoundAction.IGNORE)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) //移除, optional = false 就會正常
+	@JoinColumn(name="ORDER_NO", referencedColumnName="ORDER_NO", insertable = false, updatable = false)
+	private OrderInvoiceContract orderInvoiceContract;
 	
 	@Override
 	public String toString() {

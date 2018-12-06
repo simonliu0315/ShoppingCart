@@ -1,6 +1,7 @@
 package com.waterproof.bjb.shopping.repository.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
@@ -19,11 +21,14 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
+import org.thymeleaf.expression.Lists;
 import org.thymeleaf.util.StringUtils;
 
 import com.waterproof.bjb.shopping.controller.ProductController;
 import com.waterproof.bjb.shopping.entity.Category;
 import com.waterproof.bjb.shopping.entity.Product;
+import com.waterproof.bjb.shopping.entity.ProductTag;
+import com.waterproof.bjb.shopping.entity.ProductTagRelation;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,16 +40,29 @@ public class ProductRepositoryCustom {
 	private EntityManager em;
 
 	public Page<Product> filter(String q, int category, long productId,
-    		long price_low, long price_high, int orderby, Pageable pageable) {
+    		long price_low, long price_high, int orderby, Pageable pageable, int[] tagId) {
 		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
 		CriteriaQuery<Product> criteriaQuery = criteriaBuilder.createQuery(Product.class);
 		Root<Product> rootFrom = criteriaQuery.from(Product.class);
 
-		//Join<Product, Category> bJoin= rootFrom.join("Category", JoinType.LEFT);
-		//bJoin.on(criteriaBuilder.equal(bJoin.get("id"), rootFrom.get("categoryId")));
+		
 		
 		List<Predicate> predicates = new ArrayList<Predicate>();
 
+		if (tagId != null) {
+			Join<Product, ProductTagRelation> productTagRelation = rootFrom.join("productTagRelations", JoinType.INNER);
+			
+			Join<ProductTagRelation, ProductTag> productTag = productTagRelation.join("productTag", JoinType.INNER);
+			
+			List<Integer> a = new ArrayList<Integer>();
+			for (int t : tagId) {
+				log.info("ttttttt:{}", t);
+				a.add(t);
+			}
+		    Predicate predicate = productTag.get("id").in(a);
+		    predicates.add(predicate);
+		}
+		
 		if (!StringUtils.isEmpty(q)) {
 			log.info("q {}", q);
 		    Predicate predicate = criteriaBuilder.like(rootFrom.get("name").as(String.class), "%" + q + "%");
@@ -69,6 +87,7 @@ public class ProductRepositoryCustom {
 //		    Predicate predicate = criteriaBuilder.like(rootFrom.get("name").as(String.class), "%" + q + "%");
 //		    predicates.add(predicate);
 //		}
+		
 		// 格式化参数
 		criteriaQuery.where(criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()])));
 		

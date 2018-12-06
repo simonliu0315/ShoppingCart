@@ -15,6 +15,8 @@ drop table IF EXISTS Product_TAG;
 drop table IF EXISTS Product_TAG_RELATION;
 drop table IF EXISTS SHIPPING_METHOD;
 drop table IF EXISTS ORDER_CONTRACT;
+drop table IF EXISTS ORDER_INVOICE_CONTRACT;
+
 create table Category(
     id int not null,
     name varchar(180),
@@ -95,6 +97,20 @@ create table ORDER_CONTRACT(
     district  varchar(60),
     address  varchar(60),
     tel  varchar(30),
+    primary key(order_no)
+);
+create table ORDER_INVOICE_CONTRACT(
+    order_no varchar (20),
+    post_name  varchar(40),
+    email  varchar(30),
+    zip_code  varchar(30),
+    county  varchar(60),
+    district  varchar(60),
+    address  varchar(60),
+    tel  varchar(30),
+    invoice_no varchar(30),
+    vat_id varchar(8),
+    business_name varchar(8),
     primary key(order_no)
 );
 create table PAYMENT_METHOD(
@@ -221,3 +237,4 @@ create table SHIPPING_METHOD(
     shipping int,
     primary key(id)
 );
+

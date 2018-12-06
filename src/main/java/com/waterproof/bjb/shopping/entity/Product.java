@@ -89,4 +89,22 @@ public class Product implements Serializable {
 //	@JoinColumn(name = "ID", referencedColumnName="PRODUCT_ID", insertable = false, updatable = false)
 	@Transient
 	private List<ProductColor> productColors;
+	
+	@OneToMany(targetEntity = ProductTagRelation.class, cascade = CascadeType.ALL, mappedBy = "product")
+	private List<ProductTagRelation> productTagRelations;
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", engName=" + engName + ", originalPrice=" + originalPrice
+				+ ", discount=" + discount + ", price=" + price + ", shortDescription=" + shortDescription
+				+ ", description=" + description + ", img=" + img + ", categoryId=" + categoryId + ", activate="
+				+ activate + ", published=" + published + ", newest=" + newest + ", promotion_start=" + promotion_start
+				+ ", promotion_end=" + promotion_end + ", promotion_discount=" + promotion_discount
+				+ ", promotion_price=" + promotion_price + ", promotion_on=" + promotion_on + ", inserted=" + inserted
+				+ ", insert_by=" + insert_by + ", updated=" + updated + ", update_by=" + update_by
+				+ ", promotion_end_str=" + promotion_end_str + ", productColors=" + productColors
+				+ ", productTagRelations="  + "]";
+	}
+	
+	
 }
