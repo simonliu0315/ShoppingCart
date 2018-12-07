@@ -73,7 +73,7 @@ insert into PRODUCT_COLOR VALUES(7, '#261407;', '紋理巧克力棕色', 'K', 'L
 insert into PRODUCT_COLOR VALUES(7, '#FFFFFE;', '紋理白色', 'L', 'LRPDT-1-01', 1, now(), 'sys', now(), 'sys');
 
 
-insert into product values(8 ,'液態橡膠甲板密封塗料5加侖','Polyurethane Deck Coating', 'LRPDS-5-04', 208, 100, 208, '', '<img class="img-responsive" src="/img/product/8/descript/5.甲板塗料_5加侖_all.jpg"></img>', '/img/product/8/product/5.甲板塗料_Polyurethane_Deck_Coating_5加侖.jpg', 1, 1, 1, 1, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(8 ,'液態橡膠甲板密封塗料5加侖','Polyurethane Deck Coating', 'LRPDS-5-04', 8999, 100, 8599, '', '<img class="img-responsive" src="/img/product/8/descript/5.甲板塗料_5加侖_all.jpg"></img>', '/img/product/8/product/5.甲板塗料_Polyurethane_Deck_Coating_5加侖.jpg', 1, 1, 1, 1, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
 insert into PRODUCT_CAPACITY values(8, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(8, '#A29A8F;', '光滑淺灰色', 'A', 'LRPDS-5-04', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(8, '#595D56;', '光滑石灰色', 'B', 'LRPDS-5-03', 1, now(), 'sys', now(), 'sys');
@@ -117,35 +117,35 @@ insert into product values(15,'皇家黏合劑EPDM，TPO底漆1加侖','EPDM TPO
 insert into PRODUCT_CAPACITY values(15, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(15, '#FFFFFF;', '透明色', 'black', 'LREP1', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(16,'透明塗層1加侖','Clear Coat', 'LRCC1', 2099, 100, 1999, '', '', '/img/product/16/product/10.透明塗層_Clear_Coat_1加侖.jpg', 4, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(16,'透明塗層1加侖','Clear Coat', 'LRCC1', 2099, 100, 1999, '', '', '/img/product/16/product/10.透明塗層_Clear_Coat_1加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
 insert into PRODUCT_CAPACITY values(16, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(16, '#FFFFFF;', '透明色', 'black', 'LRCC1', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(17,'透明塗層5加侖','Clear Coat', 'LRCC5', 7499, 100, 6999, '', '', '/img/product/17/product/10.透明塗層_Clear_Coat_5加侖.jpg', 4, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(17,'透明塗層5加侖','Clear Coat', 'LRCC5', 7499, 100, 6999, '', '', '/img/product/17/product/10.透明塗層_Clear_Coat_5加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
 insert into PRODUCT_CAPACITY values(17, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(17, '#FFFFFF;', '透明色', 'black', 'LRCC5', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(18,'液態橡膠接縫膠帶2”x5’ (1.5m)','Liquid Rubber Seam Tape', 'LRST-2X5-20', 299, 100, 299, '', '', '/img/product/18/product/11.液態橡膠接縫膠帶2”x5’ (1.5m).jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(18,'液態橡膠接縫膠帶2”x5’ (1.5m)','Liquid Rubber Seam Tape', 'LRST-2X5-20', 299, 100, 299, '', '', '/img/product/18/product/11.液態橡膠接縫膠帶2”x5’ (1.5m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
 insert into PRODUCT_CAPACITY values(18, '1.5', 'm', '2”x5’ (1.5m)', '2”x5’ (1.5m)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(18, '#000000;', '黑色', 'black', 'LRST-2X5-20', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(19,'液態橡膠接縫膠帶2”x15’ (4.5m)','Liquid Rubber Seam Tape', 'LRST-2X15-20', 599, 100, 599, '', '', '/img/product/19/product/11.液態橡膠接縫膠帶2”x15’ (4.5m).jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(19,'液態橡膠接縫膠帶2”x15’ (4.5m)','Liquid Rubber Seam Tape', 'LRST-2X15-20', 599, 100, 599, '', '', '/img/product/19/product/11.液態橡膠接縫膠帶2”x15’ (4.5m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
 insert into PRODUCT_CAPACITY values(19, '1.5', 'm', '2”x5’ (1.5m)', '2”x5’ (1.5m)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(18, '#000000;', '黑色', 'black', 'LRST-2X5-20', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(20,'液態橡膠接縫膠帶4”x5’ (1.5m)','Liquid Rubber Seam Tape', 'LRST-4X5-20', 599, 100, 599, '', '', '/img/product/20/product/11.液態橡膠接縫膠帶4”x5’ (1.5m).jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(20,'液態橡膠接縫膠帶4”x5’ (1.5m)','Liquid Rubber Seam Tape', 'LRST-4X5-20', 599, 100, 599, '', '', '/img/product/20/product/11.液態橡膠接縫膠帶4”x5’ (1.5m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
 insert into PRODUCT_CAPACITY values(20, '1.5', 'm', '2”x5’ (1.5m)', '2”x5’ (1.5m)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(18, '#000000;', '黑色', 'black', 'LRST-2X5-20', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(21,'液態橡膠接縫膠帶4”x15’ (4.5m)','Liquid Rubber Seam Tape', 'LRST-4X15-20', 1199, 100, 1199, '', '', '/img/product/21/product/11.液態橡膠接縫膠帶4”x15’ (4.5m).jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(21,'液態橡膠接縫膠帶4”x15’ (4.5m)','Liquid Rubber Seam Tape', 'LRST-4X15-20', 1199, 100, 1199, '', '', '/img/product/21/product/11.液態橡膠接縫膠帶4”x15’ (4.5m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
 insert into PRODUCT_CAPACITY values(21, '1.5', 'm', '2”x5’ (1.5m)', '2”x5’ (1.5m)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(18, '#000000;', '黑色', 'black', 'LRST-2X5-20', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(22,'液態橡膠接縫膠帶6”x5’ (1.5m)','Liquid Rubber Seam Tape', 'LRST-6X5-20', 899, 100, 899, '', '', '/img/product/22/product/11.液態橡膠接縫膠帶6”x5’ (1.5m).jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(22,'液態橡膠接縫膠帶6”x5’ (1.5m)','Liquid Rubber Seam Tape', 'LRST-6X5-20', 899, 100, 899, '', '', '/img/product/22/product/11.液態橡膠接縫膠帶6”x5’ (1.5m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
 insert into PRODUCT_CAPACITY values(22, '1.5', 'm', '2”x5’ (1.5m)', '2”x5’ (1.5m)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(18, '#000000;', '黑色', 'black', 'LRST-2X5-20', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(23,'液態橡膠接縫膠帶6”x15’ (4.5m)','Liquid Rubber Seam Tape', 'LRST-6X15-20', 1649, 100, 1649, '', '', '/img/product/23/product/11.液態橡膠接縫膠帶6”x15’ (4.5m).jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(23,'液態橡膠接縫膠帶6”x15’ (4.5m)','Liquid Rubber Seam Tape', 'LRST-6X15-20', 1649, 100, 1649, '', '', '/img/product/23/product/11.液態橡膠接縫膠帶6”x15’ (4.5m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
 insert into PRODUCT_CAPACITY values(23, '1.5', 'm', '2”x5’ (1.5m)', '2”x5’ (1.5m)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(18, '#000000;', '黑色', 'black', 'LRST-2X5-20', 1, now(), 'sys', now(), 'sys');
 
@@ -165,36 +165,36 @@ insert into product values(27,'液態橡膠防潑水布_40”x324’(99m)','Liqu
 insert into PRODUCT_CAPACITY values(27, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(24, '#000000;', '黑色', 'black', 'HR-11001', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(28,'紋理滾筒','Textured_Roller', 'LRTR', 359, 100, 359, '', '', '/img/product/28/product/13.紋理滾筒.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(28,'紋理滾筒','Textured_Roller', 'LRTR', 359, 100, 359, '', '', '/img/product/28/product/13.紋理滾筒.jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
 insert into PRODUCT_CAPACITY values(28, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(28, '#000000;', '黑色', 'black', 'HR-11001', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(29,'Enviro輥編織加套管','Enviro Roller Woven Refill Sleeve', 'LRER', 150, 100, 150, '', '', '/img/product/29/product/14.編織滾筒補充.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(29,'Enviro輥編織加套管','Enviro Roller Woven Refill Sleeve', 'LRER', 150, 100, 150, '', '', '/img/product/29/product/14.編織滾筒補充.jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
 insert into PRODUCT_CAPACITY values(29, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(28, '#000000;', '黑色', 'black', 'HR-11001', 1, now(), 'sys', now(), 'sys');
 
 
-insert into product values(30,'4吋毛刷(100公釐)','4"Bristle Brush (100mm)', 'LRB-4', 210, 100, 210, '', '', '/img/product/30/product/15.4吋毛刷.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(30,'4吋毛刷(100公釐)','4"Bristle Brush (100mm)', 'LRB-4', 210, 100, 210, '', '', '/img/product/30/product/15.4吋毛刷.jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
 insert into PRODUCT_CAPACITY values(30, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(30, '#000000;', '黑色', 'black', 'HR-11001', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(31,'2.5吋角度刷(64公釐)','2.5"Angle_Brush_(64mm)', 'LRB-2.5', 180, 100, 180, '', '', '/img/product/31/product/16.2.5吋角刷.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(31,'2.5吋角度刷(64公釐)','2.5"Angle_Brush_(64mm)', 'LRB-2.5', 180, 100, 180, '', '', '/img/product/31/product/16.2.5吋角刷.jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
 insert into PRODUCT_CAPACITY values(31, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(31, '#000000;', '黑色', 'black', 'HR-11001', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(32,'液態橡膠溝槽修復套組','Liquid Rubber Gutter Repair Kit', 'LRGRK', 599, 100, 569, '', '', '/img/product/32/product/17.溝槽修復套組.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(32,'液態橡膠溝槽修復套組','Liquid Rubber Gutter Repair Kit', 'LRGRK', 599, 100, 569, '', '', '/img/product/32/product/17.溝槽修復套組.jpg', 3, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
 insert into PRODUCT_CAPACITY values(32, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(32, '#000000;', '黑色', 'black', 'HR-11001', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(33,'防水密封劑1G工具包','Waterproof Sealant 1G Kit', 'LRWK-1', 2849, 100, 2699, '', '', '/img/product/33/product/18.防水密封劑1加侖工具包.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(33,'防水密封劑1G工具包','Waterproof Sealant 1G Kit', 'LRWK-1', 2849, 100, 2699, '', '', '/img/product/33/product/18.防水密封劑1加侖工具包.jpg', 3, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
 insert into PRODUCT_CAPACITY values(33, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(33, '#000000;', '黑色', 'black', 'HR-11001', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(34,'防水密封劑5G工具包','Waterproof Sealant 5G Kit', 'LRWK-5', 6749, 100, 6399, '', '', '/img/product/34/product/19.防水密封劑5加侖工具包.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(34,'防水密封劑5G工具包','Waterproof Sealant 5G Kit', 'LRWK-5', 6749, 100, 6399, '', '', '/img/product/34/product/19.防水密封劑5加侖工具包.jpg', 3, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
 insert into PRODUCT_CAPACITY values(34, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(34, '#000000;', '黑色', 'black', 'HR-11001', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(35,'液態橡膠RV車頂密封5G工具包','RV Roof 5G Kit', 'LRRK', 11999, 100, 11399, '', '', '/img/product/35/product/20.RV車頂密封5加侖工具包.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(35,'液態橡膠RV車頂密封5G工具包','RV Roof 5G Kit', 'LRRK', 11999, 100, 11399, '', '', '/img/product/35/product/20.RV車頂密封5加侖工具包.jpg', 3, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
 insert into PRODUCT_CAPACITY values(35, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(35, '#000000;', '黑色', 'black', 'HR-11001', 1, now(), 'sys', now(), 'sys');
 
