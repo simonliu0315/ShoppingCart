@@ -12,9 +12,11 @@ var order = {
 		$("#orderNo").val(orderNo);
 		$("#payment-form").submit();
 	}, 
-	informAtmPayment : function(orderNo) {
+	informAtmPayment : function() {
 		var formData = {
-				"orderNo" : orderNo
+				"orderNo" : $("#orderNo").val(), 
+				"lastFiveAccountNo" : $("#lastFiveAccountNo").val(), 
+				"accountName" : $("#accountName").val()
 			};
 			$.ajax({
 				type : "POST",
@@ -38,6 +40,18 @@ var order = {
 				}
 
 			});
+	},
+	informAtmPaymentModal : function(orderNo) {
+		$("#orderNo").val(orderNo);
+		$("#infoAtmModalCenter").modal({
+			show: true
+		});
+	},
+	sendAtmInfo : function() {
+		$("#lastFiveAccountNo").val($("#lastFiveAccountNoTmp").val());
+		$("#accountName").val($("#accountNameTmp").val());
+		order.informAtmPayment();
+		$("#infoAtmModalCenter").modal('hide');
 	}
 }
 $(function() {

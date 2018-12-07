@@ -20,4 +20,10 @@ public class UserContractDto {
 	private String address;
 	
 	private String tel;
+	
+    private int invoiceType;
+	
+	private String vatId;
+	
+	private String businessName;
 }

@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.node.TextNode;
 import com.hitrust.b2ctoolkit.b2cpay.B2CPayAuth;
 import com.hitrust.b2ctoolkit.b2cpay.B2CPayUpdate;
 import com.waterproof.bjb.shopping.commons.SessionParameter;
+import com.waterproof.bjb.shopping.dto.InfoPaymentDto;
 import com.waterproof.bjb.shopping.dto.ProductDto;
 import com.waterproof.bjb.shopping.dto.ProductInCartDto;
 import com.waterproof.bjb.shopping.entity.CustomerOrder;
@@ -136,16 +137,19 @@ public class PaymentController {
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody Boolean infoPayment(
-    		@RequestBody String orderNoJson, HttpServletRequest request) {
-		JSONObject jsonObj=new JSONObject(orderNoJson);
-		String orderNo=jsonObj.getString("orderNo");
-		log.info("orderNo: {}", orderNo);
+    		@RequestBody InfoPaymentDto infoPaymentDto, HttpServletRequest request) {
+		//JSONObject jsonObj=new JSONObject(orderNoJson);
+		//String orderNo=jsonObj.getString("orderNo");
+		log.info("infoPaymentDto: {}", infoPaymentDto);
+		String orderNo = infoPaymentDto.getOrderNo();
+		
 		if (StringUtils.isNotBlank(orderNo)) {
 			CustomerOrder order = orderService.getCustomerOrder(orderNo);
 			log.info("order: {}", orderNo);
 			if (order != null) {
-				
 				order = orderService.updateCustomerOrderStatus(order.getId(), 2);
+				orderService.mergeCustomerOrderAtm(orderNo, infoPaymentDto.getLastFiveAccountNo(), 
+						infoPaymentDto.getAccountName());
 				return true;
 			} else {
 				return false;

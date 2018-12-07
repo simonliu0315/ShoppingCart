@@ -59,7 +59,53 @@
   </div>
 </div>
 <!-- /Modal -->
+</div><div th:fragment="infoAtm" th:remove="tag">
+<!-- Modal -->
+<div class="modal fade" id="infoAtmModalCenter" tabindex="-1" role="dialog" aria-labelledby="infoAtmModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="banner-caption text-center" style="font-size:16px;">
+            <div class="row">
+						<div class="billing-details">
+							<div class="section-title">
+								<h3 class="title">轉帳資訊</h3>
+							</div>
+							<div class="form-group required">
+								<label for="lastFiveAccountNo" class="col-sm-2 control-label">轉帳帳號後五碼(對帳用):</label>
+                                <div class="col-xs-4">
+                                    <input type="text" class="form-control" id="lastFiveAccountNoTmp" name="lastFiveAccountNoTmp" />
+                                </div>
+							</div>
+							<div class="form-group">
+								<label for="accountNo" class="col-sm-2 control-label">戶名:</label>
+                                <div class="col-xs-4">
+                                    <input type="text" class="form-control" id="accountNameTmp" name="accountNameTmp" />
+                                </div>
+							</div>
+						</div>
+						<div>
+						
+						</div>
+			</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="order.sendAtmInfo();">送出</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+      </div>
+    </div>
+  </div>
 </div>
+<!-- /Modal -->
+</div>
+
+
 </body>
 
 </html>

@@ -14,6 +14,7 @@ import com.waterproof.bjb.shopping.entity.CustomerOrder;
 @Repository
 public interface CustomerOrderRepository extends JpaRepository<CustomerOrder, Integer> {
 
+	@Transactional
 	public List<CustomerOrder> findByUsernameOrderByInsertedDesc(String username);
 
 	public CustomerOrder findByOrderNoOrderByInsertedDesc(String orderNo);

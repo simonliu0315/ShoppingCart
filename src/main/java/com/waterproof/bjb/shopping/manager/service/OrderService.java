@@ -11,9 +11,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.waterproof.bjb.shopping.entity.CustomerOrder;
-import com.waterproof.bjb.shopping.entity.Product;
+import com.waterproof.bjb.shopping.entity.OrderATM;
 import com.waterproof.bjb.shopping.manager.dto.OrderDto;
 import com.waterproof.bjb.shopping.repository.CustomerOrderRepository;
+import com.waterproof.bjb.shopping.repository.OrderATMRepository;
 import com.waterproof.bjb.shopping.repository.OrderStatusRepository;
 import com.waterproof.bjb.shopping.repository.impl.CustomerOrderRepositoryCustom;
 import com.waterproof.bjb.shopping.repository.impl.EhcacheOrderStatusRepositoryCustom;
@@ -35,6 +36,9 @@ public class OrderService {
 	
 	@Autowired
 	private CustomerOrderRepositoryCustom customerOrderRepositoryCustom;
+	
+	@Autowired
+	private OrderATMRepository orderATMRepository;
 	
 	public List<OrderDto> getAllOrder() {
 		List<OrderDto> list = new ArrayList<OrderDto>();
@@ -65,6 +69,13 @@ public class OrderService {
 		return customerOrderRepository.save(order);
 	}
 	
+	public OrderATM mergeCustomerOrderAtm(String orderNo, String lastFiveAccountNo, String accountName) {
+		OrderATM orderATM = new OrderATM();
+		orderATM.setOrderNo(orderNo);
+		orderATM.setLastFiveAccountNo(lastFiveAccountNo);
+		orderATM.setAccountName(accountName);
+		return orderATMRepository.saveAndFlush(orderATM);
+	}
 	public CustomerOrder getCustomerOrder(int id) {
 		log.info("getCustomerOrder {}", id);
 		return customerOrderRepository.findOne(id);

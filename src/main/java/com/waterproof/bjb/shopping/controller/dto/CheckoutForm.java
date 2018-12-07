@@ -22,4 +22,10 @@ public @AllArgsConstructor @NoArgsConstructor @Data class CheckoutForm {
 	private String tel;
 	
 	private int paymentMethod;
+	
+	private int invoiceType;
+	
+	private String vatId;
+	
+	private String businessName;
 }

@@ -41,6 +41,12 @@ public class OrderInvoiceContract implements Serializable {
 	@Column
 	private String tel;
 
+	@Column(name="INVOICE_NO")
+	private String invoiceNo;
+	
+	@Column(name="INVOICE_TYPE")
+	private int invoiceType;
+	
 	@Column(name="VAT_ID")
 	private String vatId;
 	

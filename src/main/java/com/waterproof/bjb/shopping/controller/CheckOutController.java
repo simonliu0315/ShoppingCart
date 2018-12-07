@@ -58,14 +58,18 @@ public class CheckOutController {
     		@RequestParam(value = "email", required=false) String email, @RequestParam(value = "zipCode", required=false) String zipCode,
     		@RequestParam(value = "city", required=false) String city, @RequestParam(value = "district", required=false) String district, 
     		@RequestParam(value = "address", required=false) String address, @RequestParam(value = "tel", required=false) String tel, 
-    		@RequestParam(value = "paymentMethod", required=false, defaultValue = "1") int paymentMethod, HttpServletRequest request) {
+    		@RequestParam(value = "paymentMethod", required=false, defaultValue = "1") int paymentMethod, 
+    		@RequestParam(value = "invoiceType", required=false, defaultValue = "1") int invoiceType,
+    		@RequestParam(value = "vatId", required=false, defaultValue = "") String vatId,
+    		@RequestParam(value = "businessName", required=false, defaultValue = "") String businessName,
+    		HttpServletRequest request) {
         log.info("checkout index getPage");
         ModelAndView mav = new ModelAndView();
         ProductInCartDto productInCartDto = (ProductInCartDto)request.getSession().getAttribute(SessionParameter.PRODUCTS_IN_CART);
         if (productInCartDto == null) {
         	productInCartDto = new ProductInCartDto();
         }
-        CheckoutForm checkoutForm = new CheckoutForm(postName, email, zipCode, city, district, address, tel, paymentMethod);
+        CheckoutForm checkoutForm = new CheckoutForm(postName, email, zipCode, city, district, address, tel, paymentMethod, invoiceType, vatId, businessName);
         log.info("session: {}", productInCartDto);
 		mav.addObject("order", productInCartDto);
 		mav.addObject("CheckoutForm", checkoutForm);
@@ -100,6 +104,7 @@ public class CheckOutController {
         BeanUtils.copyProperties(formBean, userContractDto);
         
         log.info("login user {}", userService.getUser());
+        log.info("userContractDto {}", userContractDto);
         String orderNumber = customerOrderService.saveToOrder(userContractDto, productInCartDto, username);
         request.getSession().setAttribute(SessionParameter.PRODUCTS_IN_CART, null);
         ProductInCartDto dto = customerOrderService.queryOrderByNo(orderNumber);
@@ -427,11 +432,8 @@ public class CheckOutController {
         
         mailUtil.sendByGmail(
 				"築城國際網路訂購中心-購物清單!", mailMessage.toString(),
-				"cyliu0315@gmail.com");
-        
-        
-        
-        
+				formBean.getEmail());
+
         return mav;
     }
 }

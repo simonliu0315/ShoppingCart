@@ -17,6 +17,7 @@ import com.waterproof.bjb.shopping.entity.CustomerOrder;
 import com.waterproof.bjb.shopping.entity.OrderContract;
 import com.waterproof.bjb.shopping.entity.OrderDetail;
 import com.waterproof.bjb.shopping.entity.OrderDetailPK;
+import com.waterproof.bjb.shopping.entity.OrderInvoiceContract;
 import com.waterproof.bjb.shopping.entity.Product;
 import com.waterproof.bjb.shopping.entity.ProductColor;
 import com.waterproof.bjb.shopping.entity.ProductColorPK;
@@ -25,6 +26,7 @@ import com.waterproof.bjb.shopping.entity.UserContract;
 import com.waterproof.bjb.shopping.repository.CustomerOrderRepository;
 import com.waterproof.bjb.shopping.repository.OrderContractRepository;
 import com.waterproof.bjb.shopping.repository.OrderDetailRepository;
+import com.waterproof.bjb.shopping.repository.OrderInvoiceContractRepository;
 import com.waterproof.bjb.shopping.repository.OrderStatusRepository;
 import com.waterproof.bjb.shopping.repository.ProductColorRepository;
 import com.waterproof.bjb.shopping.repository.ProductRepository;
@@ -58,14 +60,19 @@ public class CustomerOrderService {
 	@Autowired
 	private ProductColorRepository productColorRepository;
 	
+	@Autowired
+	private OrderInvoiceContractRepository orderInvoiceContractRepository;
+	
 
 	public String saveToOrder(UserContractDto userContractDto, ProductInCartDto productInCartDto, String username) {
 		CustomerOrder customerOrder = new CustomerOrder();
 
 		UserContract contract = new UserContract();
 		OrderContract orderContract = new OrderContract();
+		OrderInvoiceContract orderInvoiceContract = new OrderInvoiceContract();
 		BeanUtils.copyProperties(userContractDto, contract);
 		BeanUtils.copyProperties(userContractDto, orderContract);
+		BeanUtils.copyProperties(userContractDto, orderInvoiceContract);
 		contract.setUsername(username);
 		log.info("UserContract {}", contract);
 		customerOrder.setUsername(username);
@@ -105,7 +112,11 @@ public class CustomerOrderService {
 			orderDetailRepository.save(orderDetail);
 		}
 		orderContract.setOrderNo(customerOrder.getOrderNo());
+		orderInvoiceContract.setInvoiceType(userContractDto.getInvoiceType());
+		orderInvoiceContract.setOrderNo(customerOrder.getOrderNo());
 		orderContractRepository.save(orderContract);
+		log.info("orderInvoiceContract {}", orderInvoiceContract);
+		orderInvoiceContractRepository.save(orderInvoiceContract);
 		return String.valueOf(utilDate.getTime());
 	}
 

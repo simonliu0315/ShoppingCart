@@ -26,6 +26,8 @@
 		<div th:replace="fragments/body_header :: body_info"></div>
 		<form id="payment-form" class="clearfix" th:action="@{/payment}" method="post">
 		    <input type="hidden" id="orderNo" name="orderNo" value=""/>
+		    <input type="hidden" id="lastFiveAccountNo" name="lastFiveAccountNo" value=""/>
+		    <input type="hidden" id="accountName" name="accountName" value=""/>
 		    <!-- row -->
 			<div class="row">
 				<!-- section title -->
@@ -45,7 +47,7 @@
                     </strong>
                     <strong class="pull-right" th:if="${(#strings.contains(order.orderStatus,'訂單成立，待付款') or #strings.contains(order.orderStatus,'付款確認中')) and order.paymentMethod == 2}">
                     
-                                                            下一步：<button id="informAtmPayment" class="primary-btn" th:onclick="'order.informAtmPayment(\'' + ${order.orderNo} + '\');return false;'">通知轉帳完成</button>
+                                                            下一步：<button id="informAtmPayment" class="primary-btn" th:onclick="'order.informAtmPaymentModal(\'' + ${order.orderNo} + '\');return false;'">通知轉帳完成</button>
 
                     </strong><br/><br/>
                 </legend>
@@ -125,7 +127,7 @@
 		<!-- /container -->
 	</div>
 	<!-- /section -->
-
+    <div th:replace="fragments/modal :: infoAtm"></div>
 	<div th:replace="fragments/body_footer :: body_footer"></div>
     <div th:replace="fragments/body_resources :: body_resources"></div>
    
