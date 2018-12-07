@@ -371,8 +371,8 @@ insert into PAYMENT_METHOD values(2, 2, 'ATM轉帳', 'ATM','提供底下帳戶�
 insert into SHIPPING_METHOD values(1, 1, '宅配 ', 'black cat', '',  1, 0);
 insert into SHIPPING_METHOD values(2, 2, '快遞 ', 'FEDX','TEST', 0, 0);
 
-insert into Product_TAG_RELATION values (20, 1, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (19, 1, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (13, 1, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (14, 1, now(), 'sys', now(), 'sys' );
 insert into Product_TAG_RELATION values (22, 1, now(), 'sys', now(), 'sys' );
 insert into Product_TAG_RELATION values (1, 1, now(), 'sys', now(), 'sys' );
 insert into Product_TAG_RELATION values (2, 1, now(), 'sys', now(), 'sys' );
@@ -403,14 +403,26 @@ insert into Product_TAG_RELATION values (5, 3, now(), 'sys', now(), 'sys' );
 insert into Product_TAG_RELATION values (30, 3, now(), 'sys', now(), 'sys' );
 insert into Product_TAG values (3, 'RV車頂密封塗料', 1);
 
-insert into Product_TAG_RELATION values (20, 4, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (19, 4, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (22, 4, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (13, 4, now(), 'sys', now(), 'sys' );
 insert into Product_TAG_RELATION values (14, 4, now(), 'sys', now(), 'sys' );
 insert into Product_TAG_RELATION values (15, 4, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (11, 4, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (12, 4, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (3, 4, now(), 'sys', now(), 'sys' );
 insert into Product_TAG_RELATION values (4, 4, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (5, 4, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (30, 4, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (16, 4, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (17, 4, now(), 'sys', now(), 'sys' );
+
+insert into Product_TAG_RELATION values (18, 4, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (19, 4, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (20, 4, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (21, 4, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (22, 4, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (23, 4, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (24, 4, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (25, 4, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (26, 4, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (27, 4, now(), 'sys', now(), 'sys' );
 insert into Product_TAG values (4, '金屬安全密封塗料', 1);
 
 insert into Product_TAG_RELATION values (20, 5, now(), 'sys', now(), 'sys' );
@@ -421,12 +433,23 @@ insert into Product_TAG_RELATION values (5, 5, now(), 'sys', now(), 'sys' );
 insert into Product_TAG_RELATION values (30, 5, now(), 'sys', now(), 'sys' );
 insert into Product_TAG values (5, '彩色防水密封塗料', 1);
 
-insert into Product_TAG_RELATION values (20, 6, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (19, 6, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (22, 6, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (12, 6, now(), 'sys', now(), 'sys' );
 insert into Product_TAG_RELATION values (13, 6, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (14, 6, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (15, 6, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (9, 6, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (10, 6, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (3, 6, now(), 'sys', now(), 'sys' );
 insert into Product_TAG_RELATION values (4, 6, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (5, 6, now(), 'sys', now(), 'sys' );
+
+insert into Product_TAG_RELATION values (18, 6, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (19, 6, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (20, 6, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (21, 6, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (22, 6, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (23, 6, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (24, 6, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (25, 6, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (26, 6, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (27, 6, now(), 'sys', now(), 'sys' );
 insert into Product_TAG values (6, '基礎密封塗料', 1);
 commit;
