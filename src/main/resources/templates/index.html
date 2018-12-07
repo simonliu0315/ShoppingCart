@@ -235,8 +235,8 @@
 							<img th:src="@{${product.img}}" alt=""/>
 						</div>
 						<div class="product-body">
-							<h3 class="product-price" th:text="${'$' + (product.promotion_price)}">$0 </h3>
-						    <del class="product-old-price" style="font-size:16px" th:text="${product.price}">$0</del>
+							<h3 class="product-price" th:text="${'$' + (product.price)}">$0 </h3>
+						    <del class="product-old-price" style="font-size:16px" th:text="${product.originalPrice}">$0</del>
 							<div class="product-rating">
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star"></i>
@@ -271,7 +271,7 @@
 								</div>
 								<div class="product-body">
 									<h3 class="product-price" th:text="${'$' + (product.price)}">$0 </h3>
-						            <del class="product-old-price" style="font-size:16px" th:text="${product.price}">$0</del>
+						            <del class="product-old-price" style="font-size:16px" th:text="${product.originalPrice}">$0</del>
 						            <div class="product-rating">
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
@@ -306,7 +306,7 @@
 								</div>
 								<div class="product-body">
 									<h3 class="product-price" th:text="${'$' + (product.price)}">$0 </h3>
-						            <del class="product-old-price" style="font-size:16px" th:text="${product.price}">$0</del>
+						            <del class="product-old-price" style="font-size:16px" th:text="${product.originalPrice}">$0</del>
 						            <div class="product-rating">
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
@@ -389,8 +389,8 @@
 							<img th:src="@{${product.img}}" alt=""/>
 						</div>
 						<div class="product-body">
-							<h3 class="product-price"  th:text="${'$' + (product.promotion_price)}">$0</h3>
-							<del class="product-old-price" style="font-size:16px" th:text="${product.price}">$0</del>
+							<h3 class="product-price"  th:text="${'$' + (product.price)}">$0</h3>
+							<del class="product-old-price" style="font-size:16px" th:text="${product.originalPrice}">$0</del>
 							<div class="product-rating">
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star"></i>
@@ -432,8 +432,8 @@
 							<img th:src="@{${product.img}}" alt=""/>
 						</div>
 						<div class="product-body">
-							<h3 class="product-price"  th:text="${'$' + (product.promotion_price)}">$0</h3>
-							<del class="product-old-price" style="font-size:16px" th:text="${product.price}">$0</del>
+							<h3 class="product-price"  th:text="${'$' + (product.price)}">$0</h3>
+							<del class="product-old-price" style="font-size:16px" th:text="${product.originalPrice}">$0</del>
 							<div class="product-rating">
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star"></i>

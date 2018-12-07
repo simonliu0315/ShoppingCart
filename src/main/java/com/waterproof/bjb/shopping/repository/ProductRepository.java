@@ -16,7 +16,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	@Query(value = "SELECT A FROM Product A where newest = 1 and activate = 1 and promotion_on = 0 ORDER BY inserted DESC")
     public List<Product> getAllNewProduct(); 
 	
-	@Query(value = "SELECT A FROM Product A where discount <> 100 and activate = 1 and promotion_on = 0 ORDER BY updated DESC")
+	@Query(value = "SELECT A FROM Product A where originalPrice - Price != 0 and activate = 1 and promotion_on = 0 ORDER BY updated DESC")
     public List<Product> getDiscountProduct();
 	
 	@Query(value = "SELECT A FROM Product A where promotion_start <= :nowDate and promotion_end >= :nowDate and promotion_on = 1 and activate = 1 ORDER BY updated DESC")
