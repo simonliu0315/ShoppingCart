@@ -90,7 +90,7 @@ public class CustomerOrder implements Serializable {
 	private OrderInvoiceContract orderInvoiceContract;
 	
 	@NotFound(action = NotFoundAction.IGNORE)
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) //移除, optional = false 就會正常
+	@OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER) //移除, optional = false 就會正常
 	@JoinColumn(name="ORDER_NO", referencedColumnName="ORDER_NO", insertable = false, updatable = false)
 	private OrderATM orderATM;
 	
