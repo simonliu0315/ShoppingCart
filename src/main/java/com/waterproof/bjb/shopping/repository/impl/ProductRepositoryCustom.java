@@ -49,14 +49,14 @@ public class ProductRepositoryCustom {
 		
 		List<Predicate> predicates = new ArrayList<Predicate>();
 
+		Join<Product, ProductTagRelation> productTagRelation = null;
 		if (tagId != null) {
-			Join<Product, ProductTagRelation> productTagRelation = rootFrom.join("productTagRelations", JoinType.INNER);
+			productTagRelation = rootFrom.join("productTagRelations", JoinType.INNER);
 			
 			Join<ProductTagRelation, ProductTag> productTag = productTagRelation.join("productTag", JoinType.INNER);
 			
 			List<Integer> a = new ArrayList<Integer>();
 			for (int t : tagId) {
-				log.info("ttttttt:{}", t);
 				a.add(t);
 			}
 		    Predicate predicate = productTag.get("id").in(a);
@@ -93,14 +93,16 @@ public class ProductRepositoryCustom {
 		
 		// 默认按照id排序（从小到大）
 		if (orderby == 1) {
-			criteriaQuery.orderBy(criteriaBuilder.asc(rootFrom.get("updated")));
+			criteriaQuery.orderBy(criteriaBuilder.asc(rootFrom.get("usage")), criteriaBuilder.asc(rootFrom.get("updated")));
 		}
 		if (orderby == 2) {
-			criteriaQuery.orderBy(criteriaBuilder.asc(rootFrom.get("price")));
+			criteriaQuery.orderBy(criteriaBuilder.asc(rootFrom.get("usage")), criteriaBuilder.asc(rootFrom.get("price")));
 		}
 		if (orderby == 3) {
-			criteriaQuery.orderBy(criteriaBuilder.asc(rootFrom.get("id")));
+			criteriaQuery.orderBy(criteriaBuilder.asc(rootFrom.get("usage")), criteriaBuilder.asc(rootFrom.get("id")));
 		}
+		
+		
 		// SQL查询对象
 		TypedQuery<Product> createQuery = em.createQuery(criteriaQuery);
 

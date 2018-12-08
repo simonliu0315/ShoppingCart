@@ -140,8 +140,8 @@
   var slider = document.getElementById('price-slider');
   if (slider) {
     noUiSlider.create(slider, {
-      start: [1, 2000],
-      step: 100,
+      start: [1, 10000],
+      step: 500,
       connect: true,
       tooltips: [true, true],
       format: {
@@ -154,7 +154,7 @@
       },
       range: {
         'min': 1,
-        'max': 2000
+        'max': 10000
       }
     });
     slider.noUiSlider.on('update', function( values, handle ) {

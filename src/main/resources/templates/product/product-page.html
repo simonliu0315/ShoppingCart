@@ -65,8 +65,8 @@
 						<div class="product-body">
 							<div class="product-label">
 								<span th:if="${product.newest == 1}">新上市</span>
-						        <span th:if="${product.promotion_on == 1}" class="sale" th:text="${(100 - product.promotion_discount) + '%'}">0%</span>
-						        <span th:if="${product.promotion_on == 0}" class="sale" th:text="${(100 - product.discount) + '%'}">0%</span>
+						        <span th:if="${product.promotion_on == 1 and product.promotion_discount != 100}" class="sale" th:text="${(100 - product.promotion_discount) + '%'}">0%</span>
+						        <span th:if="${product.promotion_on == 0 and product.discount != 100}" class="sale" th:text="${(100 - product.discount) + '%'}">0%</span>
 							</div>
 							<h2 class="product-name" th:text="${product.name}">防水商品名稱</h2>
 							<h2 class="product-name" th:text="${product.engName}">防水商品名稱</h2>
@@ -275,7 +275,7 @@
 						<div class="product-thumb">
 							<div class="product-label">
 								<span th:if="${product.newest == 1}">新上市</span>
-								<span th:text="${(100 - product.discount) + '%'}" th:if="${product.discount == 1}" class="sale">-20%</span>
+								<span th:if="${product.promotion_on == 0 and product.discount == 1}" th:text="${(100 - product.discount) + '%'}"  class="sale">-20%</span>
 							</div>
 							<a class="main-btn quick-view" th:href="@{'/products/' + ${product.id}}"><i class="fa fa-search-plus"></i> 瀏覽商品</a>
 							<img th:src="@{${product.img}}" alt=""/>

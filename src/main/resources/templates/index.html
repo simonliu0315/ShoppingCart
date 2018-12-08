@@ -44,13 +44,26 @@
 		stroke: #fff;
 		stroke-width: 2;
 	}
-	
+	#top {
+   background:#A29A8F;
+  color:#FFFFFF;
+  border:4px solid #FFFFFF;
+  padding:5px;
+  width:250px;
+  height:200px;
+  position:absolute;
+  top:300px;
+  right:10px;
+  _position: absolute; /* position fixed for IE6 */
+  _top:expression(documentElement.scrollTop+100);
+  z-index:3;
+}
 </style>
 </head>
 
 <body style="display: none;">
 	<div th:replace="fragments/body_header :: body_header"></div>
-		<div class="text-center">本網站所販售之「液態橡膠-DIY」系列材料，適合所有民眾居家修繕，非大面積、大範圍工程施工使用產品。
+		<div id="top" class="text-center">本網站所販售之「液態橡膠-DIY」系列材料，適合所有民眾居家修繕，非大面積、大範圍工程施工使用產品。
 <br/>
 「工程用液態橡膠產品」與網站內所有「DIY產品」於施工設備與技術方面要求不同。若有工程用產品需求之人士，請來信（liquidrubbertaiwan@gmail.com）洽詢，我們竭誠為各位服務。</div>
 	<div th:replace="fragments/body_navigation :: body_navigation"></div>
@@ -167,8 +180,8 @@
 						        <div class="product-thumb">
 						            <div class="product-label">
 						                <span th:if="${product.newest == 1}">新上市</span>
-						                <span th:if="${product.promotion_on == 1}" class="sale" th:text="${(100 - product.promotion_discount) + '%'}">0%</span>
-						                <span th:if="${product.promotion_on == 0}" class="sale" th:text="${(100 - product.discount) + '%'}">0%</span>
+						                <span th:if="${product.promotion_on == 1 and product.promotion_discount != 100}" th:text="${(100 - product.promotion_discount) + '%'}" class="sale">0%</span>
+						                <span th:if="${product.promotion_on == 0 and product.discount != 100}" th:text="${(100 - product.discount) + '%'}" class="sale">0%</span>
 						            </div>
 						            <ul class="product-countdown" th:attr="data-countdown=${product.promotion_end_str}">
                                         <li><span class="days">00 天</span></li>
@@ -225,7 +238,7 @@
 						<div class="product-thumb">
 							<div class="product-label">
 							    <span th:if="${product.newest == 1}">新上市</span>
-								<span class="sale" th:text="${(100 - product.promotion_discount) + '%'}" th:if="${product.promotion_discount != 100}">0%</span>
+								<span th:if="${product.promotion_on == 1 and product.promotion_discount != 100}" th:text="${(100 - product.promotion_discount) + '%'}" class="sale">0%</span>
 							</div>
 							
                             <ul class="product-countdown" th:attr="data-countdown=${product.promotion_end_str}">
@@ -267,7 +280,7 @@
 								<div class="product-thumb">
 								    <div class="product-label">
 										<span th:if="${product.newest == 1}">新上市</span>
-										<span th:text="${(100 - product.discount) + '%'}" th:if="${product.discount != 100}" class="sale">0%</span>
+										<span th:if="${product.promotion_on == 0 and product.discount != 100}" th:text="${(100 - product.discount) + '%'}" class="sale">0%</span>
 									</div>
 									<a class="main-btn quick-view" th:href="@{'/products/' + ${product.id}}"><i class="fa fa-search-plus"></i> 瀏覽商品</a>
 									<img th:src="@{${product.img}}" alt=""/>
@@ -302,7 +315,7 @@
 								<div class="product-thumb">
 								    <div class="product-label">
 										<span th:if="${product.newest == 1}">新上市</span>
-										<span th:text="${(100 - product.discount) + '%'}" th:if="${product.discount != 100}" class="sale">0%</span>
+										<span th:if="${product.promotion_on == 0 and product.discount != 100}" th:text="${(100 - product.discount) + '%'}" class="sale">0%</span>
 									</div>
 									<a class="main-btn quick-view" th:href="@{'/products/' + ${product.id}}"><i class="fa fa-search-plus"></i> 瀏覽商品</a>
 									<img th:src="@{${product.img}}" alt=""/>
@@ -386,7 +399,7 @@
 						<div class="product-thumb">
 							<div class="product-label">
 								<span th:if="${product.newest == 1}">新上市</span>
-								<span class="sale" th:text="${(100 - product.promotion_discount) + '%'}" th:if="${product.discount != 100}">0%</span>
+								<span th:if="${product.promotion_on == 1 and product.promotion_discount != 100}" th:text="${(100 - product.promotion_discount) + '%'}" class="sale">0%</span>
 							</div>
 							<a class="main-btn quick-view" th:href="@{'/products/' + ${product.id}}"><i class="fa fa-search-plus"></i> 瀏覽商品</a>
 							<img th:src="@{${product.img}}" alt=""/>
@@ -429,7 +442,7 @@
 						<div class="product-thumb">
 							<div class="product-label">
 								<span th:if="${product.newest == 1}">新上市</span>
-								<span th:text="${(100 - product.discount) + '%'}" th:if="${product.discount != 100}" class="sale">0%</span>
+								<span th:if="${product.promotion_on == 0 and product.discount != 100}" th:text="${(100 - product.discount) + '%'}" class="sale">0%</span>
 							</div>
 							<a class="main-btn quick-view" th:href="@{'/products/' + ${product.id}}"><i class="fa fa-search-plus"></i> 瀏覽商品</a>
 							<img th:src="@{${product.img}}" alt=""/>
@@ -526,6 +539,32 @@ $(function(){
 	    $(this).html('<img src="/common/image/用途說明/DIY建築圖.jpg" alt="loading"/>');  
     });
 
+});
+$(window).load(function(){
+	var $win = $(window),
+		$ad = $('#top').css('opacity', 0).show(),	// 讓廣告區塊變透明且顯示出來
+		_width = $ad.width(),
+		_height = $ad.height(),
+		_diffY = 20, _diffX = 20,	// 距離右及下方邊距
+		_moveSpeed = 500;	// 移動的速度
+ //alert($(document).height()/2);
+	// 先把 #abgne_float_ad 移動到定點
+	$ad.css({
+		top: 1000,
+		left: $win.width() - _width - _diffX,
+		opacity: 1
+	});
+ 
+	// 幫網頁加上 scroll 及 resize 事件
+	$win.bind('scroll resize', function(){
+		var $this = $(this);
+ 
+		// 控制 #abgne_float_ad 的移動
+		$ad.stop().animate({
+			top: $this.scrollTop() + ($this.height()/2) - _height - _diffY,
+			left: $this.scrollLeft() + $this.width() - _width - _diffX
+		}, _moveSpeed);
+	}).scroll();	// 觸發一次 scroll()
 });
 </script>
 </body>

@@ -19,15 +19,15 @@ insert into Category values(2,'防水工具', 1, '/img/category/category02.jpg',
 insert into Category values(3,'防水套件', 1, '/img/category/category03.jpg', '', now(), 'sys', now(), 'sys', 1);
 insert into Category values(4,'應用', 1, '/img/category/category04.jpg', 'category/application_list', now(), 'sys', now(), 'sys', 1);
 
-insert into product values(1 ,'液態橡膠防水密封塗料1加侖','Waterproof Sealant', 'LRWS-1-02', 1799, 90, 1699, '', '<img class="img-responsive" src="/img/product/1/descript/1.防水密封膠塗料_1加侖_all.jpg"></img>', '/img/product/1/product/1.防水密封塗料_Waterproof_Sealant_1加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(1 ,'液態橡膠防水密封塗料1加侖','Waterproof Sealant', 'LRWS-1-02', 1799, 100, 1699, '', '<img class="img-responsive" src="/img/product/1/descript/1.防水密封膠塗料_1加侖_all.jpg"></img>', '/img/product/1/product/1.防水密封塗料_Waterproof_Sealant_1加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 2);
 insert into PRODUCT_CAPACITY values(1, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(1, '#000000;', '黑色', 'black', 'LRWS-1-02', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(2 ,'液態橡膠防水密封塗料5加侖','Waterproof Sealant', 'LRWS-5-02', 5099, 90, 4899, '', '<img class="img-responsive" src="/img/product/2/descript/1.防水密封膠塗料_5加侖_all.jpg"></img>', '/img/product/2/product/1.防水密封塗料_Waterproof_Sealant_5加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(2 ,'液態橡膠防水密封塗料5加侖','Waterproof Sealant', 'LRWS-5-02', 5099, 100, 4899, '', '<img class="img-responsive" src="/img/product/2/descript/1.防水密封膠塗料_5加侖_all.jpg"></img>', '/img/product/2/product/1.防水密封塗料_Waterproof_Sealant_5加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 2);
 insert into PRODUCT_CAPACITY values(2, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(2, '#000000;', '黑色', 'black', 'LRWS-5-02', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(3 ,'液態橡膠彩色防水密封塗料1加侖','Colour Waterproof Sealant Coating', 'LRCWS-1-01', 1799, 80, 1699, '', '<img class="img-responsive" src="/img/product/3/descript/2.彩色防水密封膠.塗料_1加侖_all.jpg"></img>', '/img/product/3/product/2.彩色防水密封膠.塗料_Colour_Waterproof_Sealant_Coating_1加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(3 ,'液態橡膠彩色防水密封塗料1加侖','Colour Waterproof Sealant Coating', 'LRCWS-1-01', 1799, 100, 1699, '', '<img class="img-responsive" src="/img/product/3/descript/2.彩色防水密封膠.塗料_1加侖_all.jpg"></img>', '/img/product/3/product/2.彩色防水密封膠.塗料_Colour_Waterproof_Sealant_Coating_1加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 3);
 insert into PRODUCT_CAPACITY values(3, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(3, '#FFFFFF;', '白色', 'A', 'LRCWS-1-01', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(3, '#000000;', '黑色', 'B', 'LRCWS-1-02', 1, now(), 'sys', now(), 'sys');
@@ -38,7 +38,7 @@ insert into PRODUCT_COLOR VALUES(3, '#1B2810;', '森林綠色', 'F', 'LRCWS-1-06
 insert into PRODUCT_COLOR VALUES(3, '#C09B54;', '黃褐色', 'G', 'LRCWS-1-07', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(3, '#381C06;', '褐色', 'H', 'LRCWS-1-08', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(4 ,'液態橡膠彩色防水密封塗料5加侖','Colour Waterproof Sealant Coating', 'LRWS-1-02', 5999, 90, 5699, '', '<img class="img-responsive" src="/img/product/4/descript/2.彩色防水密封膠.塗料_5加侖_all.jpg"></img>', '/img/product/4/product/2.彩色防水密封膠.塗料_Colour_Waterproof_Sealant_Coating_5加侖.jpg', 1, 1, 1, 1, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(4 ,'液態橡膠彩色防水密封塗料5加侖','Colour Waterproof Sealant Coating', 'LRWS-1-02', 5999, 100, 5699, '', '<img class="img-responsive" src="/img/product/4/descript/2.彩色防水密封膠.塗料_5加侖_all.jpg"></img>', '/img/product/4/product/2.彩色防水密封膠.塗料_Colour_Waterproof_Sealant_Coating_5加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 3);
 insert into PRODUCT_CAPACITY values(4, '18.9', 'L', '5加侖', '5加侖(18.9L)', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(4, '#FFFFFF;', '白色', 'A', 'LRCWS-1-01', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(4, '#000000;', '黑色', 'B', 'LRCWS-1-02', 1, now(), 'sys', now(), 'sys');
@@ -49,15 +49,15 @@ insert into PRODUCT_COLOR VALUES(4, '#1B2810;', '森林綠色', 'F', 'LRCWS-1-06
 insert into PRODUCT_COLOR VALUES(4, '#C09B54;', '黃褐色', 'G', 'LRCWS-1-07', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(4, '#381C06;', '褐色', 'H', 'LRCWS-1-08', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(5 ,'液態橡膠RV車頂密封塗料1加侖','RV Roof Coating', 'LRRV-1-01', 2099, 100, 1999, '', '<img class="img-responsive" src="/img/product/5/descript/3.液態橡膠RV車頂密封塗料_1加侖_all.jpg"></img>', '/img/product/5/product/3.RV屋頂塗料_RV_Roof_Coating_1加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(5 ,'液態橡膠RV車頂密封塗料1加侖','RV Roof Coating', 'LRRV-1-01', 2099, 100, 1999, '', '<img class="img-responsive" src="/img/product/5/descript/3.液態橡膠RV車頂密封塗料_1加侖_all.jpg"></img>', '/img/product/5/product/3.RV屋頂塗料_RV_Roof_Coating_1加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 2);
 insert into PRODUCT_CAPACITY values(5, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(5, '#FFFFFF;', '白色', 'black', 'LRRV-1-01', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(6 ,'液態橡膠RV車頂密封塗料5加侖','RV Roof Coating', 'LRWS-1-02', 7499, 100, 6999, '', '<img class="img-responsive" src="/img/product/6/descript/3.液態橡膠RV車頂密封塗料_5加侖_all.jpg"></img>', '/img/product/6/product/3.RV屋頂塗料_RV_Roof_Coating_5加侖.jpg', 1, 1, 1, 1, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(6 ,'液態橡膠RV車頂密封塗料5加侖','RV Roof Coating', 'LRWS-1-02', 7499, 100, 6999, '', '<img class="img-responsive" src="/img/product/6/descript/3.液態橡膠RV車頂密封塗料_5加侖_all.jpg"></img>', '/img/product/6/product/3.RV屋頂塗料_RV_Roof_Coating_5加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 2);
 insert into PRODUCT_CAPACITY values(6, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(6, '#FFFFFF;', '白色', 'black', 'LRRV-5-01', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(7 ,'液態橡膠甲板密封塗料1加侖','Polyurethane Deck Coating', 'LRPDS-1-04', 2249,  100, 2099, '', '<img class="img-responsive" src="/img/product/7/descript/5.甲板塗料_1加侖_all.jpg"></img>', '/img/product/7/product/5.甲板塗料_Polyurethane_Deck_Coating_1加侖.jpg', 1, 1, 1, 1, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(7 ,'液態橡膠甲板密封塗料1加侖','Polyurethane Deck Coating', 'LRPDS-1-04', 2249,  100, 2099, '', '<img class="img-responsive" src="/img/product/7/descript/5.甲板塗料_1加侖_all.jpg"></img>', '/img/product/7/product/5.甲板塗料_Polyurethane_Deck_Coating_1加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 2);
 insert into PRODUCT_CAPACITY values(7, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(7, '#A29A8F;', '光滑淺灰色', 'A', 'LRPDS-1-04', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(7, '#595D56;', '光滑石灰色', 'B', 'LRPDS-1-03', 1, now(), 'sys', now(), 'sys');
@@ -73,7 +73,7 @@ insert into PRODUCT_COLOR VALUES(7, '#261407;', '紋理巧克力棕色', 'K', 'L
 insert into PRODUCT_COLOR VALUES(7, '#FFFFFE;', '紋理白色', 'L', 'LRPDT-1-01', 1, now(), 'sys', now(), 'sys');
 
 
-insert into product values(8 ,'液態橡膠甲板密封塗料5加侖','Polyurethane Deck Coating', 'LRPDS-5-04', 8999, 100, 8599, '', '<img class="img-responsive" src="/img/product/8/descript/5.甲板塗料_5加侖_all.jpg"></img>', '/img/product/8/product/5.甲板塗料_Polyurethane_Deck_Coating_5加侖.jpg', 1, 1, 1, 1, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(8 ,'液態橡膠甲板密封塗料5加侖','Polyurethane Deck Coating', 'LRPDS-5-04', 8999, 100, 8599, '', '<img class="img-responsive" src="/img/product/8/descript/5.甲板塗料_5加侖_all.jpg"></img>', '/img/product/8/product/5.甲板塗料_Polyurethane_Deck_Coating_5加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 2);
 insert into PRODUCT_CAPACITY values(8, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(8, '#A29A8F;', '光滑淺灰色', 'A', 'LRPDS-5-04', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(8, '#595D56;', '光滑石灰色', 'B', 'LRPDS-5-03', 1, now(), 'sys', now(), 'sys');
@@ -88,113 +88,113 @@ insert into PRODUCT_COLOR VALUES(8, '#3F2710;', '紋理焦糖棕色', 'J', 'LRPD
 insert into PRODUCT_COLOR VALUES(8, '#261407;', '紋理巧克力棕色', 'K', 'LRPDT-5-08', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(8, '#FFFFFE;', '紋理白色', 'L', 'LRPDT-5-01', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(9 ,'液態橡膠基礎密封塗料1加侖','Foundation Sealant Basement Coating', 'LRFS-1-02', 1049, 100, 999, '', '<img class="img-responsive" src="/img/product/9/descript/6.基礎密封膠.地下室塗料_1加侖_all.jpg"></img>', '/img/product/9/product/6.基礎密封膠.地下室塗料_Foundation_Sealant_Basement_Coating_1加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(9 ,'液態橡膠基礎密封塗料1加侖','Foundation Sealant Basement Coating', 'LRFS-1-02', 1049, 100, 999, '', '<img class="img-responsive" src="/img/product/9/descript/6.基礎密封膠.地下室塗料_1加侖_all.jpg"></img>', '/img/product/9/product/6.基礎密封膠.地下室塗料_Foundation_Sealant_Basement_Coating_1加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 2);
 insert into PRODUCT_CAPACITY values(9, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(9, '#000000;', '黑色', 'black', 'LRFS-1-02', 1, now(), 'sys', now(), 'sys');
 
 
-insert into product values(10,'液態橡膠基礎密封塗料5加侖','Foundation_Sealant_Basement_Coating', 'LRFS-5-02', 2999, 100, 2899, '', '<img class="img-responsive" src="/img/product/10/descript/6.基礎密封膠.地下室塗料_5加侖_all.jpg"></img>', '/img/product/10/product/6.基礎密封膠.地下室塗料_Foundation_Sealant_Basement_Coating_5加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(10,'液態橡膠基礎密封塗料5加侖','Foundation_Sealant_Basement_Coating', 'LRFS-5-02', 2999, 100, 2899, '', '<img class="img-responsive" src="/img/product/10/descript/6.基礎密封膠.地下室塗料_5加侖_all.jpg"></img>', '/img/product/10/product/6.基礎密封膠.地下室塗料_Foundation_Sealant_Basement_Coating_5加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 2);
 insert into PRODUCT_CAPACITY values(10, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(10, '#000000;', '黑色', 'black', 'LRFS-5-02', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(11,'液態橡膠金屬安全密封塗料1加侖','MetalSafe Sealant', 'LRMS-1-02', 1799, 100, 1699, '', '<img class="img-responsive" src="/img/product/11/descript/7.金屬安全密封膠_1加侖_all.jpg"></img>', '/img/product/11/product/7.金屬安全密封膠_MetalSafe_Sealant_1加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(11,'液態橡膠金屬安全密封塗料1加侖','MetalSafe Sealant', 'LRMS-1-02', 1799, 100, 1699, '', '<img class="img-responsive" src="/img/product/11/descript/7.金屬安全密封膠_1加侖_all.jpg"></img>', '/img/product/11/product/7.金屬安全密封膠_MetalSafe_Sealant_1加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 2);
 insert into PRODUCT_CAPACITY values(11, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(11, '#000000;', '黑色', 'black', 'LRMS-1-02', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(12,'液態橡膠金屬安全密封塗料5加侖','MetalSafe Sealant', 'LRMS-5-02', 4799, 100, 4599, '', '<img class="img-responsive" src="/img/product/12/descript/7.金屬安全密封膠_5加侖_all.jpg"></img>', '/img/product/12/product/7.金屬安全密封膠_MetalSafe_Sealant_5加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(12,'液態橡膠金屬安全密封塗料5加侖','MetalSafe Sealant', 'LRMS-5-02', 4799, 100, 4599, '', '<img class="img-responsive" src="/img/product/12/descript/7.金屬安全密封膠_5加侖_all.jpg"></img>', '/img/product/12/product/7.金屬安全密封膠_MetalSafe_Sealant_5加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 2);
 insert into PRODUCT_CAPACITY values(12, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(12, '#000000;', '黑色', 'black', 'LRMS-5-02', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(13,'液態橡膠多用途底漆1加侖','Multi Purpose Primer', 'LRMP1', 2099, 100, 1999, '', '', '/img/product/13/product/8.多用途底漆_Multi_Purpose_Primer_1加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(13,'液態橡膠多用途底漆1加侖','Multi Purpose Primer', 'LRMP1', 2099, 100, 1999, '', '', '/img/product/13/product/8.多用途底漆_Multi_Purpose_Primer_1加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 1);
 insert into PRODUCT_CAPACITY values(13, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(13, '#FFFFFF;', '透明色', 'black', 'LRMP1', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(14,'液態橡膠多用途底漆5加侖','Multi Purpose Primer', 'LRMP5', 7499, 100, 6999, '', '', '/img/product/14/product/8.多用途底漆_Multi_Purpose_Primer_5加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(14,'液態橡膠多用途底漆5加侖','Multi Purpose Primer', 'LRMP5', 7499, 100, 6999, '', '', '/img/product/14/product/8.多用途底漆_Multi_Purpose_Primer_5加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 1);
 insert into PRODUCT_CAPACITY values(14, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(14, '#FFFFFF;', '透明色', 'black', 'LRMP5', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(15,'皇家黏合劑EPDM，TPO底漆1加侖','EPDM TPO Primer', 'LREP1', 2549, 100, 2399, '', '', '/img/product/15/product/9.EPDM_TPO_Primer_1加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(15,'皇家黏合劑EPDM，TPO底漆1加侖','EPDM TPO Primer', 'LREP1', 2549, 100, 2399, '', '', '/img/product/15/product/9.EPDM_TPO_Primer_1加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 1);
 insert into PRODUCT_CAPACITY values(15, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(15, '#FFFFFF;', '透明色', 'black', 'LREP1', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(16,'透明塗層1加侖','Clear Coat', 'LRCC1', 2099, 100, 1999, '', '', '/img/product/16/product/10.透明塗層_Clear_Coat_1加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(16,'透明塗層1加侖','Clear Coat', 'LRCC1', 2099, 100, 1999, '', '', '/img/product/16/product/10.透明塗層_Clear_Coat_1加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 3);
 insert into PRODUCT_CAPACITY values(16, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(16, '#FFFFFF;', '透明色', 'black', 'LRCC1', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(17,'透明塗層5加侖','Clear Coat', 'LRCC5', 7499, 100, 6999, '', '', '/img/product/17/product/10.透明塗層_Clear_Coat_5加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(17,'透明塗層5加侖','Clear Coat', 'LRCC5', 7499, 100, 6999, '', '', '/img/product/17/product/10.透明塗層_Clear_Coat_5加侖.jpg', 1, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 3);
 insert into PRODUCT_CAPACITY values(17, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 insert into PRODUCT_COLOR VALUES(17, '#FFFFFF;', '透明色', 'black', 'LRCC5', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(18,'液態橡膠接縫膠帶2”x5’ (1.5m)','Liquid Rubber Seam Tape', 'LRST-2X5-20', 299, 100, 299, '', '', '/img/product/18/product/11.液態橡膠接縫膠帶2”x5’ (1.5m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(18,'液態橡膠接縫膠帶2”x5’ (1.5m)','Liquid Rubber Seam Tape', 'LRST-2X5-20', 299, 100, 299, '', '', '/img/product/18/product/11.液態橡膠接縫膠帶2”x5’ (1.5m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 5);
 insert into PRODUCT_CAPACITY values(18, '1.5', 'm', '2”x5’ (1.5m)', '2”x5’ (1.5m)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(18, '#000000;', '黑色', 'black', 'LRST-2X5-20', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(19,'液態橡膠接縫膠帶2”x15’ (4.5m)','Liquid Rubber Seam Tape', 'LRST-2X15-20', 599, 100, 599, '', '', '/img/product/19/product/11.液態橡膠接縫膠帶2”x15’ (4.5m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(19,'液態橡膠接縫膠帶2”x15’ (4.5m)','Liquid Rubber Seam Tape', 'LRST-2X15-20', 599, 100, 599, '', '', '/img/product/19/product/11.液態橡膠接縫膠帶2”x15’ (4.5m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 5);
 insert into PRODUCT_CAPACITY values(19, '1.5', 'm', '2”x5’ (1.5m)', '2”x5’ (1.5m)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(18, '#000000;', '黑色', 'black', 'LRST-2X5-20', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(20,'液態橡膠接縫膠帶4”x5’ (1.5m)','Liquid Rubber Seam Tape', 'LRST-4X5-20', 599, 100, 599, '', '', '/img/product/20/product/11.液態橡膠接縫膠帶4”x5’ (1.5m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(20,'液態橡膠接縫膠帶4”x5’ (1.5m)','Liquid Rubber Seam Tape', 'LRST-4X5-20', 599, 100, 599, '', '', '/img/product/20/product/11.液態橡膠接縫膠帶4”x5’ (1.5m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 5);
 insert into PRODUCT_CAPACITY values(20, '1.5', 'm', '2”x5’ (1.5m)', '2”x5’ (1.5m)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(18, '#000000;', '黑色', 'black', 'LRST-2X5-20', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(21,'液態橡膠接縫膠帶4”x15’ (4.5m)','Liquid Rubber Seam Tape', 'LRST-4X15-20', 1199, 100, 1199, '', '', '/img/product/21/product/11.液態橡膠接縫膠帶4”x15’ (4.5m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(21,'液態橡膠接縫膠帶4”x15’ (4.5m)','Liquid Rubber Seam Tape', 'LRST-4X15-20', 1199, 100, 1199, '', '', '/img/product/21/product/11.液態橡膠接縫膠帶4”x15’ (4.5m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 5);
 insert into PRODUCT_CAPACITY values(21, '1.5', 'm', '2”x5’ (1.5m)', '2”x5’ (1.5m)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(18, '#000000;', '黑色', 'black', 'LRST-2X5-20', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(22,'液態橡膠接縫膠帶6”x5’ (1.5m)','Liquid Rubber Seam Tape', 'LRST-6X5-20', 899, 100, 899, '', '', '/img/product/22/product/11.液態橡膠接縫膠帶6”x5’ (1.5m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(22,'液態橡膠接縫膠帶6”x5’ (1.5m)','Liquid Rubber Seam Tape', 'LRST-6X5-20', 899, 100, 899, '', '', '/img/product/22/product/11.液態橡膠接縫膠帶6”x5’ (1.5m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 5);
 insert into PRODUCT_CAPACITY values(22, '1.5', 'm', '2”x5’ (1.5m)', '2”x5’ (1.5m)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(18, '#000000;', '黑色', 'black', 'LRST-2X5-20', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(23,'液態橡膠接縫膠帶6”x15’ (4.5m)','Liquid Rubber Seam Tape', 'LRST-6X15-20', 1649, 100, 1649, '', '', '/img/product/23/product/11.液態橡膠接縫膠帶6”x15’ (4.5m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(23,'液態橡膠接縫膠帶6”x15’ (4.5m)','Liquid Rubber Seam Tape', 'LRST-6X15-20', 1649, 100, 1649, '', '', '/img/product/23/product/11.液態橡膠接縫膠帶6”x15’ (4.5m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 5);
 insert into PRODUCT_CAPACITY values(23, '1.5', 'm', '2”x5’ (1.5m)', '2”x5’ (1.5m)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(18, '#000000;', '黑色', 'black', 'LRST-2X5-20', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(24,'液態橡膠防潑水布4”x50’(15m)','Liquid Rubber Geo Textile', 'LRGT-4X50-10', 449, 100, 449, '', '', '/img/product/24/product/12.液態橡膠防潑水布4”x50’(15m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(24,'液態橡膠防潑水布4x50’(15m)','Liquid Rubber Geo Textile', 'LRGT-4X50-10', 449, 100, 449, '', '', '/img/product/24/product/12.液態橡膠防潑水布4”x50’(15m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 4);
 insert into PRODUCT_CAPACITY values(24, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(24, '#000000;', '黑色', 'black', 'HR-11001', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(25,'液態橡膠防潑水布4”x300’(91m)','Liquid Rubber Geo Textile', 'LRGT-4X300-10', 1949, 100, 1949, '', '', '/img/product/25/product/12.液態橡膠防潑水布4”x300’(91m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(25,'液態橡膠防潑水布4”x300’(91m)','Liquid Rubber Geo Textile', 'LRGT-4X300-10', 1949, 100, 1949, '', '', '/img/product/25/product/12.液態橡膠防潑水布4”x300’(91m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 4);
 insert into PRODUCT_CAPACITY values(25, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(24, '#000000;', '黑色', 'black', 'HR-11001', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(26,'液態橡膠防潑水布40”x50’(15m)','Liquid Rubber Geo Textile', 'LRGT3', 1499, 100, 1499, '', '', '/img/product/26/product/12.液態橡膠防潑水布40”x50’(15m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(26,'液態橡膠防潑水布40”x50’(15m)','Liquid Rubber Geo Textile', 'LRGT3', 1499, 100, 1499, '', '', '/img/product/26/product/12.液態橡膠防潑水布40”x50’(15m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 4);
 insert into PRODUCT_CAPACITY values(26, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(24, '#000000;', '黑色', 'black', 'HR-11001', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(27,'液態橡膠防潑水布_40”x324’(99m)','Liquid Rubber Geo Textile', 'LRGT4', 7499, 100, 7499, '', '', '/img/product/27/product/12.液態橡膠防潑水布40”x324’(99m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(27,'液態橡膠防潑水布_40”x324’(99m)','Liquid Rubber Geo Textile', 'LRGT4', 7499, 100, 7499, '', '', '/img/product/27/product/12.液態橡膠防潑水布40”x324’(99m).jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 4);
 insert into PRODUCT_CAPACITY values(27, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(24, '#000000;', '黑色', 'black', 'HR-11001', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(28,'紋理滾筒','Textured_Roller', 'LRTR', 359, 100, 359, '', '', '/img/product/28/product/13.紋理滾筒.jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(28,'紋理滾筒','Textured_Roller', 'LRTR', 359, 100, 359, '', '', '/img/product/28/product/13.紋理滾筒.jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 6);
 insert into PRODUCT_CAPACITY values(28, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(28, '#000000;', '黑色', 'black', 'HR-11001', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(29,'Enviro輥編織加套管','Enviro Roller Woven Refill Sleeve', 'LRER', 150, 100, 150, '', '', '/img/product/29/product/14.編織滾筒補充.jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(29,'Enviro輥編織加套管','Enviro Roller Woven Refill Sleeve', 'LRER', 150, 100, 150, '', '', '/img/product/29/product/14.編織滾筒補充.jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 6);
 insert into PRODUCT_CAPACITY values(29, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(28, '#000000;', '黑色', 'black', 'HR-11001', 1, now(), 'sys', now(), 'sys');
 
 
-insert into product values(30,'4吋毛刷(100公釐)','4"Bristle Brush (100mm)', 'LRB-4', 210, 100, 210, '', '', '/img/product/30/product/15.4吋毛刷.jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(30,'4吋毛刷(100公釐)','4"Bristle Brush (100mm)', 'LRB-4', 210, 100, 210, '', '', '/img/product/30/product/15.4吋毛刷.jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 6);
 insert into PRODUCT_CAPACITY values(30, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(30, '#000000;', '黑色', 'black', 'HR-11001', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(31,'2.5吋角度刷(64公釐)','2.5"Angle_Brush_(64mm)', 'LRB-2.5', 180, 100, 180, '', '', '/img/product/31/product/16.2.5吋角刷.jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(31,'2.5吋角度刷(64公釐)','2.5"Angle_Brush_(64mm)', 'LRB-2.5', 180, 100, 180, '', '', '/img/product/31/product/16.2.5吋角刷.jpg', 2, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 6);
 insert into PRODUCT_CAPACITY values(31, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(31, '#000000;', '黑色', 'black', 'HR-11001', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(32,'液態橡膠溝槽修復套組','Liquid Rubber Gutter Repair Kit', 'LRGRK', 599, 100, 569, '', '', '/img/product/32/product/17.溝槽修復套組.jpg', 3, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(32,'液態橡膠溝槽修復套組','Liquid Rubber Gutter Repair Kit', 'LRGRK', 599, 100, 569, '', '', '/img/product/32/product/17.溝槽修復套組.jpg', 3, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 6);
 insert into PRODUCT_CAPACITY values(32, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(32, '#000000;', '黑色', 'black', 'HR-11001', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(33,'防水密封劑1G工具包','Waterproof Sealant 1G Kit', 'LRWK-1', 2849, 100, 2699, '', '', '/img/product/33/product/18.防水密封劑1加侖工具包.jpg', 3, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(33,'防水密封劑1G工具包','Waterproof Sealant 1G Kit', 'LRWK-1', 2849, 100, 2699, '', '', '/img/product/33/product/18.防水密封劑1加侖工具包.jpg', 3, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 6);
 insert into PRODUCT_CAPACITY values(33, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(33, '#000000;', '黑色', 'black', 'HR-11001', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(34,'防水密封劑5G工具包','Waterproof Sealant 5G Kit', 'LRWK-5', 6749, 100, 6399, '', '', '/img/product/34/product/19.防水密封劑5加侖工具包.jpg', 3, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(34,'防水密封劑5G工具包','Waterproof Sealant 5G Kit', 'LRWK-5', 6749, 100, 6399, '', '', '/img/product/34/product/19.防水密封劑5加侖工具包.jpg', 3, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 6);
 insert into PRODUCT_CAPACITY values(34, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(34, '#000000;', '黑色', 'black', 'HR-11001', 1, now(), 'sys', now(), 'sys');
 
-insert into product values(35,'液態橡膠RV車頂密封5G工具包','RV Roof 5G Kit', 'LRRK', 11999, 100, 11399, '', '', '/img/product/35/product/20.RV車頂密封5加侖工具包.jpg', 3, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100);
+insert into product values(35,'液態橡膠RV車頂密封5G工具包','RV Roof 5G Kit', 'LRRK', 11999, 100, 11399, '', '', '/img/product/35/product/20.RV車頂密封5加侖工具包.jpg', 3, 1, 1, 0, to_timestamp('01-08-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), to_timestamp('30-09-2018 18:47:52.69', 'dd-MM-yyyy HH24:MI:ss'), 60, 50, 0, now(), 'sys', now(), 'sys', 100, 6);
 insert into PRODUCT_CAPACITY values(35, '3.78', 'L', '1加侖(3.78L)', '1加侖(3.78L)', 1, now(), 'sys', now(), 'sys');
 --insert into PRODUCT_COLOR VALUES(35, '#000000;', '黑色', 'black', 'HR-11001', 1, now(), 'sys', now(), 'sys');
 
@@ -371,85 +371,127 @@ insert into PAYMENT_METHOD values(2, 2, 'ATM轉帳', 'ATM','提供底下帳戶�
 insert into SHIPPING_METHOD values(1, 1, '宅配 ', 'black cat', '',  1, 0);
 insert into SHIPPING_METHOD values(2, 2, '快遞 ', 'FEDX','TEST', 0, 0);
 
-insert into Product_TAG_RELATION values (13, 1, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (14, 1, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (22, 1, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (1, 1, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (2, 1, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (4, 1, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (5, 1, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (30, 1, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (13, 1, 1, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (14, 1, 2, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (15, 1, 3, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (1, 1, 4, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (2, 1, 5, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (3, 1, 6, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (4, 1, 7, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (16, 1, 8, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (17, 1, 9, now(), 'sys', now(), 'sys' );
+
+insert into Product_TAG_RELATION values (18, 1, 10, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (19, 1, 11, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (20, 1, 12, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (21, 1, 13, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (22, 1, 14, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (23, 1, 15, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (24, 1, 16, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (25, 1, 17, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (26, 1, 18, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (27, 1, 19, now(), 'sys', now(), 'sys' );
 insert into Product_TAG values (1, '防水密封塗料', 1);
 
-insert into Product_TAG_RELATION values (20, 2, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (19, 2, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (22, 2, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (10, 2, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (11, 2, now(), 'sys', now(), 'sys' );
---insert into Product_TAG_RELATION(19, 2, now(), 'sys', now(), 'sys' );
---insert into Product_TAG_RELATION(4, 2, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (5, 2, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (30, 2, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (13, 2, 1, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (14, 2, 2, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (15, 2, 3, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (7, 2, 4, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (8, 2, 5, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (16, 2, 6, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (17, 2, 7, now(), 'sys', now(), 'sys' );
+
+insert into Product_TAG_RELATION values (18, 2, 8, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (19, 2, 9, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (20, 2, 10, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (21, 2, 11, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (22, 2, 12, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (23, 2, 13, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (24, 2, 14, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (25, 2, 15, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (26, 2, 16, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (27, 2, 17, now(), 'sys', now(), 'sys' );
 insert into Product_TAG values (2, '甲板密封塗料', 1);
 
-insert into Product_TAG_RELATION values (20, 3, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (19, 3, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (22, 3, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (6, 3, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (7, 3, now(), 'sys', now(), 'sys' );
---insert into Product_TAG_RELATION(19, 3, now(), 'sys', now(), 'sys' );
---insert into Product_TAG_RELATION(4, 3, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (5, 3, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (30, 3, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (13, 3, 1, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (14, 3, 2, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (15, 3, 3, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (5, 3, 4, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (6, 3, 5, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (16, 3, 6, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (17, 3, 7, now(), 'sys', now(), 'sys' );
+
+insert into Product_TAG_RELATION values (18, 3, 8, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (19, 3, 9, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (20, 3, 10, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (21, 3, 11, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (22, 3, 12, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (23, 3, 13, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (24, 3, 14, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (25, 3, 15, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (26, 3, 16, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (27, 3, 17, now(), 'sys', now(), 'sys' );
 insert into Product_TAG values (3, 'RV車頂密封塗料', 1);
 
-insert into Product_TAG_RELATION values (13, 4, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (14, 4, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (15, 4, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (11, 4, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (12, 4, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (3, 4, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (4, 4, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (16, 4, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (17, 4, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (13, 4, 1, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (14, 4, 2, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (15, 4, 3, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (11, 4, 4, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (12, 4, 5, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (3, 4, 6, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (4, 4, 7, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (16, 4, 8, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (17, 4, 9, now(), 'sys', now(), 'sys' );
 
-insert into Product_TAG_RELATION values (18, 4, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (19, 4, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (20, 4, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (21, 4, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (22, 4, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (23, 4, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (24, 4, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (25, 4, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (26, 4, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (27, 4, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (18, 4, 10, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (19, 4, 11, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (20, 4, 12, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (21, 4, 12, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (22, 4, 14, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (23, 4, 15, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (24, 4, 16, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (25, 4, 17, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (26, 4, 18, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (27, 4, 19, now(), 'sys', now(), 'sys' );
 insert into Product_TAG values (4, '金屬安全密封塗料', 1);
 
-insert into Product_TAG_RELATION values (20, 5, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (19, 5, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (22, 5, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (4, 5, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (5, 5, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (30, 5, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (13, 5, 1, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (14, 5, 2, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (15, 5, 3, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (3, 5, 4, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (4, 5, 5, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (16, 5, 6, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (17, 5, 7, now(), 'sys', now(), 'sys' );
+
+insert into Product_TAG_RELATION values (18, 5, 8, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (19, 5, 9, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (20, 5, 10, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (21, 5, 11, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (22, 5, 12, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (23, 5, 13, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (24, 5, 14, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (25, 5, 15, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (26, 5, 16, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (27, 5, 17, now(), 'sys', now(), 'sys' );
 insert into Product_TAG values (5, '彩色防水密封塗料', 1);
 
-insert into Product_TAG_RELATION values (13, 6, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (14, 6, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (15, 6, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (9, 6, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (10, 6, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (3, 6, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (4, 6, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (13, 6, 1, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (14, 6, 2, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (15, 6, 3, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (9, 6, 4, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (10, 6, 5, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (3, 6, 6, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (4, 6, 7, now(), 'sys', now(), 'sys' );
 
-insert into Product_TAG_RELATION values (18, 6, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (19, 6, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (20, 6, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (21, 6, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (22, 6, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (23, 6, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (24, 6, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (25, 6, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (26, 6, now(), 'sys', now(), 'sys' );
-insert into Product_TAG_RELATION values (27, 6, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (18, 6, 8, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (19, 6, 9, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (20, 6, 10, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (21, 6, 11, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (22, 6, 12, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (23, 6, 13, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (24, 6, 14, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (25, 6, 15, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (26, 6, 16, now(), 'sys', now(), 'sys' );
+insert into Product_TAG_RELATION values (27, 6, 17, now(), 'sys', now(), 'sys' );
 insert into Product_TAG values (6, '基礎密封塗料', 1);
 commit;

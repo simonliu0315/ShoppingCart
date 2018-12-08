@@ -56,6 +56,7 @@ create table Product(
     updated timestamp,
     update_by varchar(30),
     stock_quantity int default 0,
+    usage int,
     primary key(id)
     --img_src BOLB()
 );
@@ -223,6 +224,7 @@ create table Product_TAG(
 create table Product_TAG_RELATION(
     product_id int not null,
     tag_id int not null,
+    seq int not null,
     inserted timestamp,
     insert_by varchar(30),
     updated timestamp,

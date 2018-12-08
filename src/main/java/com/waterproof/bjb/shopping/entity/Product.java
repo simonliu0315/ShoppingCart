@@ -76,6 +76,12 @@ public class Product implements Serializable {
 
 	private String update_by;
 	
+	private int stock_quantity;
+	
+	private int usage;
+	
+
+	
 	@Transient
 	private String promotion_end_str;
 	

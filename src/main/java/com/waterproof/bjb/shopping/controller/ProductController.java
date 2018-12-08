@@ -42,7 +42,7 @@ public class ProductController {
         ModelAndView mav = new ModelAndView();
         Pageable pageable = new PageRequest(0, 12);
         log.info("page {}, pageSize {}", 0, 12);
-        Page<Product> products = productService.getFilterProduct("", 1, 0, 0, 0, 1, pageable, null);
+        Page<Product> products = productService.getFilterProduct("", 0, 0, 0, 0, 1, pageable, null);
         log.info("products size {}", products.getContent().size());
         mav.addObject("activate_product", products.getContent());
         log.info("getTotalPages {}", products.getTotalPages());

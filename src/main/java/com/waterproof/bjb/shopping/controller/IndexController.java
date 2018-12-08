@@ -79,7 +79,7 @@ public class IndexController {
         //抓有折扣的商品資料
         mav.addObject("discount_product", productService.getDiscountProductsOrderUpdatedTime());
         //抓最常購買的資料
-        mav.addObject("suggest_product", productService.getDiscountProductsOrderUpdatedTime());
+        mav.addObject("suggest_product", productService.getActivateProduct());
         //抓使用者建議的商品
         mav.addObject("recommended_product", productService.getDiscountProductsOrderUpdatedTime());
         

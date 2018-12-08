@@ -25,6 +25,8 @@ public class ProductTagRelation implements Serializable {
 	@EmbeddedId
 	private ProductTagRelationPK id;
 
+	private int seq;
+	
 	private Timestamp inserted;
 
 	private String insert_by;
