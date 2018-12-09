@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/SearchResultsPage" lang="zh-Hant-TW" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta th:replace="fragments/meta_resources :: meta_resources"></meta>
+</head>
+
+<body>
+	<div th:replace="fragments/body_header :: body_header"></div>
+
+	<div th:replace="fragments/body_navigation :: body_navigation"></div>
+
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a th:href="@{/}">首頁</a></li>
+				<li><a th:href="@{/products}">商品</a></li>
+				<li><a href="#">種類名稱</a></li>
+				<li class="active">商品名稱</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!--  Product Details -->
+				<div class="product product-details clearfix">
+					<div class="col-md-6">
+						<div id="product-main-view">
+							<div class="product-view">
+								<img th:src="@{${product.img}}" alt=""/>
+							</div>
+						
+						</div>
+						
+					</div>
+					<div class="col-md-6">
+						<div class="product-body">
+							<div class="product-label">
+								<span th:if="${product.newest == 1}">新上市</span>
+						        <span th:if="${product.promotion_on == 1 and product.promotion_discount != 100}" class="sale" th:text="${(100 - product.promotion_discount) + '%'}">0%</span>
+						        <span th:if="${product.promotion_on == 0 and product.discount != 100}" class="sale" th:text="${(100 - product.discount) + '%'}">0%</span>
+							</div>
+							<h2 class="product-name"><input id="name" name="name" placeholder="商品名稱" th:value="${product.name}"/></h2>
+							<h2 class="product-name"><input id="name" name="name" placeholder="英文商品名稱" th:value="${product.engName}"/></h2>
+							<h3 th:if="${product.promotion_on == 1}" class="product-price" th:text="${'$' + product.promotion_price}">$0 </h3>
+						    <h3 th:if="${product.promotion_on == 0}" class="product-price"><input id="name" name="name" placeholder="濕品售價" th:value="${'$' + product.price}"/> </h3>					    
+						    <del class="product-old-price" style="font-size:16px;" ><input id="name" name="name" placeholder="商品原價" th:value="${product.originalPrice}"/> </del>
+							<div>
+								<div class="product-rating">
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star-o empty"></i>
+								</div>
+								<a href="#">3 Review(s) / Add Review</a>
+							</div>
+							<p th:if="${product.activate == 1}"><strong>貨品狀態:</strong> 有現貨</p>
+							<p th:unless="${product.activate == 1}"><strong>貨品狀態:</strong><font color="red" size="3"> 缺貨中</font></p>
+							<p><strong>品牌:</strong> 加拿大液態橡膠 </p>
+							<p th:utext="${product.shortDescription}">測試商品描述.</p>
+							<div class="product-options">
+
+								<ul class="color-option" th:if="${not #lists.isEmpty(product.productColors)}" >
+								    <input type="hidden" id="isColor" name="isColor" value="1"/>
+								    <input type="hidden" id="color" name="color" value=""/>
+									<li><span class="text-uppercase">顏色:</span></li>
+									<th:block th:each="productColor, itrStat: ${product.productColors}">
+									    <li th:id="${'color_' + productColor.eName}">
+									        <a href="#" th:style="${'background-color:' + productColor.id.color}" th:onclick="'product.changeColor(\'' +  ${productColor.eName} + '\', \''+${productColor.id.color}+'\');'" th:title="${productColor.name}"></a>
+									    </li>
+									</th:block>
+									
+								</ul>
+							
+							</div>
+
+							
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="product-tab">
+							<ul class="tab-nav">
+								<li class="active"><a data-toggle="tab" href="#tab1">商品描述</a></li>
+								<!-- li><a data-toggle="tab" href="#tab2">商品評論 (3)</a></li-->
+							</ul>
+							<div class="tab-content">
+								<div id="tab1" class="tab-pane fade in active">
+								<div class="row">
+										<div>
+									<p th:utext="${product.description}">測試商品描述.</p>
+									</div></div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!-- /Product Details -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+	<div th:replace="fragments/body_footer :: body_footer"></div>
+    <div th:replace="fragments/body_resources :: body_resources"></div>
+	
+	<script th:src="@{/js/index.js}"></script>
+	<script th:src="@{/js/product.js}"></script>
+
+</body>
+
+</html>

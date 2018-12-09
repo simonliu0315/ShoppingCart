@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/SearchResultsPage" lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta th:replace="fragments/meta_resources :: meta_resources"></meta>
+</head>
+<body>
+	<div th:replace="fragments/body_header :: body_header"></div>
+	<div th:replace="fragments/body_navigation :: body_navigation"></div>
+    <!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a th:href="@{/manager}">管理系統</a></li>
+				<li class="active">使用者管理</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+        <!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+		    <div th:replace="fragments/body_header :: body_info"></div>
+			<!-- row -->
+			<div class="row">
+
+            <h3>--商品管理--</h3>
+
+            <table class="table table-hover table-condensed">
+                <legend>
+                    <strong>商品列表</strong>
+                </legend>
+                <thead>
+                    <tr>
+                        <th style="width:10%;max-width:10%">商品代號</th>
+                        <th style="width:50%;max-width:50%">中文名稱</th>
+                        <th style="width:10%;max-width:10%">啟用狀態</th>
+                        <th style="width:10%;max-width:10%">發布狀態</th>
+                        <th style="width:20%;max-width:20%">管理</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="product : ${products}">
+                        <th scope="row" th:text="${product.id}"></th>
+                        <td class="product.product-widget product-thumb">
+                        <div class="product product-widget"><div class="product-thumb"><img th:src="${product.img}"></img></div>
+                        <div class="product-body"><h2 class="product-name" th:text="${product.name}">
+                        <ul class="color-option"><li><a href="#" style="background-color:#000000;"></a></li><li><span>黑色</span></li></ul></h2></div>
+                        </div>
+                            </td>
+                        <td th:text="${product.activate == 1 ? '啟用' : '停用'}"></td>
+                        <td th:text="${product.published == 1 ? '發布中' : '傳停'}"></td>
+                        <td>
+                        <a class="btn btn-info" th:href="@{/manager/product/update/{id}(id=${product.id})}">修改</a>
+                        <a class="btn btn-danger" th:href="@{/manager/product/delete/{id}(id=${product.id})}">删除</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div><a class="btn btn-primary" th:href="@{/manager/product/create}" role="button">新增商品</a></div>
+        </div>
+        </div>
+        </div>
+        
+
+    <div th:replace="fragments/body_footer :: body_footer"></div>
+    <div th:replace="fragments/body_resources :: body_resources"></div>
+   
+    <script th:src="@{/js/index.js}"></script>
+ </body>
+
+</html>

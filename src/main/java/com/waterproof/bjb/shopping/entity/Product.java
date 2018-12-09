@@ -72,6 +72,7 @@ public class Product implements Serializable {
 
 	private String insert_by;
 
+	@Column(name = "UPDATED")
 	private Timestamp updated;
 
 	private String update_by;

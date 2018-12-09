@@ -86,6 +86,9 @@ public class ProductService {
 		} else {
 			return null;
 		}
-		
+	}
+	
+	public List<Product> getProducts() {
+		return productRepository.getOrderByUpdatedDesc();
 	}
 }
