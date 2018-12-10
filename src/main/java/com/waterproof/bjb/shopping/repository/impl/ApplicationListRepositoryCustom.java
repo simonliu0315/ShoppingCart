@@ -36,9 +36,11 @@ public class ApplicationListRepositoryCustom {
 	
 		List<Predicate> predicates = new ArrayList<Predicate>();
 
+		Predicate predicate = criteriaBuilder.equal(rootFrom.get("status").as(Integer.class), 1);
+	    predicates.add(predicate);
 		if (!StringUtils.isEmpty(q)) {
 			log.info("q {}", q);
-		    Predicate predicate = criteriaBuilder.like(rootFrom.get("name").as(String.class), "%" + q + "%");
+		    predicate = criteriaBuilder.like(rootFrom.get("name").as(String.class), "%" + q + "%");
 		    predicates.add(predicate);
 		}
 		// 格式化参数

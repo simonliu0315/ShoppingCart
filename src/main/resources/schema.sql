@@ -195,6 +195,7 @@ create table Product_Color(
     name varchar(120),
     e_name varchar(120),
     linner_color varchar(20),
+    img varchar(60),
     status int default 1,
     inserted timestamp,
     insert_by varchar(30),

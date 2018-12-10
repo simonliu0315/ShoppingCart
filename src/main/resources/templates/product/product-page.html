@@ -100,7 +100,7 @@
 									<li><span class="text-uppercase">顏色:</span></li>
 									<th:block th:each="productColor, itrStat: ${product.productColors}">
 									    <li th:id="${'color_' + productColor.eName}">
-									        <a href="#" th:style="${'background-color:' + productColor.id.color}" th:onclick="'product.changeColor(\'' +  ${productColor.eName} + '\', \''+${productColor.id.color}+'\');'" th:title="${productColor.name}"></a>
+									        <a href="#" th:style="${'background-color:' + productColor.id.color + '; border-width: 1px;border-style:solid;'}" th:onclick="'product.changeColor(\'' +  ${productColor.eName} + '\', \''+${productColor.id.color}+'\');'" th:title="${productColor.name}"></a>
 									    </li>
 									</th:block>
 									
