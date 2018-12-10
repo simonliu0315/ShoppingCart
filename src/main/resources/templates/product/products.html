@@ -190,12 +190,12 @@
 							<div class="page-filter">
 								<span class="text-uppercase">每頁筆數:</span>
 								<select id="pageSize_1" name="pageSize_1" class="input" onChange="product_list.reload();">
-										<option value="10" th:if="${pageSize != 12}">12</option>
-										<option value="10" th:if="${pageSize == 12}" selected="true">12</option>
-										<option value="20" th:if="${pageSize != 24}">20</option>
-										<option value="20" th:if="${pageSize == 24}" selected="true">24</option>
-										<option value="30" th:if="${pageSize != 36}">36</option>
-										<option value="30" th:if="${pageSize == 36}" selected="true">36</option>
+										<option value="12" th:if="${pageSize != 12}">12</option>
+										<option value="12" th:if="${pageSize == 12}" selected="true">12</option>
+										<option value="24" th:if="${pageSize != 24}">20</option>
+										<option value="24" th:if="${pageSize == 24}" selected="true">24</option>
+										<option value="36" th:if="${pageSize != 36}">36</option>
+										<option value="36" th:if="${pageSize == 36}" selected="true">36</option>
 								</select>
 							</div>
 							<ul class="store-pages" th:each="i, itrStat: ${#numbers.sequence(1, totalPages)}">
@@ -273,12 +273,12 @@
 							<div class="page-filter">
 								<span class="text-uppercase">每頁筆數:</span>
 								<select id="pageSize_2" name="pageSize_2" class="input" onChange="product_list.reload();">
-										<option value="10" th:if="${pageSize != 12}">12</option>
-										<option value="10" th:if="${pageSize == 12}" selected="true">12</option>
-										<option value="20" th:if="${pageSize != 24}">24</option>
-										<option value="20" th:if="${pageSize == 24}" selected="true">24</option>
-										<option value="30" th:if="${pageSize != 36}">36</option>
-										<option value="30" th:if="${pageSize == 36}" selected="true">36</option>
+										<option value="12" th:if="${pageSize != 12}">12</option>
+										<option value="12" th:if="${pageSize == 12}" selected="true">12</option>
+										<option value="24" th:if="${pageSize != 24}">24</option>
+										<option value="24" th:if="${pageSize == 24}" selected="true">24</option>
+										<option value="36" th:if="${pageSize != 36}">36</option>
+										<option value="36" th:if="${pageSize == 36}" selected="true">36</option>
 								</select>
 							</div>
 							<ul class="store-pages" th:each="i, itrStat: ${#numbers.sequence(1, totalPages)}">

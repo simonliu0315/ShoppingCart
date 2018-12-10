@@ -176,16 +176,32 @@ public class ProductController {
         log.info("pageNumber {}, Offset {}, pageSize {}", pageable.getPageNumber(), pageable.getOffset(), pageable.getPageSize());
         StringBuilder sb = new StringBuilder("");
         
-        String defaultUrlPage = "&";
+        //分頁連結用
+        String defaultUrlPage = "";
         if (tagId != null && tagId.length > 0) {
             for(int t: tagId) {
             	mav.addObject("active" + t, true);
             	sb.append("" + t +",");
             }
-            defaultUrlPage += "tagId=" + sb.substring(0, sb.length()  - 1);
+            defaultUrlPage += "&tagId=" + sb.substring(0, sb.length()  - 1);
             defaultUrlPage += "&pageSize="+ pageSize + "&page=";
         } else {
-        	defaultUrlPage += "pageSize="+ pageSize + "&page=";
+        	if (category != 0) {
+            	defaultUrlPage += "&category=" + category;
+            }
+        	if (productId != 0) {
+        		defaultUrlPage += "&productId=" + productId;
+            }
+            if (price_low != 0) {
+            	defaultUrlPage += "&price_low=" + price_low;
+            }
+            if (price_high != 0) {	
+            	defaultUrlPage += "&price_high=" + price_high;
+            }
+            if (orderby != 1) {
+            	defaultUrlPage += "&orderby=" + orderby;
+            }
+        	defaultUrlPage += "&pageSize="+ pageSize + "&page=";
         }
         
         

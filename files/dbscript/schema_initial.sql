@@ -249,3 +249,5 @@ create table ORDER_ATM(
     primary key(order_no)
 );
 
+alter table Product_Color add seq int;
+
