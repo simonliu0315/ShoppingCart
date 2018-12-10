@@ -34,5 +34,7 @@ public class ProductColor implements Serializable {
 	private Timestamp updated;
 
 	private String update_by;
+	
+	private int seq;
 		
 }
