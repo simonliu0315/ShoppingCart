@@ -81,7 +81,7 @@ public class ProductController {
         log.info("product: {}", product);
         mav.addObject("product", product);
        
-        mav.addObject("recommended_product", productService.getDiscountProductsOrderUpdatedTime().subList(0, 5));
+        mav.addObject("recommended_product", productService.getDiscountProductsOrderUpdatedTime().subList(0, 4));
         
         mav.setViewName("product/product-page");
         return mav;

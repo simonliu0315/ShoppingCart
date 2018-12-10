@@ -13,6 +13,6 @@ import com.waterproof.bjb.shopping.entity.ProductColorPK;
 @Repository
 public interface ProductColorRepository extends JpaRepository<ProductColor, ProductColorPK> {
 
-	@Query(value = "SELECT A FROM ProductColor A where A.id.productId = :productId order by A.id.color")
+	@Query(value = "SELECT A FROM ProductColor A where A.id.productId = :productId order by A.seq, A.id.color")
     public List<ProductColor> getProductColor(@Param("productId") int productId);
 }
