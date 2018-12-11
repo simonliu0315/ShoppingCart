@@ -104,14 +104,15 @@
 							<!-- /Account -->
 
 							<!-- Cart -->
-							<button class="header-cart dropdown default-dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="true">
+							<div class="header-cart dropdown default-dropdown">
+							
+							<a id="dropdownMenu1" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 									<div class="header-btns-icon">
 										<i class="fa fa-shopping-cart"></i> <span class="qty" id="qty">0</span>
 									</div> <strong class="text-uppercase">我的購物車:</strong> <br /> <span id="totalAmt">$0</span>
 							</a>
-								<div class="custom-menu">
+								<ul class="custom-menu" aria-labelledby="dropdownMenu1">
+								<li>
 									<div id="shopping-cart">
 										<div class="shopping-cart-list" id="shopping-cart-list">
 										</div>
@@ -122,8 +123,9 @@
 											</a>
 										</div>
 									</div>
-								</div>
-							</button>
+									</li>
+								</ul>
+							</div>
 							<!-- /Cart -->
 
 							<!-- Mobile nav toggle-->
