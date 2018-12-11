@@ -28,4 +28,6 @@ public @AllArgsConstructor @NoArgsConstructor @Data class CheckoutForm {
 	private String vatId;
 	
 	private String businessName;
+	
+	private int shippmentMethod;
 }

@@ -1,8 +1,5 @@
 package com.waterproof.bjb.shopping;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
@@ -10,12 +7,8 @@ import org.springframework.boot.context.embedded.ErrorPage;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.AccountExpiredException;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.DisabledException;
-import org.springframework.security.authentication.LockedException;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.ExceptionMappingAuthenticationFailureHandler;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -25,7 +18,6 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafView;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 
-import com.octo.captcha.CaptchaException;
 import com.waterproof.bjb.shopping.interceptor.OtherInterceptor;
 import com.waterproof.bjb.shopping.interceptor.UserInterceptor;
 
@@ -49,9 +41,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		log.info("addResourceHandlers.");
 		System.out.println("addResourceHandlers.");
-		registry.addResourceHandler("/css/**", "/js/**", "/webjars/**", "/img/**", "/fonts/**", "/locales/**").addResourceLocations(
-				"classpath:/static/css/", "classpath:/static/js/", "classpath:/META-INF/resources/webjars/",
-				"classpath:/static/img/", "classpath:/static/fonts/", "classpath:/static/locales/");
+		registry.addResourceHandler("/css/**", "/js/**", "/webjars/**", "/img/**", "/fonts/**", "/locales/**")
+				.addResourceLocations("classpath:/static/css/", "classpath:/static/js/",
+						"classpath:/META-INF/resources/webjars/", "classpath:/static/img/", "classpath:/static/fonts/",
+						"classpath:/static/locales/");
 
 	}
 
@@ -86,25 +79,31 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		registry.addInterceptor(otherInterceptor);
 	}
 
-	
-	
 	@Bean
 	public EmbeddedServletContainerCustomizer containerCustomizer() {
-	    return new EmbeddedServletContainerCustomizer() {
-	        
-	    	@Override
-	        public void customize(ConfigurableEmbeddedServletContainer container) {
+		return new EmbeddedServletContainerCustomizer() {
 
-	            ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND, "/404");
-	            container.addErrorPages(error404Page);
-	            
-	            ErrorPage error500Page = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/404");
-	            container.addErrorPages(error500Page);
-	            
-	            ErrorPage error405Page = new ErrorPage(HttpStatus.METHOD_NOT_ALLOWED, "/404");
-	            container.addErrorPages(error405Page);
+			@Override
+			public void customize(ConfigurableEmbeddedServletContainer container) {
 
-	        }
-	    };
+				ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND, "/404");
+				container.addErrorPages(error404Page);
+
+				ErrorPage error500Page = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/404");
+				container.addErrorPages(error500Page);
+
+				ErrorPage error405Page = new ErrorPage(HttpStatus.METHOD_NOT_ALLOWED, "/404");
+				container.addErrorPages(error405Page);
+
+			}
+		};
+	}
+
+	@Bean
+	public MultipartResolver multipartResolver() {
+		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+		multipartResolver.setMaxUploadSize(10485760); // 10MB
+		multipartResolver.setMaxUploadSizePerFile(1048576); // 1MB
+		return multipartResolver;
 	}
 }

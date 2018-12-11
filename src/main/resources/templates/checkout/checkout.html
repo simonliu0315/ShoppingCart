@@ -125,8 +125,8 @@
 								<h4 class="title">貨運方式</h4>
 							</div>
 							<div class="input-checkbox" th:each="shippingMethod, itrStat : ${ShippingMethods}">
-							    <input th:if="${itrStat.index == 0}" type="radio" name="shipping" th:id="${'shipping-' + itrStat.index}"  value="100" th:checked="checked" th:required="required"></input>
-								<input th:if="${itrStat.index != 0}" type="radio" name="shipping" th:id="${'shipping-' + itrStat.index}"  value="100" th:required="required"></input>
+							    <input th:if="${itrStat.index == 0}" type="radio" name="shippmentMethod" th:id="${'shipping-' + itrStat.index}"  th:value="${shippingMethod.method}" th:checked="checked" th:required="required"></input>
+								<input th:if="${itrStat.index != 0}" type="radio" name="shippmentMethod" th:id="${'shipping-' + itrStat.index}"  th:value="${shippingMethod.method}" th:required="required"></input>
 								<label th:for="${'shipping-' + itrStat.index}" th:text="${shippingMethod.description}">宅配免運</label>
 								<div class="caption">
 									<p th:text="${shippingMethod.content}">寄送.</p>

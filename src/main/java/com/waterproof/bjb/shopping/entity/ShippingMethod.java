@@ -37,6 +37,13 @@ public class ShippingMethod implements Serializable {
 	@Column
 	private String content;
 	
+	@Column
+	private int status;
+	
+	@Column
+	private int shipping;
+	
+	
 
 	
 	

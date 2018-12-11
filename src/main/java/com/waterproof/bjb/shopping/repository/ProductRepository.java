@@ -28,7 +28,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	@Query(value = "SELECT A FROM Product A, Category C where A.categoryId = C.id and A.activate = 1 and (A.name like :name or A.description like :name) ORDER BY A.usage ASC, A.inserted DESC")
     public List<Product> getFilterProduct(@Param("name") String name); 
 	
-	@Query(value = "SELECT A FROM Product A ORDER BY updated DESC")
+	@Query(value = "SELECT A FROM Product A ORDER BY id, updated DESC")
 	public List<Product> getOrderByUpdatedDesc(); 
 	
 	

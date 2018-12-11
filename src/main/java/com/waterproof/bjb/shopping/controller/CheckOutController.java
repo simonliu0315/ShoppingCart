@@ -1,5 +1,6 @@
 package com.waterproof.bjb.shopping.controller;
 
+import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,6 +25,7 @@ import com.waterproof.bjb.shopping.commons.SessionParameter;
 import com.waterproof.bjb.shopping.controller.dto.CheckoutForm;
 import com.waterproof.bjb.shopping.dto.ProductInCartDto;
 import com.waterproof.bjb.shopping.dto.ProductTempOrder;
+import com.waterproof.bjb.shopping.entity.ShippingMethod;
 import com.waterproof.bjb.shopping.service.CustomerOrderService;
 import com.waterproof.bjb.shopping.service.SimpleUserService;
 import com.waterproof.bjb.shopping.service.dto.UserContractDto;
@@ -62,6 +64,7 @@ public class CheckOutController {
     		@RequestParam(value = "invoiceType", required=false, defaultValue = "1") int invoiceType,
     		@RequestParam(value = "vatId", required=false, defaultValue = "") String vatId,
     		@RequestParam(value = "businessName", required=false, defaultValue = "") String businessName,
+    		@RequestParam(value = "shippmentMethod", required=false, defaultValue = "1") int shippmentMethod,
     		HttpServletRequest request) {
         log.info("checkout index getPage");
         ModelAndView mav = new ModelAndView();
@@ -69,7 +72,7 @@ public class CheckOutController {
         if (productInCartDto == null) {
         	productInCartDto = new ProductInCartDto();
         }
-        CheckoutForm checkoutForm = new CheckoutForm(postName, email, zipCode, city, district, address, tel, paymentMethod, invoiceType, vatId, businessName);
+        CheckoutForm checkoutForm = new CheckoutForm(postName, email, zipCode, city, district, address, tel, paymentMethod, invoiceType, vatId, businessName, shippmentMethod);
         log.info("session: {}", productInCartDto);
 		mav.addObject("order", productInCartDto);
 		mav.addObject("CheckoutForm", checkoutForm);
@@ -105,6 +108,9 @@ public class CheckOutController {
         
         log.info("login user {}", userService.getUser());
         log.info("userContractDto {}", userContractDto);
+        for (ShippingMethod shippingMethod : customerOrderService.getShipping()) {
+        	productInCartDto.setShipment(new BigDecimal(shippingMethod.getShipping()));
+        }
         String orderNumber = customerOrderService.saveToOrder(userContractDto, productInCartDto, username);
         request.getSession().setAttribute(SessionParameter.PRODUCTS_IN_CART, null);
         ProductInCartDto dto = customerOrderService.queryOrderByNo(orderNumber);

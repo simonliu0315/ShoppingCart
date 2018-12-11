@@ -75,10 +75,13 @@ public class CustomerOrderService {
 		BeanUtils.copyProperties(userContractDto, orderInvoiceContract);
 		contract.setUsername(username);
 		log.info("UserContract {}", contract);
+		log.info("orderContract {}", orderContract);
+		log.info("orderInvoiceContract {}", orderInvoiceContract);
 		customerOrder.setUsername(username);
 		customerOrder.setAmount(productInCartDto.getTotalAmt());
 		customerOrder.setStatusId(1);
 		customerOrder.setMethod(productInCartDto.getPaymentMethod());
+		customerOrder.setShipping(productInCartDto.getShipment());
 		Date utilDate = new Date();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(utilDate);

@@ -3,6 +3,26 @@
 
 <head>
 <meta th:replace="fragments/meta_resources :: meta_resources"></meta>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="/css/froala-editor-2.9.1/froala_editor.css"/>
+  <link rel="stylesheet" href="/css/froala-editor-2.9.1/froala_style.css"/>
+  <link rel="stylesheet" href="/css/froala-editor-2.9.1/plugins/code_view.css"/>
+  <link rel="stylesheet" href="/css/froala-editor-2.9.1/plugins/colors.css"/>
+  <link rel="stylesheet" href="/css/froala-editor-2.9.1/plugins/emoticons.css"/>
+  <link rel="stylesheet" href="/css/froala-editor-2.9.1/plugins/image_manager.css"/>
+  <link rel="stylesheet" href="/css/froala-editor-2.9.1/plugins/image.css"/>
+  <link rel="stylesheet" href="/css/froala-editor-2.9.1/plugins/line_breaker.css"/>
+  <link rel="stylesheet" href="/css/froala-editor-2.9.1/plugins/table.css"/>
+  <link rel="stylesheet" href="/css/froala-editor-2.9.1/plugins/char_counter.css"/>
+  <link rel="stylesheet" href="/css/froala-editor-2.9.1/plugins/video.css"/>
+  <link rel="stylesheet" href="/css/froala-editor-2.9.1/plugins/fullscreen.css"/>
+  <link rel="stylesheet" href="/css/froala-editor-2.9.1/plugins/quick_insert.css"/>
+  <link rel="stylesheet" href="/css/froala-editor-2.9.1/plugins/file.css"/>
+
+  <link rel="stylesheet" href="/css/froala-editor-2.9.1/themes/dark.css"/>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css"/>
+
 </head>
 
 <body>
@@ -36,9 +56,31 @@
 							<div class="product-view">
 								<img th:src="@{${product.img}}" alt=""/>
 							</div>
-						
+						   
+    
 						</div>
-						
+						 <div class="row">
+						    <!-- File Upload From -->
+    <form th:action="@{/manager/product/fileUpload}" method="post" id="fileinfo" enctype="multipart/form-data">
+      <div class="form-group">
+        <label>請選擇檔案上傳</label> 
+        <input class="form-control" type="file" name="file"/>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">上傳</button>
+      </div>
+    </form>
+    <br />
+
+    <!-- Bootstrap Progress bar -->
+    <div class="progress">
+      <div id="progressBar" class="progress-bar progress-bar-success" role="progressbar"
+        aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+    </div>
+
+    <!-- Alert -->
+    <div id="alertMsg" style="color: red;font-size: 18px;"></div>
+    </div>
 					</div>
 					<div class="col-md-6">
 						<div class="product-body">
@@ -93,12 +135,11 @@
 							</ul>
 							<div class="tab-content">
 								<div id="tab1" class="tab-pane fade in active">
-								<div class="row">
-										<div>
-									<p th:utext="${product.description}">測試商品描述.</p>
-									</div></div>
-								</div>
-								
+								<section id="editor">
+                                <div id='edit' style="margin-top: 30px;" th:utext="${product.description}">
+                                </div>
+                                </section>
+                                </div>
 							</div>
 						</div>
 					</div>
@@ -117,7 +158,95 @@
 	
 	<script th:src="@{/js/index.js}"></script>
 	<script th:src="@{/js/product.js}"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/froala_editor.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/align.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/code_beautifier.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/code_view.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/colors.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/draggable.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/emoticons.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/font_size.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/font_family.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/image.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/file.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/image_manager.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/line_breaker.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/link.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/lists.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/paragraph_format.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/paragraph_style.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/video.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/table.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/url.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/entities.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/char_counter.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/inline_style.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/save.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/fullscreen.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/quick_insert.min.js"></script>
+  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/quote.min.js"></script>
+  <script>
+    $(function() {
+      $('#edit').froalaEditor({
+        theme: 'dark'
+      })
 
+      
+      $('button[type=submit]').click(function(e) {
+    	    e.preventDefault();
+    	    //Disable submit button
+    	    $(this).prop('disabled',true);
+    	    
+    	    var form = $('#fileinfo')[0];
+    	    var formData = new FormData(form);
+
+    	    // Ajax call for file uploaling
+    	    var ajaxReq = $.ajax({
+    	      url : contextRoot +'/manager/product/fileUpload',
+    	      type : 'POST',
+    	      data : formData,
+    	      cache : false,
+    	      contentType : false,
+    	      processData : false,
+    	      xhr: function(){
+    	        //Get XmlHttpRequest object
+    	         var xhr = $.ajaxSettings.xhr() ;
+    	        
+    	        //Set onprogress event handler 
+    	         xhr.upload.onprogress = function(event){
+    	          	var perc = Math.round((event.loaded / event.total) * 100);
+    	          	$('#progressBar').text(perc + '%');
+    	          	$('#progressBar').css('width',perc + '%');
+    	         };
+    	         return xhr ;
+    	    	},
+    	    	beforeSend: function( xhr ) {
+    	    		//Reset alert message and progress bar
+    	    		$('#alertMsg').text('');
+    	    		$('#progressBar').text('');
+    	    		$('#progressBar').css('width','0%');
+    	              }
+    	    });
+    	  
+    	    // Called on success of file upload
+    	    ajaxReq.done(function(msg) {
+    	      $('#alertMsg').text(msg);
+    	      $('input[type=file]').val('');
+    	      $('button[type=submit]').prop('disabled',false);
+    	    });
+    	    
+    	    // Called on failure of file upload
+    	    ajaxReq.fail(function(jqXHR) {
+    	      $('#alertMsg').text(jqXHR.responseText+'('+jqXHR.status+
+    	      		' - '+jqXHR.statusText+')');
+    	      $('button[type=submit]').prop('disabled',false);
+    	    });
+    	  });
+    });
+
+  </script>
 </body>
 
 </html>

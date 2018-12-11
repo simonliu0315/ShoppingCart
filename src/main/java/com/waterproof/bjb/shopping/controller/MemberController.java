@@ -110,7 +110,7 @@ public class MemberController {
 			List<UserRole> userRoles = new ArrayList<UserRole>();
 			UserRole role = new UserRole();
 			UserRolePK roleId = new UserRolePK();
-			roleId.setRole("USER");
+			roleId.setRole("ROLE_USER");
 			roleId.setUsername(user.getUsername());
 			role.setId(roleId);
 			role.setStatus(1);
