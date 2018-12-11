@@ -135,14 +135,17 @@
 							<!-- / Mobile nav toggle -->
 						</ul>
 <div class="dropdown">
-  
+  <div class="header-btns-icon">
+  <i class="fa fa-shopping-cart"></i> <span class="qty" id="qty">0</span>
+  </div> <span id="totalAmt">$0</span>
   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
     我的購物車
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
     <li>
-        
+        <div class="shopping-cart-list" id="shopping-cart-list">
+		</div>
         <div class="shopping-cart-btns">
 			<a class="main-btn" th:href="@{/cart}">查看我的購物車</a>
 			<a class="primary-btn" th:href="@{/checkout}">
