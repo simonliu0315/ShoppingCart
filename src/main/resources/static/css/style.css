@@ -615,13 +615,11 @@ textarea.input {
   -ms-transform: translateX(-50%) translateY(15px);
   transform: translateX(-50%) translateY(15px);
 }
-/*
 .dropdown.default-dropdown.open>.custom-menu {
   -webkit-transform: translateX(-50%) translateY(0px);
   -ms-transform: translateX(-50%) translateY(0px);
   transform: translateX(-50%) translateY(0px);
 }
-*/
 .dropdown.default-dropdown>.custom-menu>li>a {
   display: block;
   padding: 10px 0px;
