@@ -82,7 +82,7 @@
 									<th class="empty" colspan="3"></th>
 									<th>運費總金額</th>
 									<td colspan="2" th:if="${PRODUCTS_IN_CART.shipment == 0}">免運</td>
-									<td colspan="2" th:if="${PRODUCTS_IN_CART.shipment != 0}" th:text="${'$' + order.shipment}"></td>
+									<td colspan="2" th:if="${PRODUCTS_IN_CART.shipment != 0}" th:text="${'$' + PRODUCTS_IN_CART.shipment}"></td>
 									</tr>
 								<tr>
 									<th class="empty" colspan="3"></th>
