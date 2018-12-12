@@ -143,7 +143,7 @@
 							<li class="dropdown mega-dropdown full-width"><a
 								class="dropdown-toggle" data-toggle="dropdown"
 								aria-expanded="true">全商品<i class="fa fa-caret-down"></i></a>
-								<div class="custom-menu">
+								<div class="custom-menu" style="z-index: 1000;">
 									<div class="row">
 										<div class="col-md-3" th:each="category: ${CATEGORY_OBJECTS}">
 											<div class="hidden-sm hidden-xs">
@@ -170,7 +170,7 @@
 							<li class="dropdown default-dropdown"><a
 								class="dropdown-toggle" data-toggle="dropdown"
 								aria-expanded="true">快速連結<i class="fa fa-caret-down"></i></a>
-								<ul class="custom-menu">
+								<ul class="custom-menu" style="z-index: 1000;">
 									<li><a th:href="@{/products}">全商品</a></li>									
 									<li><a th:href="@{/cart}">購物車</a></li>
 								</ul>
@@ -178,7 +178,7 @@
 							<li class="dropdown default-dropdown"><a
 								class="dropdown-toggle" data-toggle="dropdown"
 								aria-expanded="true">代工資訊<i class="fa fa-caret-down"></i></a>
-								<ul class="custom-menu" style="width:350px">
+								<ul class="custom-menu" style="width:350px;style="z-index: 1000;"">
 									<li>
 									我們知道液態橡膠的商品可能需要一些技術性，<br/>
 									所以如果您有任何疑問，可參考"FAQ"或"應用"<br/>
@@ -194,7 +194,7 @@
 							<li th:if="${isAdmin == true}" class="dropdown default-dropdown"><a
 								class="dropdown-toggle" data-toggle="dropdown"
 								aria-expanded="true">管理功能<i class="fa fa-caret-down"></i></a>
-								<ul class="custom-menu">
+								<ul class="custom-menu" style="z-index: 1000;">
 									<li><a th:href="@{/manager/users}">會員管理</a></li>									
 									<li><a th:href="@{/manager/order/search}">訂單管理</a></li>
 									<li><a th:href="@{/manager/product}">商品管理</a></li>
