@@ -77,6 +77,9 @@ public class CheckOutController {
 		mav.addObject("order", productInCartDto);
 		mav.addObject("CheckoutForm", checkoutForm);
 		mav.addObject("ShippingMethods", customerOrderService.getShipping());
+		mav.addObject("bankCode", util.getBankCode());
+		mav.addObject("accountNo", util.getAccountCode());
+		mav.addObject("accountName", util.getAccountName());
         mav.setViewName("checkout/checkout");
         return mav;
     }
