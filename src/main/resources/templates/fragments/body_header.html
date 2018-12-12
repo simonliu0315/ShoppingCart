@@ -109,7 +109,8 @@
 								aria-haspopup="true" aria-expanded="true">
 									<div class="header-btns-icon">
 										<i class="fa fa-shopping-cart"></i> <span class="qty" id="qty">0</span>
-									</div> <strong class="text-uppercase">我的購物車:</strong> <br /> <span id="totalAmt">$0</span>
+									</div>
+									<strong class="text-uppercase">我的購物車:</strong> <br /> <span id="totalAmt">$0</span>
 							</a>
 								<div class="custom-menu">
 									<div id="shopping-cart">
@@ -135,14 +136,34 @@
 							<!-- / Mobile nav toggle -->
 						</ul>
 <div class="dropdown">
-  <div class="header-btns-icon">
-  <i class="fa fa-shopping-cart"></i> <span class="qty" id="qty">0</span>
-  </div> <span id="totalAmt">$0</span>
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+  <div class="header-btns-icon" style="position: relative;
+    float: left;
+    margin-right: 15px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #30323A;
+    background-color: #FFF;
+    border: 1px solid #DADADA;">
+  <i class="fa fa-shopping-cart"></i> <span class="qty" id="qty" style="position: absolute;
+    right: -9px;
+    top: -9px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    font-size: 10px;
+    background: #63b175;
+    color: #FFF;
+    border-radius: 50%;">0</span>
+  </div>
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="border-color:#fff">
     我的購物車
     <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+   <span id="totalAmt">$0</span>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="min-width:300px">
     <li>
         <div class="shopping-cart-list" id="shopping-cart-list">
 		</div>
