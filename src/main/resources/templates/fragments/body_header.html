@@ -76,7 +76,7 @@
 					<div class="pull-right">
 						<ul class="header-btns">
 							<!-- Account -->
-							<!-- >li class="header-account dropdown default-dropdown">
+							<li class="header-account dropdown default-dropdown">
 								<div class="dropdown-toggle" role="button"
 									data-toggle="dropdown" aria-expanded="true">
 									<div class="header-btns-icon">
@@ -89,7 +89,7 @@
 								<span th:if="${USER_OBJECT.username != 'anonymousUser' and USER_OBJECT.username !=null}" class="text-uppercase" th:text="${USER_OBJECT.username + '，您好'}"></span> 
 								/ 
 								<a th:if="${USER_OBJECT.username == 'anonymousUser' or USER_OBJECT.username == null}" th:href="@{/member/createUser}" class="text-uppercase">加入</a>
-								<ul class="custom-menu">
+								<ul class="custom-menu" style="z-index: 1000;">
 									<li><a  th:if="${USER_OBJECT.username != 'anonymousUser'}" th:href="@{/member/myAccount}"><i class="fa fa-user-o"></i> 帳號</a></li>
 									<li><a th:href="@{/wishList}"><i class="fa fa-heart-o"></i> 最愛清單</a></li>
 									<li><a th:href="@{/compare}"><i class="fa fa-exchange"></i> 商品比較</a></li>
@@ -100,11 +100,11 @@
 									<li><a th:if="${USER_OBJECT.username == 'anonymousUser'}" th:href="@{/member/createUser}"><i class="fa fa-user-plus"></i> 建立帳號</a></li>
 									<li><a th:if="${USER_OBJECT.username != 'anonymousUser'}" th:href="@{/logout}"><i class="fa fa-unlock-alt"></i> 登出</a></li>
 								</ul>
-							</li -->
+							</li>
 							<!-- /Account -->
 
 							<!-- Cart -->
-							<!-- >li class="header-cart dropdown default-dropdown">
+							<li class="header-cart dropdown default-dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="true">
 									<div class="header-btns-icon">
@@ -112,7 +112,7 @@
 									</div>
 									<strong class="text-uppercase">我的購物車:</strong> <br /> <span id="totalAmt">$0</span>
 							</a>
-								<div class="custom-menu">
+								<div class="custom-menu" style="z-index: 1000;">
 									<div id="shopping-cart">
 										<div class="shopping-cart-list" id="shopping-cart-list">
 										</div>
@@ -124,7 +124,7 @@
 										</div>
 									</div>
 								</div>
-							</li -->
+							</li>
 							<!-- /Cart -->
 
 							<!-- Mobile nav toggle-->
@@ -135,7 +135,7 @@
 							</li>
 							<!-- / Mobile nav toggle -->
 						</ul>
-<div class="pull-left dropdown">
+<!-- div class="pull-left dropdown">
   <div class="header-btns-icon" style="position: relative;
     float: left;
     margin-right: 15px;
@@ -216,7 +216,7 @@
 		</div>
 	</li>
   </ul>
-  </div>
+</div-->
 					</div>
 				</div>
 				<!-- header -->
