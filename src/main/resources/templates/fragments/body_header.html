@@ -162,8 +162,9 @@
     padding: 15px;
     background: #FFF;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.175);
-    z-index: 100;
-    top: 100%;">
+    z-index: 1000;
+    top: 100%;
+    transition: 0.3s all;">
 									<li><a th:if="${USER_OBJECT.username != 'anonymousUser'}" th:href="@{/member/myAccount}" style="display: block;padding: 10px 0px;text-transform: uppercase;"><i class="fa fa-user-o" style="margin-right: 15px;color: #63b175;"></i> 帳號</a></li>
 									<li><a th:href="@{/wishList}" style="display: block;padding: 10px 0px;text-transform: uppercase;"><i class="fa fa-heart-o" style="margin-right: 15px;color: #63b175;"></i> 最愛清單</a></li>
 									<li><a th:href="@{/compare}" style="display: block;padding: 10px 0px;text-transform: uppercase;"><i class="fa fa-exchange" style="margin-right: 15px;color: #63b175;"></i> 商品比較</a></li>
