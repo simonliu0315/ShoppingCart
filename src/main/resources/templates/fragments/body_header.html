@@ -24,14 +24,14 @@
 							<li class="dropdown default-dropdown"><a
 								class="dropdown-toggle" data-toggle="dropdown"
 								aria-expanded="true">繁體中文 <i class="fa fa-caret-down"></i></a>
-								<ul class="custom-menu" style="z-index: 1000;">
+								<ul class="custom-menu">
 									<li><a href="#">繁體中文 (Tw)</a></li>
 									<!--li><a href="#">英文 (ENG)</a></li-->
 								</ul></li>
 							<li class="dropdown default-dropdown"><a
 								class="dropdown-toggle" data-toggle="dropdown"
 								aria-expanded="true">NTD <i class="fa fa-caret-down"></i></a>
-								<ul class="custom-menu" style="z-index: 1000;">
+								<ul class="custom-menu">
 									<li><a href="#">台幣 (NTD)</a></li>
 									<!-- li><a href="#">USD ($)</a></li-->
 								</ul></li>
@@ -89,7 +89,7 @@
 								<span th:if="${USER_OBJECT.username != 'anonymousUser' and USER_OBJECT.username !=null}" class="text-uppercase" th:text="${USER_OBJECT.username + '，您好'}"></span> 
 								/ 
 								<a th:if="${USER_OBJECT.username == 'anonymousUser' or USER_OBJECT.username == null}" th:href="@{/member/createUser}" class="text-uppercase">加入</a>
-								<ul class="custom-menu" style="z-index: 1000;">
+								<ul class="custom-menu">
 									<li><a  th:if="${USER_OBJECT.username != 'anonymousUser'}" th:href="@{/member/myAccount}"><i class="fa fa-user-o"></i> 帳號</a></li>
 									<li><a th:href="@{/wishList}"><i class="fa fa-heart-o"></i> 最愛清單</a></li>
 									<li><a th:href="@{/compare}"><i class="fa fa-exchange"></i> 商品比較</a></li>
@@ -112,7 +112,7 @@
 									</div>
 									<strong class="text-uppercase">我的購物車:</strong> <br /> <span id="totalAmt">$0</span>
 							</a>
-								<div class="custom-menu" style="z-index: 1000;">
+								<div class="custom-menu">
 									<div id="shopping-cart">
 										<div class="shopping-cart-list" id="shopping-cart-list">
 										</div>

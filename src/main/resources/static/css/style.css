@@ -592,7 +592,7 @@ textarea.input {
   background: #FFF;
   -webkit-box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.175);
-  z-index: 100;
+  z-index: 1000;
   top: 100%;
   min-width: 200px;
   opacity: 0;
@@ -703,7 +703,7 @@ textarea.input {
     transform: translateX(-100%);
     -webkit-transition: 0.5s all;
     transition: 0.5s all;
-    z-index: 990;
+    z-index: 1000;
   }
   #responsive-nav.open {
     width: 100%;
