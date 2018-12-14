@@ -84,18 +84,21 @@
     <div id="alertMsg" style="color: red;font-size: 18px;"></div>
     </div>
 					</div>
+					<form action="">
+					<!-- 右邊商品描述 -->
 					<div class="col-md-6">
 						<div class="product-body">
 							<div class="product-label">
-								<span th:if="${product.newest == 1}">新上市</span>
-						        <span th:if="${product.promotion_on == 1 and product.promotion_discount != 100}" class="sale" th:text="${(100 - product.promotion_discount) + '%'}">0%</span>
-						        <span th:if="${product.promotion_on == 0 and product.discount != 100}" class="sale" th:text="${(100 - product.discount) + '%'}">0%</span>
-							</div>
+							    <input id="newest" name="newest" type="hidden" value="0"/>
+								<input id="promotion_on" name="promotion_on" type="hidden" value="0"/>
+								<input id="discount" name="discount" type="hidden" value="100"/>
+						    </div>
 							<h2 class="product-name"><input id="name" name="name" placeholder="商品名稱" th:value="${product.name}"/></h2>
-							<h2 class="product-name"><input id="name" name="name" placeholder="英文商品名稱" th:value="${product.engName}"/></h2>
-							<h3 th:if="${product.promotion_on == 1}" class="product-price" th:text="${'$' + product.promotion_price}">$0 </h3>
-						    <h3 th:if="${product.promotion_on == 0}" class="product-price"><input id="name" name="name" placeholder="濕品售價" th:value="${'$' + product.price}"/> </h3>					    
-						    <del class="product-old-price" style="font-size:16px;" ><input id="name" name="name" placeholder="商品原價" th:value="${product.originalPrice}"/> </del>
+							<h2 class="product-name"><input id="engName" name="engName" placeholder="英文商品名稱" th:value="${product.engName}"/></h2>
+							<input id="promotion_price" name="promotion_price" type="hidden" value="0"/>
+						    <h3 class="product-price"><input id="price" name="price" placeholder="商品售價" th:value="${product.price}"/> </h3>					    
+						    <del class="product-old-price" style="font-size:16px;" >
+						    <input id="originalPrice" name="originalPrice" placeholder="商品原價" th:value="${product.originalPrice}"/> </del>
 							<div>
 								<div class="product-rating">
 									<i class="fa fa-star"></i>
@@ -106,10 +109,11 @@
 								</div>
 								<a href="#">3 Review(s) / Add Review</a>
 							</div>
+							<input id="activate" name="activate" type="hidden" value="1"/>
 							<p th:if="${product.activate == 1}"><strong>貨品狀態:</strong> 有現貨</p>
-							<p th:unless="${product.activate == 1}"><strong>貨品狀態:</strong><font color="red" size="3"> 缺貨中</font></p>
+							<p th:unless="${product.activate == 1}"><strong>貨品狀態:</strong><font color="red" size="3"> 有現貨</font></p>
 							<p><strong>品牌:</strong> 加拿大液態橡膠 </p>
-							<p th:utext="${product.shortDescription}">測試商品描述.</p>
+							<p th:utext="${product.shortDescription}"><input id="shortDescription" name="shortDescription" placeholder="商品簡述"/></p>
 							<div class="product-options">
 
 								<ul class="color-option" th:if="${not #lists.isEmpty(product.productColors)}" >
@@ -126,7 +130,14 @@
 							
 							</div>
 						</div>
+						<div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <input class="btn btn-primary" type="submit" value="送出"/>&nbsp;&nbsp;
+                        <input class="btn" type="button" value="返回" onclick="history.back()"/>
+                    </div>
+                </div>
 					</div>
+					</form>
 					<div class="col-md-12">
 						<div class="product-tab">
 							<ul class="tab-nav">

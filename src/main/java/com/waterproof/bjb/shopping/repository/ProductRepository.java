@@ -31,5 +31,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	@Query(value = "SELECT A FROM Product A ORDER BY id, updated DESC")
 	public List<Product> getOrderByUpdatedDesc(); 
 	
+	@Query(value = "SELECT A FROM Product A ORDER BY id DESC")
+	public List<Product> findTopOrderByIdDesc();
 	
 }

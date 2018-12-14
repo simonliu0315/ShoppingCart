@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import java.io.BufferedOutputStream;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -35,6 +37,9 @@ public class ProductManageController {
 
 	@Resource
 	private ProductService productService;
+	
+	@Autowired
+	private Environment environment;
 
 	@RequestMapping(value = "", method = { RequestMethod.GET })
 	public ModelAndView getProduct() {
@@ -60,18 +65,31 @@ public class ProductManageController {
 		mav.setViewName("manager/product/product-page");
 		return mav;
 	}
+	
+	@RequestMapping(value = "/new", method = { RequestMethod.GET })
+	public ModelAndView getNew() {
+		ModelAndView mav = new ModelAndView();
+
+		int newId = productService.getMaxProductId();
+		log.info("product: {}", newId);
+		mav.addObject("newId", newId);
+		mav.addObject("product", new Product());
+
+		mav.setViewName("manager/product/product-page-new");
+		return mav;
+	}
 
 	// Handling file upload request
 	@RequestMapping(value = "/fileUpload", method = { RequestMethod.POST })
 	public ResponseEntity<Object> fileUpload(@RequestParam("file") MultipartFile file) throws IOException {
-
+         String uploadPath = environment.getProperty("server.image.path");
 		 HttpHeaders headers = new HttpHeaders();     
          MediaType mediaType=new MediaType("text","html",Charset.defaultCharset());     
          headers.setContentType(mediaType);     
 		// Save file on system
 		if (!file.getOriginalFilename().isEmpty()) {
 			BufferedOutputStream outputStream = new BufferedOutputStream(
-					new FileOutputStream(new File("D:/Private/Shopping/ShoppingCart/files/image/product", file.getOriginalFilename())));
+					new FileOutputStream(new File(uploadPath + "/image/product", file.getOriginalFilename())));
 			outputStream.write(file.getBytes());
 			outputStream.flush();
 			outputStream.close();

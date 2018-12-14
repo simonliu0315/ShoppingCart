@@ -91,4 +91,9 @@ public class ProductService {
 	public List<Product> getProducts() {
 		return productRepository.getOrderByUpdatedDesc();
 	}
+	
+	public int getMaxProductId() {
+		return productRepository.findTopOrderByIdDesc().get(0).getId().intValue() + 1;
+	}
+	
 }
