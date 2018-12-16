@@ -9,32 +9,26 @@
     menuList = $('#responsive-nav .menu-nav .menu-list');
 
   catToggle.on('click', function() {
-	  alert('01 add open');
     menuList.removeClass('open');
     catList.toggleClass('open');
   });
 
   menuToggle.on('click', function() {
-	  alert('00 add open');
     catList.removeClass('open');
     menuList.toggleClass('open');
   });
 
   $(document).click(function(event) {
-	  alert('00 click ' + event.target);
     if (!$(event.target).closest(responsiveNav).length) {
-    	alert('' + $(event.target).closest(responsiveNav).length);
       if (responsiveNav.hasClass('open')) {
         responsiveNav.removeClass('open');
         $('#navigation').removeClass('shadow');
       } else {
         if ($(event.target).closest('.nav-toggle > button').length) {
           if (!menuList.hasClass('open') && !catList.hasClass('open')) {
-        	  alert('0 add open');
             menuList.addClass('open');
           }
           $('#navigation').addClass('shadow');
-          alert('1 add open');
           responsiveNav.addClass('open');
         }
       }
