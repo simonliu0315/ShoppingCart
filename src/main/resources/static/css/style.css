@@ -726,6 +726,9 @@ textarea.input {
     border-left: 2px solid #63b175;
   }
   #responsive-nav .dropdown.open .custom-menu {
+    
+  opacity: 1;
+  visibility: visible;
     display: block;
     min-width: auto;
     -webkit-transform: translate(0px, 0px);
