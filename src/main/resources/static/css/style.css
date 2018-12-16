@@ -569,6 +569,10 @@ textarea.input {
 
 .menu-nav .menu-list>li {
   display: inline-block;
+  /*display: block;*/
+  padding: 15px;
+  color: #FFF;
+  text-transform: uppercase;
 }
 
 .menu-nav .menu-list>li>a {
@@ -715,6 +719,7 @@ textarea.input {
     display: none;
     position: static;
     width: 100%;
+    z-index: 1000;
     -webkit-box-shadow: none;
     box-shadow: none;
     border-top: none;
@@ -757,6 +762,7 @@ textarea.input {
   }
   .menu-nav .menu-list>li {
     display: block;
+    color: #000;
   }
   .menu-nav .menu-list>li+li {
     border-top: 1px solid #DADADA;

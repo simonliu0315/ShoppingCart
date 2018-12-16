@@ -140,10 +140,13 @@
 						<ul class="menu-list">
 							<li><a th:href="@{/}">首頁</a></li>
 							<li><a th:href="@{/products/search(orderby=1,p=,category=0,price_low=999,price_high=3000,page=1)}">期間限定特價</a></li>							
-							<li class="dropdown mega-dropdown full-width"><a
+							<li class="dropdown mega-dropdown full-width">
+							    <!--  >a
 								class="dropdown-toggle" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="true">全商品<i class="fa fa-caret-down"></i></a>
-								<div class="custom-menu">
+								aria-haspopup="true" aria-expanded="true">全商品<i class="fa fa-caret-down"></i></a-->
+								<div class="dropdown-toggle" role="button"
+									data-toggle="dropdown" aria-expanded="true">全商品<i class="fa fa-caret-down"></i></div>
+								<div class="custom-menu" style="color:#000;">
 									<div class="row">
 										<div class="col-md-3" th:each="category: ${CATEGORY_OBJECTS}">
 											<div class="hidden-sm hidden-xs">
@@ -174,7 +177,7 @@
 								<div class="dropdown-toggle" role="button"
 									data-toggle="dropdown" aria-expanded="true">
 									快速連結<i class="fa fa-caret-down"></i></div>
-								<ul class="custom-menu">
+								<ul class="custom-menu" style="color:#000;">
 									<li><a th:href="@{/products}">全商品</a></li>									
 									<li><a th:href="@{/cart}">購物車</a></li>
 								</ul>
@@ -185,7 +188,7 @@
 								aria-haspopup="true" aria-expanded="true">代工資訊<i class="fa fa-caret-down"></i></a-->
 								<div class="dropdown-toggle" role="button"
 									data-toggle="dropdown" aria-expanded="true">代工資訊<i class="fa fa-caret-down"></i></div>
-								<ul class="custom-menu" style="width:350px;">
+								<ul class="custom-menu" style="width:350px;color:#000;">
 									<li>
 									我們知道液態橡膠的商品可能需要一些技術性，<br/>
 									所以如果您有任何疑問，可參考"FAQ"或"應用"<br/>
@@ -198,10 +201,13 @@
 									
 								</ul>
 							</li>
-							<li th:if="${isAdmin == true}" class="dropdown default-dropdown"><a
+							<li th:if="${isAdmin == true}" class="dropdown default-dropdown">
+							<!-- a
 								class="dropdown-toggle" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="true">管理功能<i class="fa fa-caret-down"></i></a>
-								<ul class="custom-menu">
+								aria-haspopup="true" aria-expanded="true">管理功能<i class="fa fa-caret-down"></i></a-->
+							<div class="dropdown-toggle" role="button"
+									data-toggle="dropdown" aria-expanded="true">管理功能<i class="fa fa-caret-down"></i></div>
+								<ul class="custom-menu" style="color:#000;">
 									<li><a th:href="@{/manager/users}">會員管理</a></li>									
 									<li><a th:href="@{/manager/order/search}">訂單管理</a></li>
 									<li><a th:href="@{/manager/product}">商品管理</a></li>
