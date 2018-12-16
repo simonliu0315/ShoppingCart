@@ -82,6 +82,11 @@ public class OrderService {
 	}
 	
 	public Page<CustomerOrder> getFilterProduct(Date startDate, Date endDate, String orderNo, int statusId, int orderby, Pageable pageable) {
+		for(CustomerOrder customerOrder : customerOrderRepository.findAll()) {
+			log.info("All customerOrder {}", customerOrder);
+		}
+		
+		
 		
 		Page<CustomerOrder> pcustomerOrder = customerOrderRepositoryCustom.filter(startDate, endDate, orderNo, statusId, orderby, pageable);
 		List<CustomerOrder> customerOrders = pcustomerOrder.getContent();

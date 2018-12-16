@@ -49,6 +49,7 @@ public class CustomerOrderRepositoryCustom {
 		// 计数查询结果条数
 		TypedQuery<CustomerOrder> createCountQuery = em.createQuery(criteriaQuery);
 
+		log.info("createCountQuery: getCounter :{}", createCountQuery.getResultList().size());
 		// 实际查询返回分页对象
 		int startIndex = pageSize * pageNo;
 		createQuery.setFirstResult(startIndex);

@@ -80,9 +80,8 @@ public class OrderController {
         if (statusId != 0) {
         	defaultUrlPage += "&statusId=" + statusId;
         }
-        log.info("orderNo: {}, startDate: {}, endDate: {}", orderNo, sStartDate, sEndDate);
+        log.info("orderNo: {}, statusId: {}, startDate: {}, endDate: {}", orderNo, statusId, sStartDate, sEndDate);
         Page<CustomerOrder> pCustomerOrder = orderService.getFilterProduct(sStartDate, sEndDate, orderNo, statusId, orderby, pageable);
-        
         
         
         defaultUrlPage += "&pageSize="+ pageSize + "&page=";
