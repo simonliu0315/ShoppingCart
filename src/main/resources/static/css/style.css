@@ -218,6 +218,7 @@ textarea.input {
   padding: 2px 0px;
   -webkit-transition: 0.3s all;
   transition: 0.3s all;
+  z-index: 1000;
 }
 
 .list-links li>a:before {
