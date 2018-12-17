@@ -50,7 +50,7 @@ logging:
     #org.hibernate: DEBUG
 spring.batch.job.enabled: false
 
-payment.creditcard.storeId: 62253
+payment.creditcard.storeId: 70308
 #自動請款標記 1: 自動請款 0: 一般交易
 payment.creditcard.depositFlag: 0
 #查詢標記 1: 交易post回UpdateUrl

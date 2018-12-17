@@ -1,5 +1,6 @@
 package com.waterproof.bjb.shopping.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,7 @@ import com.waterproof.bjb.shopping.entity.CustomerOrder;
 import com.waterproof.bjb.shopping.manager.service.OrderService;
 import com.waterproof.bjb.shopping.service.CustomerOrderService;
 import com.waterproof.bjb.shopping.service.PaymentService;
+import com.waterproof.bjb.shopping.service.SimpleUserService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -45,8 +47,11 @@ public class PaymentController {
 	@Autowired
 	private PaymentService paymentService;
 	
+	@Autowired
+	private SimpleUserService simpleUserService;
+	
 	@RequestMapping(value = "", method = {RequestMethod.POST})
-    public ModelAndView getPaymentPost(HttpServletRequest request) {
+    public ModelAndView getPaymentPost(HttpServletRequest request) throws UnsupportedEncodingException {
 		ModelAndView mav = new ModelAndView();
 		String orderNo = request.getParameter("orderNo");
 		log.info("orderNo: {}, {}", orderNo, request.getParameter("orderNo"));
@@ -56,7 +61,14 @@ public class PaymentController {
 			mav.setViewName("order/atm");
 			return mav;
 		}
-		B2CPayAuth auth = paymentService.creditcardAuth(orderNo, "Test", dto.getTotalAmt().toPlainString());
+		String orderDescription = "";
+		if (dto.getProductsTempOrder().size() > 1) {
+			orderDescription = dto.getProductsTempOrder().get(0).getProductName() + "..等";
+		} else if (dto.getProductsTempOrder().size() == 1) {
+			orderDescription = dto.getProductsTempOrder().get(0).getProductName();
+		}
+		
+		B2CPayAuth auth = paymentService.creditcardAuth(orderNo, simpleUserService.getUser().getUsername().toUpperCase() + " Order.", dto.getTotalAmt().toPlainString());
 		
 		if (auth.getRetCode().equals("00")) {
 			log.info("Token: {}", auth.getToken());
