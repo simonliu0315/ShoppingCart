@@ -158,4 +158,11 @@ public class OrderController {
 		return mav;
 	}
 
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	public ModelAndView deleteOrder(@PathVariable int id, ModelMap map) {
+		log.info("deleteOrder id {}", id);
+		orderService.updateCustomerOrderStatus(id, 7);
+		
+		return new ModelAndView("redirect:/manager/order/search");
+	}
 }
