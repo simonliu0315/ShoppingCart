@@ -716,7 +716,7 @@ textarea.input {
     transform: translateX(0%);
   }
   #responsive-nav .dropdown .custom-menu {
-    display: none;
+    display: none;	
     position: static;
     width: 100%;
     z-index: 1000;
@@ -726,11 +726,10 @@ textarea.input {
     border-left: 2px solid #63b175;
   }
   #responsive-nav .dropdown.open .custom-menu {
-    
-  opacity: 1;
-  visibility: visible;
+
     display: block;
     min-width: auto;
+    z-index: 1000;
     -webkit-transform: translate(0px, 0px);
     -ms-transform: translate(0px, 0px);
     transform: translate(0px, 0px);
