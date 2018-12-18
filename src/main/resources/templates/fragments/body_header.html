@@ -91,8 +91,8 @@
 								<a th:if="${USER_OBJECT.username == 'anonymousUser' or USER_OBJECT.username == null}" th:href="@{/member/createUser}" class="text-uppercase">加入</a>
 								<ul class="custom-menu">
 									<li><a  th:if="${USER_OBJECT.username != 'anonymousUser'}" th:href="@{/member/myAccount}"><i class="fa fa-user-o"></i> 帳號</a></li>
-									<li><a th:href="@{/wishList}"><i class="fa fa-heart-o"></i> 最愛清單</a></li>
-									<li><a th:href="@{/compare}"><i class="fa fa-exchange"></i> 商品比較</a></li>
+									<!-- li><a th:href="@{/wishList}"><i class="fa fa-heart-o"></i> 最愛清單</a></li>
+									<li><a th:href="@{/compare}"><i class="fa fa-exchange"></i> 商品比較</a></li-->
 									<li><a th:href="@{/cart}"><i class="fa fa-shopping-cart"></i> 我的購物車</a></li>
 									<li><a th:href="@{/checkout}"><i class="fa fa-check"></i> 結帳</a></li>
 									<li><a th:href="@{/member/order/list}"><i class="fa fa-align-left"></i> 訂單查詢</a></li>
