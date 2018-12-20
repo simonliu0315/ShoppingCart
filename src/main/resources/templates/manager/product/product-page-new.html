@@ -84,14 +84,16 @@
     <div id="alertMsg" style="color: red;font-size: 18px;"></div>
     </div>
 					</div>
-					<form action="">
+					<form th:action="@{/manager/product/new}" method="post">
 					<!-- 右邊商品描述 -->
 					<div class="col-md-6">
 						<div class="product-body">
 							<div class="product-label">
+							    <input id="id" name="id" type="hidden" value=""/>
 							    <input id="newest" name="newest" type="hidden" value="0"/>
 								<input id="promotion_on" name="promotion_on" type="hidden" value="0"/>
 								<input id="discount" name="discount" type="hidden" value="100"/>
+								
 						    </div>
 							<h2 class="product-name"><input id="name" name="name" placeholder="商品名稱" th:value="${product.name}"/></h2>
 							<h2 class="product-name"><input id="engName" name="engName" placeholder="英文商品名稱" th:value="${product.engName}"/></h2>
@@ -105,7 +107,7 @@
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o empty"></i>
+									<i class="fa fa-star"></i>
 								</div>
 								<a href="#">3 Review(s) / Add Review</a>
 							</div>
@@ -132,7 +134,7 @@
 						</div>
 						<div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <input class="btn btn-primary" type="submit" value="送出"/>&nbsp;&nbsp;
+                        <input id="submit" class="btn btn-primary" type="submit" value="送出" disabled="true"/>&nbsp;&nbsp;
                         <input class="btn" type="button" value="返回" onclick="history.back()"/>
                     </div>
                 </div>
@@ -244,9 +246,11 @@
     	  
     	    // Called on success of file upload
     	    ajaxReq.done(function(msg) {
-    	      $('#alertMsg').text(msg);
+    	      $('#alertMsg').text(msg.split(':')[0]);
+    	      $('#id').val(msg.split(':')[1]);
     	      $('input[type=file]').val('');
     	      $('button[type=submit]').prop('disabled',false);
+    	      $('#submit').prop('disabled',false);
     	    });
     	    
     	    // Called on failure of file upload

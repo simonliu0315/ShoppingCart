@@ -13,7 +13,8 @@
 		<div class="container">
 			<ul class="breadcrumb">
 				<li><a th:href="@{/manager}">管理系統</a></li>
-				<li class="active">使用者管理</li>
+				<li><a th:href="@{/manager/product}">商品管理</a></li>
+				<li class="active">商品列表</li>
 			</ul>
 		</div>
 	</div>
@@ -53,7 +54,7 @@
                         </div>
                             </td>
                         <td th:text="${product.activate == 1 ? '啟用' : '停用'}"></td>
-                        <td th:text="${product.published == 1 ? '發布中' : '傳停'}"></td>
+                        <td th:text="${product.published == 1 ? '公開' : '不公開'}"></td>
                         <td>
                         <a class="btn btn-info" th:href="@{/manager/product/update/{id}(id=${product.id})}">修改</a>
                         <a class="btn btn-danger" th:href="@{/manager/product/delete/{id}(id=${product.id})}">删除</a>

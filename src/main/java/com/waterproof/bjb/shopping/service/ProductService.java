@@ -96,4 +96,8 @@ public class ProductService {
 		return productRepository.findTopOrderByIdDesc().get(0).getId().intValue() + 1;
 	}
 	
+	public Product createProductById(Product product) {
+		return productRepository.saveAndFlush(product);
+	}
+	
 }

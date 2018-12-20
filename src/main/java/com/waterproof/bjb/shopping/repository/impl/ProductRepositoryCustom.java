@@ -87,7 +87,11 @@ public class ProductRepositoryCustom {
 //		    Predicate predicate = criteriaBuilder.like(rootFrom.get("name").as(String.class), "%" + q + "%");
 //		    predicates.add(predicate);
 //		}
-		
+		Predicate predicate = criteriaBuilder.equal(rootFrom.get("activate").as(Integer.class), 1);
+	    predicates.add(predicate);
+	    
+	    predicate = criteriaBuilder.equal(rootFrom.get("published").as(Integer.class), 1);
+	    predicates.add(predicate);
 		// 格式化参数
 		criteriaQuery.where(criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()])));
 		
