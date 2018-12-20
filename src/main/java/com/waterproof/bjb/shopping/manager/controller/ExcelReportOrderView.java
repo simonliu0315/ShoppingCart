@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -68,7 +69,12 @@ public class ExcelReportOrderView extends AbstractXlsView {
 			ExportOrderDto dto = new ExportOrderDto();
 			dto.setDocumentDate(ShoppingDateUtil.formatDate(customerOrder.getInserted(), "yyyy/MM/dd"));
 			dto.setOrderNo(customerOrder.getOrderNo());
-			dto.setTaxId("");
+			if (customerOrder.getOrderInvoiceContract() != null && customerOrder.getOrderInvoiceContract().getInvoiceType() == 2) {
+				dto.setTaxId(customerOrder.getOrderInvoiceContract().getVatId());
+			} else {
+				dto.setTaxId("");
+			}
+			
 			dto.setCustomerNo(PasswordUtil.get_SHA_512_SecurePassword(customerOrder.getUsername(), "liquidrubber").substring(0,  10).toUpperCase());
 			dto.setCustomerName(u.getCName());
 			dto.setPostName(customerOrder.getOrderContract().getPostName());

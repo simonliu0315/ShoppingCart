@@ -31,14 +31,21 @@ public class UserService {
 
 	public com.waterproof.bjb.shopping.entity.User insertByUser(
 			com.waterproof.bjb.shopping.entity.User user) {
+		if (StringUtils.isNotBlank(user.getPassword())) {
+			user.setPassword(PasswordUtil.getPassword(user.getPassword()));
+		}
 		log.info("新增使用者：" + user.toString());
 		return userRepository.save(user);
 	}
 
 	public com.waterproof.bjb.shopping.entity.User update(com.waterproof.bjb.shopping.entity.User user) {
+		log.info("更新前使用者：" + user.toString());
 		com.waterproof.bjb.shopping.entity.User u = userRepository.findOne(user.getUsername());
-		if (StringUtils.isNotBlank(user.getPassword()) && !StringUtils.equals(user.getPassword(), u.getPassword())) {
+		if (StringUtils.isNotBlank(user.getPassword()) && !StringUtils.equals(PasswordUtil.getPassword(user.getPassword()), u.getPassword())) {
 			user.setPassword(PasswordUtil.getPassword(user.getPassword()));
+		}
+		if (StringUtils.isBlank(user.getPassword())) {
+			user.setPassword(u.getPassword());
 		}
 		log.info("更新使用者：" + user.toString());
 		User userSave = userRepository.saveAndFlush(user);

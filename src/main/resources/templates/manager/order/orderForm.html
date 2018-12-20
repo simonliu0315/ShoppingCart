@@ -54,6 +54,16 @@
                     </select> </h4>
                     </div>
                 </div>
+                <div class="form-group">
+                    <h4 class="col-md-12">
+                    <strong th:if="${order.orderInvoiceContract != null and order.orderInvoiceContract.businessName == ''}" th:text="${'公司名稱：-'}"></strong><br/>
+                    <strong th:if="${order.orderInvoiceContract != null and order.orderInvoiceContract.vatId == ''}" th:text="${'公司統編：-'}"></strong>
+                    
+                    <strong th:if="${order.orderInvoiceContract != null and order.orderInvoiceContract.businessName != ''}" th:text="${'公司名稱：' + order.orderInvoiceContract.businessName}"></strong><br/>
+                    <strong th:if="${order.orderInvoiceContract != null and order.orderInvoiceContract.vatId != ''}" th:text="${'公司統編：' + order.orderInvoiceContract.vatId}"></strong>
+                    </h4>
+                   
+                </div>
                 <div class="col-md-12">
 						<div class="order-summary clearfix">
 							<div class="section-title">

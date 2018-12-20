@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -110,11 +111,19 @@ public class ExcelReportCustomView extends AbstractXlsView {
 			//傳真機(16)								
 			row.createCell(12).setCellValue("");
 			//統編(8)	
-			row.createCell(13).setCellValue("統編");
+			if (customerOrder.getOrderInvoiceContract() != null && customerOrder.getOrderInvoiceContract().getInvoiceType() == 2) {
+				row.createCell(13).setCellValue(customerOrder.getOrderInvoiceContract().getVatId());
+			} else {
+				row.createCell(13).setCellValue("");
+			}
 			//營業稅(1.外加稅 2.內含稅 3.零稅 4.免稅)
 			row.createCell(14).setCellValue("2");
 			//發票種類(1.三聯 2.二聯 3.收銀 空白)
-			row.createCell(15).setCellValue("發票種類(1.三聯 2.二聯 3.收銀 空白)");
+			if (customerOrder.getOrderInvoiceContract() != null && customerOrder.getOrderInvoiceContract().getInvoiceType() == 2) {
+				row.createCell(15).setCellValue("1");
+			} else {
+				row.createCell(15).setCellValue("2");
+			}
 			//公司郵地區號(5)
 			row.createCell(16).setCellValue("");
 			//公司地址(60)
