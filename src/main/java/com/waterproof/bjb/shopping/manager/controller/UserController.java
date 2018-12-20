@@ -22,6 +22,7 @@ import com.waterproof.bjb.shopping.entity.User;
 import com.waterproof.bjb.shopping.entity.UserRole;
 import com.waterproof.bjb.shopping.manager.dto.ExportCustomDto;
 import com.waterproof.bjb.shopping.manager.dto.OrderDto;
+import com.waterproof.bjb.shopping.manager.dto.UserDto;
 import com.waterproof.bjb.shopping.manager.service.OrderService;
 import com.waterproof.bjb.shopping.service.UserDetailServiceImpl;
 import com.waterproof.bjb.shopping.service.UserService;
@@ -67,9 +68,12 @@ public class UserController {
      * @throws ParseException 
      */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String postUser(@ModelAttribute User user) throws ParseException {
-    	user.setBirthday(DateUtils.parseDate(user.getBirthdayStr(), "yyyy/MM/dd"));
-        userService.insertByUser(user);
+    public String postUser(@ModelAttribute UserDto user) throws ParseException {
+    	log.info("user: {}", user);
+    	User u = new User();
+    	BeanUtils.copyProperties(user, u);
+    	u.setBirthday(DateUtils.parseDate(user.getBirthdayStr(), "yyyy/MM/dd"));
+        userService.insertByUser(u);
         userService.createUserRole(user.getUsername(), "ROLE_USER");
         userService.createUserRole(user.getUsername(), "ROLE_ANONYMOUS");
         if(user.getIsAdmin() == 1) {
@@ -94,7 +98,7 @@ public class UserController {
     	if (u.getBirthday() != null) {
     		u.setBirthdayStr(ShoppingDateUtil.date2String(u.getBirthday(), "yyyy/MM/dd"));
     	}
-    	
+    	log.info("getUser {}", u);
         map.addAttribute("user", u);
         
         map.addAttribute("action", "update");
@@ -102,7 +106,7 @@ public class UserController {
         for(UserRole r: u.getUserRoles()) {
         	if(StringUtils.equals(r.getId().getRole(), "ROLE_ADMIN") && r.getStatus() == 1) {
         		map.addAttribute("isAdmin", true);
-        	} 
+        	}
         }
         return "manager/user/userForm";
     }
@@ -113,7 +117,7 @@ public class UserController {
      *
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String putUser(@ModelAttribute User user) throws ParseException {
+    public String putUser(@ModelAttribute UserDto user) throws ParseException {
     	User u = userService.findById(user.getUsername());
     	BeanUtils.copyProperties(user, u, "verifyDate", "birthday");
     

@@ -106,7 +106,7 @@
                          <input id="birthday" class="input" type="text" name="birthday" placeholder="生日" th:required="required" th:value="${user.birthdayStr}" th:field="*{user.birthdayStr}"/>
                              <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                      </div>
-                    <label class="col-sm-2 control-label text-danger" th:if="${#fields.hasErrors('user.birthdayStr')}" th:errors="*{user.birthdayStr}">生日有誤!</label>
+                    <label class="col-sm-2 control-label text-danger" th:if="${#fields.hasErrors('user.birthday')}" th:errors="*{user.birthday}">生日有誤!</label>
                 </div>
 
                 <div class="form-group">
