@@ -83,11 +83,27 @@ public class ProductManageController {
 		Product product = productService.getProduct(id);
 		log.info("product: {}", product);
 		mav.addObject("product", product);
+		mav.addObject("Categorys", productService.getActivateCategory());
 		request.getSession().setAttribute("productId", id);
 		mav.setViewName("manager/product/product-page-editor");
 		return mav;
 	}
 
+	@RequestMapping(value = "/update", method = { RequestMethod.POST })
+	public ModelAndView toUpdate(@ModelAttribute Product product) {
+		ModelAndView mav = new ModelAndView();
+		Product p = productService.getProduct(product.getId());
+		BeanUtils.copyProperties(product, p, "promotion_end_str", "img");		
+		p.setPromotion_start(new java.sql.Date(new Date().getTime()));
+		p.setPromotion_end(new java.sql.Date(new Date().getTime()));
+		productService.createProductById(p);
+		log.info("product: {}", product);
+		// mav.addObject("newId", newId);
+		mav.addObject("product", productService.getProduct(p.getId()));
+		mav.addObject("Categorys", productService.getActivateCategory());
+		mav.setViewName("manager/product/product-page-editor");
+		return mav;
+	}
 	@RequestMapping(value = "/new", method = { RequestMethod.GET })
 	public ModelAndView getNew() {
 		ModelAndView mav = new ModelAndView();
@@ -95,7 +111,7 @@ public class ProductManageController {
 		// log.info("product: {}", newId);
 		// mav.addObject("newId", newId);
 		mav.addObject("product", new Product());
-
+		mav.addObject("Categorys", productService.getActivateCategory());
 		mav.setViewName("manager/product/product-page-new");
 		return mav;
 	}
@@ -158,4 +174,15 @@ public class ProductManageController {
 		return mav;
 	}
 
+	@RequestMapping(value = "/edit_desc", method = { RequestMethod.GET })
+	public ModelAndView toEditDescription() {
+		ModelAndView mav = new ModelAndView();
+
+		// log.info("product: {}", newId);
+		// mav.addObject("newId", newId);
+		mav.addObject("product", new Product());
+
+		mav.setViewName("manager/product/product-page-editor-description");
+		return mav;
+	}
 }

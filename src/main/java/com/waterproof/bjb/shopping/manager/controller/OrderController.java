@@ -92,6 +92,7 @@ public class OrderController {
         mav.addObject("pageable", pageable);
         log.info("size {}", pCustomerOrder.getContent().size());
         mav.addObject("orderList", pCustomerOrder.getContent());
+        
         log.info("SET session ExportOrder");
         WebUtils.setSessionAttribute(request, "ExportOrder", orderService.getFilterProduct(sStartDate, sEndDate, orderNo, statusId, orderby));
         mav.setViewName("manager/order/orderList");

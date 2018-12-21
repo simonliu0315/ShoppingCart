@@ -1,19 +1,23 @@
 package com.waterproof.bjb.shopping.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.waterproof.bjb.shopping.entity.Category;
 import com.waterproof.bjb.shopping.entity.Product;
 import com.waterproof.bjb.shopping.entity.ProductColor;
 import com.waterproof.bjb.shopping.entity.ProductColorPK;
 import com.waterproof.bjb.shopping.entity.ProductTag;
+import com.waterproof.bjb.shopping.repository.CategoryRepository;
 import com.waterproof.bjb.shopping.repository.ProductColorRepository;
 import com.waterproof.bjb.shopping.repository.ProductRepository;
 import com.waterproof.bjb.shopping.repository.ProductTagRepository;
@@ -37,6 +41,8 @@ public class ProductService {
 	@Autowired
 	private ProductTagRepository productTagRepository;
 	
+	@Autowired
+	private CategoryRepository categoryRepository;
 	
 	public Product getProduct(Long id) {
 		Product product = productRepository.findOne(id);
@@ -100,4 +106,13 @@ public class ProductService {
 		return productRepository.saveAndFlush(product);
 	}
 	
+	public List<Category> getActivateCategory() {
+		List<Category> list = new ArrayList<Category>();
+		for (Category category : categoryRepository.findAll()) {
+			if (StringUtils.isBlank(category.getUrlView())) {
+				list.add(category);
+			}
+		}
+		return list;
+	}
 }

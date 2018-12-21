@@ -115,7 +115,8 @@
 							<p th:if="${product.activate == 1}"><strong>貨品狀態:</strong> 有現貨</p>
 							<p th:unless="${product.activate == 1}"><strong>貨品狀態:</strong><font color="red" size="3"> 有現貨</font></p>
 							<p><strong>品牌:</strong> 加拿大液態橡膠 </p>
-							<p th:utext="${product.shortDescription}"><input id="shortDescription" name="shortDescription" placeholder="商品簡述"/></p>
+							<p>
+							<input id="shortDescription" name="shortDescription" placeholder="商品簡述"/></p>
 							<div class="product-options">
 
 								<ul class="color-option" th:if="${not #lists.isEmpty(product.productColors)}" >
@@ -148,6 +149,7 @@
 							</ul>
 							<div class="tab-content">
 								<div id="tab1" class="tab-pane fade in active">
+								<input class="btn btn-primary" type="button" value="新增描述" onclick="insertDesc();" disabled="true"/>
 								<section id="editor">
                                 <div id='edit' style="margin-top: 30px;" >
                                 </div>

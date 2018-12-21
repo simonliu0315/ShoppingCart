@@ -76,6 +76,7 @@ public class CustomerOrder implements Serializable {
 	@JoinColumn(name = "ORDER_NO", referencedColumnName="ORDER_NO", insertable = false, updatable = false)
 	private List<OrderDetail> orderDetails;
 
+	@NotFound(action = NotFoundAction.IGNORE)
 	@OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER) //移除, optional = false 就會正常
 	@JoinColumn(name="PAYMENT_METHOD", referencedColumnName="METHOD", insertable = false, updatable = false)
 	private PaymentMethod paymentMethod;

@@ -84,18 +84,28 @@
     <div id="alertMsg" style="color: red;font-size: 18px;"></div>
     </div>
 					</div>
+					<form th:action="@{/manager/product/update}" method="post">
+					<input id="id" name="id" type="hidden" th:value="${product.id}"/>
 					<div class="col-md-6">
 						<div class="product-body">
 							<div class="product-label">
+							<strong>分類:</strong>
+							    <select id="categoryId" name="categoryId">
+                         <option value=""> -- </option>
+                         <option th:each="category : ${Categorys}"
+                            th:value="${category.id}"
+                            th:utext="${category.name}" th:selected="${category.id eq product.categoryId}"/>
+                  </select>
 								<span th:if="${product.newest == 1}">新上市</span>
 						        <span th:if="${product.promotion_on == 1 and product.promotion_discount != 100}" class="sale" th:text="${(100 - product.promotion_discount) + '%'}">0%</span>
 						        <span th:if="${product.promotion_on == 0 and product.discount != 100}" class="sale" th:text="${(100 - product.discount) + '%'}">0%</span>
 							</div>
 							<h2 class="product-name"><input id="name" name="name" placeholder="商品名稱" th:value="${product.name}"/></h2>
-							<h2 class="product-name"><input id="name" name="name" placeholder="英文商品名稱" th:value="${product.engName}"/></h2>
+							<h2 class="product-name"><input id="engName" name="engName" placeholder="英文商品名稱" th:value="${product.engName}"/></h2>
 							<h3 th:if="${product.promotion_on == 1}" class="product-price" th:text="${'$' + product.promotion_price}">$0 </h3>
-						    <h3 th:if="${product.promotion_on == 0}" class="product-price"><input id="name" name="name" placeholder="濕品售價" th:value="${'$' + product.price}"/> </h3>					    
-						    <del class="product-old-price" style="font-size:16px;" ><input id="name" name="name" placeholder="商品原價" th:value="${product.originalPrice}"/> </del>
+						    <h3 th:if="${product.promotion_on == 0}" class="product-price"><input id="price" name="price" placeholder="濕品售價" th:value="${product.price}"/> </h3>					    
+						    <del class="product-old-price" style="font-size:16px;" >
+						    <input id="originalPrice" name="originalPrice" placeholder="商品原價" th:value="${product.originalPrice}"/> </del>
 							<div>
 								<div class="product-rating">
 									<i class="fa fa-star"></i>
@@ -109,7 +119,7 @@
 							<p th:if="${product.activate == 1}"><strong>貨品狀態:</strong> 有現貨</p>
 							<p th:unless="${product.activate == 1}"><strong>貨品狀態:</strong><font color="red" size="3"> 缺貨中</font></p>
 							<p><strong>品牌:</strong> 加拿大液態橡膠 </p>
-							<p th:utext="${product.shortDescription}">測試商品描述.</p>
+							<p><input id="shortDescription" name="shortDescription" placeholder="商品簡述" th:value="${product.shortDescription}"/></p>
 							<div class="product-options">
 
 								<ul class="color-option" th:if="${not #lists.isEmpty(product.productColors)}" >
@@ -128,7 +138,14 @@
 
 							
 						</div>
+						<div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <input id="submit" class="btn btn-primary" type="submit" value="修改"/>&nbsp;&nbsp;
+                        <input class="btn" type="button" value="返回" onclick="window.location.href='/manager/product'"/>
+                    </div>
+                </div>
 					</div>
+					</form>
 					<div class="col-md-12">
 						<div class="product-tab">
 							<ul class="tab-nav">
@@ -137,6 +154,7 @@
 							</ul>
 							<div class="tab-content">
 								<div id="tab1" class="tab-pane fade in active">
+								<input class="btn btn-primary" type="button" value="新增描述" onclick="insertDesc();" disabled="true"/>
 								<section id="editor">
                                 <div id='edit' style="margin-top: 30px;" >
                                 </div>

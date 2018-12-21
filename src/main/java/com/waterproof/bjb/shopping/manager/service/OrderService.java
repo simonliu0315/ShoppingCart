@@ -10,9 +10,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.waterproof.bjb.shopping.entity.Category;
 import com.waterproof.bjb.shopping.entity.CustomerOrder;
 import com.waterproof.bjb.shopping.entity.OrderATM;
 import com.waterproof.bjb.shopping.manager.dto.OrderDto;
+import com.waterproof.bjb.shopping.repository.CategoryRepository;
 import com.waterproof.bjb.shopping.repository.CustomerOrderRepository;
 import com.waterproof.bjb.shopping.repository.OrderATMRepository;
 import com.waterproof.bjb.shopping.repository.OrderStatusRepository;
@@ -39,6 +41,9 @@ public class OrderService {
 	
 	@Autowired
 	private OrderATMRepository orderATMRepository;
+	
+	@Autowired
+	private CategoryRepository categoryRepository;
 	
 	public List<OrderDto> getAllOrder() {
 		List<OrderDto> list = new ArrayList<OrderDto>();
@@ -82,9 +87,11 @@ public class OrderService {
 	}
 	
 	public Page<CustomerOrder> getFilterProduct(Date startDate, Date endDate, String orderNo, int statusId, int orderby, Pageable pageable) {
-		for(CustomerOrder customerOrder : customerOrderRepository.findAll()) {
-			log.info("All customerOrder {}", customerOrder);
-		}
+		
+		
+//		for(CustomerOrder customerOrder : customerOrderRepository.findAll()) {
+//			log.info("All customerOrder {}", customerOrder);
+//		}
 		
 		
 		
@@ -106,6 +113,10 @@ public class OrderService {
 	}
 	public List<CustomerOrder> getFilterProduct(Date startDate, Date endDate, String orderNo, int statusId, int orderby) {
 		return customerOrderRepositoryCustom.getList(startDate, endDate, orderNo, statusId, orderby);	
+	}
+	
+	public List<Category> getActivateCategory() {
+		return categoryRepository.findAll();
 	}
 		
 }
