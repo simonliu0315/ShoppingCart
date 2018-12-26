@@ -94,6 +94,9 @@ public class ProductManageController {
 		List<DescriptionImg> descriptionImgs = new ArrayList<DescriptionImg>();
 		String rootPath = environment.getProperty("server.image.path");
 		File f = new File(rootPath + "/image/product/" + id + "/description/");
+		if (!f.isDirectory()) {
+			f.mkdirs();
+		}
 		for (File file : f.listFiles()) {
 			DescriptionImg descriptionImg = new DescriptionImg();
 			log.info("getPath: {}, getName: {}", file.getPath(), file.getName());
