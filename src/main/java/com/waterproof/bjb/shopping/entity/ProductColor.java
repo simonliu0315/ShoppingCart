@@ -3,6 +3,7 @@ package com.waterproof.bjb.shopping.entity;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -21,11 +22,13 @@ public class ProductColor implements Serializable {
 
 	private String name;
 	
+	@Column(name="e_name")
 	private String eName;
 	
+	@Column(name="linner_color")
 	private String linnerColor;	
 
-	private String status;
+	private int status;
 
 	private Timestamp inserted;
 

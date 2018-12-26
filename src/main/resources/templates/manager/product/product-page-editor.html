@@ -2,28 +2,7 @@
 <html itemscope="" itemtype="http://schema.org/SearchResultsPage" lang="zh-Hant-TW" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"/>
-  <link rel="stylesheet" href="/css/froala-editor-2.9.1/froala_editor.css"/>
-  <link rel="stylesheet" href="/css/froala-editor-2.9.1/froala_style.css"/>
-  <link rel="stylesheet" href="/css/froala-editor-2.9.1/plugins/code_view.css"/>
-  <link rel="stylesheet" href="/css/froala-editor-2.9.1/plugins/colors.css"/>
-  <link rel="stylesheet" href="/css/froala-editor-2.9.1/plugins/emoticons.css"/>
-  <link rel="stylesheet" href="/css/froala-editor-2.9.1/plugins/image_manager.css"/>
-  <link rel="stylesheet" href="/css/froala-editor-2.9.1/plugins/image.css"/>
-  <link rel="stylesheet" href="/css/froala-editor-2.9.1/plugins/line_breaker.css"/>
-  <link rel="stylesheet" href="/css/froala-editor-2.9.1/plugins/table.css"/>
-  <link rel="stylesheet" href="/css/froala-editor-2.9.1/plugins/char_counter.css"/>
-  <link rel="stylesheet" href="/css/froala-editor-2.9.1/plugins/video.css"/>
-  <link rel="stylesheet" href="/css/froala-editor-2.9.1/plugins/fullscreen.css"/>
-  <link rel="stylesheet" href="/css/froala-editor-2.9.1/plugins/quick_insert.css"/>
-  <link rel="stylesheet" href="/css/froala-editor-2.9.1/plugins/file.css"/>
-
-  <link rel="stylesheet" href="/css/froala-editor-2.9.1/themes/dark.css"/>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css"/>
-
 <meta th:replace="fragments/meta_resources :: meta_resources"></meta>
-  
 
 </head>
 
@@ -61,15 +40,16 @@
 						   
     
 						</div>
-						 <div class="row">
-						    <!-- File Upload From -->
+ <!-- File Upload From -->
+<div class="row">
+						   
     <form th:action="@{/manager/product/fileUpload}" method="post" id="fileinfo" enctype="multipart/form-data">
       <div class="form-group">
         <label>請選擇檔案上傳</label> 
         <input class="form-control" type="file" name="file"/>
       </div>
       <div class="form-group">
-        <button class="btn btn-primary" type="submit">上傳</button>
+        <button id="fileinfo" class="btn btn-primary" type="button">上傳</button>
       </div>
     </form>
     <br />
@@ -82,7 +62,7 @@
 
     <!-- Alert -->
     <div id="alertMsg" style="color: red;font-size: 18px;"></div>
-    </div>
+</div>
 					</div>
 					<form th:action="@{/manager/product/update}" method="post">
 					<input id="id" name="id" type="hidden" th:value="${product.id}"/>
@@ -103,7 +83,7 @@
 							<h2 class="product-name"><input id="name" name="name" placeholder="商品名稱" th:value="${product.name}"/></h2>
 							<h2 class="product-name"><input id="engName" name="engName" placeholder="英文商品名稱" th:value="${product.engName}"/></h2>
 							<h3 th:if="${product.promotion_on == 1}" class="product-price" th:text="${'$' + product.promotion_price}">$0 </h3>
-						    <h3 th:if="${product.promotion_on == 0}" class="product-price"><input id="price" name="price" placeholder="濕品售價" th:value="${product.price}"/> </h3>					    
+						    <h3 th:if="${product.promotion_on == 0}" class="product-price"><input id="price" name="price" placeholder="商品售價" th:value="${product.price}"/> </h3>					    
 						    <del class="product-old-price" style="font-size:16px;" >
 						    <input id="originalPrice" name="originalPrice" placeholder="商品原價" th:value="${product.originalPrice}"/> </del>
 							<div>
@@ -112,7 +92,7 @@
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o empty"></i>
+									<i class="fa fa-star"></i>
 								</div>
 								<a href="#">3 Review(s) / Add Review</a>
 							</div>
@@ -121,15 +101,24 @@
 							<p><strong>品牌:</strong> 加拿大液態橡膠 </p>
 							<p><input id="shortDescription" name="shortDescription" placeholder="商品簡述" th:value="${product.shortDescription}"/></p>
 							<div class="product-options">
-
+							<input type="hidden" id="productId" name="productId" th:value="${product.id}"/>
+							<input type="text" id="color" name="color" placeholder="色號"/>
+							<input type="text" id="colorName" name="colorName" placeholder="中文名稱"/>
+							<input type="text" id="eName" name="eName" placeholder="英文名稱"/>
+							<input type="text" id="linnerColor" name="linnerColor" placeholder="商品代號"/>
+							<input type="text" id="seq" name="seq" placeholder="順序" />
+	                        <button id="addColor" class="btn btn-primary" type="button">新增商品顏色</button>
 								<ul class="color-option" th:if="${not #lists.isEmpty(product.productColors)}" >
 								    <input type="hidden" id="isColor" name="isColor" value="1"/>
 								    <input type="hidden" id="color" name="color" value=""/>
 									<li><span class="text-uppercase">顏色:</span></li>
 									<th:block th:each="productColor, itrStat: ${product.productColors}">
+									<br/>
 									    <li th:id="${'color_' + productColor.eName}">
-									        <a href="#" th:style="${'background-color:' + productColor.id.color}" th:onclick="'product.changeColor(\'' +  ${productColor.eName} + '\', \''+${productColor.id.color}+'\');'" th:title="${productColor.name}"></a>
+									        <a href="#" th:style="${'background-color:' + productColor.id.color + '; border-width: 1px;border-style:solid;'}" th:onclick="'product.changeColor(\'' +  ${productColor.eName} + '\', \''+${productColor.id.color}+'\');'" th:title="${productColor.name}"></a>
+									        
 									    </li>
+									    <li><button id="deleteColor" class="btn btn-danger" type="button" th:onclick="'product_editor.deleteColor(\''+  ${productColor.id.productId} + '\', \''+${productColor.id.color}+'\');'">刪除商品顏色</button></li>
 									</th:block>
 									
 								</ul>
@@ -154,11 +143,72 @@
 							</ul>
 							<div class="tab-content">
 								<div id="tab1" class="tab-pane fade in active">
-								<input class="btn btn-primary" type="button" value="新增描述" onclick="insertDesc();" disabled="true"/>
-								<section id="editor">
-                                <div id='edit' style="margin-top: 30px;" >
-                                </div>
-                                </section>
+								<a class="btn btn-primary" th:href="@{/manager/product/edit_desc/{id}(id=${product.id})}" target="_blank">修改描述</a>
+                                <div class="row">
+									<div>
+									<p th:utext="${product.description}">測試商品描述.</p>
+									</div>
+								</div>
+<!-- File Upload From -->
+<div class="row">
+						   
+    <form th:action="@{/manager/product/fileUploadDesc}" method="post" id="fileinfoDesc" enctype="multipart/form-data">
+      <div class="form-group">
+        <label>請選擇檔案上傳</label> 
+        <input class="form-control" type="file" name="file"/>
+      </div>
+      <div class="form-group">
+        <button id="fileinfoDesc" class="btn btn-primary" type="button">上傳</button>
+      </div>
+    </form>
+    <br />
+
+    <!-- Bootstrap Progress bar -->
+    <div class="progress">
+      <div id="progressBarDesc" class="progress-bar progress-bar-success" role="progressbarDesc"
+        aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+    </div>
+
+    <!-- Alert -->
+    <div id="alertMsgDesc" style="color: red;font-size: 18px;"></div>
+    
+    <table class="table table-hover table-condensed">
+                <legend>
+                    <strong>可用圖片列表</strong>
+                </legend>
+                <thead>
+                    <tr>
+                        <th style="width:80%;max-width:80%">圖片連結</th>
+                        <th style="width:20%;max-width:20%">圖片預覽</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="descriptionImg : ${DescriptionImgs}">
+                        <td class="product.product-widget product-thumb">
+                        <div class="product product-widget">                           
+                            <div class="product-body">
+                                <h2 class="product-name" th:text="${descriptionImg.imagePath}">
+                                </h2>
+                            </div>
+                        </div>
+                        </td>
+                        <td class="product.product-widget product-thumb">
+                        <div class="product product-widget">
+                            <div class="product-thumb">
+                                <img th:src="${descriptionImg.imagePath}"></img>
+                            </div>
+                            <div class="product-body">
+                                <h2 class="product-name" th:text="${descriptionImg.filePath}">                               
+                                </h2>
+                                
+                            </div>
+                        </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    
+</div>
                                 </div>
 							</div>
 						</div>
@@ -172,50 +222,43 @@
 		<!-- /container -->
 	</div>
 	<!-- /section -->
- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<div th:replace="fragments/body_footer :: body_footer"></div>
+ <div th:replace="fragments/body_footer :: body_footer"></div>
     <div th:replace="fragments/body_resources :: body_resources"></div>
 	
 	<script th:src="@{/js/index.js}"></script>
 	<script th:src="@{/js/product.js}"></script>
-	 
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/froala_editor.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/align.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/code_beautifier.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/code_view.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/colors.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/draggable.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/emoticons.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/font_size.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/font_family.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/image.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/file.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/image_manager.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/line_breaker.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/link.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/lists.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/paragraph_format.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/paragraph_style.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/video.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/table.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/url.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/entities.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/char_counter.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/inline_style.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/save.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/fullscreen.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/quick_insert.min.js"></script>
-  <script type="text/javascript" src="/js/froala-editor-2.9.1/plugins/quote.min.js"></script>
-  <script>
+	<script th:src="@{/js/manager/product-editor.js}"></script>
+	
+  <script type="text/JavaScript">
+    
     $(function() {
-      $('#edit').froalaEditor({
-        theme: 'dark'
-      })
-
-      
-      $('button[type=submit]').click(function(e) {
+      $("#addColor").click(function() {
+    	  var formData = {
+    			  "productId": $("#productId").val(), "color":$("#color").val(),
+    			  "name":$("#colorName").val(), "e_name":$("#eName").val(),
+                  "linnerColor":$("#linnerColor").val(), "status":1,
+                  "seq":$("#seq").val()
+    			};
+    			$.ajax({
+    				type : "POST",
+    				url : contextRoot + "/manager/product/addColor",
+    				dataType : "json",
+    				headers : headers,
+    				//contentType : 'text/plain;charset=utf-8',
+    				contentType: "application/json; charset=utf-8",
+    				data : JSON.stringify(formData),
+    				async : false,
+    				success : function(data) {
+    					alert("新增:" + data.name + "成功.");
+    					location.reload();
+    				},
+    				error : function(e) {
+    					var obj = jQuery.parseJSON(e.responseText);
+    					console.log(obj.region);
+    				}
+    			});
+      });
+      $('button[id=fileinfo]').click(function(e) {
     	    e.preventDefault();
     	    //Disable submit button
     	    $(this).prop('disabled',true);
@@ -265,6 +308,59 @@
     	      $('button[type=submit]').prop('disabled',false);
     	    });
     	  });
+   
+      $('button[id=fileinfoDesc]').click(function(e) {
+    	  alert('');
+    	  return ;
+  	    e.preventDefault();
+  	    //Disable submit button
+  	    $(this).prop('disabled',true);
+  	    
+  	    var form = $('#fileinfo')[0];
+  	    var formData = new FormData(form);
+
+  	    // Ajax call for file uploaling
+  	    var ajaxReq = $.ajax({
+  	      url : contextRoot +'/manager/product/update_fileUpload',
+  	      type : 'POST',
+  	      data : formData,
+  	      cache : false,
+  	      contentType : false,
+  	      processData : false,
+  	      xhr: function(){
+  	        //Get XmlHttpRequest object
+  	         var xhr = $.ajaxSettings.xhr() ;
+  	        
+  	        //Set onprogress event handler 
+  	         xhr.upload.onprogress = function(event){
+  	          	var perc = Math.round((event.loaded / event.total) * 100);
+  	          	$('#progressBar').text(perc + '%');
+  	          	$('#progressBar').css('width',perc + '%');
+  	         };
+  	         return xhr ;
+  	    	},
+  	    	beforeSend: function( xhr ) {
+  	    		//Reset alert message and progress bar
+  	    		$('#alertMsg').text('');
+  	    		$('#progressBar').text('');
+  	    		$('#progressBar').css('width','0%');
+  	              }
+  	    });
+  	  
+  	    // Called on success of file upload
+  	    ajaxReq.done(function(msg) {
+  	      $('#alertMsg').text(msg);
+  	      $('input[type=file]').val('');
+  	      $('button[type=submit]').prop('disabled',false);
+  	    });
+  	    
+  	    // Called on failure of file upload
+  	    ajaxReq.fail(function(jqXHR) {
+  	      $('#alertMsg').text(jqXHR.responseText+'('+jqXHR.status+
+  	      		' - '+jqXHR.statusText+')');
+  	      $('button[type=submit]').prop('disabled',false);
+  	    });
+  	  });
     });
 
   </script>

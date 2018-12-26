@@ -58,6 +58,8 @@
                         <td>
                         <a class="btn btn-info" th:href="@{/manager/product/update/{id}(id=${product.id})}">修改</a>
                         <a class="btn btn-danger" th:href="@{/manager/product/delete/{id}(id=${product.id})}">删除</a>
+                        <a th:if="${product.published != 1}" class="btn btn-warning" th:href="@{/manager/product/publish/{id}(id=${product.id})}">公開</a>
+                        <a th:if="${product.published == 1}" class="btn btn-warning" th:href="@{/manager/product/nonPublish/{id}(id=${product.id})}">不公開</a>
                         </td>
                     </tr>
                 </tbody>

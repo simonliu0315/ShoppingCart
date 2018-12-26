@@ -115,4 +115,12 @@ public class ProductService {
 		}
 		return list;
 	}
+	
+	public ProductColor createProductColor(ProductColor productColor) {
+		return productColorRepository.saveAndFlush(productColor);
+	}
+	
+	public void deleteProductColor(ProductColor productColor) {
+		productColorRepository.delete(productColor);
+	}
 }

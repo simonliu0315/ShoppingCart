@@ -2,15 +2,23 @@
 <html itemscope="" itemtype="http://schema.org/SearchResultsPage" lang="zh-Hant-TW" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.7.6/tinymce.min.js"></script>
 
+  <!-- script th:src="@{/js/tinyMCE-4.9.1/jquery.tinymce.min.js}"></script -->
+ <!-- link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" / -->
 </head>
 
 <body>
+<form th:action="@{'/manager/product/update/description/' + ${product.id}}" method="post">
 
+<textarea id="editor1" name="description" th:utext="${product.description == null ? '' : product.description}"></textarea>
+<input class="btn btn-primary" type="submit" value="修改描述"/>
+<br/>
+</form>
+    <script th:src="@{/js/tinyMCE-4.9.1/tinymce.min.js}"></script>
+    
+	<!-- script th:src="@{/js/jquery.min.js}"></script-->
 	
-<textarea id="editor1"></textarea>
-<input class="btn btn-primary" type="button" value="新增描述" onclick="insertDesc();"/>
+ <!-- th:utext="${product.description == null ? '' : product.description}"-->
 	<script>
 		tinyMCE.init({
 			selector: "textarea", // 目標物件
@@ -26,6 +34,7 @@
 			} 
 		});
 	
+		
   </script>
 </body>
 
