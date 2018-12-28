@@ -72,13 +72,47 @@ public class ProductManageController {
 	@RequestMapping(value = "/update_fileUpload", method = { RequestMethod.POST })
 	public ResponseEntity<Object> updatefileUpload(@RequestParam("file") MultipartFile file, HttpServletRequest request)
 			throws IOException {
-		int newId = productService.getMaxProductId();
+		int id = (int) request.getSession().getAttribute("productId");
+		String uploadPath = environment.getProperty("server.image.path");
+		String productPath = uploadPath + "/image/product/" + id + "/";
+		// 取得productId 最大
+
+		if (!new File(productPath).isDirectory()) {
+			new File(productPath).mkdirs();
+		}
 		log.info("update_fileUpload {}", request.getSession().getAttribute("productId"));
 		HttpHeaders headers = new HttpHeaders();
 		MediaType mediaType = new MediaType("text", "html", Charset.defaultCharset());
 		headers.setContentType(mediaType);
-		return new ResponseEntity<>(file.getOriginalFilename() + "檔案上傳完成. 商品已新增(" + newId + ")，請更新其他相關欄位。:" + newId,
-				headers, HttpStatus.OK);
+
+		// Save file on system
+		if (!file.getOriginalFilename().isEmpty()) {
+			BufferedOutputStream outputStream = new BufferedOutputStream(
+					new FileOutputStream(new File(productPath, file.getOriginalFilename())));
+			outputStream.write(file.getBytes());
+			outputStream.flush();
+			outputStream.close();
+		} else {
+			return new ResponseEntity<>("上傳失敗。:", headers, HttpStatus.BAD_REQUEST);
+		}
+
+		// 這裡上傳成功開始處理相關DB部分
+
+		Product product = productService.getProduct(Long.valueOf(id));
+
+		product.setImg("/common/image/product/" + id + "/" + file.getOriginalFilename());
+		product.setNewest(0);
+		product.setDiscount(new BigDecimal(100));
+		product.setPromotion_discount(new BigDecimal(100));
+		product.setPromotion_on(BigDecimal.ZERO);
+		product.setPromotion_start(new java.sql.Date(new Date().getTime()));
+		product.setPromotion_end(new java.sql.Date(new Date().getTime()));
+		product.setUpdate_by(simpleUserService.getUser().getUsername());
+		product.setUpdated(new Timestamp(new Date().getTime()));
+		productService.createProductById(product);
+
+		log.info("After update product: {}", product);
+		return new ResponseEntity<>(file.getOriginalFilename() + "檔案上傳完成. 商品圖片已修改(" + id + ")", headers, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/update/{id}", method = { RequestMethod.GET })
@@ -87,10 +121,11 @@ public class ProductManageController {
 		ModelAndView mav = new ModelAndView();
 
 		Product product = productService.getProduct(id);
+
 		log.info("product: {}", product);
 		mav.addObject("product", product);
 		mav.addObject("Categorys", productService.getActivateCategory());
-		
+
 		List<DescriptionImg> descriptionImgs = new ArrayList<DescriptionImg>();
 		String rootPath = environment.getProperty("server.image.path");
 		File f = new File(rootPath + "/image/product/" + id + "/description/");
@@ -105,8 +140,8 @@ public class ProductManageController {
 			descriptionImgs.add(descriptionImg);
 		}
 		mav.addObject("DescriptionImgs", descriptionImgs);
-		
-		request.getSession().setAttribute("productId", id);
+
+		request.getSession().setAttribute("productId", (int) id);
 		mav.setViewName("manager/product/product-page-editor");
 		return mav;
 	}
@@ -132,6 +167,7 @@ public class ProductManageController {
 		mav.setViewName("manager/product/product-page-editor");
 		return mav;
 	}
+
 	@RequestMapping(value = "/new", method = { RequestMethod.GET })
 	public ModelAndView getNew() {
 		ModelAndView mav = new ModelAndView();
@@ -147,6 +183,7 @@ public class ProductManageController {
 	// Handling file upload request
 	@RequestMapping(value = "/fileUpload", method = { RequestMethod.POST })
 	public ResponseEntity<Object> fileUpload(@RequestParam("file") MultipartFile file) throws IOException {
+		log.info("****fileUpload*****");
 		int newId = productService.getMaxProductId();
 		String uploadPath = environment.getProperty("server.image.path");
 		String productPath = uploadPath + "/image/product/" + newId + "/";
@@ -177,8 +214,14 @@ public class ProductManageController {
 		product.setImg("/common/image/product/" + newId + "/" + file.getOriginalFilename());
 		product.setInsert_by(simpleUserService.getUser().getUsername());
 		product.setInserted(new Timestamp(new Date().getTime()));
+		product.setNewest(0);
+		product.setDiscount(new BigDecimal(100));
+		product.setPromotion_discount(new BigDecimal(100));
+		product.setPromotion_on(BigDecimal.ZERO);
 		product.setPromotion_start(new java.sql.Date(new Date().getTime()));
 		product.setPromotion_end(new java.sql.Date(new Date().getTime()));
+		product.setUpdate_by(simpleUserService.getUser().getUsername());
+		product.setUpdated(new Timestamp(new Date().getTime()));
 		productService.createProductById(product);
 		return new ResponseEntity<>(file.getOriginalFilename() + "檔案上傳完成. 商品已新增(" + newId + ")，請更新其他相關欄位。:" + newId,
 				headers, HttpStatus.OK);
@@ -189,6 +232,10 @@ public class ProductManageController {
 		ModelAndView mav = new ModelAndView();
 		Product p = productService.getProduct(product.getId());
 		BeanUtils.copyProperties(product, p, "promotion_end_str", "img");
+		p.setActivate(0);
+		p.setPublished(0);
+		p.setUpdate_by(simpleUserService.getUser().getUsername());
+		p.setUpdated(new Timestamp(new Date().getTime()));
 		p.setInsert_by(simpleUserService.getUser().getUsername());
 		p.setInserted(new Timestamp(new Date().getTime()));
 		p.setPromotion_start(new java.sql.Date(new Date().getTime()));
@@ -206,17 +253,17 @@ public class ProductManageController {
 	public ModelAndView toEditDescription(@PathVariable("id") long id, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		Product p = productService.getProduct(id);
-		
+
 		// log.info("product: {}", newId);
 		// mav.addObject("newId", newId);
 		mav.addObject("product", p);
-
+		mav.addObject("noticeString", "<img class='img-responsive' src='/img/product/12/descript/圖檔檔名.jpg'>");
 		mav.setViewName("manager/product/product-page-editor-description");
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/update/description/{id}", method = { RequestMethod.POST })
-	public ModelAndView toEditDescriptionPost(@PathVariable("id") long id, 
+	public ModelAndView toEditDescriptionPost(@PathVariable("id") long id,
 			@RequestParam("description") String description, HttpServletRequest request) {
 		log.info("toEditDescriptionPost id:{}, description: {}", id, description);
 		ModelAndView mav = new ModelAndView();
@@ -226,11 +273,11 @@ public class ProductManageController {
 		p.setUpdated(new Timestamp(new Date().getTime()));
 		productService.createProductById(p);
 		mav.addObject("product", p);
-
+		mav.addObject("noticeString", "<img class='img-responsive' src='/img/product/12/descript/圖檔檔名.jpg'>");
 		mav.setViewName("manager/product/product-page-editor-description");
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/publish/{id}", method = { RequestMethod.GET })
 	public ModelAndView toPublish(@PathVariable("id") long id, HttpServletRequest request) {
 		log.info("toPublish id:{}", id);
@@ -243,8 +290,7 @@ public class ProductManageController {
 		p.setUpdate_by(simpleUserService.getUser().getUsername());
 		p.setUpdated(new Timestamp(new Date().getTime()));
 		productService.createProductById(p);
-		
-		
+
 		List<Product> products = productService.getProducts();
 		log.info("product: {}", products);
 		mav.addObject("products", products);
@@ -252,7 +298,7 @@ public class ProductManageController {
 		mav.setViewName("manager/product/productList");
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/nonPublish/{id}", method = { RequestMethod.GET })
 	public ModelAndView toNonPublish(@PathVariable("id") long id, HttpServletRequest request) {
 		log.info("toPublish id:{}", id);
@@ -264,8 +310,7 @@ public class ProductManageController {
 		p.setUpdate_by(simpleUserService.getUser().getUsername());
 		p.setUpdated(new Timestamp(new Date().getTime()));
 		productService.createProductById(p);
-		
-		
+
 		List<Product> products = productService.getProducts();
 		log.info("product: {}", products);
 		mav.addObject("products", products);
@@ -273,12 +318,10 @@ public class ProductManageController {
 		mav.setViewName("manager/product/productList");
 		return mav;
 	}
-	@RequestMapping(value = "/addColor", 
-			method = RequestMethod.POST,
-			consumes = MediaType.APPLICATION_JSON_VALUE, 
-			produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ProductColorDto addColor(@RequestBody ProductColorDto productColorDto,
-            HttpServletRequest request) {
+
+	@RequestMapping(value = "/addColor", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ProductColorDto addColor(@RequestBody ProductColorDto productColorDto,
+			HttpServletRequest request) {
 		log.info("productColorDto {}", productColorDto);
 		ProductColor productColor = new ProductColor();
 		ProductColorPK id = new ProductColorPK();
@@ -290,58 +333,56 @@ public class ProductManageController {
 		productColor = productService.createProductColor(productColor);
 		log.info("After inset productColor: {}", productColor);
 		return productColorDto;
-		
+
 	}
-	
-	@RequestMapping(value = "/deleteColor", 
-			method = RequestMethod.POST,
-			consumes = MediaType.APPLICATION_JSON_VALUE, 
-			produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ProductColorDto deleteColor(@RequestBody ProductColorDto productColorDto,
-            HttpServletRequest request) {
+
+	@RequestMapping(value = "/deleteColor", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ProductColorDto deleteColor(@RequestBody ProductColorDto productColorDto,
+			HttpServletRequest request) {
 		log.info("productColorDto {}", productColorDto);
-		productColorDto.setName(productService.getColorName(productColorDto.getProductId(), productColorDto.getColor()));
+		productColorDto
+				.setName(productService.getColorName(productColorDto.getProductId(), productColorDto.getColor()));
 		ProductColor productColor = new ProductColor();
 		ProductColorPK id = new ProductColorPK();
 		productColor.setId(id);
 		BeanUtils.copyProperties(productColorDto, productColor);
 		productColor.getId().setColor(productColorDto.getColor());
 		productColor.getId().setProductId(productColorDto.getProductId());
-		
+
 		productService.deleteProductColor(productColor);
 		log.info("delete productColor: {}", productColor);
 		return productColorDto;
 	}
-	
+
 	// Handling file upload request
-		@RequestMapping(value = "/fileUpload_Desc", method = { RequestMethod.POST })
-		public ResponseEntity<Object> fileUploadDesc(@RequestParam("file") MultipartFile file, 
-				HttpServletRequest request) throws IOException {
-			int id = (int)request.getSession().getAttribute("productId");
-			String uploadPath = environment.getProperty("server.image.path");
-			String productPath = uploadPath + "/image/product/description/" + id + "/";
-			// 取得productId 最大
+	@RequestMapping(value = "/fileUpload_Desc", method = { RequestMethod.POST })
+	public ResponseEntity<Object> fileUploadDesc(@RequestParam("file") MultipartFile file, HttpServletRequest request)
+			throws IOException {
+		log.info("****fileUploadDesc*****");
+		int id = (int) request.getSession().getAttribute("productId");
+		String uploadPath = environment.getProperty("server.image.path");
+		String productPath = uploadPath + "/image/product/" + id + "/description/";
+		// 取得productId 最大
 
-			if (!new File(productPath).isDirectory()) {
-				new File(productPath).mkdirs();
-			}
-
-			HttpHeaders headers = new HttpHeaders();
-			MediaType mediaType = new MediaType("text", "html", Charset.defaultCharset());
-			headers.setContentType(mediaType);
-			// Save file on system
-			if (!file.getOriginalFilename().isEmpty()) {
-				BufferedOutputStream outputStream = new BufferedOutputStream(
-						new FileOutputStream(new File(productPath, file.getOriginalFilename())));
-				outputStream.write(file.getBytes());
-				outputStream.flush();
-				outputStream.close();
-			} else {
-				return new ResponseEntity<>("上傳失敗。:", headers, HttpStatus.BAD_REQUEST);
-			}
-
-			
-			return new ResponseEntity<>(file.getOriginalFilename() + "檔案上傳完成.(" + id +")",
-					headers, HttpStatus.OK);
+		if (!new File(productPath).isDirectory()) {
+			new File(productPath).mkdirs();
 		}
+
+		log.info("save file to {}, filename {}", productPath, file.getOriginalFilename());
+		HttpHeaders headers = new HttpHeaders();
+		MediaType mediaType = new MediaType("text", "html", Charset.defaultCharset());
+		headers.setContentType(mediaType);
+		// Save file on system
+		if (!file.getOriginalFilename().isEmpty()) {
+			BufferedOutputStream outputStream = new BufferedOutputStream(
+					new FileOutputStream(new File(productPath, file.getOriginalFilename())));
+			outputStream.write(file.getBytes());
+			outputStream.flush();
+			outputStream.close();
+		} else {
+			return new ResponseEntity<>("上傳失敗。:", headers, HttpStatus.BAD_REQUEST);
+		}
+
+		return new ResponseEntity<>(file.getOriginalFilename() + "檔案上傳完成.(" + id + ")", headers, HttpStatus.OK);
+	}
 }

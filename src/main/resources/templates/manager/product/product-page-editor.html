@@ -100,6 +100,12 @@
 							<p th:unless="${product.activate == 1}"><strong>貨品狀態:</strong><font color="red" size="3"> 缺貨中</font></p>
 							<p><strong>品牌:</strong> 加拿大液態橡膠 </p>
 							<p><input id="shortDescription" name="shortDescription" placeholder="商品簡述" th:value="${product.shortDescription}"/></p>
+							<div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <input id="submit" class="btn btn-primary" type="submit" value="修改"/>&nbsp;&nbsp;
+                        <input class="btn" type="button" value="返回" onclick="window.location.href='/manager/product'"/>
+                    </div>
+                </div>
 							<div class="product-options">
 							<input type="hidden" id="productId" name="productId" th:value="${product.id}"/>
 							<input type="text" id="color" name="color" placeholder="色號"/>
@@ -127,12 +133,7 @@
 
 							
 						</div>
-						<div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <input id="submit" class="btn btn-primary" type="submit" value="修改"/>&nbsp;&nbsp;
-                        <input class="btn" type="button" value="返回" onclick="window.location.href='/manager/product'"/>
-                    </div>
-                </div>
+						
 					</div>
 					</form>
 					<div class="col-md-12">
@@ -152,7 +153,7 @@
 <!-- File Upload From -->
 <div class="row">
 						   
-    <form th:action="@{/manager/product/fileUploadDesc}" method="post" id="fileinfoDesc" enctype="multipart/form-data">
+    <form th:action="@{/manager/product/fileUpload_Desc}" method="post" id="fileinfoDesc" enctype="multipart/form-data">
       <div class="form-group">
         <label>請選擇檔案上傳</label> 
         <input class="form-control" type="file" name="file"/>
@@ -261,7 +262,7 @@
       $('button[id=fileinfo]').click(function(e) {
     	    e.preventDefault();
     	    //Disable submit button
-    	    $(this).prop('disabled',true);
+    	    $(this).prop('disabled',false);
     	    
     	    var form = $('#fileinfo')[0];
     	    var formData = new FormData(form);
@@ -298,30 +299,29 @@
     	    ajaxReq.done(function(msg) {
     	      $('#alertMsg').text(msg);
     	      $('input[type=file]').val('');
-    	      $('button[type=submit]').prop('disabled',false);
+    	      $('button[id=fileinfo]').prop('disabled',false);
+    	      location.reload();
     	    });
     	    
     	    // Called on failure of file upload
     	    ajaxReq.fail(function(jqXHR) {
     	      $('#alertMsg').text(jqXHR.responseText+'('+jqXHR.status+
     	      		' - '+jqXHR.statusText+')');
-    	      $('button[type=submit]').prop('disabled',false);
+    	      //$('button[type=submit]').prop('disabled',false);
     	    });
     	  });
    
       $('button[id=fileinfoDesc]').click(function(e) {
-    	  alert('');
-    	  return ;
   	    e.preventDefault();
   	    //Disable submit button
-  	    $(this).prop('disabled',true);
+  	    $(this).prop('disabled',false);
   	    
-  	    var form = $('#fileinfo')[0];
+  	    var form = $('#fileinfoDesc')[0];
   	    var formData = new FormData(form);
 
   	    // Ajax call for file uploaling
   	    var ajaxReq = $.ajax({
-  	      url : contextRoot +'/manager/product/update_fileUpload',
+  	      url : contextRoot +'/manager/product/fileUpload_Desc',
   	      type : 'POST',
   	      data : formData,
   	      cache : false,
@@ -334,31 +334,32 @@
   	        //Set onprogress event handler 
   	         xhr.upload.onprogress = function(event){
   	          	var perc = Math.round((event.loaded / event.total) * 100);
-  	          	$('#progressBar').text(perc + '%');
-  	          	$('#progressBar').css('width',perc + '%');
+  	          	$('#progressBarDesc').text(perc + '%');
+  	          	$('#progressBarDesc').css('width',perc + '%');
   	         };
   	         return xhr ;
   	    	},
   	    	beforeSend: function( xhr ) {
   	    		//Reset alert message and progress bar
-  	    		$('#alertMsg').text('');
-  	    		$('#progressBar').text('');
-  	    		$('#progressBar').css('width','0%');
+  	    		$('#alertMsgDesc').text('');
+  	    		$('#progressBarDesc').text('');
+  	    		$('#progressBarDesc').css('width','0%');
   	              }
   	    });
   	  
   	    // Called on success of file upload
   	    ajaxReq.done(function(msg) {
-  	      $('#alertMsg').text(msg);
+  	      $('#alertMsgDesc').text(msg);
   	      $('input[type=file]').val('');
-  	      $('button[type=submit]').prop('disabled',false);
+  	      $('button[id=fileinfoDesc]').prop('disabled',false);
+  	      location.reload();
   	    });
   	    
   	    // Called on failure of file upload
   	    ajaxReq.fail(function(jqXHR) {
-  	      $('#alertMsg').text(jqXHR.responseText+'('+jqXHR.status+
+  	      $('#alertMsgDesc').text(jqXHR.responseText+'('+jqXHR.status+
   	      		' - '+jqXHR.statusText+')');
-  	      $('button[type=submit]').prop('disabled',false);
+  	      //$('button[type=submit]').prop('disabled',false);
   	    });
   	  });
     });

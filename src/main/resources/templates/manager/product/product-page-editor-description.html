@@ -13,6 +13,11 @@
 <textarea id="editor1" name="description" th:utext="${product.description == null ? '' : product.description}"></textarea>
 <input class="btn btn-primary" type="submit" value="修改描述"/>
 <br/>
+<br/>
+編輯網頁注意事項:
+<lu>
+<li th:text="${'圖檔編輯範例:'+noticeString}"></li>
+</lu>
 </form>
     <script th:src="@{/js/tinyMCE-4.9.1/tinymce.min.js}"></script>
     
