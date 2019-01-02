@@ -273,7 +273,7 @@ public class ProductManageController {
 		p.setUpdated(new Timestamp(new Date().getTime()));
 		productService.createProductById(p);
 		mav.addObject("product", p);
-		mav.addObject("noticeString", "<img class='img-responsive' src='/img/product/12/descript/圖檔檔名.jpg'>");
+		mav.addObject("noticeString", "<img class='img-responsive' src='/img/product/{商品編號}/descript/{圖檔檔名.jpg}'>");
 		mav.setViewName("redirect:/manager/product/edit_desc/" + id);
 		return mav;
 	}
