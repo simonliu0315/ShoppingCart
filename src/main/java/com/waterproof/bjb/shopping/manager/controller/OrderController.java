@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,6 +47,7 @@ public class OrderController {
 		return "manager/order/orderList";
 	}
 
+	@Transactional
 	@RequestMapping(value = "/search", method = {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView getSearchNameList(@RequestParam(value = "orderNo", required=false, defaultValue = "") String orderNo, 
     		@RequestParam(value = "statusId", required=false, defaultValue = "0") int statusId, 

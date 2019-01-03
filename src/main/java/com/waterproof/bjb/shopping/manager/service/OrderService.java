@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.waterproof.bjb.shopping.entity.Category;
 import com.waterproof.bjb.shopping.entity.CustomerOrder;
@@ -86,6 +87,7 @@ public class OrderService {
 		return customerOrderRepository.findOne(id);
 	}
 	
+	@Transactional
 	public Page<CustomerOrder> getFilterProduct(Date startDate, Date endDate, String orderNo, int statusId, int orderby, Pageable pageable) {
 		
 		
