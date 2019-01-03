@@ -9,13 +9,13 @@
     menuList = $('#responsive-nav .menu-nav .menu-list');
 
   catToggle.on('click', function() {
-	  alert('catToggle click');
+	  //alert('catToggle click');
     menuList.removeClass('open');
     catList.toggleClass('open');
   });
 
   menuToggle.on('click', function() {
-	  alert('menuToggle click');
+	  //alert('menuToggle click');
     catList.removeClass('open');
     menuList.toggleClass('open');
   });
@@ -23,28 +23,28 @@
   $(document).click(function(event) {
     if (!$(event.target).closest(responsiveNav).length) {
       if (responsiveNav.hasClass('open')) {
-    	  alert('open');
+    	  //alert('open');
         //responsiveNav.removeClass('open');
         //$('#navigation').removeClass('shadow');
       } else {
-    	  alert('not open');    	  
+    	  //alert('not open');    	  
         if ($(event.target).closest('.nav-toggle > button').length) {
         	if (!menuList.hasClass('open')) {
           //if (!menuList.hasClass('open') && !catList.hasClass('open')) {
-        	  alert('menuList open');
+        	  //alert('menuList open');
         	  $('.dropdown').addClass('open');
             menuList.addClass('open');
           }
-        	alert('navigation shadow');
+        	//alert('navigation shadow');
           $('#navigation').addClass('shadow');
           responsiveNav.addClass('open');
         }else {
-        	 alert('XXXX');
+        	 //alert('XXXX');
         	menuList.addClass('open');
         }
       }
     } else {
-    	 alert('VVVV');
+    	 //alert('VVVV');
     }
   });
 
