@@ -68,10 +68,12 @@ public class CustomerOrder implements Serializable {
 	@Column(name = "PAYMENT_METHOD")
 	private int method;
 	
+	@NotFound(action = NotFoundAction.IGNORE)
 	@OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER) //移除, optional = false 就會正常
 	@JoinColumn(name="STATUS_ID", referencedColumnName="STATUS", insertable = false, updatable = false)
 	private OrderStatus orderStatus;
 
+	@NotFound(action = NotFoundAction.IGNORE)
 	@OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "ORDER_NO", referencedColumnName="ORDER_NO", insertable = false, updatable = false)
 	private List<OrderDetail> orderDetails;
@@ -81,6 +83,7 @@ public class CustomerOrder implements Serializable {
 	@JoinColumn(name="PAYMENT_METHOD", referencedColumnName="METHOD", insertable = false, updatable = false)
 	private PaymentMethod paymentMethod;
 	
+	@NotFound(action = NotFoundAction.IGNORE)
 	@OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER) //移除, optional = false 就會正常
 	@JoinColumn(name="ORDER_NO", referencedColumnName="ORDER_NO", insertable = false, updatable = false)
 	private OrderContract orderContract;
