@@ -27,12 +27,13 @@
         //responsiveNav.removeClass('open');
         //$('#navigation').removeClass('shadow');
       } else {
-    	  //alert('not open');    	  
+    	  //alert('not open');    	 
+    	  $('.full-width').addClass('open');
         if ($(event.target).closest('.nav-toggle > button').length) {
         	if (!menuList.hasClass('open')) {
           //if (!menuList.hasClass('open') && !catList.hasClass('open')) {
         	  //alert('menuList open');
-        	  $('.dropdown').addClass('open');
+        	  $('.full-width').addClass('open');
             menuList.addClass('open');
           }
         	//alert('navigation shadow');
@@ -40,6 +41,7 @@
           responsiveNav.addClass('open');
         }else {
         	 //alert('XXXX');
+        	 $('.full-width').addClass('open');
         	menuList.addClass('open');
         }
       }
