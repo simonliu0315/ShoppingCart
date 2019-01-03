@@ -92,6 +92,13 @@ public class UserController {
      */
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String getUser(@PathVariable String id, ModelMap map) {
+    	if (id.indexOf("**********") > 1) {
+    		id = id.replace("**********", "@");
+    	}
+    	if (id.indexOf("----------") > 1) {
+    		id = id.replace("----------", ".");
+    	}
+    	log.info("q: {}", id);
     	User u = userService.findById(id);
     	log.info("user:{}", u);
     	//u.setBirthday(DateUtils.(u.getBirthday(), "yyyy/MM/dd"));

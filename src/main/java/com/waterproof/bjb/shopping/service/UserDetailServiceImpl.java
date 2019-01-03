@@ -3,6 +3,7 @@ package com.waterproof.bjb.shopping.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -35,18 +36,18 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
 	@Transactional
 	public UserDetails loadUserByUsername(String username) {
-		for (com.waterproof.bjb.shopping.entity.User u : userRepository.findAll()) {
-			log.info("{}", u);
-		}
+		
 		log.info("size {}", userRepository.findAll().size());
 		log.info("****loadUserByUsername**** param username:{}", username);
 		com.waterproof.bjb.shopping.entity.User user = userRepository.findOne(username);
+		log.info("user :{}", user);
 		if (user == null || user.getStatus() != 1) {
 			
 			throw new UsernameNotFoundException("Invalid username or password.");
 		} else {
 			log.info("cName: {}, password: {}", user.getCName(), user.getPassword());
 		}
+		log.info("user ==>{}", user);
 		// 將使用者放入Authentication物件，代表已通過驗證
 		Authentication auth = new UsernamePasswordAuthenticationToken(user, user.getPassword(),
 				getAuthority(user));

@@ -45,12 +45,12 @@
                 <tbody>
                     <tr th:each="user : ${userList}">
                         <th scope="row" th:text="${user.username}"></th>
-                        <td><a th:href="@{/manager/users/update/{userId}(userId=${user.username})}" th:text="${user.cName}"></a></td>
+                        <td><a th:href="@{/manager/users/update/{userId}(userId=${user.username2})}" th:text="${user.cName}"></a></td>
                         <td th:text="${user.birthdayStr}"></td>
                         <td th:text="${user.status == 1 ? '啟用' : '停用'}"></td>
                         <td>
-                        <a class="btn btn-info" th:href="@{/manager/users/update/{userId}(userId=${user.username})}">修改</a>
-                        <a class="btn btn-danger" th:href="@{/manager/users/delete/{userId}(userId=${user.username})}">删除</a>
+                        <a class="btn btn-info" th:href="@{/manager/users/update/{userId}(userId=${user.username2})}">修改</a>
+                        <a class="btn btn-danger" th:href="@{/manager/users/delete/{userId}(userId=${user.username2})}">删除</a>
                         </td>
                     </tr>
                 </tbody>

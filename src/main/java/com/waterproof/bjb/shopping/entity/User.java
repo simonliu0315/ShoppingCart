@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.thymeleaf.util.JavaScriptUtils;
+
 import com.waterproof.bjb.shopping.utils.ShoppingDateUtil;
 
 //import org.springframework.data.annotation.Transient;
@@ -77,6 +79,9 @@ public class User implements Serializable {
 	private String birthdayStr;
 	
 	@Transient
+	private String usernamne2;
+	
+	@Transient
 	public String getPasswordConfirm() {
 		return passwordConfirm;
 	}
@@ -91,6 +96,12 @@ public class User implements Serializable {
 		} else {
 			return "";
 		}
+	}
+	
+	
+	@Transient
+	public String getUsername2() {
+		return username.replace("@", "**********").replace(".", "----------");
 	}
 	@OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER, orphanRemoval = false)
 	@JoinColumn(name = "USERNAME", referencedColumnName = "USERNAME", insertable = false, updatable = false)
