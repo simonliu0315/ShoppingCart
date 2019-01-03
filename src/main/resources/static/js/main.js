@@ -24,8 +24,8 @@
     if (!$(event.target).closest(responsiveNav).length) {
       if (responsiveNav.hasClass('open')) {
     	  alert('open');
-        responsiveNav.removeClass('open');
-        $('#navigation').removeClass('shadow');
+        //responsiveNav.removeClass('open');
+        //$('#navigation').removeClass('shadow');
       } else {
     	  alert('not open');    	  
         if ($(event.target).closest('.nav-toggle > button').length) {
