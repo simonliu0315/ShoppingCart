@@ -105,7 +105,9 @@ public class MemberController {
 					.get_SHA_512_SecurePassword(DateUtils.formatDate(new Date(), "yyyyMMddHHmmss"), "1234567");
 			User user = new User();
 			BeanUtils.copyProperties(formBean, user);
-			user.setBirthday(ShoppingDateUtil.parseDateTime(formBean.getBirthday(), "yyyy/MM/dd"));
+			if (formBean.getBirthday() != null) {
+			    user.setBirthday(ShoppingDateUtil.parseDateTime(formBean.getBirthday(), "yyyy/MM/dd"));
+			}
 			user.setVerifyCode(verifyCode);
 			List<UserRole> userRoles = new ArrayList<UserRole>();
 			UserRole role = new UserRole();
