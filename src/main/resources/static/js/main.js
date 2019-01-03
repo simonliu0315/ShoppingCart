@@ -35,6 +35,7 @@
         	  $('.dropdown').addClass('open');
             menuList.addClass('open');
           }
+        	alert('navigation shadow');
           $('#navigation').addClass('shadow');
           responsiveNav.addClass('open');
         }else {
@@ -42,6 +43,8 @@
         	menuList.addClass('open');
         }
       }
+    } else {
+    	 alert('VVVV');
     }
   });
 
