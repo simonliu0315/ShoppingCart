@@ -101,6 +101,9 @@ public class User implements Serializable {
 	
 	@Transient
 	public String getUsername2() {
+		if (username == null ) {
+			return "";
+		}
 		return username.replace("@", "**********").replace(".", "----------");
 	}
 	@OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER, orphanRemoval = false)
