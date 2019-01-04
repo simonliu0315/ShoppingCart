@@ -154,7 +154,12 @@ public class UserController {
      */
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteUser(@PathVariable String id) {
-
+    	if (id.indexOf("**********") > 1) {
+    		id = id.replace("**********", "@");
+    	}
+    	if (id.indexOf("----------") > 1) {
+    		id = id.replace("----------", ".");
+    	}
         userService.delete(id);
         return "redirect:/manager/users/";
     }
