@@ -226,4 +226,65 @@ public class MemberController {
 		mav.setViewName("member/user");
 		return mav;
 	}
+	
+	@RequestMapping(value = "/forget_password", method = { RequestMethod.GET })
+	public ModelAndView getForget(HttpServletRequest request) {
+		log.info("getForget page form {}");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/forget_password");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/forget_password", method = { RequestMethod.POST })
+	public ModelAndView getForgetPost(@ModelAttribute UserForm formBean, HttpServletRequest request) {
+		log.info("getForget page form {}");
+		ModelAndView mav = new ModelAndView();
+		String requestCaptcha = request.getParameter("verifyCode");
+		log.info("requestCaptcha: {}", requestCaptcha);
+		if (StringUtils.isEmpty(requestCaptcha)) {
+			mav.addObject("msgType", "alert alert-danger alert-dismissible");
+			mav.addObject("msg", "驗證碼不能為空!");
+			mav.addObject("user", simpleUserService.getUser());
+			mav.setViewName("member/forget_password");
+			return mav;
+		}
+		if (!captchaVerifyService.isVerify(request.getSession().getId(), requestCaptcha)) {
+			mav.addObject("msgType", "alert alert-danger alert-dismissible");
+			mav.addObject("msg", "驗證碼錯誤!");
+			mav.addObject("user", simpleUserService.getUser());
+			mav.setViewName("member/forget_password");
+			return mav;
+		}
+		User user = userservice.findById(formBean.getUsername());
+		if (user == null) {
+			mav.addObject("msgType", "alert alert-danger alert-dismissible");
+			mav.addObject("msg", "帳號不存在!");
+			mav.addObject("user", simpleUserService.getUser());
+			mav.setViewName("member/forget_password");
+			return mav;
+		} else {
+			if (!StringUtils.equals(user.getEmail(), formBean.getEmail())) {
+				mav.addObject("msgType", "alert alert-danger alert-dismissible");
+				mav.addObject("msg", "Email與申請時不同!");
+				mav.addObject("user", simpleUserService.getUser());
+				mav.setViewName("member/forget_password");
+				return mav;
+			} else {
+				
+				mav.addObject("msgType", "alert alert-info alert-dismissible");
+				mav.addObject("msg", "帳戶" + formBean.getUsername() + "密碼重置成功, 我們已經發送新密碼至您的email信箱，請確認。");
+				String siteHost = environment.getProperty("spring.web.host");
+				String newpassowrd = PasswordUtil.getSaltString();
+				
+				user.setPassword(newpassowrd);
+				userservice.update(user);
+				mailUtil.sendByGmail(
+						"會員密碼重置", "親愛的用戶您好：<br/>您的新密碼為" + newpassowrd + "，謝謝。",
+						user.getEmail());
+			}			
+		}
+
+		mav.setViewName("login");
+		return mav;
+	}
 }

@@ -3,6 +3,7 @@ package com.waterproof.bjb.shopping.utils;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Random;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
@@ -27,11 +28,25 @@ public class PasswordUtil {
 		}
 		return generatedPassword;
 	}
+
 	public static String getPassword(String password) {
 		String strong_salt = "$2a$10$NnlqpBH.dJZLqG//0IWoG.";
-		log.info("strong_salt {}, password: {}, pw: {}", strong_salt, password, BCrypt.hashpw(password, BCrypt.hashpw(password, strong_salt)));
+		log.info("strong_salt {}, password: {}, pw: {}", strong_salt, password,
+				BCrypt.hashpw(password, BCrypt.hashpw(password, strong_salt)));
 		return BCrypt.hashpw(password, BCrypt.hashpw(password, strong_salt));
 	}
-	
-	
+
+	public static String getSaltString() {
+		String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+		StringBuilder salt = new StringBuilder();
+		Random rnd = new Random();
+		while (salt.length() < 8) { // length of the random string.
+			int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+			salt.append(SALTCHARS.charAt(index));
+		}
+		String saltStr = salt.toString();
+		return saltStr;
+
+	}
+
 }
