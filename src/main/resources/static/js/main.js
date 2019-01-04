@@ -7,7 +7,11 @@
     catList = $('#responsive-nav .category-nav .category-list'),
     menuToggle = $('#responsive-nav .menu-nav .menu-header'),
     menuList = $('#responsive-nav .menu-nav .menu-list');
-
+  
+  $('.nav-toggle-btn').on('click', function() {
+	  $('.full-width').addClass('open');
+		   
+  });
   catToggle.on('click', function() {
 	  //alert('catToggle click');
     menuList.removeClass('open');
@@ -15,7 +19,7 @@
   });
 
   menuToggle.on('click', function() {
-	 //alert('menuToggle click');
+	 alert('menuToggle click');
     catList.removeClass('open');
     menuList.toggleClass('open');
   });
@@ -32,7 +36,7 @@
         $('#navigation').removeClass('shadow');
       } else {
     	  //alert('not open');    	 
-    	  $('.full-width').addClass('open');
+    	  //$('.full-width').addClass('open');
     	  //$('.default-dropdown').addClass('open');
         if ($(event.target).closest('.nav-toggle > button').length) {
         	if (!menuList.hasClass('open')) {
