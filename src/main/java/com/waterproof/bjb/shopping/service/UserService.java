@@ -42,9 +42,11 @@ public class UserService {
 		log.info("更新前使用者：" + user.toString());
 		com.waterproof.bjb.shopping.entity.User u = userRepository.findOne(user.getUsername());
 		if (StringUtils.isNotBlank(user.getPassword()) && !StringUtils.equals(PasswordUtil.getPassword(user.getPassword()), u.getPassword())) {
+			log.info("0. update password from " + u.getPassword() + " to " + PasswordUtil.getPassword(user.getPassword()));
 			user.setPassword(PasswordUtil.getPassword(user.getPassword()));
 		}
 		if (StringUtils.isBlank(user.getPassword())) {
+			log.info("1. update password from " + u.getPassword() + " to " + u.getPassword());
 			user.setPassword(u.getPassword());
 		}
 		log.info("更新使用者：" + user.toString());

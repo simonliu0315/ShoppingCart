@@ -151,6 +151,8 @@ public class MemberController {
 		if (CollectionUtils.isNotEmpty(users)) {
 			User user = users.get(0);
 			user.setStatus(1);
+			//這裡設定可以讓password不更新
+			user.setPassword("");
 			userservice.update(user);
 			mav.addObject("msgType", "alert alert-info alert-dismissible");
 			mav.addObject("msg", "帳戶" + user.getUsername() + "啟用成功.");
