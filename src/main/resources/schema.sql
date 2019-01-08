@@ -10,5 +10,9 @@ create table AUDIT_LOG(
     URI varchar (256),
     inserted timestamp,
     insert_by varchar(30),
+    http_Status int,
+    http_method varchar(50),
+    java_Method varchar(512),
+    response varchar(4069),
     primary key(SESSION_ID,FUNCTION_ID,inserted)
 );

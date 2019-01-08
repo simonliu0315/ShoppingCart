@@ -29,4 +29,17 @@ public class AuditLog implements Serializable {
 	private String uri;
 	
 	private String insert_by; 
+	
+	@Column(name="HTTP_STATUS")
+	private int httpStatus;
+	
+	@Column(name="HTTP_METHOD")
+	private String httpMethod;
+	
+	@Column(name="JAVA_METHOD")
+	private String javaMethod;
+	
+	@Column(name="RESPONSE")
+	private String response;
+	
 }

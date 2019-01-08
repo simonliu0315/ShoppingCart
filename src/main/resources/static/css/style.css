@@ -572,7 +572,9 @@ textarea.input {
   /*display: block;*/
   padding: 15px;
   color: #FFF;
+  /*
   text-transform: uppercase;
+  */
 }
 
 .menu-nav .menu-list>li>a {
@@ -627,7 +629,9 @@ textarea.input {
 .dropdown.default-dropdown>.custom-menu>li>a {
   display: block;
   padding: 10px 0px;
+  /*
   text-transform: uppercase;
+  */
 }
 
 /*-- Mega Dropdown --*/

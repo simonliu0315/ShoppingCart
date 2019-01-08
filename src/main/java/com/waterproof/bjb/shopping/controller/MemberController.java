@@ -1,7 +1,5 @@
 package com.waterproof.bjb.shopping.controller;
 
-import java.io.File;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,7 +12,6 @@ import org.apache.http.client.utils.DateUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,11 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.hitrust.b2ctoolkit.b2cpay.B2CPayAuth;
-import com.hitrust.b2ctoolkit.util.HiMerchant;
-import com.hitrust.b2ctoolkit.util.HiServer3;
-import com.hitrust.b2ctoolkit.util.ToolkitException;
-import com.waterproof.bjb.shopping.authentication.BadCaptchaException;
 import com.waterproof.bjb.shopping.captcha.CaptchaVerifyService;
 import com.waterproof.bjb.shopping.controller.dto.UserForm;
 import com.waterproof.bjb.shopping.dto.ProductInCartDto;
@@ -279,7 +271,8 @@ public class MemberController {
 				user.setPassword(newpassowrd);
 				userservice.update(user);
 				mailUtil.sendByGmail(
-						"會員密碼重置", "親愛的用戶您好：<br/>您的新密碼為" + newpassowrd + "，謝謝。",
+						"會員密碼重置", "親愛的用戶您好：<br/>您的新密碼為" + newpassowrd + "，謝謝。請重新登入<a href='" + siteHost + "/login"
+							 + "'>" + siteHost + "/login</a>",
 						user.getEmail());
 			}			
 		}
