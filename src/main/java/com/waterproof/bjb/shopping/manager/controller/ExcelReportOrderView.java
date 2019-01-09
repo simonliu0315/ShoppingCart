@@ -76,7 +76,7 @@ public class ExcelReportOrderView extends AbstractXlsView {
 			}
 			
 			dto.setCustomerNo(PasswordUtil.get_SHA_512_SecurePassword(customerOrder.getUsername(), "liquidrubber").substring(0,  10).toUpperCase());
-			dto.setCustomerName(u.getCName());
+			dto.setCustomerName(StringUtils.defaultIfBlank(u.getCName(),"[no name]"));
 			dto.setPostName(customerOrder.getOrderContract().getPostName());
 			dto.setMailTel(customerOrder.getOrderContract().getTel());
 			dto.setMailAddress(customerOrder.getOrderContract().getZipCode() + 
