@@ -87,7 +87,7 @@ public class ExcelReportCustomView extends AbstractXlsView {
 			//客戶名稱(50)
 			row.createCell(1).setCellValue(customerOrder.getUsername());
 			//客戶簡稱(10)
-			row.createCell(2).setCellValue(u.getCName());
+			row.createCell(2).setCellValue(StringUtils.defaultIfBlank(u.getCName(),"[no name]"));
 			//業務編號(10)
 			row.createCell(3).setCellValue("");
 			//客戶類別(5)

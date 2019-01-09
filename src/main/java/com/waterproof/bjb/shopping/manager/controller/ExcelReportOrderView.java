@@ -64,6 +64,7 @@ public class ExcelReportOrderView extends AbstractXlsView {
 		Row row = sheet.createRow(rowNum);
 		for (CustomerOrder customerOrder : customerOrderList) {
 			userService = (UserService)model.get("UserService");
+			log.info("{}", customerOrder);
 			User u = userService.findById(customerOrder.getUsername());
 			
 			ExportOrderDto dto = new ExportOrderDto();
