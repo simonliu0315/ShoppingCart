@@ -80,7 +80,9 @@ public class ExcelReportCustomView extends AbstractXlsView {
 		for (CustomerOrder customerOrder : customerOrderList) {
 			userService = (UserService)model.get("UserService");
 			log.info("userService {}", userService);
+			log.info("{}", customerOrder);
 			User u = userService.findById(customerOrder.getUsername());
+			log.info("{}", u);
 			Row row = sheet.createRow(rowNum++);
 			//客戶編號(10)							
 			row.createCell(0).setCellValue(PasswordUtil.get_SHA_512_SecurePassword(customerOrder.getUsername(), "liquidrubber").substring(0,  10).toUpperCase());
