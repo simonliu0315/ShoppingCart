@@ -83,6 +83,9 @@ public class ExcelReportCustomView extends AbstractXlsView {
 			log.info("{}", customerOrder);
 			User u = userService.findById(customerOrder.getUsername());
 			log.info("{}", u);
+			if (u == null) {
+				u = new User();
+			}
 			Row row = sheet.createRow(rowNum++);
 			//客戶編號(10)							
 			row.createCell(0).setCellValue(PasswordUtil.get_SHA_512_SecurePassword(customerOrder.getUsername(), "liquidrubber").substring(0,  10).toUpperCase());
@@ -98,11 +101,11 @@ public class ExcelReportCustomView extends AbstractXlsView {
 			row.createCell(5).setCellValue("");
 			
 			//聯絡人1(10)
-			row.createCell(6).setCellValue(u.getCName());
+			row.createCell(6).setCellValue(StringUtils.defaultIfBlank(u.getCName(),"[no name]"));
 			//電話1(16)	
 			row.createCell(7).setCellValue("");
 			//大哥大1(16)
-			row.createCell(8).setCellValue(u.getMobile());
+			row.createCell(8).setCellValue(StringUtils.defaultIfBlank(u.getMobile(),"[no mobile]"));
 			
 			//聯絡人2(10)
 			row.createCell(9).setCellValue("");
@@ -145,7 +148,7 @@ public class ExcelReportCustomView extends AbstractXlsView {
 					customerOrder.getOrderContract().getAddress());
 			
 			//電子信箱(68)							
-			row.createCell(22).setCellValue(u.getEmail());
+			row.createCell(22).setCellValue(StringUtils.defaultIfBlank(u.getEmail(), "[no email]"));
 			//自定欄位一(68)
 			row.createCell(23).setCellValue("");
 			//自定欄位二(68)

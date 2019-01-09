@@ -67,6 +67,9 @@ public class ExcelReportOrderView extends AbstractXlsView {
 			log.info("{}", customerOrder);
 			User u = userService.findById(customerOrder.getUsername());
 			log.info("{}", u);
+			if (u == null) {
+				u = new User();
+			}
 			ExportOrderDto dto = new ExportOrderDto();
 			dto.setDocumentDate(ShoppingDateUtil.formatDate(customerOrder.getInserted(), "yyyy/MM/dd"));
 			dto.setOrderNo(customerOrder.getOrderNo());
