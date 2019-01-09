@@ -64,7 +64,7 @@
     <div id="alertMsg" style="color: red;font-size: 18px;"></div>
 </div>
 					</div>
-					<form th:action="@{/manager/product/update}" method="post">
+					<form th:action="@{'/manager/product/update/' + ${product.id} }" method="post">
 					<input id="id" name="id" type="hidden" th:value="${product.id}"/>
 					<div class="col-md-6">
 						<div class="product-body">

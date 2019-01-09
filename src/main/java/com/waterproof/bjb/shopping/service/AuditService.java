@@ -14,9 +14,18 @@ public class AuditService {
 
 	@Autowired
 	private AuditLogRepository auditLogRepository;
-	
+
 	public AuditLog createAudit(AuditLog auditLog) {
 		log.info("call createAudit. {}", auditLog);
-		return auditLogRepository.saveAndFlush(auditLog);
+		AuditLog auditLogRet = null;
+		try {
+			if (auditLog.getId().getSessionId() == null) {
+				return auditLog;
+			}
+			auditLogRet = auditLogRepository.saveAndFlush(auditLog);
+		} catch (Exception e) {
+			log.error("{}", e);
+		}
+		return auditLogRet;
 	}
 }

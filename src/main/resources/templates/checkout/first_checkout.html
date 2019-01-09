@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/SearchResultsPage" lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta th:replace="fragments/meta_resources :: meta_resources"></meta>
+<style>
+  .zip-selector select {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    text-transform: none;
+  }
+</style>
+</head>
+
+<body>
+	<div th:replace="fragments/body_header :: body_header"></div>
+
+	<div th:replace="fragments/body_navigation :: body_navigation"></div>
+
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a th:href="@{/}">首頁</a></li>
+				<li class="active">結帳</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<form id="checkout-form" class="clearfix" th:action="@{/checkout}" method="post" th:object="${CheckoutForm}" data-toggle="validator">
+					<div class="col-md-6">
+						<div class="billing-details">
+							<p th:if="${USER_OBJECT.username == 'anonymousUser'}">已經是會員 ? <a th:href="@{/login?f=checkout}">Login</a></p>
+							<div class="section-title">
+								<h3 class="title">帳單明細</h3>
+								<h5 class="text-right"><font color="red">＊隨貨付發票</font></h5>
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="postName" th:field="*{postName}" placeholder="收件者姓名" th:required="required" th:value="${CheckoutForm.postName}"/>
+							</div>
+							<div class="form-group">
+								<input class="input" type="email" name="email" th:field="*{email}" placeholder="Email" th:required="required" value="${CheckoutForm.email}"/>
+							</div>
+							<div class="zip-selector">
+							    <div class="col-lg-3 col-md-4 col-sm-4 nopadding">
+                                <div class="form-group">
+                                    <select class="county form-control"></select> 
+                                </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-4">
+                                <div class="form-group">
+                                    <select class="district form-control"></select>
+                                </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-4">
+                                <div class="form-group">
+                                    <input type="text" class="zipcode input" name="zipCode" placeholder="郵遞區號"/>
+                                </div>
+                                </div>
+                            </div>
+							<div class="form-group">
+								<input class="input" type="text" name="address" th:field="*{address}" placeholder="地址" th:required="required" th:value="${CheckoutForm.address}"/>
+							</div>
+							<div class="form-group">
+								<input class="input" type="tel" name="tel" th:field="*{tel}" placeholder="連絡電話(手機、市話)" th:required="required" th:value="${CheckoutForm.tel}"/>
+							</div>
+                            <div class="form-group">
+                                <div class="payments-methods">
+							<div class="section-title">
+								<h4 class="title">發票</h4>
+							</div>
+							<div class="input-checkbox">
+								<input type="radio" name="invoiceType" id="personal" value="1" th:checked="checked"/>
+								<label for="creditcard">二聯式(個人)</label>
+								<div class="caption">
+									<p></p>
+										<p></p>
+								</div>
+							</div>
+							<div class="input-checkbox">
+								<input type="radio" name="invoiceType" id="business" value="2"/>
+								<label for="business">三聯式(公司)</label>
+								<div class="caption">
+									<p><input class="input" id="vatId" name="vatId" value="" placeholder="公司統編" maxlength="8"/></p>
+									<p><input class="input" id="businessName" name="businessName" value="" placeholder="公司名稱"/></p>
+								</div>
+							</div>
+		
+						</div>
+                            </div>
+							<div class="form-group">
+								<div class="input-checkbox">
+									<input type="checkbox" id="register"/>
+									<label class="font-weak" for="register">建立新帳號?</label>
+									<div class="caption">
+										<p></p>
+										<div class="form-group">
+										    <input class="input" type="password" name="repassword" placeholder="請重新輸入密碼"/>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="shiping-methods">
+							<div class="section-title">
+								<h4 class="title">貨運方式</h4>
+							</div>
+							<div class="input-checkbox" th:each="shippingMethod, itrStat : ${ShippingMethods}">
+							    <input th:if="${itrStat.index == 0}" type="radio" name="shippmentMethod" th:id="${'shipping-' + itrStat.index}"  th:value="${shippingMethod.method}" th:checked="checked" th:required="required"></input>
+								<input th:if="${itrStat.index != 0}" type="radio" name="shippmentMethod" th:id="${'shipping-' + itrStat.index}"  th:value="${shippingMethod.method}" th:required="required"></input>
+								<label th:for="${'shipping-' + itrStat.index}" th:text="${shippingMethod.description}">宅配免運</label>
+								<div class="caption">
+									<p th:text="${shippingMethod.content}">寄送.</p>
+										<p></p>
+								</div>
+							</div>
+						</div>
+
+						<div class="payments-methods">
+							<div class="section-title">
+								<h4 class="title">付款方式</h4>
+							</div>
+							<div class="input-checkbox">
+								<input type="radio" name="paymentMethod" id="creditcard" value="1" th:checked="checked"/>
+								<label for="creditcard">信用卡一次付清</label>
+								<div class="caption">
+									<p></p>
+										<p></p>
+								</div>
+							</div>
+							<div class="input-checkbox">
+								<input type="radio" name="paymentMethod" id="ATM" value="2"/>
+								<label for="ATM">銀行轉帳</label>
+								<div class="caption">
+									<p th:text="${'轉帳銀行:' + accountName  + bankCode }"></p>
+									<p th:text="${'轉帳帳號:' + accountNo}"></p>
+								</div>
+							</div>
+							
+							<!-- div class="input-checkbox">
+								<input type="radio" name="payments" id="payments-3"/>
+								<label for="payments-3">Paypal System</label>
+								<div class="caption">
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+										<p></p>
+								</div>
+							</div-->
+						</div>
+					</div>
+
+					<div class="col-md-12">
+						<div class="order-summary clearfix">
+							<div class="section-title">
+								<h3 class="title">訂單內容</h3>
+							</div>
+							<table class="shopping-cart-table table">
+								<thead>
+									<tr>
+										<th>訂單商品</th>
+										<th></th>
+										<th class="text-center">單價</th>
+										<th class="text-center">數量</th>
+										<th class="text-center">總價</th>
+										<!-- th class="text-right"></th-->
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="productTempOrder, itrStat : ${order.productsTempOrder}">
+										<td class="thumb"><img th:src="@{${productTempOrder.img}}" alt=""/></td>
+										<td class="details">
+											<a th:href="@{'/products/' + ${productTempOrder.productId}}" th:text="${productTempOrder.productName}">商品名稱</a>
+											<ul class="color-option" th:if="${productTempOrder.colorName != null}">
+											    <li><a href="#" th:style="${'background-color:' + productTempOrder.color}" th:title="${productTempOrder.colorName}"></a></li>
+												<li><span th:text="${'顏色: ' + productTempOrder.colorName}">顏色: ??</span></li>
+											</ul>
+										</td>
+										<td class="price text-center">
+										    <strong th:text="${'$' +productTempOrder.price}">$0</strong>
+										    <br/>
+										    <del class="font-weak"><small th:text="${'$' + productTempOrder.originalPrice}">$0</small></del>
+										</td>
+										<td class="qty text-center">
+										    <input th:id="${'sub_quantity_' + itrStat.index}" name="sub_quantity" class="input" type="number" th:value="${productTempOrder.quantity}" 
+										    th:onchange="'checkout.changeQty(\'' + ${productTempOrder.productId} + '\', this, \'' + ${productTempOrder.color} + '\');'"/></td>
+										<td class="total text-center">
+										    <strong class="primary-color" th:text="${'$' +productTempOrder.subTotalAmt}">$0</strong>
+										</td>
+										<!-- td class="text-right"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></td-->
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<th class="empty" colspan="3"></th>
+										<th>商品總金額</th>
+										<th colspan="2" class="sub-total" th:text="${'$' + order.subTotalAmt}">$0</th>
+									</tr>
+									<tr>
+										<th class="empty" colspan="3"></th>
+										<th>運費總金額</th>
+										<td colspan="2" th:if="${order.shipment == 0}">免運</td>
+										<td colspan="2" th:if="${order.shipment != 0}" th:text="${'$' + order.shipment}"></td>
+									</tr>
+									<tr>
+										<th class="empty" colspan="3"></th>
+										<th>總付款金額</th>
+										<th colspan="2" class="total" th:text="${'$' + order.totalAmt}">$0</th>
+									</tr>
+								</tfoot>
+							</table>
+							<div class="pull-right">
+							    <a th:href="@{/cart}" class="primary-btn">回購物車</a>
+								<button th:if="${order.totalAmt != 0}" class="primary-btn" onclick="checkout.goOrder();">下訂單</button>
+							</div>
+						</div>
+
+					</div>
+				</form>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+	<div th:replace="fragments/body_footer :: body_footer"></div>
+    <div th:replace="fragments/body_resources :: body_resources"></div>
+
+    <script th:src="@{/js/tw-city-selector.js}"></script>
+    <script th:src="@{/js/index.js}"></script>
+    <script th:src="@{/js/checkout.js}"></script>
+	<script>
+  new TwCitySelector({
+    el: ".zip-selector",
+    elCounty: ".county", // 在 el 裡查找 dom
+    elDistrict: ".district", // 在 el 裡查找 dom
+    elZipcode: ".zipcode" // 在 el 裡查找 dom
+  });
+  $(".county").attr("class", "county form-control");
+  $(".district").attr("class", "district form-control");
+</script>
+</body>
+
+</html>

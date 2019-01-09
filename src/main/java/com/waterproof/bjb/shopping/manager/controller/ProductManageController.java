@@ -146,11 +146,11 @@ public class ProductManageController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/update", method = { RequestMethod.POST })
+	@RequestMapping(value = "/update/{id}", method = { RequestMethod.POST })
 	public ModelAndView toUpdate(@ModelAttribute Product product) {
 		ModelAndView mav = new ModelAndView();
 		Product p = productService.getProduct(product.getId());
-		BeanUtils.copyProperties(product, p, "promotion_end_str", "img");
+		BeanUtils.copyProperties(product, p, "promotion_end_str", "img", "description");
 		p.setNewest(0);
 		p.setDiscount(new BigDecimal(100));
 		p.setPromotion_discount(new BigDecimal(100));
@@ -164,6 +164,24 @@ public class ProductManageController {
 		// mav.addObject("newId", newId);
 		mav.addObject("product", productService.getProduct(p.getId()));
 		mav.addObject("Categorys", productService.getActivateCategory());
+		
+		
+		
+		
+		List<DescriptionImg> descriptionImgs = new ArrayList<DescriptionImg>();
+		String rootPath = environment.getProperty("server.image.path");
+		File f = new File(rootPath + "/image/product/" + product.getId() + "/description/");
+		if (!f.isDirectory()) {
+			f.mkdirs();
+		}
+		for (File file : f.listFiles()) {
+			DescriptionImg descriptionImg = new DescriptionImg();
+			log.info("getPath: {}, getName: {}", file.getPath(), file.getName());
+			descriptionImg.setImagePath("/common/image/product/" + product.getId() + "/description/" + file.getName());
+			descriptionImg.setFilePath(file.getPath());
+			descriptionImgs.add(descriptionImg);
+		}
+		mav.addObject("DescriptionImgs", descriptionImgs);
 		mav.setViewName("manager/product/product-page-editor");
 		return mav;
 	}

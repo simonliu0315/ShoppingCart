@@ -62,10 +62,10 @@ public class MailUtil {
 
 		} catch (MessagingException e) {
 			log.info("寄送email錯誤.", e);
-			throw new RuntimeException(e);
+			//throw new RuntimeException(e);
 		} catch (UnsupportedEncodingException e) {
 			log.info("寄送email錯誤.", e);
-			throw new RuntimeException(e);
+			//throw new RuntimeException(e);
 		}
 	}
 }
