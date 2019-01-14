@@ -21,6 +21,8 @@ import com.waterproof.bjb.shopping.repository.OrderATMRepository;
 import com.waterproof.bjb.shopping.repository.OrderStatusRepository;
 import com.waterproof.bjb.shopping.repository.impl.CustomerOrderRepositoryCustom;
 import com.waterproof.bjb.shopping.repository.impl.EhcacheOrderStatusRepositoryCustom;
+import com.waterproof.bjb.shopping.service.UserService;
+import com.waterproof.bjb.shopping.utils.MailUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,6 +48,12 @@ public class OrderService {
 	@Autowired
 	private CategoryRepository categoryRepository;
 	
+	@Autowired
+	private MailUtil mailUtil;
+	
+	@Autowired
+	private UserService userService;
+	
 	public List<OrderDto> getAllOrder() {
 		List<OrderDto> list = new ArrayList<OrderDto>();
 		for(CustomerOrder customerOrder:customerOrderRepository.findAll()) {
@@ -70,6 +78,11 @@ public class OrderService {
 	
 	public CustomerOrder updateCustomerOrderStatus(Integer id, int status) {
 		CustomerOrder order = customerOrderRepository.findOne(id);
+		mailUtil.sendByGmail("訂單" + order.getOrderNo() + "-訂單狀態異動.", 
+				MailUtil.getChangeOrderStatusMailContent(order.getOrderNo(), 
+						orderStatusRepository.findOne(Long.valueOf(order.getStatusId())).getDescription(), 
+						orderStatusRepository.findOne(Long.valueOf(status)).getDescription()).toString(), 
+				userService.findById(order.getUsername()).getEmail());
 		order.setStatusId(status);
 		log.info("call customer Order update: {}", order);
 		return customerOrderRepository.save(order);

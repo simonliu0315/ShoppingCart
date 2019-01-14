@@ -41,21 +41,37 @@
 	<div class="section">
 		<!-- container -->
 		<div class="container">
+		<div th:replace="fragments/body_header :: body_info"></div>
 			<!-- row -->
 			<div class="row">
-				<form id="checkout-form" class="clearfix" th:action="@{/checkout}" method="post" th:object="${CheckoutForm}" data-toggle="validator">
+				<form id="checkout-form" class="clearfix" th:action="@{/first_checkout}" method="post" th:object="${FirstCheckoutForm}" data-toggle="validator">
 					<div class="col-md-6">
 						<div class="billing-details">
 							<p th:if="${USER_OBJECT.username == 'anonymousUser'}">已經是會員 ? <a th:href="@{/login?f=checkout}">Login</a></p>
 							<div class="section-title">
-								<h3 class="title">帳單明細</h3>
+								<h3 class="title">訂購人資訊</h3>
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" id="userName" name="userName" th:field="*{userName}" placeholder="訂購人姓名" th:required="required" th:value="${FirstCheckoutForm.userName}"/>
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" id="userEmail" name="userEmail" th:field="*{userEmail}" placeholder="訂購人信箱(帳號)" th:required="required" th:value="${FirstCheckoutForm.userEmail}"/>
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" id="userTel" name="userTel" th:field="*{userTel}" placeholder="連絡電話(手機、市話)" th:required="required" th:value="${FirstCheckoutForm.userTel}"/>
+							</div>
+							<div class="form-group">
+								<input class="input" type="password" name="userPassword" placeholder="請輸入密碼" th:value="${FirstCheckoutForm.userPassword}"/>
+							</div>
+							<div class="section-title">
+								<h3 class="title">帳單明細</h3><h5 class="title"><input type="checkbox" name="sameOrder" id="sameOrder"/>同訂購人資訊</h5>
 								<h5 class="text-right"><font color="red">＊隨貨付發票</font></h5>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="postName" th:field="*{postName}" placeholder="收件者姓名" th:required="required" th:value="${CheckoutForm.postName}"/>
+								<input class="input" type="text" id="postName" name="postName" th:field="*{postName}" placeholder="收件者姓名" th:required="required" th:value="${FirstCheckoutForm.postName}"/>
 							</div>
 							<div class="form-group">
-								<input class="input" type="email" name="email" th:field="*{email}" placeholder="Email" th:required="required" value="${CheckoutForm.email}"/>
+								<input class="input" type="email" id="email" name="email" th:field="*{email}" placeholder="信箱" th:required="required" value="${FirstCheckoutForm.email}"/>
 							</div>
 							<div class="zip-selector">
 							    <div class="col-lg-3 col-md-4 col-sm-4 nopadding">
@@ -75,10 +91,10 @@
                                 </div>
                             </div>
 							<div class="form-group">
-								<input class="input" type="text" name="address" th:field="*{address}" placeholder="地址" th:required="required" th:value="${CheckoutForm.address}"/>
+								<input class="input" type="text" name="address" th:field="*{address}" placeholder="地址" th:required="required" th:value="${FirstCheckoutForm.address}"/>
 							</div>
 							<div class="form-group">
-								<input class="input" type="tel" name="tel" th:field="*{tel}" placeholder="連絡電話(手機、市話)" th:required="required" th:value="${CheckoutForm.tel}"/>
+								<input class="input" type="tel" id="tel" name="tel" th:field="*{tel}" placeholder="連絡電話(手機、市話)" th:required="required" th:value="${FirstCheckoutForm.tel}"/>
 							</div>
                             <div class="form-group">
                                 <div class="payments-methods">
@@ -104,18 +120,7 @@
 		
 						</div>
                             </div>
-							<div class="form-group">
-								<div class="input-checkbox">
-									<input type="checkbox" id="register"/>
-									<label class="font-weak" for="register">建立新帳號?</label>
-									<div class="caption">
-										<p></p>
-										<div class="form-group">
-										    <input class="input" type="password" name="repassword" placeholder="請重新輸入密碼"/>
-										</div>
-									</div>
-								</div>
-							</div>
+							
 						</div>
 					</div>
 
@@ -256,6 +261,17 @@
   });
   $(".county").attr("class", "county form-control");
   $(".district").attr("class", "district form-control");
+  $("#sameOrder").change(function() {
+	    if(this.checked) {
+	        $("#postName").val($("#userName").val());
+	        $("#email").val($("#userEmail").val());
+	        $("#tel").val($("#userTel").val());
+	    } else {
+	    	$("#postName").val("");
+	    	$("#email").val("");
+	    	$("#tel").val("");
+	    }
+	});
 </script>
 </body>
 

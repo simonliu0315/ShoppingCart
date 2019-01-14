@@ -64,6 +64,16 @@
                     </h4>
                    
                 </div>
+                <div class="form-group">
+                    <h4 class="col-md-12">
+                    <strong th:if="${order.orderATM != null and order.orderATM.lastFiveAccountNo == ''}" th:text="${'帳號後五碼：-'}"></strong><br/>
+                    <strong th:if="${order.orderATM != null and order.orderATM.accountName == ''}" th:text="${'帳戶名稱：-'}"></strong>
+                    
+                    <strong th:if="${order.orderATM != null and order.orderATM.lastFiveAccountNo != ''}" th:text="${'帳號後五碼：' + order.orderATM.lastFiveAccountNo}"></strong><br/>
+                    <strong th:if="${order.orderATM != null and order.orderATM.accountName != ''}" th:text="${'帳戶名稱：' + order.orderATM.accountName}"></strong>
+                    </h4>
+                   
+                </div>
                 <div class="col-md-12">
 						<div class="order-summary clearfix">
 							<div class="section-title">
@@ -85,6 +95,10 @@
 									    <td class="thumb"><img th:src="@{${orderDetail.product.img}}" alt=""/></td>
 										<td class="details">
 											<a th:href="@{'/products/' + ${orderDetail.id.productId}}" th:text="${orderDetail.productName}">商品名稱</a>
+											<ul class="color-option" th:if="${orderDetail.productColor != null}">
+							                    <li><a href="#" th:style="${'background-color:' + orderDetail.productColor.name}" th:title="${orderDetail.productColor.name}"></a></li>
+								                <li><span th:text="${'顏色: ' + orderDetail.productColor.name}">顏色: ??</span></li>
+							                </ul>
 										</td>
 										<td class="price text-center">
 										    <strong th:text="${'$' +orderDetail.price}">$0</strong>

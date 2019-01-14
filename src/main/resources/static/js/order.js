@@ -13,6 +13,7 @@ var order = {
 		$("#payment-form").submit();
 	}, 
 	informAtmPayment : function() {
+		$("#sendAtmInfo").attr("disabled", true);
 		var formData = {
 				"orderNo" : $("#orderNo").val(), 
 				"lastFiveAccountNo" : $("#lastFiveAccountNo").val(), 

@@ -20,9 +20,20 @@
 		    
 			<!-- row -->
 			<div class="row">
-			
+			<div class="col-md-4 col-xs-4 col-md-offset-1 col-xs-offset-1" >
+						<div class="billing-details">
+							<div class="section-title">
+								<h3 class="title">首次登入與購買</h3>
+							</div>
+													
+							<div class="form-group text-left">
+							    <a th:href="@{/first_checkout}" class="primary-btn"><i class="fa fa-dollar">繼續結帳</i></a>
+							    
+							</div>
+						</div>
+			</div>
 			<form id="userForm" th:action="@{/login}" method="post">
-			    <div class="col-md-4 col-xs-4 col-md-offset-4" >
+			    <div class="col-md-4 col-xs-4 " >
 						<div class="billing-details">
 							<div class="section-title">
 								<h3 class="title">登入</h3>
