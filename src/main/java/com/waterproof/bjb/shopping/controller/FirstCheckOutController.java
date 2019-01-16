@@ -166,22 +166,15 @@ public class FirstCheckOutController {
 		userRoles.add(role);
 		userService_0.insertByUser(u, userRoles);
 
-		UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(u.getUsername(),
-				formBean.getUserPassword(),
-				Arrays.asList(new SimpleGrantedAuthority(ANONYMOUS), new SimpleGrantedAuthority(USER)));
-
-		authToken.setDetails(new WebAuthenticationDetails(request));
-
-		Authentication authentication = authenticationManager.authenticate(authToken);
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-
+		
 		ProductInCartDto productInCartDto = (ProductInCartDto) request.getSession()
 				.getAttribute(SessionParameter.PRODUCTS_IN_CART);
 		if (productInCartDto == null) {
+			log.info("productInCartDto is null set NEW one.");
 			productInCartDto = new ProductInCartDto();
 		}
 		productInCartDto.setPaymentMethod(formBean.getPaymentMethod());
-		String username = userService.getUser().getUsername();
+		String username = formBean.getUserEmail();
 		if (StringUtils.isBlank(username)) {
 			mav.setViewName("/");
 			return mav;
@@ -196,7 +189,7 @@ public class FirstCheckOutController {
 		log.info("session: {}", productInCartDto);
 		UserContractDto userContractDto = new UserContractDto();
 		BeanUtils.copyProperties(formBean, userContractDto);
-
+		userContractDto.setUsername(username);
 		log.info("login user {}", userService.getUser());
 		log.info("userContractDto {}", userContractDto);
 		for (ShippingMethod shippingMethod : customerOrderService.getShipping()) {
@@ -227,6 +220,16 @@ public class FirstCheckOutController {
 		} catch (Exception e) {
 			log.error("{}", e);
 		}
+		
+		UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username,
+				formBean.getUserPassword(),
+				Arrays.asList(new SimpleGrantedAuthority(ANONYMOUS), new SimpleGrantedAuthority(USER)));
+
+		authToken.setDetails(new WebAuthenticationDetails(request));
+
+		Authentication authentication = authenticationManager.authenticate(authToken);
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+
 		return mav;
 	}
 }

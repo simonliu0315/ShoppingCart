@@ -79,7 +79,12 @@ public class LoggableDispatcherServlet extends DispatcherServlet {
 			String response = getResponsePayload(responseToCache).replaceAll("\u0000", "");
 			
 			auditlog.setResponse(response);
-			auditlog.setInsert_by(userService.getUser().getUsername());
+			if (userService.getUser() == null) {
+				auditlog.setInsert_by("anonymousUser");	
+			} else {
+				auditlog.setInsert_by(userService.getUser().getUsername());
+			}
+			
 			log.info("auditlog {}", auditlog);
 			auditService.createAudit(auditlog);
 		}
