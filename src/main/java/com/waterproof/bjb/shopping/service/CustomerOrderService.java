@@ -123,6 +123,10 @@ public class CustomerOrderService {
 		return String.valueOf(utilDate.getTime());
 	}
 
+	/**
+	 * @param username
+	 * @return
+	 */
 	public List<ProductInCartDto> queryOrder(String username) {
 		List<ProductInCartDto> retList = new ArrayList<ProductInCartDto>();
 
@@ -148,6 +152,8 @@ public class CustomerOrderService {
 			}
 			BeanUtils.copyProperties(c, dto);
 			log.info("paymentMethod: {}", c.getPaymentMethod());
+			
+			dto.setTotalAmt(c.getAmount());
 			dto.setPaymentMethod(c.getPaymentMethod().getMethod());
 			dto.setOrderStatus(c.getOrderStatus().getDescription());
 			dto.setPaymentMethodStr(c.getPaymentMethod().getDescription());
