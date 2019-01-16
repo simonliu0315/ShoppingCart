@@ -197,6 +197,7 @@ public class FirstCheckOutController {
 		}
 
 		String orderNumber = customerOrderService.saveToOrder(userContractDto, productInCartDto, username);
+		log.info("orderNumber :{}", orderNumber);
 		request.getSession().setAttribute(SessionParameter.PRODUCTS_IN_CART, null);
 		ProductInCartDto dto = customerOrderService.queryOrderByNo(orderNumber);
 		log.info("dto :{}", dto);

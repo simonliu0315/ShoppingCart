@@ -168,9 +168,9 @@ public class CustomerOrderService {
 	}
 
 	public ProductInCartDto queryOrderByNo(String orderNo) {
-
+		log.info("call queryOrderByNo. orderNo {}", orderNo);
 		CustomerOrder customerOrder = customerOrderRepository.findByOrderNoOrderByInsertedDesc(orderNo);
-
+		log.info("query by orderNo {}, {}", orderNo, customerOrder);
 		ProductInCartDto dto = new ProductInCartDto();
 		// dto.setUserId(username);
 		log.info("OrderNo {}", customerOrder);
