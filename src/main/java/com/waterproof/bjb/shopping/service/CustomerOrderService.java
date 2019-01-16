@@ -128,6 +128,7 @@ public class CustomerOrderService {
 	 * @return
 	 */
 	public List<ProductInCartDto> queryOrder(String username) {
+		log.info("call queryOrder. input {}", username);
 		List<ProductInCartDto> retList = new ArrayList<ProductInCartDto>();
 
 		List<CustomerOrder> list = customerOrderRepository.findByUsernameOrderByInsertedDesc(username);
@@ -153,10 +154,11 @@ public class CustomerOrderService {
 			BeanUtils.copyProperties(c, dto);
 			log.info("paymentMethod: {}", c.getPaymentMethod());
 			
-			dto.setTotalAmt(c.getAmount());
+			//dto.setTotalAmt(c.getAmount());
 			dto.setPaymentMethod(c.getPaymentMethod().getMethod());
 			dto.setOrderStatus(c.getOrderStatus().getDescription());
 			dto.setPaymentMethodStr(c.getPaymentMethod().getDescription());
+			dto.setUserId(username);
 			log.info("dto: {}", dto);
 			retList.add(dto);
 		}
