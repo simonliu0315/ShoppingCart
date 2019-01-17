@@ -292,15 +292,15 @@ public class MailUtil {
             mailMessage.append("<td style=\"font-family:Helvetica,arial,sans-serif;font-size:13px;color:#747474;text-align:left;line-height:px\">");
             mailMessage.append("<table width=\"100%\" align=\"left\">");
             mailMessage.append("<tbody><tr>");
-            mailMessage.append("<td style=\"text-align:left;padding-left:10px;font-family:Helvetica,arial,sans-serif;color:#747474;font-size:13px;white-space:nowrap;width:80px\">Variation: </td>");
-            mailMessage.append("<td style=\"text-align:left;font-family:Helvetica,arial,sans-serif;color:#747474;font-size:13px\">"+productTempOrder.getColorName()+"</td>");
+            mailMessage.append("<td style=\"text-align:left;padding-left:10px;font-family:Helvetica,arial,sans-serif;color:#747474;font-size:13px;white-space:nowrap;width:80px\">顏色: </td>");
+            mailMessage.append("<td style=\"text-align:left;font-family:Helvetica,arial,sans-serif;color:#747474;font-size:13px\">"+(productTempOrder.getColorName() == null ? "" : productTempOrder.getColorName())+"</td>");
             mailMessage.append("</tr>");
             mailMessage.append("<tr>");
-            mailMessage.append("<td style=\"text-align:left;padding-left:10px;font-family:Helvetica,arial,sans-serif;color:#747474;font-size:13px;white-space:nowrap;width:80px\">Quantity: </td>");
+            mailMessage.append("<td style=\"text-align:left;padding-left:10px;font-family:Helvetica,arial,sans-serif;color:#747474;font-size:13px;white-space:nowrap;width:80px\">數量: </td>");
             mailMessage.append("<td style=\"text-align:left;font-family:Helvetica,arial,sans-serif;color:#747474;font-size:13px\">"+productTempOrder.getQuantity()+"</td>");
             mailMessage.append("</tr>");
             mailMessage.append("<tr>");
-            mailMessage.append("<td style=\"text-align:left;padding-left:10px;font-family:Helvetica,arial,sans-serif;color:#747474;font-size:13px;white-space:nowrap;width:80px\">Price: </td>");
+            mailMessage.append("<td style=\"text-align:left;padding-left:10px;font-family:Helvetica,arial,sans-serif;color:#747474;font-size:13px;white-space:nowrap;width:80px\">價格: </td>");
             mailMessage.append("<td style=\"text-align:left;font-family:Helvetica,arial,sans-serif;color:#747474;font-size:13px\">NT$ "+productTempOrder.getPrice()+"</td>");
             mailMessage.append("</tr>");
             mailMessage.append("</tbody></table>");
@@ -354,6 +354,7 @@ public class MailUtil {
         mailMessage.append("<tr><td style=\"text-align:left;font-family:Helvetica,arial,sans-serif;font-size:13px;color:#747474;white-space:nowrap;vertical-align:top\">商品總額: </td><td style=\"text-align:left;font-family:Helvetica,arial,sans-serif;font-size:13px;color:#747474;vertical-align:top\">NT$ "+dto.getSubTotalAmt()+"</td></tr>");
         mailMessage.append("<tr><td style=\"text-align:left;font-family:Helvetica,arial,sans-serif;font-size:13px;color:#747474;white-space:nowrap;vertical-align:top\">物流費用: </td><td style=\"text-align:left;font-family:Helvetica,arial,sans-serif;font-size:13px;color:#747474;vertical-align:top\">NT$ +"+dto.getShipment()+"</td></tr>");
         mailMessage.append("<tr><td style=\"text-align:left;font-family:Helvetica,arial,sans-serif;font-size:13px;color:#747474;white-space:nowrap;vertical-align:top\">總金額: </td><td style=\"text-align:left;font-family:Helvetica,arial,sans-serif;font-size:13px;color:#747474;white-space:nowrap;vertical-align:top\">NT$ "+dto.getTotalAmt()+"</td></tr>");
+        mailMessage.append("<tr><td><a href=\"http://www.liquidrubber-diy.com.tw/member/order/list\" target=\"_blank\">連結我的訂單</a></td><td><a href=\"https://line.me/R/ti/p/@lr0966669553\" target=\"_blank\">LINE@即時洽詢</a></td></tr>");
         mailMessage.append("</tbody></table>");
         mailMessage.append("</td>");
         mailMessage.append("</tr>");

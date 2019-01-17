@@ -94,7 +94,7 @@ public class CustomerOrderService {
 		customerOrder.setId(0);
 		customerOrder.setOrderNo(String.valueOf(utilDate.getTime()));
 		log.info("CustomerOrder {}", customerOrder);
-		customerOrderRepository.save(customerOrder);
+		customerOrderRepository.saveAndFlush(customerOrder);
 
 		for (ProductTempOrder order : productInCartDto.getProductsTempOrder()) {
 			OrderDetail orderDetail = new OrderDetail();
@@ -112,14 +112,14 @@ public class CustomerOrderService {
 			orderDetail.setQuantity(order.getQuantity());
 			
 			log.info("ProductTempOrder {}", orderDetail);
-			orderDetailRepository.save(orderDetail);
+			orderDetailRepository.saveAndFlush(orderDetail);
 		}
 		orderContract.setOrderNo(customerOrder.getOrderNo());
 		orderInvoiceContract.setInvoiceType(userContractDto.getInvoiceType());
 		orderInvoiceContract.setOrderNo(customerOrder.getOrderNo());
-		orderContractRepository.save(orderContract);
+		orderContractRepository.saveAndFlush(orderContract);
 		log.info("orderInvoiceContract {}", orderInvoiceContract);
-		orderInvoiceContractRepository.save(orderInvoiceContract);
+		orderInvoiceContractRepository.saveAndFlush(orderInvoiceContract);
 		return String.valueOf(utilDate.getTime());
 	}
 
@@ -173,7 +173,7 @@ public class CustomerOrderService {
 		log.info("query by orderNo {}, {}", orderNo, customerOrder);
 		ProductInCartDto dto = new ProductInCartDto();
 		// dto.setUserId(username);
-		log.info("OrderNo {}", customerOrder);
+		log.info("OrderNo {} size: {}", customerOrder, customerOrder.getOrderDetails().size());
 		for (OrderDetail d : customerOrder.getOrderDetails()) {
 			ProductTempOrder tmp = new ProductTempOrder();
 			log.info("OrderDetail {}", d);
@@ -192,6 +192,7 @@ public class CustomerOrderService {
 		dto.setPaymentMethod(customerOrder.getPaymentMethod().getMethod());
 		dto.setOrderStatus(customerOrder.getOrderStatus().getDescription());
 		dto.setPaymentMethodStr(customerOrder.getPaymentMethod().getDescription());
+		dto.setUserId(customerOrder.getUsername());
 		log.info("dto: {}", dto);
 
 		return dto;
