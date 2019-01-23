@@ -20,6 +20,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import org.thymeleaf.util.StringUtils;
 
 import com.waterproof.bjb.shopping.controller.ProductController;
@@ -36,27 +37,31 @@ public class CustomerOrderRepositoryCustom {
 	@PersistenceContext
 	private EntityManager em;
 
+	@Transactional
 	public Page<CustomerOrder> filter(Date startDate, Date endDate, String orderNo, int statusId, int orderby,
 			Pageable pageable) {
+		log.info("*********filter*********");
+		log.info("param: startDate {}, endDate {}, orderNo {}, statusId {}, orderby {}, Pageable {}", startDate, endDate, orderNo, statusId, orderby, pageable);
 		CriteriaQuery<CustomerOrder> criteriaQuery = getCriteriaQuery(startDate, endDate, orderNo, statusId, orderby);
 		// SQL查詢對象
 		TypedQuery<CustomerOrder> createQuery = em.createQuery(criteriaQuery);
 		
+		 List<CustomerOrder> list =createQuery.getResultList();
 		//分頁參數
 		Integer pageSize = pageable.getPageSize();
 		Integer pageNo = pageable.getPageNumber();
 
 		log.info("pageSize {}, pageNo {}", pageSize, pageNo);
 		// 计数查询结果条数
-		TypedQuery<CustomerOrder> createCountQuery = em.createQuery(criteriaQuery);
-
-		List<CustomerOrder> list = createCountQuery.getResultList();
-		log.info("createCountQuery: getCounter :{}", list.size());
+		//TypedQuery<CustomerOrder> createCountQuery = em.createQuery(criteriaQuery);
+		//List<CustomerOrder> list = createCountQuery.getResultList();
+		//log.info("createCountQuery: getCounter :{}", list.size());
+		
 		// 实际查询返回分页对象
 		int startIndex = pageSize * pageNo;
 		createQuery.setFirstResult(startIndex);
 		createQuery.setMaxResults(pageable.getPageSize());
-		Page<CustomerOrder> pageRst = new PageImpl<CustomerOrder>(createQuery.getResultList(), pageable, list.size());
+		Page<CustomerOrder> pageRst = new PageImpl<CustomerOrder>(list, pageable, list.size());
 		return pageRst;
 
 	}
