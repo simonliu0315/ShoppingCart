@@ -86,5 +86,46 @@ public class IndexController {
         mav.setViewName("index");
         return mav;
     }
-	
+	@RequestMapping(value = "/lineLink", method = {RequestMethod.GET})
+    public ModelAndView getPage3(@RequestParam(value = "page", defaultValue = "0", required = false) String page,
+    		HttpServletRequest request) {
+        
+		log.info("start index getPage.......");
+        
+        
+        
+        ModelAndView mav = new ModelAndView();
+        if (request.getSession().getAttribute(SessionParameter.PRODUCTS_IN_CART) == null) {
+        	ProductInCartDto productInCart = new ProductInCartDto();
+        	request.getSession().setAttribute(SessionParameter.PRODUCTS_IN_CART, productInCart);
+        }
+        mav.addObject("categorys", categorySerice.getAllCategory());
+        //抓最新的商品資料
+        mav.addObject("newest_product", productService.getProductsOrderInsertTime());
+        //抓有特價的商品資料
+        List<Product> promotionProducts = productService.getPromotionProduct();
+        if (CollectionUtils.isNotEmpty(promotionProducts)) {
+        	mav.addObject("promotion_product", promotionProducts);
+        } else {
+        	mav.addObject("promotion_product", new ArrayList<Product>());
+        }
+        
+        for(Product product : promotionProducts) {
+        	log.info("promotion_product {}", product);
+        }
+        if (productService.getPromotionProduct() != null && productService.getPromotionProduct().size() > 0) {
+            mav.addObject("promotion_product_one", productService.getPromotionProduct().get(0));
+        } else {
+        	mav.addObject("promotion_product_one", new ArrayList<Product>());
+        }
+        //抓有折扣的商品資料
+        mav.addObject("discount_product", productService.getDiscountProductsOrderUpdatedTime());
+        //抓最常購買的資料
+        mav.addObject("suggest_product", productService.getActivateProduct());
+        //抓使用者建議的商品
+        mav.addObject("recommended_product", productService.getDiscountProductsOrderUpdatedTime());
+        
+        mav.setViewName("index3");
+        return mav;
+    }
 }

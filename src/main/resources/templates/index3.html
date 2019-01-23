@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/SearchResultsPage" lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta th:replace="fragments/meta_resources :: meta_resources"></meta>
+<link type="text/css" rel="stylesheet" th:href="@{/css/jquery.mapify.css}" />
+<style type="text/css">
+	
+	/* Mapify custom popOver example */
+	
+	.mapify-popOver strong{
+		font-weight: 400;
+		font-size:24px;
+		line-height: 1em;
+		display: block;
+		margin-bottom: 10px;
+		color: #000;
+	}
+	.mapify-popOver{
+		color: #999;
+		font-size: 16px;
+		height: 130px;
+	}
+	.mapify-popOver-content{
+		position: relative;
+		top:50%;
+		transform: translateY(-50%);
+		-webkit-transform: translateY(-50%);
+	}
+	
+	.mapify-popOver.customPopOver{
+		background: #09f;
+	}
+	
+	/* Custom hovering style */
+	.mapify-hover{
+		fill:rgba(0,0,0,0.15);
+		stroke: #fff;
+		stroke-width: 2;
+	}
+	
+	.customHover{
+		fill:#09f;
+		stroke: #fff;
+		stroke-width: 2;
+	}
+	#top {
+   background:#A29A8F;
+  color:#FFFFFF;
+  border:4px solid #FFFFFF;
+  padding:5px;
+  width:250px;
+  height:230px;
+  position:absolute;
+  top:300px;
+  right:10px;
+  _position: absolute; /* position fixed for IE6 */
+  _top:expression(documentElement.scrollTop+100);
+  z-index:3;
+}
+#top .top_close {
+	display: block;
+	text-align: right;
+	cursor: pointer;
+	font-size: 12px;
+	color:#FF0000;
+}
+</style>
+</head>
+
+<body style="display: none;">
+	
+		
+	
+	<!-- section -->
+	<div class="section section-grey">
+		<!-- container -->
+		<div class="container">
+					
+			<!-- row -->
+			<div class="row">
+				<!-- banner -->
+				<div class="col-md-12">
+					<div class="banner banner-1">
+		
+						<img th:src="@{/common/image/用途說明/DIY建築圖.jpg}" alt="用途說明" usemap="#logos" width="3000px" height="2120px"/>
+						<!-- div class="banner-caption text-center">
+							<h1 class="primary-color">HOT DEAL<br/><span class="white-color font-weak">Up to 50% OFF</span></h1>
+							<button class="primary-btn">Shop Now</button>
+						</div-->
+						<map name="logos" id="logos">
+                            <area data-product="1"  shape="rect" coords="430,400,700,700" th:href="@{/products/search(tagId=1)}" title="防水密封塗料" alt="防水密封塗料" />
+                            <area data-product="11" shape="rect" coords="340,970,600,1280" th:href="@{/products/search(tagId=2)}" title="甲板密封塗料" alt="甲板密封塗料" />
+                            <area data-product="7" shape="rect" coords="430,1550,695,1860" th:href="@{/products/search(tagId=3)}" title="RV車頂密封塗料" alt="RV車頂密封塗料" />
+                            <area data-product="14" shape="rect" coords="2310,410,2580,710" th:href="@{/products/search(tagId=4)}" title="金屬安全密封塗料" alt="金屬安全密封塗料" />
+                            <area data-product="4" shape="rect" coords="2360,950,2635,1260" th:href="@{/products/search(tagId=5)}" title="彩色防水密封塗料" alt="彩色防水密封塗料" />
+                            <area data-product="12" shape="rect" coords="2280,1630,2540,1940" th:href="@{/products/search(tagId=6)}" title="基礎密封塗料" alt="基礎密封塗料" />
+                            
+                            <!-- area shape="default" nohref="nohref" title="Default" alt="Default"/-->
+                        </map>
+					</div>
+					
+				</div>
+				<!-- /banner -->
+
+				
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+
+    <div th:replace="fragments/modal :: addCart"></div>
+    <div th:replace="fragments/modal :: removeCart"></div>
+	<div th:replace="fragments/body_footer :: body_footer"></div>
+    <div th:replace="fragments/body_resources :: body_resources"></div>
+	
+	<script th:src="@{/js/index.js}"></script>
+	<!-- script th:src="@{/js/imageMapResizer.min.js}"></script-->
+	<script th:src="@{/js/jquery.mapify.js}"></script>
+	
+	<script>$("body").show();
+	$(document).ready(function() {
+	    //$('map').imageMapResize();
+		
+	});
+	
+	</script>
+<script type="text/javascript">
+$(function(){
+	$("img[usemap]:last").mapify({
+	/*	
+	
+		popOver: {
+			content: function(zone){
+				if (zone.attr("data-product") == 1) {
+					return "<strong>"+zone.attr("data-title")+"</strong>" + '<img class="img-circle img-responsive" src="/img/product/1.防水密封膠塗料Liquid_Rubber_Waterproof_Sealant_3.78L-1加侖1000.jpg" alt="loading"/>';
+				} else if (zone.attr("data-product") == 11) {
+					return "<strong>"+zone.attr("data-title")+"</strong>" + '<img class="img-circle img-responsive" src="/img/product/5.聚氨酯甲板塗料Polyurethane Deck Coating-3.78L-1加侖1000.jpg" alt="loading"/>';				
+				} else if (zone.attr("data-product") == 7) {
+					return "<strong>"+zone.attr("data-title")+"</strong>" + '<img class="img-circle img-responsive" src="/img/product/3.RV屋頂塗料RV Roof Coating-3.78L-1加侖1000.jpg" alt="loading"/>';
+				} else if (zone.attr("data-product") == 14) {
+					return "<strong>"+zone.attr("data-title")+"</strong>" + '<img class="img-circle img-responsive" src="/img/product/7.金屬安全密封膠MetalSafe Sealant-3.78L-1加侖1000.jpg" alt="loading"/>';
+				} else if (zone.attr("data-product") == 4) {
+					return "<strong>"+zone.attr("data-title")+"</strong>" + '<img class="img-circle img-responsive" src="/img/product/2.彩色防水密封膠.塗料Colour Waterproof Sealant-  Coating_3.78L-1加侖1000.jpg" alt="loading"/>';
+				} else if (zone.attr("data-product") == 12) {
+					return "<strong>"+zone.attr("data-title")+"</strong>" + '<img class="img-circle img-responsive" src="/img/product/6.基礎密封膠.地下室塗料Foundation Sealant-Basement Coating_3.78L-1加侖1000.jpg" alt="loading"/>';
+				} else {
+					return "<strong>"+zone.attr("data-title")+"</strong>" + '<img class="img-circle img-responsive" src="/img/product/1.防水密封膠塗料Liquid_Rubber_Waterproof_Sealant_3.78L-1加侖1000.jpg" alt="loading"/>';
+				}
+				
+			},
+			delay: 0.7,
+			margin: "15px",
+			height: "260px",
+			width: "260px"
+		},*/
+		onAreaHighlight: function(){
+			console.log("onAreaHighlight callback");
+		},
+		onMapClear: function(){
+			console.log("onMapClear callback");
+		}
+	});
+	
+	$("#dynamicClassChange").click(function() {
+		$(this).attr("data-hover-class","hover-green");
+	});
+	
+	$("#showimg").hover(function(){
+	    $(this).html('<img src="/common/image/用途說明/DIY建築圖.jpg" alt="loading"/>');  
+    });
+
+});
+$(window).load(function(){
+	var $win = $(window),
+		$ad = $('#top').css('opacity', 0).show(),	// 讓廣告區塊變透明且顯示出來
+		_width = $ad.width(),
+		_height = $ad.height(),
+		_diffY = 20, _diffX = 20,	// 距離右及下方邊距
+		_moveSpeed = 500;	// 移動的速度
+ //alert($(document).height()/2);
+	// 先把 #abgne_float_ad 移動到定點
+	$ad.css({
+		top: $(document).height(),
+		left: $win.width() - _width - _diffX,
+		opacity: 1
+	});
+ 
+	// 幫網頁加上 scroll 及 resize 事件
+	$win.bind('scroll resize', function(){
+		var $this = $(this);
+ 
+		// 控制 #abgne_float_ad 的移動
+		$ad.stop().animate({
+			top: $this.scrollTop() + ($this.height()/2) - _height - _diffY + 250,
+			left: $this.scrollLeft() + $this.width() - _width - _diffX
+		}, _moveSpeed);
+	}).scroll();	// 觸發一次 scroll()
+	
+	// 關閉廣告
+	$('#top .top_close').click(function(){
+		$ad.hide();
+	});
+});
+</script>
+</body>
+
+</html>
