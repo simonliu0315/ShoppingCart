@@ -1,13 +1,11 @@
-package com.waterproof.bjb.shopping.manager.service;
+package com.waterproof.bjb.test;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.security.cert.X509Certificate;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
@@ -16,57 +14,11 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import org.apache.commons.lang3.time.DateUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+public class Test {
 
-import com.waterproof.bjb.shopping.entity.AuditLog;
-import com.waterproof.bjb.shopping.repository.AuditLogRepository;
-import com.waterproof.bjb.shopping.repository.impl.AuditLogRepositoryCustom;
-
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
-@Service
-public class AuditLogService {
-
-	
-	@Autowired
-	private AuditLogRepositoryCustom auditLogRepositoryCustom;
-
-	@Autowired
-	private AuditLogRepository auditLogRepository;
-	
-	@Transactional
-	public Page<AuditLog> getFilterAuditLog(Date startDate, Date endDate, String userName, int status, int orderby, Pageable pageable) {
-		
-		Page<AuditLog> pauditlog = auditLogRepositoryCustom.filter(startDate, endDate, userName, status, orderby, pageable);
-		List<AuditLog> auditlogs = pauditlog.getContent();
-		log.info("size: {}" , auditlogs.size());
-		
-		return pauditlog;
-	}
-	
-	//初始延遲1秒，每隔2秒 = 2000
-    @Scheduled(fixedRateString = "24000000",initialDelay = 100000)
-	//@Scheduled(cron="* 20 22 * * ?")
-    public void deleteCron(){
-		
-		Date date = DateUtils.addDays(new Date(), -7);
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		cal.set(Calendar.MILLISECOND, 0);
-		log.info("deleteCron Date: {}", date);
-		auditLogRepository.deleteByDate(new java.sql.Timestamp(date.getTime()));
-    }
-    
-    @Scheduled(cron="* 59 11 * * ?")
-    public void gogo() {
-    	while(true){ 
+	public static void main(String[] args) throws Exception {
+				
+		while(true){ 
 			Thread thread1 = new Thread(new Runnable() {
 				public void run() {
 					String url1 = "https://www.hypay.com.tw/mpi/return.jsp";
@@ -118,23 +70,25 @@ public class AuditLogService {
 			// 否則 main thread 結束後，此 thread 還是會繼續執行
 			thread1.setDaemon(true);
 			thread1.start();
-			thread2.setDaemon(true);
-			thread2.start();
-			thread3.setDaemon(true);
-			thread3.start();
-			thread4.setDaemon(true);
-			thread4.start();
+//			thread2.setDaemon(true);
+//			thread2.start();
+//			thread3.setDaemon(true);
+//			thread3.start();
+//			thread4.setDaemon(true);
+//			thread4.start();
 			thread5.setDaemon(true);
 			thread5.start();
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//			try {
+//				Thread.sleep(1000);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 		}
-    }
-    public static void call(String url) {
+
+	}
+
+	public static void call(String url) {
 		//String url = "https://www.hypay.com.tw/mpi/return.jsp";
 		//url = "https://epos.hncb.com.tw/mpisite/return.jsp";
 		//url = "https://epos.hncb.com.tw/ezpostw/auth/SSLAuthUI.jsp";

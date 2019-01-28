@@ -4,29 +4,22 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
 import org.thymeleaf.util.StringUtils;
 
-import com.waterproof.bjb.shopping.controller.ProductController;
 import com.waterproof.bjb.shopping.entity.AuditLog;
-import com.waterproof.bjb.shopping.entity.Category;
-import com.waterproof.bjb.shopping.entity.CustomerOrder;
-import com.waterproof.bjb.shopping.entity.Product;
+import com.waterproof.bjb.shopping.entity.AuditLogPK;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -91,11 +84,11 @@ log.info("getModel: {}", rootFrom.getModel());
 		// }
 		// 格式化参数
 		criteriaQuery.where(criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()])));
-
-		//log.info("getName {}", rootFrom.get);
+		
+		//log.info("getName {}", new AuditLogPK().getInserted().getClass().getName());
 		// 默认按照id排序（从小到大）
 		if (orderby == 1) {
-			//criteriaQuery.orderBy(criteriaBuilder.desc(rootFrom.get(new AuditLog().getId().getClass().getName())));
+			criteriaQuery.orderBy(criteriaBuilder.desc(rootFrom.get("id").get("inserted")));
 		}
 		return criteriaQuery;
 	}

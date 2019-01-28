@@ -56,7 +56,9 @@ public class LoggableDispatcherServlet extends DispatcherServlet {
 				&& requestToCache.getRequestURI().indexOf("/js") == -1
 				&& requestToCache.getRequestURI().indexOf("/img") == -1
 				&& requestToCache.getRequestURI().indexOf("/image") == -1
-				&& requestToCache.getRequestURI().indexOf("/fonts") == -1)) {
+				&& requestToCache.getRequestURI().indexOf("/fonts") == -1)
+				&& requestToCache.getRequestURI().indexOf("/locales") == -1
+				&& requestToCache.getRequestURI().indexOf("/user/refashCart") == -1) {
 			Date utilDate = new Date();
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(utilDate);
