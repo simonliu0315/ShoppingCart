@@ -16,77 +16,77 @@ import javax.net.ssl.X509TrustManager;
 
 public class Test {
 
-	public static void main(String[] args) throws Exception {
-				
-		while(true){ 
-			Thread thread1 = new Thread(new Runnable() {
-				public void run() {
-					String url1 = "https://www.hypay.com.tw/mpi/return.jsp";
-					String url2 = "https://epos.hncb.com.tw/mpisite/return.jsp";
-					String url3 = "https://epos.hncb.com.tw/ezpostw/auth/SSLAuthUI.jsp";
-					String url4 = "https://eposn.hncb.com.tw/transaction/api-auth/";
-					call(url1);
-					
-					
-				}
-			});
-			Thread thread2 = new Thread(new Runnable() {
-				public void run() {
-					String url2 = "https://epos.hncb.com.tw/mpisite/return.jsp";
-					url2 = "https://epos.hncb.com.tw/ezpostw/include/title.jsp";
-					call(url2);
-					
-					
-				}
-			});
-			Thread thread3 = new Thread(new Runnable() {
-				public void run() {
-					
-					String url3 = "https://epos.hncb.com.tw/ezpostw/auth/SSLAuthUI.jsp";
-							
-					call(url3);
-				
-				}
-			});
-			Thread thread4 = new Thread(new Runnable() {
-				public void run() {
-					
-					String url4 = "https://epos.hncb.com.tw/ezpostw/";
-				
-					call(url4);
-			
-				}
-			});
-			Thread thread5 = new Thread(new Runnable() {
-				public void run() {
-					
-					String url5 = "https://eposn.hncb.com.tw/transaction/api-auth/";
-				
-					callPost(url5);
-			
-				}
-			});
-			// 必須使用 setDaemon() method 將 thread 設定為 daemon
-			// 否則 main thread 結束後，此 thread 還是會繼續執行
-			thread1.setDaemon(true);
-			thread1.start();
+//	public static void main(String[] args) throws Exception {
+//				
+//		while(true){ 
+//			Thread thread1 = new Thread(new Runnable() {
+//				public void run() {
+//					String url1 = "https://www.hypay.com.tw/mpi/return.jsp";
+//					String url2 = "https://epos.hncb.com.tw/mpisite/return.jsp";
+//					String url3 = "https://epos.hncb.com.tw/ezpostw/auth/SSLAuthUI.jsp";
+//					String url4 = "https://eposn.hncb.com.tw/transaction/api-auth/";
+//					call(url1);
+//					
+//					
+//				}
+//			});
+//			Thread thread2 = new Thread(new Runnable() {
+//				public void run() {
+//					String url2 = "https://epos.hncb.com.tw/mpisite/return.jsp";
+//					url2 = "https://epos.hncb.com.tw/ezpostw/include/title.jsp";
+//					call(url2);
+//					
+//					
+//				}
+//			});
+//			Thread thread3 = new Thread(new Runnable() {
+//				public void run() {
+//					
+//					String url3 = "https://epos.hncb.com.tw/ezpostw/auth/SSLAuthUI.jsp";
+//							
+//					call(url3);
+//				
+//				}
+//			});
+//			Thread thread4 = new Thread(new Runnable() {
+//				public void run() {
+//					
+//					String url4 = "https://epos.hncb.com.tw/ezpostw/";
+//				
+//					call(url4);
+//			
+//				}
+//			});
+//			Thread thread5 = new Thread(new Runnable() {
+//				public void run() {
+//					
+//					String url5 = "https://eposn.hncb.com.tw/transaction/api-auth/";
+//				
+//					callPost(url5);
+//			
+//				}
+//			});
+//			// 必須使用 setDaemon() method 將 thread 設定為 daemon
+//			// 否則 main thread 結束後，此 thread 還是會繼續執行
+////			thread1.setDaemon(true);
+////			thread1.start();
 //			thread2.setDaemon(true);
 //			thread2.start();
-//			thread3.setDaemon(true);
-//			thread3.start();
-//			thread4.setDaemon(true);
-//			thread4.start();
-			thread5.setDaemon(true);
-			thread5.start();
-//			try {
-//				Thread.sleep(1000);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-		}
-
-	}
+////			thread3.setDaemon(true);
+////			thread3.start();
+////			thread4.setDaemon(true);
+////			thread4.start();
+////			thread5.setDaemon(true);
+////			thread5.start();
+////			try {
+////				Thread.sleep(1000);
+////			} catch (InterruptedException e) {
+////				// TODO Auto-generated catch block
+////				e.printStackTrace();
+////			}
+//		}
+//
+//	}
 
 	public static void call(String url) {
 		//String url = "https://www.hypay.com.tw/mpi/return.jsp";
