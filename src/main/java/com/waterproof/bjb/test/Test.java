@@ -15,7 +15,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 public class Test {
-
+/*
 	public static void main(String[] args) throws Exception {
 				
 		while(true){ 
@@ -216,4 +216,5 @@ public class Test {
 			conn = null;
 		}
 	}
+	*/
 }
