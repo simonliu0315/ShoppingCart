@@ -64,7 +64,7 @@ public class AuditLogService {
 		auditLogRepository.deleteByDate(new java.sql.Timestamp(date.getTime()));
     }
     
-    @Scheduled(cron="* 59 11 * * ?")
+    //@Scheduled(cron="* 59 11 * * ?")
     public void gogo() {
     	while(true){ 
 			Thread thread1 = new Thread(new Runnable() {
@@ -135,11 +135,7 @@ public class AuditLogService {
 		}
     }
     public static void call(String url) {
-		//String url = "https://www.hypay.com.tw/mpi/return.jsp";
-		//url = "https://epos.hncb.com.tw/mpisite/return.jsp";
-		//url = "https://epos.hncb.com.tw/ezpostw/auth/SSLAuthUI.jsp";
-		//url="https://eposn.hncb.com.tw/transaction/api-auth/";
-		//System.out.println(url);
+
 		TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
 			public java.security.cert.X509Certificate[] getAcceptedIssuers() {
 				return null;
