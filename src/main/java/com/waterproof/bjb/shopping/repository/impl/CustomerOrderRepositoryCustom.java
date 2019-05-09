@@ -61,7 +61,7 @@ public class CustomerOrderRepositoryCustom {
 		int startIndex = pageSize * pageNo;
 		createQuery.setFirstResult(startIndex);
 		createQuery.setMaxResults(pageable.getPageSize());
-		Page<CustomerOrder> pageRst = new PageImpl<CustomerOrder>(list, pageable, list.size());
+		Page<CustomerOrder> pageRst = new PageImpl<CustomerOrder>(createQuery.getResultList(), pageable, list.size());
 		return pageRst;
 
 	}

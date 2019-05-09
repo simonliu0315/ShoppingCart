@@ -55,14 +55,14 @@ public class OrderController {
     		@RequestParam(value = "endDate", required=false, defaultValue = "") String endDate,
     		@RequestParam(value = "orderby", required=false, defaultValue = "1") int orderby,
     		@RequestParam(value = "page", required=false, defaultValue = "0") int page,
-    		@RequestParam(value = "pageSize", required=false, defaultValue = "10") int pageSize,
+    		@RequestParam(value = "pageSize", required=false, defaultValue = "5") int pageSize,
     		HttpServletRequest request) {
         log.info("search getPage");
         
         ModelAndView mav = new ModelAndView();
         if (page != 0) {
         	page = page - 1;
-        }
+        }        
         log.info("page {}, pageSize {}", page, pageSize);
         Pageable pageable = new PageRequest(page, pageSize);
         Date sStartDate = null;
@@ -92,6 +92,7 @@ public class OrderController {
         mav.addObject("pageSize", pCustomerOrder.getSize());
         mav.addObject("pageNumber", pageable.getPageNumber());
         mav.addObject("pageable", pageable);
+        log.info("pageable {}", pageable);
         log.info("size {}", pCustomerOrder.getContent().size());
         mav.addObject("orderList", pCustomerOrder.getContent());
         

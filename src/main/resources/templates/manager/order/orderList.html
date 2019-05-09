@@ -112,6 +112,7 @@
                         <th>訂單成立時間</th>
                         <th>修改人員</th>
                         <th>訂單狀態</th>
+                        <th>交易別</th>
                         <th>操作</th>
                     </tr>
                 </thead>
@@ -124,6 +125,7 @@
                         <td class="text-left" scope="row" th:text="${order.inserted}"></td>
                         <td class="text-left" scope="row" th:text="${order.update_by}"></td>
                         <td class="text-left" scope="row" th:text="${order.orderStatus.description}"></td>
+                        <td class="text-left" scope="row" th:text="${order.paymentMethod.description}"></td>
                         <td>
                         <a class="btn btn-info" th:href="@{'/manager/order/update/' + ${order.id}}">修改</a>
                         <a class="btn btn-danger" th:href="@{'/manager/order/delete/' + ${order.id}}">取消</a>
