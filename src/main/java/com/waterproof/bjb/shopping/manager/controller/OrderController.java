@@ -55,7 +55,7 @@ public class OrderController {
     		@RequestParam(value = "endDate", required=false, defaultValue = "") String endDate,
     		@RequestParam(value = "orderby", required=false, defaultValue = "1") int orderby,
     		@RequestParam(value = "page", required=false, defaultValue = "0") int page,
-    		@RequestParam(value = "pageSize", required=false, defaultValue = "5") int pageSize,
+    		@RequestParam(value = "pageSize", required=false, defaultValue = "10") int pageSize,
     		HttpServletRequest request) {
         log.info("search getPage");
         
