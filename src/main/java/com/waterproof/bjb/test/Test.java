@@ -29,6 +29,7 @@ import org.apache.http.ssl.SSLContexts;
 
 public class Test {
 
+	/*
 	
 	public static void main(String[] args) throws Exception {
 
@@ -360,4 +361,5 @@ public class Test {
 			conn = null;
 		}
 	}
+	*/
 }

@@ -22,6 +22,7 @@ import javax.net.ssl.X509TrustManager;
  
 public class Test2 {
  
+	/*
 	public static void main(String[] args) throws Exception {
 		args[0] = "eposn.hncb.com.tw";
 		String host;
@@ -170,5 +171,5 @@ public class Test2 {
 			tm.checkServerTrusted(chain, authType);
 		}
 	}
- 
+ */
 }
